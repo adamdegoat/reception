@@ -231,7 +231,7 @@ footer{background:var(--dark);color:var(--light);padding:clamp(64px,10vh,104px) 
 @keyframes blink{0%,60%,100%{opacity:.35}30%{opacity:1}}
 
 /* what we build */
-.build{padding:clamp(72px,10vh,116px) 0 clamp(40px,5vh,60px)}
+.build{padding:clamp(50px,7vh,84px) 0 clamp(36px,4.5vh,54px)}
 .kicker2{font-size:clamp(30px,4.2vw,50px);font-weight:700;letter-spacing:-.025em;line-height:1.05;text-wrap:balance;max-width:18ch}
 .kicker2 em{font-style:normal;color:var(--accent-ink)}
 .buildsub{margin-top:18px;font-size:18px;color:var(--muted);max-width:52ch;line-height:1.5}
@@ -268,7 +268,7 @@ footer{background:var(--dark);color:var(--light);padding:clamp(64px,10vh,104px) 
 .msg.out{background:var(--ink);color:var(--light);border-bottom-right-radius:5px;align-self:flex-end}
 
 /* ink statement band */
-.band{background:var(--dark);color:var(--light);padding:clamp(72px,11vh,124px) 0}
+.band{background:var(--dark);color:var(--light);padding:clamp(56px,8vh,96px) 0}
 .band h2{font-size:clamp(30px,4.6vw,56px);font-weight:800;letter-spacing:-.025em;line-height:1.05;max-width:17ch;text-wrap:balance}
 .band h2 em{font-style:normal;color:var(--accent)}
 .band p{margin-top:22px;font-size:18px;color:var(--muted-cream);max-width:54ch;line-height:1.55}
@@ -277,7 +277,7 @@ footer{background:var(--dark);color:var(--light);padding:clamp(64px,10vh,104px) 
 .shead{font-size:clamp(28px,4vw,46px);font-weight:700;letter-spacing:-.025em;line-height:1.06;max-width:16ch;text-wrap:balance}
 .shead em{font-style:normal;color:var(--accent-ink)}
 .ssub{margin-top:16px;font-size:18px;color:var(--muted);max-width:52ch;line-height:1.5}
-.sec{padding:clamp(72px,10vh,116px) 0}
+.sec{padding:clamp(50px,7vh,84px) 0}
 .sec.tint{background:var(--surface)}
 
 /* 2x2 feature grid (no cards) */
@@ -506,7 +506,7 @@ footer{background:var(--dark);color:var(--light);padding:clamp(64px,10vh,104px) 
 .svlead .av{width:23px;height:23px;border-radius:50%;background:var(--accent-ink);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
 
 /* get-started band (burnt-orange committed CTA) */
-.start{background:var(--accent);color:var(--ink);padding:clamp(72px,11vh,120px) 0}
+.start{background:var(--accent);color:var(--ink);padding:clamp(56px,8vh,96px) 0}
 .startGrid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(36px,5vw,72px);align-items:center}
 @media(max-width:820px){.startGrid{grid-template-columns:1fr;gap:38px}}
 .startbig{font-size:clamp(32px,5vw,58px);font-weight:800;letter-spacing:-.025em;line-height:1.02;max-width:15ch;text-wrap:balance}
@@ -522,7 +522,7 @@ footer{background:var(--dark);color:var(--light);padding:clamp(64px,10vh,104px) 
 .assure li::before{content:"\2713";position:absolute;left:0;top:1px;color:var(--ink);font-weight:800;font-size:15px}
 
 /* founder's note (human trust beat) */
-.note{background:var(--surface);padding:clamp(72px,10vh,116px) 0}
+.note{background:var(--surface);padding:clamp(50px,7vh,84px) 0}
 .note .wrap{max-width:840px}
 .noteh{font-size:clamp(27px,3.6vw,42px);font-weight:700;letter-spacing:-.025em;line-height:1.06;max-width:18ch;text-wrap:balance}
 .noteh em{font-style:normal;color:var(--accent-ink)}
@@ -542,7 +542,7 @@ footer{background:var(--dark);color:var(--light);padding:clamp(64px,10vh,104px) 
 .faqx p{margin-top:6px;font-size:14.5px;color:var(--muted);line-height:1.5;max-width:48ch}
 
 /* industries */
-.inds{padding:clamp(40px,5vh,60px) 0 clamp(72px,10vh,116px)}
+.inds{padding:clamp(36px,4.5vh,54px) 0 clamp(50px,7vh,84px)}
 .indhead{font-size:clamp(15px,1.6vw,17px);font-weight:600;color:var(--muted);letter-spacing:.01em;margin-bottom:26px}
 .indwrap{display:flex;flex-wrap:wrap;gap:12px}
 .indpill{font-size:clamp(17px,2.4vw,26px);font-weight:600;letter-spacing:-.01em;color:var(--ink);padding:8px 0;position:relative}
