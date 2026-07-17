@@ -33,9 +33,9 @@
   *{margin:0;padding:0;box-sizing:border-box}
   [hidden]{display:none!important}
   html,body{height:100%}
-  body{font-family:var(--font);background:var(--bg);color:var(--ink);display:flex;align-items:center;justify-content:center;-webkit-font-smoothing:antialiased;line-height:1.5}
+  body{font-family:var(--font);background:radial-gradient(1100px 600px at 50% -8%,rgba(232,102,58,.20),transparent 60%),radial-gradient(860px 620px at 110% 114%,rgba(232,102,58,.13),transparent 56%),linear-gradient(176deg,#f6efe4,#ece2d3);color:var(--ink);display:flex;align-items:center;justify-content:center;-webkit-font-smoothing:antialiased;line-height:1.5}
   .desk{width:100%;max-width:800px;height:100dvh;max-height:900px;display:flex;flex-direction:column;background:var(--deskbg);position:relative;overflow:hidden}
-  @media(min-width:560px){.desk{border:1px solid var(--line);border-radius:22px;height:min(100dvh,860px);box-shadow:0 40px 90px -50px rgba(23,21,18,.5);margin:16px}}
+  @media(min-width:560px){.desk{border:1px solid var(--line);border-radius:22px;height:min(100dvh,640px);box-shadow:0 40px 90px -50px rgba(23,21,18,.5);margin:16px}.dthread::before{content:"";margin-top:auto}}
   /* header */
   .dhead{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:var(--head-border);flex:none;background:var(--head-bg);color:var(--head-fg)}
   .davatar{position:relative;width:44px;height:44px;border-radius:var(--av-radius);background:var(--av-bg);flex:none;display:flex;align-items:center;justify-content:center}
