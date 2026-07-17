@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /leads.html
+Disallow: /add.html
+Disallow: /booking.html
+Disallow: /manual.html
+Disallow: /og-card.html
+Disallow: /f.html
+Disallow: /site-amber.html
+
+Sitemap: https://reception.sg/sitemap.xml
