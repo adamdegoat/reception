@@ -309,6 +309,17 @@ footer{background:var(--dark);color:var(--light);padding:clamp(64px,10vh,104px) 
 .mp-plat{display:flex;align-items:center;justify-content:space-between;padding:12px 12px 8px;font-size:12px;font-weight:800;letter-spacing:-.02em}
 .mp-plat .ic{width:16px;height:16px;flex:none}
 .mp-handle{filter:blur(2.6px);opacity:.6;font-weight:700;font-size:11px}
+/* platform headers so each phone is identifiable */
+.mp-appbar{display:flex;align-items:center;gap:6px;padding:10px 12px 8px}
+.mp-appbar .mp-handle{margin-left:auto;font-size:10px}
+.app-wm{font-weight:800;font-size:13.5px;letter-spacing:-.03em;line-height:1;color:#171512}
+.ig-logo,.tik-logo{width:17px;height:17px;flex:none;display:block}
+.goog-bar{border-bottom:1px solid rgba(0,0,0,.06);padding-bottom:9px}
+.goog-logo{font-family:Arial,Helvetica,sans-serif;font-weight:700;font-size:15px;letter-spacing:-.6px;line-height:1}
+.tik .tik-top{gap:6px;justify-content:center}
+.tik-wm{color:#fff}
+.sharecap{text-align:center;font-size:13.5px;color:var(--muted);margin-top:16px;font-weight:500;line-height:1.5}
+.sharecap b{color:var(--accent-ink);font-weight:700}
 .mp-link{display:flex;align-items:center;gap:5px;margin:0 11px;padding:6px 9px;border-radius:8px;
   background:rgba(232,102,58,.13);border:1px solid rgba(178,71,20,.34);color:var(--accent-ink);
   font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:-.02em;white-space:nowrap}
