@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1200px;height:630px}
+  body{background:#f3efe8;color:#171512;font-family:"Bricolage Grotesque",sans-serif;position:relative;overflow:hidden}
+  .glow{position:absolute;top:-120px;right:-60px;width:620px;height:620px;border-radius:50%;
+    background:radial-gradient(circle,rgba(232,102,58,.18),transparent 62%)}
+  .pad{position:absolute;inset:0;padding:70px 76px;display:flex;flex-direction:column;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:15px}
+  .brand svg{width:40px;height:40px}
+  .bn{font-size:30px;font-weight:700;letter-spacing:-.01em}
+  .div{width:1px;height:26px;background:rgba(23,21,18,.24);margin:0 4px}
+  .sub{font-family:"Spline Sans Mono",monospace;font-size:16px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:#635b4f}
+  h1{font-size:82px;font-weight:800;line-height:.98;letter-spacing:-.03em;max-width:15ch}
+  h1 em{font-style:normal;color:#b24714}
+  .tag{font-family:"Spline Sans Mono",monospace;font-size:22px;color:#635b4f;letter-spacing:.01em}
+  .bigmk{position:absolute;right:74px;top:150px;width:300px;height:300px;opacity:.9}
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <svg class="bigmk" viewBox="0 0 64 64" aria-hidden="true"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="#171512"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="#171512"/><circle cx="32" cy="26.5" r="3.9" fill="#e8663a"/></svg>
+  <div class="pad">
+    <div class="brand">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="#171512"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="#171512"/><circle cx="32" cy="26.5" r="3.9" fill="#e8663a"/></svg>
+      <span class="bn">reception</span>
+      <span class="div"></span>
+      <span class="sub">Front desk · Singapore</span>
+    </div>
+    <h1>Answer every <em>enquiry,</em> before they move on.</h1>
+    <div class="tag">The 24/7 front desk for Singapore small businesses · from S$349/mo</div>
+  </div>
+</body>
+</html>

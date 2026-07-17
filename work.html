@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="What Reception builds for Singapore small businesses: 24/7 front desks in your brand, full websites with the front desk built in, and custom booking, tools and automations.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Reception">
+<meta property="og:title" content="What we build, front desks, websites and custom tools">
+<meta property="og:description" content="Real examples of the 24/7 front desk, websites with the front desk built in, and custom tools for Singapore small businesses.">
+<meta property="og:image" content="https://reception.sg/og.png">
+<meta property="og:url" content="https://reception.sg/work.html">
+<meta name="twitter:card" content="summary_large_image">
+<title>What we build · Reception</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23171512'/%3E%3Csvg x='5.5' y='5.5' width='21' height='21' viewBox='0 0 64 64'%3E%3Crect x='9' y='45.5' width='46' height='5.8' rx='2.9' fill='%23f3efe8'/%3E%3Cpath d='M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z' fill='%23f3efe8'/%3E%3Ccircle cx='32' cy='26.5' r='3.9' fill='%23e8663a'/%3E%3C/svg%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Spline+Sans+Mono:wght@400;500&family=Hedvig+Letters+Serif&family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=44">
+<style>
+  /* ===== Work page: "What we build" ===== */
+  .wlede{padding:120px 0 clamp(20px,3vh,36px)}
+  .tierhead{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:clamp(24px,3vw,36px)}
+  .tiernum{font-family:var(--mono);font-size:13px;color:#8f3a10;font-weight:500}
+  .tiertitle{font-size:clamp(26px,3.4vw,40px);font-weight:700;letter-spacing:-.02em;line-height:1.05}
+  .tiersub{color:var(--muted);font-size:clamp(16px,1.5vw,18px);max-width:50ch;margin-top:6px;line-height:1.5}
+  .wsec{padding:clamp(38px,5vh,60px) 0}
+  .wsec.tint{background:var(--surface)}
+
+  /* front-desk phone mockups */
+  .fdrow{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,1.8vw,26px);align-items:end}
+  @media(max-width:1000px){.fdrow{grid-template-columns:repeat(2,1fr);max-width:640px;margin:0 auto;gap:30px}}
+  @media(max-width:540px){.fdrow{grid-template-columns:1fr;max-width:330px}}
+  .fdmock{display:flex;flex-direction:column;gap:14px}
+  .pbody{background:#141210;border-radius:38px;padding:9px;box-shadow:0 34px 66px -34px rgba(23,21,18,.55)}
+  .pscreen{border-radius:30px;overflow:hidden;background:var(--dbg,#fbf9f5);display:flex;flex-direction:column;height:392px}
+  .pstat{display:flex;justify-content:space-between;padding:12px 20px 2px;font-family:var(--mono);font-size:11px;color:var(--pink,var(--ink))}
+  .phead{display:flex;align-items:center;gap:10px;padding:12px 18px 14px;border-bottom:1px solid var(--pline,rgba(23,21,18,.1));background:var(--dhead,var(--dbg))}
+  .pav{width:38px;height:38px;border-radius:var(--prad,11px);background:var(--pav,var(--ink));color:#fff;flex:none;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;overflow:hidden}
+  .pav svg{width:22px;height:22px}
+  .pname{font-family:var(--pfont,var(--font));font-weight:var(--pnw,700);font-size:15px;letter-spacing:-.01em;color:var(--pfg,var(--ink));line-height:1.1}
+  .pwho{font-size:11px;color:var(--pmut,var(--muted));margin-top:2px}
+  .pthread{flex:1;padding:16px 16px;display:flex;flex-direction:column;gap:9px;overflow:hidden}
+  .pmsg{max-width:88%;padding:9px 12px;border-radius:14px;font-size:13px;line-height:1.4}
+  .pmsg.in{background:var(--pin,#efe9df);color:var(--pintx,var(--ink));border-bottom-left-radius:4px;align-self:flex-start}
+  .pmsg.out{background:var(--pout,var(--ink));color:var(--poutfg,#fff);border-bottom-right-radius:4px;align-self:flex-end}
+  .pchips{display:flex;flex-wrap:wrap;gap:6px;padding:4px 14px 14px}
+  .pchip{font-size:11.5px;font-weight:var(--pchw,500);color:var(--pchfg,var(--accent-ink));background:var(--pchbg,transparent);border:1px solid var(--pchb,rgba(178,71,20,.35));border-radius:var(--pchr,100px);padding:6px 11px}
+  .fdcap{padding:0 4px}
+  .fdcap b{font-weight:700;font-size:16px;letter-spacing:-.01em}
+  .fdcap span{font-family:var(--mono);font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-left:8px}
+  .fdnote{margin-top:clamp(28px,4vh,44px);font-size:16px;color:var(--muted);max-width:56ch;line-height:1.5}
+  .fdnote a{color:var(--accent-ink);font-weight:600;border-bottom:1.5px solid rgba(178,71,20,.35)}
+
+  /* website examples */
+  .sitehero{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:0 40px 80px -46px rgba(23,21,18,.5)}
+  .sitebar{display:flex;align-items:center;gap:11px;padding:11px 16px;background:#efeadf;border-bottom:1px solid var(--line)}
+  .sitebar i{width:9px;height:9px;border-radius:50%;background:#cfc6b6}
+  .sitebar .url{font-family:var(--mono);font-size:12px;color:#635b4f;background:#fff;border-radius:6px;padding:5px 14px;margin-left:6px;flex:1;max-width:340px}
+  .sitelive{margin-left:auto;font-family:var(--mono);font-size:11px;color:#276a47;display:inline-flex;align-items:center;gap:6px}
+  .sitelive .d{width:7px;height:7px;border-radius:50%;background:#2f9e5f}
+  .siteframe{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;background:#f7efe6}
+  .siteframe iframe{position:absolute;top:0;left:0;width:200%;height:200%;transform:scale(.5);transform-origin:top left;border:0;pointer-events:none}
+  .siteover{position:absolute;inset:0;display:flex;align-items:flex-end;padding:22px;background:linear-gradient(to top,rgba(23,21,18,.34),transparent 46%);text-decoration:none}
+  .siteopen{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--ink);font-weight:600;font-size:14.5px;padding:11px 18px;border-radius:100px;box-shadow:0 12px 26px -12px rgba(23,21,18,.5);transition:transform .2s}
+  .sitehero:hover .siteopen{transform:translateY(-2px)}
+  .sitecap{margin-top:14px;display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .sitecap b{font-size:17px;font-weight:700;letter-spacing:-.01em}
+  .sitecap span{color:var(--muted);font-size:14px}
+  .sitegrid{margin-top:clamp(30px,4vw,48px);display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.2vw,28px)}
+  @media(max-width:900px){.sitegrid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.sitegrid{grid-template-columns:1fr;max-width:400px;margin-left:auto;margin-right:auto}}
+  .smock{display:flex;flex-direction:column;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 22px 46px -30px rgba(23,21,18,.4);background:#fff;transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s}
+  .smock:hover{transform:translateY(-4px);box-shadow:0 34px 60px -32px rgba(23,21,18,.5)}
+  /* browser-framed mini-site */
+  .wsbar{display:flex;align-items:center;gap:5px;padding:9px 12px;background:#ece5d8;border-bottom:1px solid var(--line);flex:none}
+  .wsbar i{width:7px;height:7px;border-radius:50%;background:#cabfac}
+  .wsurl{font-family:var(--mono);font-size:10px;color:#7c7264;background:#fff;border-radius:5px;padding:4px 9px;margin-left:5px;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .wspage{flex:1;display:flex;flex-direction:column;min-height:300px;background:var(--sbg,#fff);color:var(--sink,#171512);font-family:var(--sfont,var(--font))}
+  .wsnav{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 16px;border-bottom:1px solid var(--sline,rgba(23,21,18,.1))}
+  .wslogo{font-weight:var(--slw,700);font-size:13.5px;letter-spacing:-.01em;font-family:var(--sfont,var(--font))}
+  .wslinks{font-family:var(--mono);font-size:9px;letter-spacing:.05em;text-transform:uppercase;opacity:.55;white-space:nowrap}
+  .wshero{padding:20px 16px 16px}
+  .wseyebrow{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.13em;color:var(--sacc);display:block;margin-bottom:9px}
+  .wstitle{font-weight:var(--stw,800);font-size:clamp(19px,1.9vw,25px);line-height:1.04;letter-spacing:-.02em;max-width:15ch;margin:0}
+  .wscta{display:flex;gap:7px;flex-wrap:wrap;margin-top:15px}
+  .wsbtn{font-size:10.5px;font-weight:600;padding:7px 12px;border-radius:var(--sbr,100px);background:var(--sacc);color:var(--sactx,#fff);white-space:nowrap}
+  .wsbtn.ghost{background:transparent;border:1px solid var(--sline,rgba(23,21,18,.18));color:var(--sink)}
+  .wsstrip{margin-top:auto;border-top:1px solid var(--sline,rgba(23,21,18,.1));padding:13px 16px;display:flex;flex-direction:column;gap:7px}
+  .wsmrow{display:flex;justify-content:space-between;gap:12px;font-size:11.5px;line-height:1.3}
+  .wsmrow span:last-child{opacity:.55;font-variant-numeric:tabular-nums;flex:none}
+  .wstiles{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+  .wstile{aspect-ratio:4/3;border-radius:5px;background:var(--tbg,rgba(23,21,18,.07));display:flex;align-items:flex-end;padding:5px 6px;font-family:var(--mono);font-size:7.5px;letter-spacing:.02em;text-transform:uppercase;color:var(--ttx,#4a463f);line-height:1.15}
+  .smcap{padding:13px 16px 15px;background:#fff;border-top:1px solid var(--line);display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+  .smcap b{font-size:15px;font-weight:700}
+  .smcap span{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+
+  /* custom builds */
+  .cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,28px)}
+  @media(max-width:820px){.cgrid{grid-template-columns:1fr;max-width:440px;margin:0 auto}}
+  .ccard{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card);display:flex;flex-direction:column}
+  .cviz{background:var(--bg);border-bottom:1px solid var(--line);padding:20px;min-height:186px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+  .cbody{padding:18px 20px 22px}
+  .cbody h3{font-size:19px;font-weight:700;letter-spacing:-.01em}
+  .cbody p{margin-top:7px;font-size:14.5px;color:var(--muted);line-height:1.45}
+  .cbody .q{margin-top:12px;font-family:var(--mono);font-size:11.5px;color:var(--accent-ink);text-transform:uppercase;letter-spacing:.04em}
+  /* booking viz */
+  .bkslot{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:13px}
+  .bkslot.taken{opacity:1;color:#63605a}
+  .bkslot b{font-weight:600}
+  .bkslot .go{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--accent-ink)}
+  .bkslot.taken .go{color:#63605a}
+  /* quote viz */
+  .qtr{display:flex;align-items:center;justify-content:space-between;font-size:13px;padding:7px 0;border-bottom:1px solid var(--line)}
+  .qtr:last-of-type{border-bottom:none}
+  .qtot{display:flex;align-items:center;justify-content:space-between;margin-top:6px;padding-top:11px;border-top:2px solid var(--ink);font-weight:700;font-size:16px}
+  .qtot span{color:var(--accent-ink)}
+  /* automation viz */
+  .aflow{display:flex;flex-direction:column;gap:9px}
+  .astep{display:flex;align-items:center;gap:11px;font-size:13px}
+  .adot{width:26px;height:26px;border-radius:8px;background:rgba(232,102,58,.14);color:var(--accent-ink);flex:none;display:flex;align-items:center;justify-content:center}
+  .adot svg{width:15px;height:15px}
+  .aline{width:1px;height:12px;background:var(--line);margin-left:13px}
+  /* voice sampler */
+  .voicebar{margin-top:clamp(28px,4vw,40px);padding:clamp(18px,3vw,24px);background:var(--card);border:1px solid var(--line);border-radius:16px}
+  .voicebar-h{font-size:15.5px;color:var(--muted);line-height:1.55;max-width:60ch}
+  .voicebar-h b{color:var(--ink);font-weight:700}
+  .vchips{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}
+  .vchip{display:inline-flex;align-items:center;gap:9px;background:var(--bg);border:1.5px solid var(--line);border-radius:100px;padding:8px 16px 8px 8px;font-family:var(--font);font-size:14.5px;font-weight:600;color:var(--ink);cursor:pointer;transition:border-color .15s,background .15s}
+  .vchip:hover{border-color:var(--accent-ink)}
+  .vchip.playing{border-color:var(--accent-ink);background:rgba(232,102,58,.09);color:var(--accent-ink)}
+  .vchip em{font-style:normal;font-weight:500;color:var(--muted);font-size:12px}
+  .vchip .vp{flex:none;display:inline-flex;width:24px;height:24px;border-radius:50%;background:var(--accent-ink);color:#fff;align-items:center;justify-content:center}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="brandmark" href="index.html" aria-label="Reception, AI front desk, Singapore, home">
+      <svg class="brandmk" viewBox="0 0 64 64" aria-hidden="true"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="currentColor"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="currentColor"/><circle cx="32" cy="26.5" r="3.9" fill="#e8663a"/></svg><span class="bmtext"><span class="bmname">reception<svg class="aibadge" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#b8532a"/><text x="12" y="16.2" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="700" font-size="11" letter-spacing="-.5" fill="#fff">AI</text></svg></span><span class="bmsub" aria-hidden="true">Front desk · Singapore</span></span>
+    </a>
+    <div class="navcluster">
+      <nav class="links" id="navlinks" aria-label="Primary">
+        <a class="navlink" href="index.html">Home</a>
+        <a class="navlink" href="work.html" aria-current="page">Our work</a>
+        <a class="navlink" href="get-started.html">Get started</a>
+        <a class="navlink" href="why.html">Why it works</a>
+        <a class="navlink" href="pricing.html">Pricing</a>
+        <a class="navlink" href="about.html">About</a>
+      </nav>
+      <a class="navcta" href="#start">Contact us</a>
+      <button class="navtoggle" id="navtoggle" type="button" aria-label="Menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="wlede">
+    <div class="wrap">
+      <h1 class="shead" style="font-size:clamp(34px,5.2vw,64px);max-width:16ch">What we build.</h1>
+      <p class="ssub" style="max-width:58ch">It starts with a front desk that answers every customer in your brand. When you're ready, we add the website, the booking, and the tools that run your trade, all designed around your business. These are examples, yours is built for you.</p>
+    </div>
+  </section>
+
+  <!-- TIER 1: front desks -->
+  <section class="wsec">
+    <div class="wrap">
+      <div class="tierhead">
+        <div>
+          <div class="tiernum">Front desks</div>
+          <h2 class="tiertitle">Answered in seconds, in your brand.</h2>
+          <p class="tiersub">Your 24/7 assistant on its own link and QR. It answers, takes bookings and captures every enquiry, in four styles, any trade, your name, colours and a voice you choose.</p>
+        </div>
+      </div>
+      <div class="fdrow">
+        <!-- clean -->
+        <figure class="fdmock">
+          <div class="pbody"><div class="pscreen" style="--dbg:#f2f4f5;--dhead:#fbfcfd;--pin:#e6eaed;--pline:rgba(20,28,38,.08)">
+            <div class="pstat"><span>9:41</span><span>5G</span></div>
+            <div class="phead"><span class="pav" style="background:#171512;border-radius:13px"><svg viewBox="0 0 64 64"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="#F3EFE8"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="#F3EFE8"/><circle cx="32" cy="26.5" r="3.9" fill="#e8663a"/></svg></span><div><div class="pname">FreshHome</div><div class="pwho">Home cleaning</div></div></div>
+            <div class="pthread"><div class="pmsg in">Hi, welcome to FreshHome. How big is your place?</div><div class="pmsg out">4-room HDB, move-out clean</div><div class="pmsg in">From S$280 for a 4-room move-out. Which date works?</div></div>
+            <div class="pchips" style="--pchfg:#0f7a5f;--pchb:rgba(15,122,95,.32)"><span class="pchip">Get a quote</span><span class="pchip">Weekly clean?</span></div>
+          </div></div>
+          <figcaption class="fdcap"><b>FreshHome</b><span>Clean</span></figcaption>
+        </figure>
+        <!-- warm -->
+        <figure class="fdmock">
+          <div class="pbody"><div class="pscreen" style="--dbg:#efe4ce;--dhead:#ece0c7;--pin:#e5d7bd;--pout:#b8532a;--prad:50%;--pfont:'Hedvig Letters Serif',serif;--pnw:500">
+            <div class="pstat"><span>9:41</span><span>5G</span></div>
+            <div class="phead"><span class="pav" style="background:#b8532a">A</span><div><div class="pname" style="font-size:16px">Amber Nail & Lash</div><div class="pwho">Nails, lashes & brows</div></div></div>
+            <div class="pthread"><div class="pmsg in">Hi, welcome to Amber. Ask about gel, lashes or a slot.</div><div class="pmsg out">How much for gel?</div><div class="pmsg in">Gel is S$45 and lasts two to three weeks. Want to book a time?</div></div>
+            <div class="pchips" style="--pchbg:rgba(194,86,138,.14);--pchfg:#8f3d1c;--pchb:transparent;--pchw:600"><span class="pchip">Book a slot</span><span class="pchip">Do lashes?</span></div>
+          </div></div>
+          <figcaption class="fdcap"><b>Amber Nail & Lash</b><span>Warm</span></figcaption>
+        </figure>
+        <!-- bold -->
+        <figure class="fdmock">
+          <div class="pbody"><div class="pscreen" style="--dbg:#fff;--dhead:#fff;--pline:#171512;--pin:#f0eee7;--pout:#2f6fd0;--poutfg:#fff;--prad:11px;--pnw:800">
+            <div class="pstat"><span>9:41</span><span>5G</span></div>
+            <div class="phead" style="border-bottom-width:2px"><span class="pav" style="background:#2f6fd0">P</span><div><div class="pname" style="font-size:16px;font-weight:800;letter-spacing:-.03em">Peak Fitness</div><div class="pwho">Classes & PT</div></div></div>
+            <div class="pthread"><div class="pmsg in">Hey! Ask about classes, a free trial or membership.</div><div class="pmsg out">Free trial?</div><div class="pmsg in">Your first class is on us. What day suits you?</div></div>
+            <div class="pchips" style="--pchbg:#171512;--pchfg:#fff;--pchb:#171512;--pchr:9px;--pchw:600"><span class="pchip">Free trial</span><span class="pchip">Timetable</span></div>
+          </div></div>
+          <figcaption class="fdcap"><b>Peak Fitness</b><span>Bold</span></figcaption>
+        </figure>
+        <!-- sleek -->
+        <figure class="fdmock">
+          <div class="pbody"><div class="pscreen" style="--dbg:#f7f7f5;--dhead:#1b1917;--pin:#ecebe5;--pintx:#171512;--pfg:#f4f3f0;--pmut:rgba(244,243,240,.6);--pline:rgba(255,255,255,.06);--pfont:'Space Grotesk',sans-serif;--pnw:600;--pout:#1b1917;--poutfg:#f4f3f0">
+            <div class="pstat"><span>9:41</span><span>5G</span></div>
+            <div class="phead"><span class="pav" style="background:#3d6b7d;color:#fff;border-radius:11px;font-family:'Space Grotesk',sans-serif">AX</span><div><div class="pname" style="font-size:15px">Apex Detailing</div><div class="pwho">Car care · Ubi</div></div></div>
+            <div class="pthread"><div class="pmsg in">Evening. Ask about a detail package or a slot.</div><div class="pmsg out">Ceramic coating?</div><div class="pmsg in">Ceramic coating is from S$680 for a full car. Want to book it in?</div></div>
+            <div class="pchips" style="--pchfg:#3d6b7d;--pchb:rgba(61,107,125,.42);--pchbg:transparent"><span class="pchip">Packages</span><span class="pchip">Book a slot</span></div>
+          </div></div>
+          <figcaption class="fdcap"><b>Apex Detailing</b><span>Sleek</span></figcaption>
+        </figure>
+      </div>
+      <p class="fdnote">Swipe through these live on the <a href="index.html">home page</a>, or pick from Clean, Warm, Bold and Sleek. Set up for you, in your brand, S$349 a month.</p>
+      <div class="voicebar">
+        <div class="voicebar-h"><b>Hear the voices.</b> Your front desk speaks its replies out loud, not just in text. Tap to hear each one, including local Singapore voices, and pick what fits.</div>
+        <div class="vchips" id="vchips">
+          <button class="vchip" type="button" data-v="luna"><span class="vp" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>Mei <em>Singapore</em></button>
+          <button class="vchip" type="button" data-v="wayne"><span class="vp" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>Marcus <em>Singapore</em></button>
+          <button class="vchip" type="button" data-v="ava"><span class="vp" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>Grace</button>
+          <button class="vchip" type="button" data-v="aria"><span class="vp" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>Ivy</button>
+          <button class="vchip" type="button" data-v="andrew"><span class="vp" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>Ryan</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIER 2: websites -->
+  <section class="wsec tint">
+    <div class="wrap">
+      <div class="tierhead">
+        <div>
+          <div class="tiernum">Websites</div>
+          <h2 class="tiertitle">A full site, with the front desk built in.</h2>
+          <p class="tiersub">A real website in your brand that sells while you sleep, with the front desk answering right inside it. From S$1,299.</p>
+        </div>
+      </div>
+      <div class="sitehero">
+        <div class="sitebar"><i></i><i></i><i></i><span class="url">ambernaillash.sg</span><span class="sitelive"><span class="d"></span>Live example</span></div>
+        <div class="siteframe">
+          <iframe src="site-amber.html" title="Amber Nail & Lash website" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+          <a class="siteover" href="site-amber.html" target="_blank" rel="noopener" aria-label="Open the Amber Nail & Lash live example site">
+            <span class="siteopen">Open the live site
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+          </a>
+        </div>
+      </div>
+      <div class="sitecap"><b>Amber Nail & Lash</b><span>A real, working example, with the front desk built in. Click to open it.</span></div>
+
+      <div class="sitegrid">
+        <!-- editorial cafe -->
+        <figure class="smock">
+          <div class="wsbar"><i></i><i></i><i></i><span class="wsurl">fernsandfilter.sg</span></div>
+          <div class="wspage" style="--sbg:#14231d;--sink:#eef0e9;--sacc:#8fc0a0;--sfont:'Hedvig Letters Serif',serif;--stw:500;--slw:500;--sline:rgba(255,255,255,.15);--sactx:#14231d">
+            <div class="wsnav"><span class="wslogo">Ferns &amp; Filter</span><span class="wslinks">Menu · Visit · Order</span></div>
+            <div class="wshero">
+              <span class="wseyebrow">Cafe · Tiong Bahru</span>
+              <h4 class="wstitle">Slow mornings, good coffee.</h4>
+              <div class="wscta"><span class="wsbtn">Reserve a table</span><span class="wsbtn ghost">See the menu</span></div>
+            </div>
+            <div class="wsstrip">
+              <div class="wsmrow"><span>Single-origin pour-over</span><span>$7</span></div>
+              <div class="wsmrow"><span>Kaya toast set</span><span>$9</span></div>
+              <div class="wsmrow"><span>House cold brew</span><span>$6</span></div>
+            </div>
+          </div>
+          <figcaption class="smcap"><b>Ferns &amp; Filter</b><span>Editorial</span></figcaption>
+        </figure>
+        <!-- bold industrial reno -->
+        <figure class="smock">
+          <div class="wsbar"><i></i><i></i><i></i><span class="wsurl">northlinereno.sg</span></div>
+          <div class="wspage" style="--sbg:#fbfaf8;--sink:#191919;--sacc:#b8441c;--sfont:'Archivo Black',sans-serif;--stw:400;--slw:400;--sline:rgba(23,21,18,.13);--sactx:#fff;--sbr:5px">
+            <div class="wsnav"><span class="wslogo">NORTHLINE</span><span class="wslinks">Work · Process · Quote</span></div>
+            <div class="wshero">
+              <span class="wseyebrow">Renovation · Islandwide</span>
+              <h4 class="wstitle">BUILT PROPERLY, ONCE.</h4>
+              <div class="wscta"><span class="wsbtn">Get a quote</span><span class="wsbtn ghost">Our work</span></div>
+            </div>
+            <div class="wsstrip">
+              <div class="wstiles">
+                <span class="wstile" style="--tbg:#d4d0c9">HDB · Tampines</span>
+                <span class="wstile" style="--tbg:#c2beb6">Condo · Novena</span>
+                <span class="wstile" style="--tbg:#aeaaa1">Landed · B.Timah</span>
+              </div>
+            </div>
+          </div>
+          <figcaption class="smcap"><b>Northline Reno</b><span>Bold, industrial</span></figcaption>
+        </figure>
+        <!-- minimal wellness -->
+        <figure class="smock">
+          <div class="wsbar"><i></i><i></i><i></i><span class="wsurl">studio-ora.sg</span></div>
+          <div class="wspage" style="--sbg:#f4f1ea;--sink:#2c2925;--sacc:#b0764f;--sfont:'Plus Jakarta Sans',sans-serif;--stw:700;--slw:700;--sline:rgba(44,41,37,.12);--sactx:#fff">
+            <div class="wsnav"><span class="wslogo">Ora</span><span class="wslinks">Classes · Pricing · Book</span></div>
+            <div class="wshero">
+              <span class="wseyebrow">Pilates · Holland Village</span>
+              <h4 class="wstitle">Move well. Feel steady.</h4>
+              <div class="wscta"><span class="wsbtn">Book a class</span><span class="wsbtn ghost">Timetable</span></div>
+            </div>
+            <div class="wsstrip">
+              <div class="wsmrow"><span>Reformer Flow</span><span>8:00am</span></div>
+              <div class="wsmrow"><span>Mat Basics</span><span>10:00am</span></div>
+              <div class="wsmrow"><span>Prenatal</span><span>6:00pm</span></div>
+            </div>
+          </div>
+          <figcaption class="smcap"><b>Studio Ora</b><span>Minimal, airy</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIER 3: custom builds -->
+  <section class="wsec">
+    <div class="wrap">
+      <div class="tierhead">
+        <div>
+          <div class="tiernum">Custom builds</div>
+          <h2 class="tiertitle">For whatever your trade keeps doing by hand.</h2>
+          <p class="tiersub">Quote tools, forms, follow-ups, and more. We scope it around how you actually work, and quote it to fit.</p>
+        </div>
+      </div>
+      <div class="cgrid">
+        <div class="ccard">
+          <div class="cviz">
+            <div class="bkslot"><b>Sat, 2:00pm</b><span class="go">Book</span></div>
+            <div class="bkslot taken"><b>Sat, 3:30pm</b><span class="go">Taken</span></div>
+            <div class="bkslot"><b>Sat, 5:00pm</b><span class="go">Book</span></div>
+          </div>
+          <div class="cbody"><h3>Custom forms</h3><p>Intake forms, sign-ups or detailed enquiries, filled in online and sent straight to you.</p><div class="q">Quoted</div></div>
+        </div>
+        <div class="ccard">
+          <div class="cviz">
+            <div class="qtr"><span>Aircon service · 3 units</span><span>S$90</span></div>
+            <div class="qtr"><span>Chemical wash · 1 unit</span><span>S$90</span></div>
+            <div class="qtot"><span>Your estimate</span><span>S$180</span></div>
+          </div>
+          <div class="cbody"><h3>Quote tools</h3><p>Custom calculators so customers get an instant estimate, and you get a warm enquiry.</p><div class="q">Quoted</div></div>
+        </div>
+        <div class="ccard">
+          <div class="cviz">
+            <div class="aflow">
+              <div class="astep"><span class="adot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Enquiry received</div>
+              <div class="aline"></div>
+              <div class="astep"><span class="adot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg></span>Reminder sent, day before</div>
+              <div class="aline"></div>
+              <div class="astep"><span class="adot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.5 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3 9.2l5.9-.9z"/></svg></span>Review request, after</div>
+            </div>
+          </div>
+          <div class="cbody"><h3>Automations</h3><p>Reminders, follow-ups and review requests, sent on their own and never forgotten.</p><div class="q">Quoted</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="start" id="start">
+    <div class="wrap">
+      <div class="startGrid">
+        <div>
+          <h2 class="startbig">Want to see yours?</h2>
+          <p class="startsub">Tell us about your business and we'll design your front desk, and anything else you need, around your brand. Usually live within a few hours.</p>
+          <div class="startcta">
+            <a class="btn" href="https://wa.me/6583219747?text=Hi%20Reception%2C%20I%27d%20like%20to%20set%20up%20my%20front%20desk." target="_blank" rel="noopener" data-contact="whatsapp">Message us on WhatsApp
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="hlink" href="get-started.html">or see how it works</a>
+          </div>
+        </div>
+        <ul class="assure">
+          <li>No lock-in, cancel anytime</li>
+          <li>One flat price, no hidden fees</li>
+          <li>A real person in Singapore replies</li>
+          <li>Live in a few hours, not weeks</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footIn">
+    <div class="fbig">Yours will look like you.</div>
+    <a class="fbtn" href="https://wa.me/6583219747?text=Hi%20Reception%2C%20I%27d%20like%20to%20get%20started%20with%20my%20front%20desk." target="_blank" rel="noopener">Contact us
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+  <div class="wrap footNav">
+    <div class="fcol fbrandcol">
+      <a class="brandmark fbrand" href="index.html" aria-label="Reception, AI front desk, Singapore, home">
+        <svg class="brandmk" viewBox="0 0 64 64" aria-hidden="true"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="currentColor"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="currentColor"/><circle cx="32" cy="26.5" r="3.9" fill="#e8663a"/></svg><span class="bmtext"><span class="bmname">reception<svg class="aibadge" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#b8532a"/><text x="12" y="16.2" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="700" font-size="11" letter-spacing="-.5" fill="#fff">AI</text></svg></span><span class="bmsub" aria-hidden="true">Front desk · Singapore</span></span>
+      </a>
+      <p class="ftag">The 24/7 front desk for small businesses, plus websites and custom tools.</p>
+    </div>
+    <nav class="fcol" aria-label="Footer">
+      <span class="fh">Explore</span>
+      <a href="index.html">Home</a>
+      <a href="work.html">Our work</a>
+      <a href="get-started.html">Get started</a>
+      <a href="why.html">Why it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+    </nav>
+    <div class="fcol">
+      <span class="fh">Get in touch</span>
+      <a href="https://wa.me/6583219747?text=Hi%20Reception%2C%20I%27d%20like%20to%20set%20up%20my%20front%20desk." target="_blank" rel="noopener" data-contact="whatsapp">WhatsApp</a>
+      <a href="mailto:hello@reception.sg" data-contact="email">hello@reception.sg</a>
+    </div>
+  </div>
+  <div class="wrap fbot">
+    <span>&copy; 2026 Reception</span>
+    <span class="flegal"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span>
+    <span>Built and run in Singapore</span>
+  </div>
+</footer>
+
+<script>
+  const hdr = document.querySelector('header');
+  addEventListener('scroll', () => hdr.classList.toggle('scrolled', scrollY > 40), {passive:true});
+  const navtoggle = document.getElementById('navtoggle');
+  if(navtoggle) navtoggle.addEventListener('click', () => { const open = hdr.classList.toggle('nav-open'); navtoggle.setAttribute('aria-expanded', String(open)); });
+  document.querySelectorAll('#navlinks a').forEach(a => a.addEventListener('click', () => hdr.classList.remove('nav-open')));
+  addEventListener('keydown', e => { if(e.key === 'Escape' && hdr.classList.contains('nav-open')){ hdr.classList.remove('nav-open'); if(navtoggle){ navtoggle.setAttribute('aria-expanded','false'); navtoggle.focus(); } } });
+  // scroll-reveal: sections rise in as they enter view; visible by default, never gated
+  (function(){
+    document.documentElement.classList.add('js');
+    const REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const secs = [...document.querySelectorAll('main > section')];
+    secs.forEach(s => s.classList.add('reveal'));
+    const reveal = s => s.classList.add('in');
+    if(REDUCE || !('IntersectionObserver' in window)){ secs.forEach(reveal); return; }
+    secs.forEach(s => { if(s.getBoundingClientRect().top < innerHeight * 0.9) reveal(s); });
+    const io = new IntersectionObserver(es => es.forEach(en => { if(en.isIntersecting){ reveal(en.target); io.unobserve(en.target); } }), {threshold:.12, rootMargin:'0px 0px -6% 0px'});
+    secs.forEach(s => { if(!s.classList.contains('in')) io.observe(s); });
+  })();
+  // voice sampler: tap a chip to hear that voice, tap again (or another) to switch
+  (function(){
+    let a=null,c=null;
+    document.querySelectorAll('#vchips .vchip').forEach(ch=>ch.addEventListener('click',()=>{
+      if(a){a.pause(); if(c)c.classList.remove('playing');}
+      if(c===ch){a=null;c=null;return;}
+      a=new Audio('voices/'+ch.dataset.v+'.mp3'); c=ch; ch.classList.add('playing');
+      a.play().catch(()=>{}); a.onended=()=>{ch.classList.remove('playing'); if(c===ch){a=null;c=null;}};
+    }));
+  })();
+</script>
+</body>
+</html>

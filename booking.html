@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Bookings &amp; calendar · Reception</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23171512'/%3E%3Csvg x='5.5' y='5.5' width='21' height='21' viewBox='0 0 64 64'%3E%3Crect x='9' y='45.5' width='46' height='5.8' rx='2.9' fill='%23f3efe8'/%3E%3Cpath d='M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z' fill='%23f3efe8'/%3E%3Ccircle cx='32' cy='26.5' r='3.9' fill='%23e8663a'/%3E%3C/svg%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#f3efe8;--card:#fbf8f1;--surface:#ece3d4;--ink:#171512;--muted:#635b4f;--accent:#e8663a;--accent-ink:#b24714;--line:rgba(23,21,18,.13);--font:"Bricolage Grotesque",system-ui,sans-serif;--mono:"Spline Sans Mono",monospace}
+  *{margin:0;padding:0;box-sizing:border-box}
+  [hidden]{display:none!important}
+  body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;padding:22px clamp(14px,4vw,30px) 80px}
+  .wrap{max-width:820px;margin:0 auto}
+  a{color:inherit}
+  .top{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+  .top .back{font-family:var(--mono);font-size:12px;color:var(--accent-ink);text-decoration:none}
+  h1{font-size:clamp(24px,5vw,31px);font-weight:800;letter-spacing:-.02em;margin-top:12px}
+  .sub{color:var(--muted);font-size:15px;margin-top:4px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 18px;margin-top:16px}
+  .toggle{display:flex;align-items:center;justify-content:space-between;gap:14px}
+  .toggle b{font-size:16px}
+  .toggle p{color:var(--muted);font-size:13.5px;margin-top:2px;max-width:40ch}
+  .sw{flex:none;width:52px;height:30px;border-radius:100px;border:none;background:var(--surface);position:relative;cursor:pointer;transition:background .2s}
+  .sw::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .2s}
+  .sw.on{background:var(--accent)}
+  .sw.on::after{transform:translateX(22px)}
+  .calhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+  .calhead b{font-size:16px}
+  .navb{background:var(--surface);border:none;width:34px;height:34px;border-radius:9px;cursor:pointer;font-size:17px;color:var(--ink)}
+  .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+  .cwd{text-align:center;font-family:var(--mono);font-size:10.5px;color:var(--muted);text-transform:uppercase;padding-bottom:3px}
+  .cday{aspect-ratio:1;border:1px solid var(--line);border-radius:9px;background:var(--bg);cursor:pointer;font-family:var(--font);font-size:14px;color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;position:relative}
+  .cday.blank{border:none;background:none;cursor:default}
+  .cday.past{color:var(--muted);opacity:.45;cursor:not-allowed}
+  .cday.has{border-color:var(--accent);font-weight:700}
+  .cday.sel{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .cday .dot{width:5px;height:5px;border-radius:50%;background:var(--accent)}
+  .cday.sel .dot{background:#fff}
+  .dayp{margin-top:16px}
+  .dayp h3{font-size:16px;font-weight:700}
+  .slotline{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 12px;border:1px solid var(--line);border-radius:11px;margin-top:8px;background:var(--bg)}
+  .slotline .t{font-weight:600;font-size:15px}
+  .slotline.booked{background:#f6ede4;border-color:#e6c9b3}
+  .slotline .who{font-size:12.5px;color:var(--muted)}
+  .slotline .rm{background:none;border:none;color:#b3261e;cursor:pointer;font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.03em}
+  .slotline .tag{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--accent-ink);background:rgba(232,102,58,.12);padding:3px 7px;border-radius:6px}
+  .slotline.passed{opacity:.55;background:transparent}
+  .slotline .right{display:flex;align-items:center;gap:9px}
+  .slotline .tag.passedtag{color:var(--muted);background:rgba(23,21,18,.06)}
+  .addrow{display:flex;gap:8px;align-items:flex-end;margin-top:12px;flex-wrap:wrap}
+  .addrow .f{display:flex;flex-direction:column;gap:4px}
+  .addrow label{font-size:11.5px;color:var(--muted);font-weight:600}
+  .addrow input{border:1px solid var(--line);border-radius:9px;padding:9px 10px;font-family:var(--font);font-size:15px;background:var(--bg)}
+  .addrow .addbtn{background:var(--accent-ink);color:#fff;border:none;border-radius:9px;padding:10px 16px;font-family:var(--font);font-weight:600;font-size:14px;cursor:pointer}
+  .adderr{color:#b3261e;font-size:13px;margin-top:8px;display:none}
+  .hint{color:var(--muted);font-size:13px;margin-top:8px}
+  .bkitem{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:12px 0;border-top:1px solid var(--line)}
+  .bkitem:first-of-type{border-top:none}
+  .bkinfo{min-width:0}
+  .bkitem .when{font-weight:700;font-size:14.5px}
+  .bkitem .meta{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:2px}
+  .bkitem a{color:var(--accent-ink);text-decoration:none}
+  .bkitem .cancel{background:none;border:1px solid var(--line);border-radius:8px;color:var(--muted);cursor:pointer;font-family:var(--font);font-size:12.5px;padding:6px 10px;flex:none}
+  .bkacts{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap}
+  .bkbtn{display:inline-flex;align-items:center;font-family:var(--mono);font-size:10.5px;font-weight:500;text-transform:uppercase;letter-spacing:.03em;color:var(--accent-ink);background:rgba(232,102,58,.1);border:1px solid rgba(178,71,20,.28);border-radius:100px;padding:6px 12px;text-decoration:none;cursor:pointer;transition:background .15s}
+  .bkbtn:hover{background:rgba(232,102,58,.2)}
+  .center{text-align:center;color:var(--muted);padding:40px 10px}
+  #app{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="loading" class="center">Loading…</div>
+  <div id="loaderr" class="center" hidden style="color:#b3261e"><span id="loaderrmsg"></span></div>
+
+  <div id="app">
+    <div class="top"><a class="back" id="back">‹ Back to console</a></div>
+    <h1>Bookings &amp; calendar</h1>
+    <div class="sub" id="bizname"></div>
+
+    <div class="card">
+      <div class="toggle">
+        <div><b>Take bookings</b><p>When on, a "Book an appointment" button shows on your front desk and customers can grab the times you set below.</p></div>
+        <button class="sw" id="sw" type="button" role="switch" aria-label="Take bookings"></button>
+      </div>
+    </div>
+
+    <div class="card" id="calcard">
+      <div class="calhead"><button class="navb" id="prev" type="button" aria-label="Previous month">‹</button><b id="calmonth"></b><button class="navb" id="next" type="button" aria-label="Next month">›</button></div>
+      <div class="cal" id="cal"></div>
+      <div class="hint">Tap a day, then add the times you can take (each slot is one appointment). No auto-fill, you set exactly what you want.</div>
+      <div class="dayp" id="dayp" hidden>
+        <h3 id="daytitle"></h3>
+        <div id="dayslots"></div>
+        <div class="addrow">
+          <div class="f" style="flex:1"><label>What is it for? <span class="hint" style="font-weight:400">optional, shows on the slot &middot; <span id="alabelct">0</span>/32</span></label><input type="text" id="alabel" maxlength="32" placeholder="e.g. Consultation, Site visit"></div>
+        </div>
+        <div class="addrow">
+          <div class="f"><label>Start</label><input type="time" id="astart" step="900"></div>
+          <div class="f"><label>End</label><input type="time" id="aend" step="900"></div>
+          <button class="addbtn" id="addslot" type="button">Add slot</button>
+        </div>
+        <div class="adderr" id="adderr"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <b style="font-size:16px">Upcoming bookings</b>
+      <div id="bookings" style="margin-top:6px"><div class="hint">No bookings yet. They will appear here, and on your Telegram and Leads.</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const WORKER="https://nimbus-desk.propsightsg.workers.dev", BASE=location.origin+location.pathname.replace(/\/[^/]*$/,"");
+  const $=id=>document.getElementById(id);
+  let bizName="there", reviewLink="";
+  // one-tap message link to the CUSTOMER: WhatsApp if a phone, email if an address
+  function waLink(contact, text){
+    const c=String(contact||"").trim(); if(!c) return null;
+    if(/@/.test(c)) return "mailto:"+encodeURIComponent(c)+"?body="+encodeURIComponent(text);
+    const digits=c.replace(/\D/g,""); if(digits.length<8) return null;
+    const num=(digits.length===8&&/^[89]/.test(digits))?("65"+digits):digits;
+    return "https://wa.me/"+num+"?text="+encodeURIComponent(text);
+  }
+  const P=new URLSearchParams(location.search), slug=P.get("c")||"", key=P.get("k")||"";
+  let slots=[], bookingOn=false;
+  const MON=["January","February","March","April","May","June","July","August","September","October","November","December"];
+  const WD=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+  let view=null, selDay=null;
+
+  function eh(s){return String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+  async function api(path,body){try{const r=await fetch(WORKER+path,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});return{status:r.status,data:await r.json().catch(()=>({}))};}catch(e){return{status:0,data:{}};}}
+  function todaySG(){return new Date(Date.now()+8*3600000).toISOString().slice(0,10);}
+  function nowSG(){return new Date(Date.now()+8*3600000).toISOString().slice(0,16).replace("T"," ");}
+  function pad(n){return String(n).padStart(2,"0");}
+  function timeLabel(hm){const [h,m]=hm.split(":").map(Number);const ap=h<12?"am":"pm";let hh=h%12;if(hh===0)hh=12;return hh+":"+pad(m)+" "+ap;}
+
+  async function reload(){
+    const {status,data}=await api("/admin/slots",{c:slug,k:key});
+    if(status!==200){return;}
+    slots=data.slots||[]; bookingOn=!!data.booking_on;
+    $("sw").classList.toggle("on",bookingOn);
+    renderCal(); if(selDay) renderDay(selDay); renderBookings();
+  }
+
+  function renderCal(){
+    const t=todaySG();
+    if(!view){const [y,m]=t.split("-");view={y:+y,m:+m-1};}
+    $("calmonth").textContent=MON[view.m]+" "+view.y;
+    const first=new Date(Date.UTC(view.y,view.m,1));
+    let startWd=(first.getUTCDay()+6)%7; // Mon=0
+    const days=new Date(Date.UTC(view.y,view.m+1,0)).getUTCDate();
+    const nw=nowSG(); const openByDay={}; slots.forEach(s=>{ if(s.status==="open"&&s.starts_at>=nw){const d=s.starts_at.split(" ")[0]; openByDay[d]=(openByDay[d]||0)+1;} });
+    let html=WD.map(w=>'<div class="cwd">'+w+'</div>').join("");
+    for(let i=0;i<startWd;i++) html+='<div class="cday blank"></div>';
+    for(let d=1;d<=days;d++){
+      const ds=view.y+"-"+pad(view.m+1)+"-"+pad(d);
+      const past=ds<t; const has=openByDay[ds]>0; const sel=ds===selDay;
+      html+='<button class="cday'+(past?" past":"")+(has?" has":"")+(sel?" sel":"")+'" data-d="'+ds+'"'+(past?" disabled":"")+'>'+d+(has?'<span class="dot"></span>':'')+'</button>';
+    }
+    $("cal").innerHTML=html;
+    $("cal").querySelectorAll(".cday[data-d]:not(.past)").forEach(b=>b.onclick=()=>{ selDay=b.dataset.d; renderCal(); renderDay(selDay); });
+  }
+
+  function renderDay(ds){
+    $("dayp").hidden=false;
+    const dt=new Date(ds+"T00:00:00+08:00");
+    $("daytitle").textContent=dt.toLocaleDateString("en-SG",{weekday:"long",day:"numeric",month:"long",timeZone:"Asia/Singapore"});
+    const mine=slots.filter(s=>s.starts_at.startsWith(ds)).sort((a,b)=>a.starts_at<b.starts_at?-1:1);
+    if(!mine.length){ $("dayslots").innerHTML='<div class="hint">No slots yet for this day. Add one below.</div>'; }
+    else{
+      $("dayslots").innerHTML=mine.map(s=>{
+        const t=s.starts_at.split(" ")[1]+" to "+s.ends_at.split(" ")[1];
+        const lbl=s.label?' <span style="color:var(--muted,#635b4f);font-weight:500">&middot; '+eh(s.label)+'</span>':'';
+        if(s.status==="booked") return '<div class="slotline booked"><div><span class="t">'+t+'</span><div class="who">'+eh(s.name||"Booked")+(s.contact?" · "+eh(s.contact):"")+(s.service?" · "+eh(s.service):"")+'</div></div><span class="tag">Booked</span></div>';
+        if(s.starts_at<nowSG()) return '<div class="slotline passed"><span class="t">'+t+lbl+'</span><span class="right"><span class="tag passedtag">Passed</span><button class="rm" data-rm="'+s.id+'">Remove</button></span></div>';
+        return '<div class="slotline"><span class="t">'+t+lbl+'</span><button class="rm" data-rm="'+s.id+'">Remove</button></div>';
+      }).join("");
+      $("dayslots").querySelectorAll("[data-rm]").forEach(b=>b.onclick=async()=>{ b.disabled=true; await api("/admin/slot-remove",{c:slug,k:key,id:+b.dataset.rm}); reload(); });
+    }
+  }
+
+  async function addSlot(){
+    const err=$("adderr"); err.style.display="none";
+    const st=$("astart").value, en=$("aend").value;
+    if(!selDay){ err.textContent="Pick a day first."; err.style.display="block"; return; }
+    if(!st||!en){ err.textContent="Add a start and end time."; err.style.display="block"; return; }
+    if(en<=st){ err.textContent="End time must be after the start."; err.style.display="block"; return; }
+    const starts_at=selDay+" "+st, ends_at=selDay+" "+en;
+    $("addslot").disabled=true;
+    const {data}=await api("/admin/slot-add",{c:slug,k:key,starts_at,ends_at,label:$("alabel").value.trim()});
+    $("addslot").disabled=false;
+    if(!data.ok){ err.textContent=data.error==="past"?"That time is in the past.":"Couldn't add that slot."; err.style.display="block"; return; }
+    $("astart").value=""; $("aend").value=""; $("alabel").value=""; if($("alabelct"))$("alabelct").textContent="0"; reload();
+  }
+
+  function renderBookings(){
+    const booked=slots.filter(s=>s.status==="booked").sort((a,b)=>a.starts_at<b.starts_at?-1:1);
+    if(!booked.length){ $("bookings").innerHTML='<div class="hint">No bookings yet. They will appear here, and on your Telegram and Leads.</div>'; return; }
+    $("bookings").innerHTML=booked.map(s=>{
+      const dt=new Date(s.starts_at.replace(" ","T")+":00+08:00");
+      const when=dt.toLocaleDateString("en-SG",{weekday:"short",day:"numeric",month:"short",timeZone:"Asia/Singapore"})+" at "+timeLabel(s.starts_at.split(" ")[1]);
+      const contact=eh(s.contact||""); const clink=/@/.test(contact)?"mailto:"+contact:(/^\+?\d[\d\s-]+$/.test(contact)?"tel:"+contact.replace(/\s/g,""):null);
+      const nm=s.name||"there", svc=s.service?s.service+" ":"";
+      const remindMsg="Hi "+nm+", a friendly reminder of your "+svc+"booking with "+bizName+" on "+when+". See you then. Let me know if anything changes.";
+      const reviewMsg="Hi "+nm+", thanks for choosing "+bizName+". If you had a good experience, a quick review would mean a lot"+(reviewLink?": "+reviewLink:"")+".";
+      const rL=waLink(s.contact,remindMsg), vL=waLink(s.contact,reviewMsg);
+      const acts=(rL?'<a class="bkbtn" href="'+rL+'" target="_blank" rel="noopener">Remind</a>':'')+(vL?'<a class="bkbtn" href="'+vL+'" target="_blank" rel="noopener">Ask for review</a>':'');
+      return '<div class="bkitem"><div class="bkinfo"><div class="when">'+eh(nm)+' · '+when+'</div><div class="meta">'+(clink?'<a href="'+clink+'">'+contact+'</a>':contact)+(s.service?" · "+eh(s.service):"")+'</div>'+(acts?'<div class="bkacts">'+acts+'</div>':'')+'</div><button class="cancel" data-cx="'+s.id+'">Cancel</button></div>';
+    }).join("");
+    $("bookings").querySelectorAll("[data-cx]").forEach(b=>b.onclick=async()=>{ if(!confirm("Cancel this booking? The time will open up again."))return; b.disabled=true; await api("/admin/booking-cancel",{c:slug,k:key,id:+b.dataset.cx}); reload(); });
+  }
+
+  $("sw").onclick=async()=>{ const on=!bookingOn; $("sw").classList.toggle("on",on); await api("/admin/booking-toggle",{c:slug,k:key,on}); bookingOn=on; };
+  $("addslot").onclick=addSlot;
+  $("alabel").addEventListener("input",()=>{$("alabelct").textContent=$("alabel").value.length;});
+  $("prev").onclick=()=>{ view.m--; if(view.m<0){view.m=11;view.y--;} renderCal(); };
+  $("next").onclick=()=>{ view.m++; if(view.m>11){view.m=0;view.y++;} renderCal(); };
+
+  (async function(){
+    if(!slug||!key){ $("loading").hidden=true; $("loaderr").hidden=false; $("loaderrmsg").textContent="This link is incomplete."; return; }
+    const {status,data}=await api("/admin/get",{c:slug,k:key});
+    if(status!==200||!data.ok){ $("loading").hidden=true; $("loaderr").hidden=false; $("loaderrmsg").textContent=status===401?"This link is wrong or has been reset.":"Couldn't load your bookings."; return; }
+    $("bizname").textContent=data.business_name||"";
+    bizName=data.business_name||"there"; reviewLink=(data.config&&data.config.review_link)||"";
+    $("back").href=BASE+"/admin.html?c="+slug+"&k="+key;
+    $("loading").hidden=true; $("app").style.display="block";
+    await reload();
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>How to run Reception</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23171512'/%3E%3Csvg x='5.5' y='5.5' width='21' height='21' viewBox='0 0 64 64'%3E%3Crect x='9' y='45.5' width='46' height='5.8' rx='2.9' fill='%23f3efe8'/%3E%3Cpath d='M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z' fill='%23f3efe8'/%3E%3Ccircle cx='32' cy='26.5' r='3.9' fill='%23e8663a'/%3E%3C/svg%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#f3efe8;--card:#fbf8f1;--surface:#ece3d4;--ink:#171512;--muted:#635b4f;--accent:#e8663a;--accent-ink:#b24714;--line:rgba(23,21,18,.13);--font:"Bricolage Grotesque",system-ui,sans-serif;--mono:"Spline Sans Mono",monospace}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;padding:48px clamp(18px,5vw,40px) 100px}
+  .wrap{max-width:700px;margin:0 auto}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:18px;letter-spacing:-.02em}
+  .brand svg{width:22px;height:22px}
+  .brand span{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);border-left:1px solid var(--line);padding-left:11px}
+  h1{font-size:clamp(30px,5vw,40px);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-top:24px}
+  .intro{color:var(--muted);font-size:17px;margin-top:12px;max-width:58ch}
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin-top:24px;font-size:14.5px;columns:2;column-gap:28px}
+  .toc a{color:var(--ink);text-decoration:none;display:block;padding:3px 0;break-inside:avoid}
+  .toc a:hover{color:var(--accent-ink)}
+  .toc a .tn{font-family:var(--mono);font-size:12px;color:var(--accent-ink);margin-right:8px}
+  h2{font-size:20px;font-weight:700;letter-spacing:-.02em;margin-top:40px;padding-top:22px;border-top:1px solid var(--line);scroll-margin-top:16px}
+  h2 .n{font-family:var(--mono);font-size:13px;color:var(--accent-ink);margin-right:10px;font-weight:500}
+  h3{font-size:15.5px;font-weight:700;margin-top:20px}
+  p{margin-top:12px}
+  ul,ol{margin:12px 0 0 4px;padding-left:22px}
+  li{margin-top:8px}
+  b{font-weight:700}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-top:16px}
+  .card .lbl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+  .link{font-family:var(--mono);font-size:13.5px;color:var(--accent-ink);word-break:break-all;display:block;margin-top:4px}
+  .tip{background:var(--surface);border-radius:12px;padding:14px 16px;margin-top:16px;font-size:15px}
+  .tip b{color:var(--accent-ink)}
+  .warn{background:#fbeee6;border:1px solid #e7c3ac;border-radius:12px;padding:14px 16px;margin-top:16px;font-size:15px}
+  code{font-family:var(--mono);font-size:12.5px;background:var(--surface);padding:2px 6px;border-radius:5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="#171512"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="#171512"/><circle cx="32" cy="26.5" r="3.9" fill="#e8663a"/></svg>Reception<span>Operating guide</span></div>
+  <h1>How to run this, simply.</h1>
+  <p class="intro">You do four things: get clients, set them up, keep them happy, collect money. The software answers their customers in seconds, day and night, out loud and in writing, and sends you every enquiry. This is everything you need to run it.</p>
+
+  <div class="toc">
+    <a href="#s1"><span class="tn">01</span>Your links</a>
+    <a href="#s2"><span class="tn">02</span>Add a client</a>
+    <a href="#s3"><span class="tn">03</span>How it answers</a>
+    <a href="#s4"><span class="tn">04</span>How enquiries reach you</a>
+    <a href="#s5"><span class="tn">05</span>Connect their Telegram</a>
+    <a href="#s6"><span class="tn">06</span>Changing things later</a>
+    <a href="#s7"><span class="tn">07</span>Money and costs</a>
+    <a href="#s8"><span class="tn">08</span>Show a prospect</a>
+    <a href="#s9"><span class="tn">09</span>Common tasks</a>
+    <a href="#s10"><span class="tn">10</span>If something looks wrong</a>
+    <a href="#s11"><span class="tn">11</span>Under the hood</a>
+    <a href="#s12"><span class="tn">12</span>The one rule</a>
+  </div>
+
+  <h2 id="s1"><span class="n">01</span>Your links</h2>
+  <div class="card">
+    <div class="lbl">Owner console (you add and manage clients)</div><span class="link">reception.sg/add.html</span>
+    <div class="lbl" style="margin-top:12px">Your sales site (send this to prospects)</div><span class="link">reception.sg</span>
+    <div class="lbl" style="margin-top:12px">Live demo to show off (a real client site with the front desk built in)</div><span class="link">reception.sg/site-amber.html</span>
+    <div class="lbl" style="margin-top:12px">Leads and alerts bot (Telegram)</div><span class="link">@Nimbusninebot</span>
+  </div>
+  <p>Every client also gets two links of their own, made when you create them:</p>
+  <ul>
+    <li>A <b>customer link and QR</b> for them to share: <code>.../f.html?c=their-name</code></li>
+    <li>An <b>admin link</b> to fill in their details: <code>.../admin.html?c=their-name&k=their-key</code></li>
+  </ul>
+  <div class="tip"><b>Your console password (owner key)</b> unlocks the console and the owner-only settings. Keep it private, it can be changed anytime. Your own Telegram is set as the owner, so <b>you</b> get the alerts in section 04 and 09.</div>
+
+  <h2 id="s2"><span class="n">02</span>Add a client (about 10 minutes)</h2>
+  <ol>
+    <li>Open the <b>owner console</b> and log in.</li>
+    <li>Type their <b>business name</b>, pick their <b>trade</b>, hit <b>Create front desk</b>.</li>
+    <li>You get their <b>customer link and QR</b> and their <b>admin link</b> on screen.</li>
+    <li>Open the <b>admin link</b> and fill in their real <b>services, prices, hours</b>, the <b>About your business</b> box, and pick a <b>style</b> (Clean, Warm, Bold or Sleek) and their colour. Hit <b>Save</b>. <span style="color:var(--muted)">(Or just send the admin link to the client and let them fill it in themselves.)</span></li>
+    <li>Send a <b>test lead</b> from their admin to check their Telegram is connected (section 05).</li>
+    <li>Give them their <b>customer link and QR</b>. Instagram bio, WhatsApp, shopfront, name cards. Live.</li>
+  </ol>
+  <div class="tip"><b>Trade not in the list?</b> Pick the closest one and edit, or "General". There are 14 trade brains built in (beauty, home and trades, cleaning, tuition, fitness, F&B, pet, events, automotive, professional services, repairs, property, insurance, general). Any business works.</div>
+
+  <h2 id="s3"><span class="n">03</span>How the front desk knows their business</h2>
+  <p>It answers only from what is filled into the admin: their <b>services, prices, hours, common questions</b>, and the <b>About your business</b> box. The more that goes in, the sharper it sounds. It speaks every reply aloud as well as in text, in the client's own name and colours.</p>
+  <p>It is built to <b>never make things up</b>. If it does not know something, it does not guess, it takes the customer's name and number as an enquiry and tells them the business will follow up. For regulated trades (property, insurance) it shares only general information and always hands off to the licensed person.</p>
+
+  <h2 id="s4"><span class="n">04</span>How enquiries reach you (and why none get lost)</h2>
+  <p>When a customer leaves their name or number, typed in the chat or via the details button, it becomes an enquiry. Every enquiry is <b>saved to the dashboard first</b>, so it can never be lost, then sent onward. It shows up in:</p>
+  <ul>
+    <li>The client's <b>admin</b> (their Leads list)</li>
+    <li>Your <b>owner console</b> (all leads across every client)</li>
+    <li>The client's <b>Telegram</b>, instantly (if connected)</li>
+  </ul>
+  <div class="tip"><b>The safety net:</b> if an enquiry cannot reach a client's Telegram (not connected, or a glitch), it still saves, it shows a clear <b>"not sent to your Telegram"</b> flag in their admin, and <b>you get an alert on your Telegram</b> so you can nudge them to fix it. Nothing slips through quietly.</div>
+
+  <h2 id="s5"><span class="n">05</span>Connect a client's Telegram (do this at setup)</h2>
+  <p>This is the one step people forget, so do it with them:</p>
+  <ol>
+    <li>The client opens Telegram and messages <b>@Nimbusninebot</b> once. It replies with their <b>chat ID</b> (a number).</li>
+    <li>They paste that number into their admin, under <b>"Where your enquiries go"</b>, and Save.</li>
+    <li>Hit <b>Send test lead</b> in the admin. If a test message lands in their Telegram, it is connected.</li>
+  </ol>
+  <p>Until this is done, enquiries still appear in the dashboards, and you will get the "not delivered" alerts, so you will know to chase it.</p>
+
+  <h2 id="s6"><span class="n">06</span>Changing things later</h2>
+  <p>You or the client open the admin anytime, change a price, add a service, update hours or the About box, hit <b>Save</b>, and it is live on the very next customer. Nothing to rebuild, no waiting.</p>
+
+  <h2 id="s7"><span class="n">07</span>Money and costs</h2>
+  <ul>
+    <li><b>Front desk: S$349 a month</b> per client. Websites from <b>S$1,299</b>. Custom tools and add-ons: quoted.</li>
+    <li>You collect payment yourself for now (PayNow, bank transfer, or an invoice). No billing is built in yet.</li>
+    <li><b>Your running cost is tiny</b>, a fraction of a cent per reply, a few dollars a month across everything. The margin is yours.</li>
+    <li>Each front desk has a generous daily chat limit (1,500 a day) as an abuse guard. You get a Telegram heads-up at 80% and at the cap, and you can raise any client's limit in the console. Real small businesses never come close.</li>
+  </ul>
+
+  <h2 id="s8"><span class="n">08</span>Show a prospect (your best sales move)</h2>
+  <p>Open the <b>live demo</b> (<code>site-amber.html</code>) on your phone in front of them. It is a real, working boutique site with the front desk built in. Tap <b>Ask Amber</b>, type a question, and let them hear it answer out loud. Then say: "This is yours, in your name and colours, in a few hours, for S$349 a month." That demo closes more than any pitch.</p>
+  <p>Your sales site and the Work page carry the same examples if you would rather send a link first.</p>
+
+  <h2 id="s9"><span class="n">09</span>Common tasks (all in the owner console)</h2>
+  <ul>
+    <li><b>Pause a client</b> (stopped paying, on hold): their front desk shows a polite "not available" until you un-pause.</li>
+    <li><b>Delete a client:</b> removes them and their leads for good.</li>
+    <li><b>Reset a client's admin link:</b> makes a fresh key if the old link leaked. The old admin link stops working.</li>
+    <li><b>Raise a daily limit:</b> for a client with genuine high demand.</li>
+    <li><b>See all leads</b> across every client, in one place.</li>
+  </ul>
+
+  <h2 id="s10"><span class="n">10</span>If something looks wrong</h2>
+  <ul>
+    <li><b>"This front desk isn't available"</b> → the client is paused, or the link is wrong.</li>
+    <li><b>Thin or vague answers</b> → add more detail in the admin. The About box and common questions do the most work.</li>
+    <li><b>Client says no Telegram alerts</b> → they missed section 05. Check the chat ID is saved and hit Send test lead. Their leads are safe in the dashboard meanwhile, and you would have had a "not delivered" alert.</li>
+    <li><b>Voice not playing on an iPhone</b> → it needs one tap first (Apple rule). After the first tap on the page, it speaks.</li>
+    <li><b>Locked out of the console</b> → it is your owner key; it can be reset.</li>
+  </ul>
+
+  <h2 id="s11"><span class="n">11</span>Under the hood (only if you are tinkering)</h2>
+  <p>You do not need this to run the business, but for reference:</p>
+  <ul>
+    <li>The <b>sales site, admin and front desk</b> are plain web pages hosted free on GitHub Pages (the <code>adamdegoat.github.io</code> repo, folder <code>nimbusnine</code>). Publishing a change is a <code>git push</code>.</li>
+    <li>The <b>brain</b> is one Cloudflare Worker called <code>nimbus-desk</code>. Every client is a row in its database (D1); the code is generic. Deploying a change is <code>wrangler deploy</code> from <code>~/nimbus-desk</code>.</li>
+    <li>Replies use Claude (Haiku); voice uses a free text-to-speech; alerts use the Telegram bot. Secrets (the API keys, your owner key, your Telegram ID) live in the Worker, not in any page.</li>
+    <li>There are <b>Privacy</b> and <b>Terms</b> pages (linked in every footer) written for Singapore's PDPA. Point clients there if they ask.</li>
+    <li>Easiest path for any change: just tell Claude what you want and it edits and redeploys.</li>
+  </ul>
+  <div class="warn"><b>One thing to sort:</b> the email <code>hello@reception.sg</code> on the site is not confirmed as a working inbox. Your WhatsApp (+65 8321 9747) is the real contact. If that email is not set up, say so and it can be swapped for WhatsApp everywhere.</div>
+
+  <h2 id="s12"><span class="n">12</span>The one rule</h2>
+  <p>Everything the front desk says comes from what is in the admin. Keep that filled in well, connect their Telegram, and each front desk runs itself while you go find the next client.</p>
+</div>
+</body>
+</html>

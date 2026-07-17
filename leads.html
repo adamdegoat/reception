@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Leads · Reception</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23171512'/%3E%3Csvg x='5.5' y='5.5' width='21' height='21' viewBox='0 0 64 64'%3E%3Crect x='9' y='45.5' width='46' height='5.8' rx='2.9' fill='%23f3efe8'/%3E%3Cpath d='M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z' fill='%23f3efe8'/%3E%3Ccircle cx='32' cy='26.5' r='3.9' fill='%23e8663a'/%3E%3C/svg%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#f3efe8;--card:#fbf8f1;--surface:#ece3d4;--ink:#171512;--muted:#635b4f;--accent:#e8663a;--accent-ink:#b24714;--line:rgba(23,21,18,.13);--font:"Bricolage Grotesque",system-ui,sans-serif;--mono:"Spline Sans Mono",monospace}
+  *{margin:0;padding:0;box-sizing:border-box}
+  [hidden]{display:none!important}
+  body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;padding:22px clamp(14px,4vw,30px) 80px}
+  .wrap{max-width:760px;margin:0 auto}
+  a{color:inherit}
+  .top{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+  .top .back{font-family:var(--mono);font-size:12px;color:var(--accent-ink);text-decoration:none}
+  h1{font-size:clamp(24px,5vw,31px);font-weight:800;letter-spacing:-.02em;margin-top:12px}
+  .sub{color:var(--muted);font-size:15px;margin-top:4px}
+  .countrow{display:flex;gap:8px;margin-top:16px}
+  .cpill{font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;color:var(--muted);background:var(--card);border:1px solid var(--line);border-radius:100px;padding:7px 13px}
+  .cpill b{color:var(--ink);font-weight:700}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px 18px;margin-top:16px}
+  .lead{padding:15px 0;border-top:1px solid var(--line)}
+  .lead:first-child{border-top:none}
+  .lead .who{font-weight:600;font-size:15.5px}
+  .lead a{color:var(--accent-ink);text-decoration:none}
+  .lead .meta{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:2px}
+  .lead .intent{color:var(--muted);font-size:13.5px;margin-top:5px;line-height:1.45}
+  .lead.done{opacity:.5}
+  .lead .undel{display:inline-block;margin-top:7px;font-size:11.5px;font-weight:600;color:#8a3a1a;background:#f6e3d8;border-radius:6px;padding:3px 9px}
+  .lead .mk{margin-top:9px;font-family:var(--mono);font-size:11px;color:var(--accent-ink);background:none;border:none;cursor:pointer;padding:0;text-transform:uppercase;letter-spacing:.04em}
+  .center{text-align:center;color:var(--muted);padding:40px 10px}
+  .empty{color:var(--muted);font-size:14.5px;padding:22px 4px;text-align:center;line-height:1.5}
+  #app{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="loading" class="center">Loading…</div>
+  <div id="loaderr" class="center" hidden style="color:#b3261e"><span id="loaderrmsg"></span></div>
+
+  <div id="app">
+    <div class="top"><a class="back" id="back">‹ Back to console</a></div>
+    <h1>Leads</h1>
+    <div class="sub" id="bizname"></div>
+    <div class="countrow" id="countrow" hidden>
+      <span class="cpill"><b id="cNew">0</b> new</span>
+      <span class="cpill"><b id="cTotal">0</b> total</span>
+    </div>
+
+    <div class="card"><div id="leads"><div class="empty">Loading…</div></div></div>
+    <div class="sub" style="margin-top:14px;font-size:13px">Enquiries and bookings that left contact details. Each one is also sent to your Telegram the moment it comes in.</div>
+  </div>
+</div>
+
+<script>
+  const WORKER="https://nimbus-desk.propsightsg.workers.dev", BASE=location.origin+location.pathname.replace(/\/[^/]*$/,"");
+  const $=id=>document.getElementById(id);
+  const P=new URLSearchParams(location.search), slug=P.get("c")||"", key=P.get("k")||"";
+  function eh(s){return String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+  async function api(path,body){try{const r=await fetch(WORKER+path,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});return{status:r.status,data:await r.json().catch(()=>({}))};}catch(e){return{status:0,data:{}};}}
+  function ftime(s){if(!s)return"";try{const d=new Date(String(s).replace(" ","T")+"Z");return d.toLocaleDateString("en-SG",{weekday:"short",day:"numeric",month:"short",timeZone:"Asia/Singapore"})+", "+d.toLocaleTimeString("en-SG",{hour:"numeric",minute:"2-digit",hour12:true,timeZone:"Asia/Singapore"});}catch(e){return"";}}
+
+  async function load(){
+    const {status,data}=await api("/admin/leads",{c:slug,k:key});
+    const el=$("leads");
+    if(status!==200){ el.innerHTML='<div class="empty" style="color:#b3261e">Couldn\'t load leads. <a href="#" onclick="load();return false" style="color:var(--accent-ink)">Retry</a></div>'; return; }
+    const leads=data.leads||[];
+    $("countrow").hidden=false;
+    $("cTotal").textContent=leads.length;
+    $("cNew").textContent=leads.filter(l=>l.status!=="done").length;
+    if(!leads.length){ el.innerHTML='<div class="empty">No leads yet. They\'ll show here the moment a customer leaves their name and number.</div>'; return; }
+    el.innerHTML="";
+    leads.forEach(l=>{
+      const d=document.createElement("div"); d.className="lead"+(l.status==="done"?" done":"");
+      const contact=eh(l.contact||""); const clink=/@/.test(contact)?"mailto:"+contact:(/^\+?\d[\d\s-]+$/.test(contact)?"tel:"+contact.replace(/\s/g,""):null);
+      const undel=(l.delivered===0||l.delivered==="0")?'<div class="undel">Saved here, but not sent to your Telegram. Check your Telegram is connected in the console.</div>':'';
+      d.innerHTML='<div class="who">'+eh(l.name||"Someone")+' · '+(clink?'<a href="'+clink+'">'+contact+'</a>':contact)+'</div><div class="meta">'+ftime(l.created_at)+'</div>'+(l.intent?'<div class="intent">'+eh(l.intent)+'</div>':'')+undel+'<button class="mk" data-id="'+l.id+'" data-st="'+(l.status==="done"?"new":"done")+'">'+(l.status==="done"?"mark as new":"mark handled")+'</button>';
+      el.appendChild(d);
+    });
+  }
+  $("leads").addEventListener("click",async e=>{ const b=e.target.closest(".mk"); if(!b)return; b.disabled=true; await api("/admin/lead-status",{c:slug,k:key,id:Number(b.dataset.id),status:b.dataset.st}); load(); });
+
+  (async function(){
+    if(!slug||!key){ $("loading").hidden=true; $("loaderr").hidden=false; $("loaderrmsg").textContent="This link is incomplete."; return; }
+    const {status,data}=await api("/admin/get",{c:slug,k:key});
+    if(status!==200||!data.ok){ $("loading").hidden=true; $("loaderr").hidden=false; $("loaderrmsg").textContent=status===401?"This link is wrong or has been reset.":"Couldn't load your leads."; return; }
+    $("bizname").textContent=data.business_name||"";
+    $("back").href=BASE+"/admin.html?c="+slug+"&k="+key;
+    $("loading").hidden=true; $("app").style.display="block";
+    load();
+  })();
+</script>
+</body>
+</html>

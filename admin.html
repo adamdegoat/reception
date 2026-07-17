@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Front desk · Reception</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23171512'/%3E%3Csvg x='5.5' y='5.5' width='21' height='21' viewBox='0 0 64 64'%3E%3Crect x='9' y='45.5' width='46' height='5.8' rx='2.9' fill='%23f3efe8'/%3E%3Cpath d='M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z' fill='%23f3efe8'/%3E%3Ccircle cx='32' cy='26.5' r='3.9' fill='%23e8663a'/%3E%3C/svg%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
+<style>
+  :root{--bg:#f3efe8;--card:#fbf8f1;--surface:#ece3d4;--ink:#171512;--muted:#635b4f;--accent:#e8663a;--accent-ink:#b24714;--line:rgba(23,21,18,.13);--font:"Bricolage Grotesque",system-ui,sans-serif;--mono:"Spline Sans Mono",monospace}
+  *{margin:0;padding:0;box-sizing:border-box}
+  [hidden]{display:none!important}
+  html{scroll-padding-top:20px}
+  body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .top{max-width:1180px;margin:0 auto;padding:22px clamp(16px,4vw,40px) 0}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:17px;letter-spacing:-.02em}
+  .brand svg{width:22px;height:22px}
+  .brand span{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);border-left:1px solid var(--line);padding-left:11px}
+  .back{font-family:var(--mono);font-size:12px;color:var(--accent-ink);text-decoration:none;margin-left:auto}
+  .brandrow{display:flex;align-items:center;gap:14px}
+  .hd{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:22px}
+  .hd h1{font-size:clamp(24px,3.4vw,32px);font-weight:800;letter-spacing:-.025em}
+  .pill{font-family:var(--mono);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.04em;padding:5px 11px;border-radius:100px}
+  .pill.live{background:rgba(47,125,84,.14);color:#2f7d54}
+  .pill.paused{background:rgba(23,21,18,.09);color:var(--muted)}
+  .hint2{color:var(--muted);font-size:14px;margin-top:4px}
+  .layout{max-width:1180px;margin:0 auto;padding:22px clamp(16px,4vw,40px) 120px;display:grid;grid-template-columns:1fr 360px;gap:26px;align-items:start}
+  @media(max-width:900px){.layout{grid-template-columns:1fr;gap:18px}.side{position:static;max-height:none;overflow:visible}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+  .side{display:flex;flex-direction:column;gap:18px;position:sticky;top:16px;align-self:start;max-height:calc(100vh - 32px);overflow-y:auto;overscroll-behavior:contain}
+  @media(max-width:900px){.side{position:static}}
+  .sec-t{font-size:16px;font-weight:700;letter-spacing:-.01em;margin:22px 0 4px}
+  .sec-t:first-child{margin-top:0}
+  .sec-h{color:var(--muted);font-size:13px;margin-bottom:10px}
+  label{display:block;font-size:13px;font-weight:600;margin:14px 0 6px}
+  .hint{font-weight:400;color:var(--muted);font-size:12px}
+  input,select,textarea{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:11px 13px;font-family:var(--font);font-size:15px;color:var(--ink);outline:none}
+  textarea{min-height:110px;resize:vertical;line-height:1.5}
+  input:focus,select:focus,textarea:focus{border-color:var(--accent-ink)}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:520px){.row2{grid-template-columns:1fr}}
+  .stylepick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+  @media(max-width:520px){.stylepick{grid-template-columns:1fr}}
+  .styleopt{text-align:left;background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:13px 15px;cursor:pointer;font-family:var(--font);transition:border-color .15s,background .15s}
+  .styleopt:hover{border-color:var(--accent-ink)}
+  .styleopt b{display:block;font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--ink)}
+  .styleopt span{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}
+  .styleopt.sel{border-color:var(--accent-ink);background:rgba(232,102,58,.07)}
+  .styleopt.sel b{color:var(--accent-ink)}
+  .voicepick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+  @media(max-width:520px){.voicepick{grid-template-columns:1fr}}
+  .voiceopt{display:flex;align-items:center;gap:12px;text-align:left;background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:11px 13px;cursor:pointer;transition:border-color .15s,background .15s}
+  .voiceopt:hover{border-color:var(--accent-ink)}
+  .voiceopt.sel{border-color:var(--accent-ink);background:rgba(232,102,58,.07)}
+  .voiceopt b{font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--ink)}
+  .voiceopt.sel b{color:var(--accent-ink)}
+  .voiceopt .vnote{display:block;font-size:12.5px;color:var(--muted);margin-top:1px}
+  .vplay{flex:none;width:34px;height:34px;border-radius:50%;border:1.5px solid var(--accent-ink);background:var(--card);color:var(--accent-ink);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
+  .vplay:hover{background:rgba(232,102,58,.12)}
+  .vplay.playing{background:var(--accent-ink);color:#fff}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--accent-ink);color:#fff;border:none;border-radius:100px;padding:12px 22px;font-family:var(--font);font-weight:600;font-size:15px;cursor:pointer}
+  .btn.sec{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn.sm{padding:9px 15px;font-size:13px}
+  .btn:disabled{opacity:.5;cursor:default}
+  .btn.wide{width:100%}
+  /* services */
+  .svc{display:grid;grid-template-columns:1fr 160px 44px;column-gap:10px;row-gap:7px;margin-top:8px;align-items:end;padding:13px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+  .svc .f{display:block;min-width:0}
+  .svc .fl{display:block;font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:3px}
+  .svc .name{grid-column:1;grid-row:1}
+  .svc .price{grid-column:2;grid-row:1}
+  .svc .del{grid-column:3;grid-row:1;height:42px;width:44px}
+  .svc .desc{grid-column:1/-1;grid-row:2}
+  @media(max-width:640px){
+    .svc{grid-template-columns:1fr 104px 34px;padding:12px}
+    .svc .del{width:34px}
+  }
+  .del{border:1px solid var(--line);background:var(--card);border-radius:9px;cursor:pointer;color:var(--muted);font-size:18px;height:44px}
+  .addbtn{margin-top:10px;border:1px dashed var(--line);background:none;border-radius:10px;padding:11px;width:100%;cursor:pointer;color:var(--accent-ink);font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+  .faqc{border:1px solid var(--line);border-radius:11px;padding:11px;margin-top:8px}
+  .faqc .qa{display:flex;gap:9px;align-items:center}
+  .faqc .qa.a{align-items:flex-start}
+  .faqc .qa+.qa{margin-top:7px}
+  .faqc .fa,.svc .dtx{min-height:44px;line-height:1.5;resize:none;overflow:hidden}
+  .qb{width:26px;height:26px;flex:none;border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:500;font-size:12px;background:rgba(178,71,20,.13);color:var(--accent-ink)}
+  .qb.a{background:var(--surface);color:var(--muted);margin-top:8px}
+  .svchead{display:none}
+  /* save area */
+  .saverow{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:20px}
+  .status{font-family:var(--mono);font-size:12.5px}
+  .status.ok{color:#2f7d54}.status.bad{color:#b3261e}.status.dirty{color:var(--accent-ink)}
+  /* share */
+  .lbl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+  .linkbox{display:flex;gap:8px;margin-top:5px}
+  .linkbox input{font-family:var(--mono);font-size:12px;padding:9px 11px}
+  .copy{flex:none;border:1px solid var(--line);background:var(--card);border-radius:9px;padding:0 12px;font-size:12px;cursor:pointer;font-family:var(--mono)}
+  #qr{margin-top:14px;display:flex;justify-content:center;background:#fff;padding:12px;border-radius:11px;border:1px solid var(--line)}
+  .sharebtns{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+  /* leads */
+  .lead{padding:12px 0;border-top:1px solid var(--line)}
+  .lead:first-child{border-top:none}
+  .lead .who{font-weight:600;font-size:14.5px}
+  .lead a{color:var(--accent-ink);text-decoration:none}
+  .lead .meta{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:1px}
+  .lead .intent{color:var(--muted);font-size:13px;margin-top:4px}
+  .lead.done{opacity:.5}
+  .lead .undel{display:inline-block;margin-top:6px;font-size:11.5px;font-weight:600;color:#8a3a1a;background:#f6e3d8;border-radius:6px;padding:2px 8px}
+  .lead .mk{margin-top:7px;font-family:var(--mono);font-size:11px;color:var(--accent-ink);background:none;border:none;cursor:pointer;padding:0;text-transform:uppercase;letter-spacing:.04em}
+  .reg{font-size:12.5px;color:var(--accent-ink);background:rgba(232,102,58,.08);border:1px solid rgba(178,71,20,.25);border-radius:10px;padding:10px 12px;margin-top:12px}
+  .center{min-height:70vh;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--muted);font-family:var(--mono);padding:24px;flex-direction:column;gap:14px}
+  .side .card{padding:18px}
+  /* colour picker */
+  .colourpick{display:flex;flex-wrap:wrap;gap:9px;margin-top:6px}
+  .swatch{width:34px;height:34px;border-radius:9px;border:2px solid var(--line);cursor:pointer;padding:0;transition:transform .12s}
+  .swatch:hover{transform:scale(1.08)}
+  .swatch.sel{border-color:var(--ink);box-shadow:0 0 0 2px var(--card),0 0 0 4px var(--ink)}
+  .swatch.custom{position:relative;overflow:hidden;background:conic-gradient(from 0deg,#e8663a,#c2568a,#6a4bd0,#2f6fd0,#2f8f5f,#e8663a)}
+  .swatch.custom input{position:absolute;inset:-4px;width:calc(100% + 8px);height:calc(100% + 8px);opacity:0;cursor:pointer;border:0;padding:0}
+  /* live preview */
+  .pvwrap{margin-bottom:6px}
+  .statgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-top:11px}
+  .stat{background:var(--surface);border-radius:12px;padding:15px 10px;text-align:center}
+  .stat b{display:block;font-size:clamp(22px,5vw,28px);font-weight:800;letter-spacing:-.02em;line-height:1;color:var(--ink)}
+  .stat span{display:block;font-size:11.5px;color:var(--muted);margin-top:6px;line-height:1.25}
+  .tgbox{background:rgba(47,125,84,.1);border:1px solid rgba(47,125,84,.3);color:#2f7d54;border-radius:11px;padding:11px 13px;font-size:13.5px;margin-bottom:10px;line-height:1.4}
+  .tgbox b{color:#276a47}
+  .pvphone{background:#0c0a09;border-radius:30px;padding:8px;box-shadow:0 20px 44px -20px rgba(23,21,18,.5)}
+  .pvphone iframe{width:100%;height:520px;border:0;border-radius:23px;display:block;background:#f3efe8}
+  .pvcap{text-align:center;font-size:12px;color:var(--muted);margin-top:8px}
+  /* ---- rebuilt console: sticky top bar + single column + modal preview ---- */
+  .tbar{position:sticky;top:0;z-index:50;background:rgba(243,239,232,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .tbar-in{max-width:840px;margin:0 auto;padding:10px clamp(14px,4vw,28px);display:flex;align-items:center;gap:10px}
+  .tbar-actions{margin-left:auto;display:flex;align-items:center;gap:8px}
+  .tbtn{display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid var(--line);border-radius:100px;padding:9px 15px;font-family:var(--font);font-weight:600;font-size:13.5px;color:var(--ink);cursor:pointer;text-decoration:none;white-space:nowrap}
+  .tbtn:hover{border-color:var(--accent-ink)}
+  .tbtn.save{background:var(--accent-ink);color:#fff;border-color:var(--accent-ink)}
+  .body{max-width:1080px;margin:0 auto;padding:20px clamp(14px,4vw,28px) 90px;display:flex;flex-direction:column;gap:16px}
+  .compactgrid{column-count:2;column-gap:16px}
+  .compactgrid>.card{break-inside:avoid;margin:0 0 16px;width:100%}
+  .widestack{display:flex;flex-direction:column;gap:16px;margin-top:16px}
+  @media(max-width:860px){.compactgrid{column-count:auto;display:flex;flex-direction:column;gap:16px}.compactgrid>.card{margin:0}}
+  .pagehd{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .pagehd h1{font-size:clamp(22px,3.2vw,30px);font-weight:800;letter-spacing:-.025em}
+  @media(max-width:600px){.tbar .brand span{display:none}.tbar-in{gap:7px}.tbtn{padding:8px 11px;font-size:12px}.tbar-actions{gap:6px}.tbfull{display:none}.brand{font-size:15px;gap:8px}}
+  .pvmodal .pvphone{width:min(340px,86vw)}
+  .pvmodal{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:18px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s ease,visibility .18s ease}
+  .pvmodal.open{opacity:1;visibility:visible;pointer-events:auto}
+  .pvmodal-bg{position:absolute;inset:0;background:rgba(23,21,18,.55)}
+  .pvmodal-card{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:12px}
+  .pvmodal .pvphone iframe{height:min(560px,72vh)}
+  .pvmodal-x{background:var(--card);border:1px solid var(--line);border-radius:100px;padding:9px 22px;font-family:var(--font);font-weight:600;font-size:13.5px;cursor:pointer;color:var(--ink);order:2}
+</style>
+</head>
+<body>
+<div id="loading" class="center">Loading the front desk…</div>
+<div id="loaderr" class="center" hidden><div id="loaderrmsg">Couldn't load.</div><button class="btn sec" onclick="location.reload()">Try again</button></div>
+
+<div id="app" hidden>
+  <header class="tbar">
+    <div class="tbar-in">
+      <div class="brand"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="#171512"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="#171512"/><circle cx="32" cy="26.5" r="3.9" fill="#e8663a"/></svg><span class="bname">Reception</span><span>Console</span></div>
+      <div class="tbar-actions">
+        <a class="tbtn" id="back" href="add.html" hidden>Clients</a>
+        <button class="tbtn" id="pvbtn" type="button">Preview</button>
+        <a class="tbtn" id="bookinglink" href="#">Bookings</a>
+        <a class="tbtn" id="leadslink" href="#">Leads</a>
+        <button class="tbtn save" id="save">Save<span class="tbfull"> changes</span></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="body">
+    <div class="pagehd"><h1 id="bizname">Front desk</h1><span class="pill live" id="statuspill">Live</span><span class="status" id="status"></span></div>
+    <div class="hint2">Fill in the real details, then Save. Changes go live on the next customer.</div>
+    <div class="reg" id="reg" hidden></div>
+
+      <div class="card statcard" id="statcard" hidden>
+        <div class="sec-t">Your week <span class="hint" style="font-weight:400;text-transform:none;letter-spacing:0">last 7 days</span></div>
+        <div class="statgrid">
+          <div class="stat"><b id="stMsg">0</b><span>messages answered</span></div>
+          <div class="stat"><b id="stEnq">0</b><span>enquiries captured</span></div>
+          <div class="stat"><b id="stBk">0</b><span>bookings taken</span></div>
+        </div>
+        <div class="hint" id="stMonth" style="margin-top:11px"></div>
+      </div>
+      <div class="compactgrid">
+      <div class="card">
+        <div class="sec-t">The basics</div>
+        <div class="row2">
+          <div><label>Business name<input id="bname"></label></div>
+          <div><label>Trade<select id="trade" disabled></select></label><div class="hint" id="tradehint" style="margin-top:5px"></div></div>
+        </div>
+        <div class="row2">
+          <div><label>Front-desk name <span class="hint">what it calls itself</span><input id="fname"></label></div>
+          <div><label>Tone<select id="tone"><option value="warm">Warm</option><option value="professional">Professional</option><option value="straight-talking">Straight-talking</option></select></label></div>
+        </div>
+        <div id="ownerbox" hidden><label>Daily chat limit <span class="hint">owner only, chats per day before the busy message shows</span><input id="dailycap" type="number" min="50" max="50000" step="50"></label></div>
+        <label>What you do <span class="hint">one short line under your name, e.g. Nail & lash studio</span><input id="tagline" placeholder="e.g. Nail & lash studio in Tampines"></label>
+        <label>Greeting <span class="hint">first message customers see</span><input id="greeting"></label>
+        <label>Announcement <span class="hint">optional, shows as a banner across the top of your front desk, clear it to hide</span><textarea id="announce" maxlength="90" rows="2" placeholder="e.g. 20% off gel this week, or Closed 25 Dec" style="min-height:52px"></textarea></label>
+        <div class="hint" id="anncount" style="margin-top:5px">0 / 90</div>
+        <label>WhatsApp for customers <span class="hint">optional, adds a WhatsApp button to your front desk, e.g. 9123 4567</span><input id="whatsapp" placeholder="e.g. 9123 4567"></label>
+        <label>Google review link <span class="hint">optional, powers the one-tap "ask for a review" button on your bookings</span><input id="reviewlink" placeholder="e.g. your Google review URL"></label>
+
+      </div>
+      <div class="card">
+        <div class="sec-t">Your look</div>
+        <div class="sec-h">The style your front desk wears. Your name and colours stay yours.</div>
+        <div class="stylepick" id="stylepick">
+          <button type="button" class="styleopt" data-style="clean"><b>Clean</b><span>Minimal, modern</span></button>
+          <button type="button" class="styleopt" data-style="warm"><b>Warm</b><span>Serif, cosy, boutique</span></button>
+          <button type="button" class="styleopt" data-style="bold"><b>Bold</b><span>Big, chunky, punchy</span></button>
+          <button type="button" class="styleopt" data-style="sleek"><b>Sleek</b><span>Dark, tight, premium</span></button>
+        </div>
+
+        <div class="sec-t" style="margin-top:26px">Colour</div>
+        <div class="sec-h">Your brand colour, used across the chat.</div>
+        <div class="colourpick" id="colourpick">
+          <button type="button" class="swatch" data-c="#b8532a" style="background:#b8532a" aria-label="Terracotta"></button>
+          <button type="button" class="swatch" data-c="#e8663a" style="background:#e8663a" aria-label="Orange"></button>
+          <button type="button" class="swatch" data-c="#c2568a" style="background:#c2568a" aria-label="Rose"></button>
+          <button type="button" class="swatch" data-c="#c0392b" style="background:#c0392b" aria-label="Red"></button>
+          <button type="button" class="swatch" data-c="#d99a2b" style="background:#d99a2b" aria-label="Amber"></button>
+          <button type="button" class="swatch" data-c="#2f8f5f" style="background:#2f8f5f" aria-label="Green"></button>
+          <button type="button" class="swatch" data-c="#1f8a8a" style="background:#1f8a8a" aria-label="Teal"></button>
+          <button type="button" class="swatch" data-c="#2f6fd0" style="background:#2f6fd0" aria-label="Blue"></button>
+          <button type="button" class="swatch" data-c="#6a4bd0" style="background:#6a4bd0" aria-label="Purple"></button>
+          <button type="button" class="swatch" data-c="#24406b" style="background:#24406b" aria-label="Navy"></button>
+          <button type="button" class="swatch" data-c="#333333" style="background:#333333" aria-label="Charcoal"></button>
+          <label class="swatch custom" aria-label="Custom colour"><input type="color" id="customcol" value="#b8532a"></label>
+        </div>
+
+      </div>
+      <div class="card">
+        <div class="sec-t">Voice</div>
+        <div class="sec-h">The voice your front desk speaks in. Tap play to hear each one.</div>
+        <div class="voicepick" id="voicepick">
+          <div class="voiceopt" data-voice="luna"><button type="button" class="vplay" data-v="luna" aria-label="Hear Mei"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><div class="vmeta"><b>Mei</b><span class="vnote">Singapore, warm</span></div></div>
+          <div class="voiceopt" data-voice="wayne"><button type="button" class="vplay" data-v="wayne" aria-label="Hear Marcus"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><div class="vmeta"><b>Marcus</b><span class="vnote">Singapore, friendly</span></div></div>
+          <div class="voiceopt" data-voice="ava"><button type="button" class="vplay" data-v="ava" aria-label="Hear Grace"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><div class="vmeta"><b>Grace</b><span class="vnote">Warm, natural</span></div></div>
+          <div class="voiceopt" data-voice="aria"><button type="button" class="vplay" data-v="aria" aria-label="Hear Ivy"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><div class="vmeta"><b>Ivy</b><span class="vnote">Bright, professional</span></div></div>
+          <div class="voiceopt" data-voice="andrew"><button type="button" class="vplay" data-v="andrew" aria-label="Hear Ryan"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><div class="vmeta"><b>Ryan</b><span class="vnote">Friendly, easy</span></div></div>
+        </div>
+
+      </div>
+      <div class="card">
+        <div class="sec-t">About your business</div>
+        <div class="sec-h">Tell it anything: your story, what makes you different, area, parking, policies. The more you write, the smarter it answers. Paste your bio or menu here too.</div>
+        <textarea id="about" placeholder="e.g. Family-run salon in Tampines since 2015. Only cruelty-free products. Free parking after 6pm..."></textarea>
+
+      </div>
+      <div class="card">
+        <div class="sec-t">Opening hours</div>
+        <input id="hours" placeholder="e.g. Mon to Fri 10:00 to 19:00, Sat 10:00 to 18:00, Sun closed">
+      </div>
+      </div>
+
+      <div class="widestack">
+      <div class="card">
+        <div class="sec-t">Services &amp; prices</div>
+        <div class="sec-h">Your price list, this is what the front desk quotes customers. One row per service.</div>
+        <div class="svchead"><span>Service</span><span>Description</span><span>Price</span><span></span></div>
+        <div id="services"></div>
+        <button class="addbtn" id="addsvc" type="button">+ Add a service</button>
+
+      </div>
+      <div class="card">
+        <div class="sec-t">Questions customers can tap</div>
+        <div class="sec-h">Write the questions people ask most, and your answer. The first six show as tappable buttons on your front desk, and tapping shows your answer instantly, free. Customers can still type anything else, and the front desk answers from everything above.</div>
+        <div id="faqs"></div>
+        <button class="addbtn" id="addfaq" type="button">+ Add a question</button>
+      </div>
+      <div class="card">
+        <div class="lbl">Customer link (share this)</div>
+        <div class="linkbox"><input id="link" readonly><button class="copy" data-t="link">Copy</button></div>
+        <div id="qr"></div>
+        <div class="sharebtns"><a class="btn sec sm" id="preview" target="_blank">Open front desk</a><button class="btn sec sm" id="pausebtn" hidden>Pause</button><button class="btn sec sm" id="testbtn">Send test lead</button></div>
+        <div class="status" id="sharestatus" style="margin-top:10px"></div>
+        <div class="lbl" style="margin-top:18px;margin-bottom:7px">Get a phone alert for every enquiry</div>
+        <div class="tgbox" id="tgconnected" hidden><b>Telegram connected.</b> New enquiries and bookings buzz your phone.</div>
+        <a class="btn wide" id="tgconnect" target="_blank" rel="noopener">Connect Telegram</a>
+        <div class="hint" id="tghint" style="margin-top:8px;line-height:1.45">Tap it, hit <b>Start</b> in Telegram, and you're connected, nothing to copy. Every enquiry also lands on your Leads page, so this is just the buzz-my-phone part.</div>
+        <details style="margin-top:10px"><summary style="font-size:12.5px;color:var(--muted);cursor:pointer">Prefer to paste an ID manually?</summary><input id="telegram" placeholder="Telegram chat ID" style="margin-top:8px"></details>
+        <div class="lbl" id="adminlbl" style="margin-top:16px" hidden>Admin link (send to the client)</div>
+        <div class="linkbox" id="adminbox" hidden><input id="adminlink" readonly><button class="copy" data-t="adminlink">Copy</button></div>
+        <button class="btn sec sm" id="resetbtn" style="margin-top:10px" hidden>Reset admin link</button>
+      </div>
+      </div>
+      <div class="saverow" style="justify-content:center;margin-top:2px"><button class="btn" id="save2" style="min-width:220px">Save changes</button><span class="status" id="status2"></span></div>
+  </div>
+
+  <div class="pvmodal" id="pvmodal">
+    <div class="pvmodal-bg" id="pvmodalbg"></div>
+    <div class="pvmodal-card">
+      <button class="pvmodal-x" id="pvclose">Close preview</button>
+      <div class="pvphone"><iframe id="pvframe" src="f.html?preview=1" title="Live preview" scrolling="no"></iframe></div>
+      <div class="pvcap">Live preview, what customers see</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const WORKER="https://nimbus-desk.propsightsg.workers.dev", BASE=location.origin+location.pathname.replace(/\/[^/]*$/,"");
+  const TRADES=[["beauty","Beauty & grooming"],["home","Home & trades"],["interior","Interior design"],["renovation","Renovation contractor"],["cleaning","Cleaning & laundry"],["tuition","Tuition & enrichment"],["fitness","Fitness & wellness"],["fnb","Food & beverage"],["pet","Pet services"],["events","Events & creative"],["automotive","Automotive & workshop"],["professional","Professional & business services"],["repairs","Repairs & personal retail"],["property","Property / real estate"],["insurance","Insurance & financial"],["general","General / other"]];
+  const REG={property:"Regulated trade (CEA): the front desk shares info and books only, never gives valuations or advice.",insurance:"Regulated trade (MAS): the front desk shares info and books chats only, never recommends products or advises."};
+  const $=id=>document.getElementById(id);
+  const P=new URLSearchParams(location.search), slug=P.get("c")||"", key=P.get("k")||"";
+  const OWNER=localStorage.getItem("n9_owner")||"";       // owner mode if they have the console key
+  let dirty=false;
+
+  function eh(s){return String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+  function grow(t){if(!t)return;t.style.height="auto";t.style.height=Math.max(t.scrollHeight,44)+"px";}
+  function growAll(){document.querySelectorAll(".faqc .fa,.svc .dtx").forEach(grow);}
+  function ftime(s){try{return new Date(String(s).replace(" ","T")+"Z").toLocaleString("en-SG",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});}catch(e){return s;}}
+  async function api(path,body){try{const r=await fetch(WORKER+path,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});return{status:r.status,data:await r.json().catch(()=>({}))};}catch(e){return{status:0,data:{}};}}
+  function markDirty(){dirty=true;setStatus("Unsaved changes","dirty");updatePreview();}
+  function setStatus(t,cls){["status","status2"].forEach(id=>{$(id).textContent=t;$(id).className="status"+(cls?" "+cls:"");});}
+
+  const tsel=$("trade"); TRADES.forEach(t=>{const o=document.createElement("option");o.value=t[0];o.textContent=t[1];tsel.appendChild(o);});
+
+  function svcRow(s={}){const d=document.createElement("div");d.className="svc";
+    d.innerHTML=`<label class="f name"><span class="fl">Service</span><input placeholder="Service name" value="${eh(s.name)}"></label><label class="f desc"><span class="fl">Description</span><textarea class="dtx" rows="1" placeholder="Short description">${eh(s.desc)}</textarea></label><label class="f price"><span class="fl">Price</span><input placeholder="e.g. S$45" value="${eh(s.price)}"></label><button class="del" type="button">×</button>`;
+    d.querySelector(".del").onclick=()=>{d.remove();markDirty();}; d.querySelectorAll("input,textarea").forEach(i=>i.oninput=()=>{if(i.tagName==="TEXTAREA")grow(i);markDirty();}); return d;}
+  function faqRow(f={}){const d=document.createElement("div");d.className="faqc";
+    d.innerHTML=`<div class="qa"><span class="qb">Q</span><input placeholder="What customers ask" value="${eh(f.q)}"><button class="del" type="button">×</button></div><div class="qa a"><span class="qb a">A</span><textarea class="fa" rows="2" placeholder="How you want it answered">${eh(f.a)}</textarea></div>`;
+    d.querySelector(".del").onclick=()=>{d.remove();markDirty();}; d.querySelectorAll("input,textarea").forEach(i=>i.oninput=()=>{if(i.tagName==="TEXTAREA")grow(i);markDirty();}); return d;}
+  window.addEventListener("resize",growAll);
+  $("addsvc").onclick=()=>{const r=svcRow();$("services").appendChild(r);r.querySelectorAll("textarea").forEach(grow);markDirty();};
+  $("addfaq").onclick=()=>{const r=faqRow();$("faqs").appendChild(r);r.querySelectorAll("textarea").forEach(grow);markDirty();};
+  $("announce").addEventListener("input",()=>{$("anncount").textContent=$("announce").value.length+" / 90";});
+  ["bname","fname","tone","greeting","tagline","telegram","about","hours","announce","whatsapp","trade"].forEach(id=>$(id).addEventListener("input",markDirty));
+
+  // style picker
+  let selStyle="clean";
+  function setStyle(s,dirty){ selStyle=["clean","warm","bold","sleek"].includes(s)?s:"clean";
+    document.querySelectorAll("#stylepick .styleopt").forEach(b=>b.classList.toggle("sel",b.dataset.style===selStyle));
+    if(dirty)markDirty(); }
+  document.querySelectorAll("#stylepick .styleopt").forEach(b=>b.addEventListener("click",()=>setStyle(b.dataset.style,true)));
+
+  // voice picker
+  let selVoice="ava";
+  function setVoice(v,dirty){ selVoice=["luna","wayne","ava","aria","andrew"].includes(v)?v:"ava";
+    document.querySelectorAll("#voicepick .voiceopt").forEach(o=>o.classList.toggle("sel",o.dataset.voice===selVoice));
+    if(dirty)markDirty(); }
+  document.querySelectorAll("#voicepick .voiceopt").forEach(o=>o.addEventListener("click",e=>{ if(e.target.closest(".vplay"))return; setVoice(o.dataset.voice,true); }));
+  let vAudio=null,vBtn=null;
+  document.querySelectorAll("#voicepick .vplay").forEach(b=>b.addEventListener("click",()=>{
+    if(vAudio){vAudio.pause(); if(vBtn)vBtn.classList.remove("playing");}
+    if(vBtn===b){ vAudio=null; vBtn=null; return; }
+    vAudio=new Audio("voices/"+b.dataset.v+".mp3"); vBtn=b; b.classList.add("playing");
+    vAudio.play().catch(()=>{}); vAudio.onended=()=>{b.classList.remove("playing"); if(vBtn===b){vAudio=null;vBtn=null;}};
+  }));
+
+  // colour picker
+  let selAccent="#e8663a";
+  function setAccent(hex,d){ if(!/^#?[0-9a-fA-F]{6}$/.test(String(hex||"")))return; selAccent=hex[0]==="#"?hex:("#"+hex);
+    document.querySelectorAll("#colourpick .swatch[data-c]").forEach(sw=>sw.classList.toggle("sel",sw.dataset.c.toLowerCase()===selAccent.toLowerCase()));
+    if($("customcol"))$("customcol").value=selAccent; if(d)markDirty(); }
+  document.querySelectorAll("#colourpick .swatch[data-c]").forEach(sw=>sw.addEventListener("click",()=>setAccent(sw.dataset.c,true)));
+  $("customcol").addEventListener("input",()=>setAccent($("customcol").value,true));
+
+  // live preview (the real front desk in preview mode, fed the current unsaved settings)
+  let pvReady=false, pvTimer=null;
+  function currentConfig(){
+    const svcRows=[...$("services").querySelectorAll(".svc")].map(r=>{const i=r.querySelectorAll("input,textarea");return{name:(i[0]?i[0].value:"").trim(),price:(i[2]?i[2].value:"").trim()};}).filter(s=>s.name);
+    const svcPill=svcRows.length?[{q:"Services",a:"Here are our services:\n"+svcRows.slice(0,20).map(s=>"• "+s.name+(s.price?", "+s.price:"")).join("\n"),say:"Here are our services."}]:[];
+    const faqPills=[...$("faqs").querySelectorAll(".faqc")].map(row=>{const i=row.querySelectorAll("input,textarea");return{q:i[0].value.trim(),a:i[1].value.trim()};}).filter(p=>p.q&&p.a).slice(0,5);
+    return {
+    style:selStyle, accent:selAccent, voice:selVoice,
+    name:($("fname").value.trim()||$("bname").value.trim()||"Front desk"),
+    business:$("bname").value.trim(), tagline:$("tagline").value.trim(), trade:tsel.value,
+    greeting:$("greeting").value.trim(), announcement:$("announce").value.trim(), whatsapp:$("whatsapp").value.trim(),
+    pills:[...svcPill,...faqPills]
+  }; }
+  function pushPreview(){ const f=$("pvframe"); if(f&&f.contentWindow&&pvReady) f.contentWindow.postMessage({type:"reception-preview",config:currentConfig()},"*"); }
+  function updatePreview(){ clearTimeout(pvTimer); pvTimer=setTimeout(pushPreview,200); }
+  addEventListener("message",e=>{ if(e.data&&e.data.type==="reception-preview-ready"){ pvReady=true; pushPreview(); } });
+  // preview modal
+  function closePv(){ $("pvmodal").classList.remove("open"); }
+  $("pvbtn").onclick=()=>{ $("pvmodal").classList.add("open"); pushPreview(); };
+  $("pvclose").onclick=closePv; $("pvmodalbg").onclick=closePv;
+  addEventListener("keydown",e=>{ if(e.key==="Escape") closePv(); });
+
+  (async function(){
+    if(!slug||!key){$("loading").hidden=true;$("loaderr").hidden=false;$("loaderrmsg").textContent="This admin link is incomplete.";return;}
+    const {status,data}=await api("/admin/get",{c:slug,k:key});
+    if(status!==200||!data.ok){$("loading").hidden=true;$("loaderr").hidden=false;$("loaderrmsg").textContent=status===401?"This admin link is wrong or has been reset.":status===0?"Couldn't reach the server.":"Couldn't load this front desk.";return;}
+    const cfg=data.config||{};
+    $("bizname").textContent=data.business_name;
+    $("bname").value=data.business_name||"";
+    tsel.value=data.trade||"general";
+    $("fname").value=data.frontdesk_name||cfg.frontdesk_name||"";
+    $("tone").value=cfg.tone||"warm";
+    $("greeting").value=(cfg.greeting||"").replace(/\[your (name|business)\]/g, data.frontdesk_name||cfg.frontdesk_name||data.business_name||"");
+    $("tagline").value=cfg.tagline||"";
+    $("telegram").value=data.lead_chat_id||""; showTgConnected(!!data.lead_chat_id);
+    setStyle(cfg.style||"clean",false);
+    setVoice(cfg.voice||"ava",false);
+    setAccent(cfg.accent||"#e8663a",false); $("whatsapp").value=cfg.whatsapp||""; $("reviewlink").value=cfg.review_link||"";
+    $("about").value=cfg.about||"";
+    $("hours").value=typeof cfg.hours==="string"?cfg.hours:"";
+    (cfg.services||[]).forEach(s=>$("services").appendChild(svcRow(s))); if(!(cfg.services||[]).length)$("services").appendChild(svcRow());
+    (cfg.faq||[]).forEach(f=>$("faqs").appendChild(faqRow(f))); if(!(cfg.faq||[]).length)$("faqs").appendChild(faqRow());
+    $("announce").value=cfg.announcement||""; $("anncount").textContent=$("announce").value.length+" / 90";
+    const paused=data.status!=="active";
+    $("statuspill").textContent=paused?"Paused":"Live"; $("statuspill").className="pill "+(paused?"paused":"live");
+    function updReg(){const t=tsel.value;if(REG[t]){$("reg").textContent=REG[t];$("reg").hidden=false;$("tradehint").textContent="";}else{$("reg").hidden=true;}}
+    updReg(); tsel.addEventListener("change",updReg);
+    const link=BASE+"/f.html?c="+slug; $("link").value=link; $("preview").href=link; $("bookinglink").href=BASE+"/booking.html?c="+slug+"&k="+key; $("leadslink").href=BASE+"/leads.html?c="+slug+"&k="+key;
+    $("tgconnect").href="https://t.me/Nimbusninebot?start="+encodeURIComponent(key||"");
+    try{new QRCode($("qr"),{text:link,width:150,height:150,colorDark:"#171512",colorLight:"#ffffff"});}catch(e){$("qr").innerHTML='<img alt="QR" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(link)+'">';}
+    // OWNER extras
+    if(OWNER){
+      $("back").hidden=false;
+      tsel.disabled=false; $("tradehint").textContent="You can change the trade.";
+      $("pausebtn").hidden=false; $("pausebtn").textContent=paused?"Resume":"Pause";
+      $("adminlbl").hidden=false; $("adminbox").hidden=false; $("adminlink").value=location.origin+location.pathname+"?c="+slug+"&k="+key;
+      $("resetbtn").hidden=false;
+      $("ownerbox").hidden=false; $("dailycap").value=data.daily_cap||1500; $("dailycap").addEventListener("input",markDirty);
+    } else { tsel.disabled=true; $("tradehint").textContent="Ask us to change your trade."; }
+    $("loading").hidden=true; $("app").hidden=false;
+    growAll(); [80,300,800,1600].forEach(ms=>setTimeout(growAll,ms)); if(document.fonts&&document.fonts.ready)document.fonts.ready.then(growAll);
+    loadStats();
+    dirty=false; setStatus("",""); pushPreview();
+  })();
+
+  async function save(){
+    const services=[...$("services").querySelectorAll(".svc")].map(r=>{const i=r.querySelectorAll("input,textarea");return{name:i[0].value.trim(),desc:i[1].value.trim(),price:i[2].value.trim()};}).filter(s=>s.name);
+    const faq=[...$("faqs").querySelectorAll(".faqc")].map(r=>{const i=r.querySelectorAll("input,textarea");return{q:i[0].value.trim(),a:i[1].value.trim()};}).filter(f=>f.q&&f.a);
+    const config={tone:$("tone").value,greeting:$("greeting").value.trim(),tagline:$("tagline").value.trim(),style:selStyle,voice:selVoice,about:$("about").value.trim(),services,hours:$("hours").value.trim(),faq,announcement:$("announce").value.trim(),accent:selAccent,whatsapp:$("whatsapp").value.trim(),review_link:$("reviewlink").value.trim()};
+    const body={c:slug,k:key,config,frontdesk_name:$("fname").value.trim(),business_name:$("bname").value.trim(),lead_chat_id:$("telegram").value.trim()};
+    if(OWNER){ body.trade=tsel.value; body.key=OWNER; body.daily_cap=parseInt($("dailycap").value,10)||1500; }
+    [$("save"),$("save2")].forEach(b=>b.disabled=true); setStatus("Saving…","");
+    const {status,data}=await api("/admin/save",body);
+    [$("save"),$("save2")].forEach(b=>b.disabled=false);
+    if(status===200&&data.ok){dirty=false;setStatus("Saved. Front desk is live.","ok");$("bizname").textContent=$("bname").value.trim()||$("bizname").textContent;updRegAfterSave();}
+    else setStatus(status===0?"Couldn't reach the server, try again.":"Save failed, try again.","bad");
+  }
+  function updRegAfterSave(){}
+  function showTgConnected(on){ $("tgconnected").hidden=!on; $("tgconnect").textContent=on?"Reconnect a different phone":"Connect Telegram"; $("tgconnect").classList.toggle("sec",on); }
+  let tgPoll=null;
+  $("tgconnect").addEventListener("click",()=>{ if(tgPoll)clearInterval(tgPoll); let n=0; $("tghint").textContent="Waiting for you to tap Start in Telegram…"; tgPoll=setInterval(async()=>{ if(++n>30){ clearInterval(tgPoll); $("tghint").innerHTML="Tap it, hit <b>Start</b> in Telegram, and you're connected."; return; } const {data}=await api("/admin/get",{c:slug,k:key}); if(data&&data.lead_chat_id){ clearInterval(tgPoll); $("telegram").value=data.lead_chat_id; showTgConnected(true); $("tghint").textContent="All set. You can send yourself a test from below."; } },3000); });
+  async function loadStats(){ try{ const {status,data}=await api("/admin/stats",{c:slug,k:key}); if(status===200&&data&&data.ok){ $("stMsg").textContent=data.week.messages; $("stEnq").textContent=data.week.enquiries; $("stBk").textContent=data.week.bookings; const m=data.month; $("stMonth").textContent="Last 30 days: "+m.enquiries+" "+(m.enquiries===1?"enquiry":"enquiries")+", "+m.bookings+" "+(m.bookings===1?"booking":"bookings")+"."; $("statcard").hidden=false; } }catch(e){} }
+  $("save").onclick=save; $("save2").onclick=save;
+
+  // Leads live on their own page (leads.html), linked from the top bar.
+
+  document.querySelectorAll(".copy").forEach(b=>b.addEventListener("click",()=>{const i=$(b.dataset.t);i.select();document.execCommand("copy");b.textContent="Copied";setTimeout(()=>b.textContent="Copy",1200);}));
+  $("testbtn").onclick=async()=>{$("sharestatus").textContent="Sending…";$("sharestatus").className="status";const{status,data}=await api("/admin/test",OWNER?{key:OWNER,c:slug}:{c:slug,k:key});$("sharestatus").textContent=data.ok?"Sent. Check Telegram.":(data.error==="no_telegram"?"Add a Telegram ID first (below).":"Couldn't send.");$("sharestatus").className="status "+(data.ok?"ok":"bad");};
+  $("pausebtn").onclick=async()=>{const toPause=$("pausebtn").textContent==="Pause";if(toPause&&!confirm("Pause this front desk? It stops answering customers until you resume."))return;const{data}=await api("/admin/pause",{key:OWNER,slug,status:toPause?"paused":"active"});if(data.ok){const p=data.status!=="active";$("statuspill").textContent=p?"Paused":"Live";$("statuspill").className="pill "+(p?"paused":"live");$("pausebtn").textContent=p?"Resume":"Pause";}};
+  $("resetbtn").onclick=async()=>{if(!confirm("Reset the admin link? The old link stops working."))return;const{data}=await api("/admin/resettoken",{key:OWNER,slug});if(data.ok){location.search="?c="+slug+"&k="+data.admin_token;}};
+
+  window.addEventListener("beforeunload",e=>{if(dirty){e.preventDefault();e.returnValue="";}});
+</script>
+</body>
+</html>

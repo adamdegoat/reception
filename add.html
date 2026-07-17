@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Owner console · Reception</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23171512'/%3E%3Csvg x='5.5' y='5.5' width='21' height='21' viewBox='0 0 64 64'%3E%3Crect x='9' y='45.5' width='46' height='5.8' rx='2.9' fill='%23f3efe8'/%3E%3Cpath d='M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z' fill='%23f3efe8'/%3E%3Ccircle cx='32' cy='26.5' r='3.9' fill='%23e8663a'/%3E%3C/svg%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
+<style>
+  :root{--bg:#f3efe8;--surface:#ece3d4;--card:#fbf8f1;--ink:#171512;--muted:#635b4f;--accent:#e8663a;--accent-ink:#b24714;--line:rgba(23,21,18,.13);--font:"Bricolage Grotesque",system-ui,sans-serif;--mono:"Spline Sans Mono",monospace}
+  *{margin:0;padding:0;box-sizing:border-box}
+  [hidden]{display:none!important}
+  body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.5;padding:26px clamp(16px,4vw,44px) 80px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto}
+  .brandrow{display:flex;align-items:center;gap:12px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:19px;letter-spacing:-.02em}
+  .brand svg{width:22px;height:22px}
+  .brand span{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);border-left:1px solid var(--line);padding-left:11px}
+  .logout{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--muted);background:none;border:none;cursor:pointer}
+  h1{font-size:26px;font-weight:800;letter-spacing:-.025em;margin-top:26px}
+  h2{font-size:20px;font-weight:800;letter-spacing:-.02em;margin-top:36px}
+  .sub{color:var(--muted);font-size:15px;margin-top:6px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin-top:18px}
+  #gate{max-width:430px}
+  label{display:block;font-size:13px;font-weight:600;margin:14px 0 6px}
+  label:first-child{margin-top:0}
+  .hint{font-weight:400;color:var(--muted);font-size:12px}
+  input,select{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:11px 13px;font-family:var(--font);font-size:15px;color:var(--ink);outline:none}
+  input:focus,select:focus{border-color:var(--accent-ink)}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:640px){.grid3,.grid2{grid-template-columns:1fr}}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--accent-ink);color:#fff;border:none;border-radius:100px;padding:13px 24px;font-family:var(--font);font-weight:600;font-size:15.5px;cursor:pointer;margin-top:18px}
+  .btn:disabled{opacity:.5}
+  .btn.sec{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn.sm{padding:9px 16px;font-size:13px;margin-top:0}
+  .err{color:#b3261e;font-size:13px;margin-top:10px}
+  .reg{font-size:12px;color:var(--accent-ink);margin-top:8px;display:none}
+  .result{background:#eef6ee;border:1px solid #cfe3cf;border-radius:14px;padding:18px;margin-top:18px}
+  .result h3{font-size:16px;font-weight:700}
+  .lbl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-top:12px}
+  .linkbox{display:flex;gap:8px;margin-top:5px}
+  .linkbox input{font-family:var(--mono);font-size:12px;padding:9px 11px}
+  .copy{flex:none;border:1px solid var(--line);background:var(--card);border-radius:9px;padding:0 12px;font-size:12px;cursor:pointer;font-family:var(--mono)}
+  #qr{margin-top:12px;display:inline-block;background:#fff;padding:8px;border-radius:9px;border:1px solid var(--line)}
+  /* clients table */
+  .toolbar{display:flex;gap:12px;align-items:center;margin-top:8px}
+  .toolbar input{max-width:280px}
+  .thead,.crow{display:grid;grid-template-columns:2.2fr 1.4fr 90px 120px 1.4fr;gap:14px;align-items:center}
+  .thead{padding:0 4px 10px;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+  .crow{padding:14px 4px;border-top:1px solid var(--line)}
+  .crow .who{font-weight:700;font-size:15px;letter-spacing:-.01em}
+  .crow .slug{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:2px}
+  .crow .tr{font-size:13px;color:var(--muted);text-transform:capitalize}
+  .pill{font-family:var(--mono);font-size:10.5px;font-weight:500;text-transform:uppercase;letter-spacing:.03em;padding:4px 9px;border-radius:100px;justify-self:start}
+  .pill.live{background:rgba(47,125,84,.14);color:#2f7d54}
+  .pill.paused{background:rgba(23,21,18,.09);color:var(--muted)}
+  .leadcell .n{font-weight:700}.leadcell .t{font-family:var(--mono);font-size:11px;color:var(--muted)}
+  .acts{display:flex;gap:10px;align-items:center;justify-content:flex-end;flex-wrap:wrap}
+  .acts a,.lnkbtn{font-family:var(--mono);font-size:12px;background:none;border:none;cursor:pointer;text-decoration:none;padding:0;color:var(--accent-ink)}
+  .acts .manage{font-weight:500}
+  .lnkbtn.rm{color:#b3261e}
+  @media(max-width:760px){
+    .thead{display:none}
+    .crow{grid-template-columns:1fr auto;gap:6px 12px;align-items:start}
+    .crow .biz{grid-row:1;grid-column:1}
+    .crow .trcell{grid-row:2;grid-column:1}
+    .crow .statuscell{grid-row:1;grid-column:2;justify-self:end}
+    .crow .leadcell{grid-row:2;grid-column:2;justify-self:end;text-align:right}
+    .crow .acts{grid-row:3;grid-column:1/-1;justify-content:flex-start;margin-top:6px}
+    .acts a,.lnkbtn{padding:6px 0}
+  }
+  .empty{padding:30px 4px;color:var(--muted);text-align:center}
+  .empty b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brandrow">
+    <div class="brand"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="#171512"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="#171512"/><circle cx="32" cy="26.5" r="3.9" fill="#e8663a"/></svg>Reception<span>Owner console</span></div>
+    <button class="logout" id="logout" hidden>Log out</button>
+  </div>
+
+  <div id="gate" class="card">
+    <label>Owner password<input id="okey" type="password" placeholder="Your console password" autocomplete="current-password"></label>
+    <button class="btn" id="unlock">Unlock</button>
+    <div class="err" id="gateerr"></div>
+  </div>
+
+  <div id="app" hidden>
+    <h1>Add a client</h1>
+    <p class="sub">Pick their trade and a starter front desk loads. You or the client fill in the real prices after.</p>
+    <div class="card" id="tgcard" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div id="tgcardtext" style="font-size:13px;color:var(--muted);max-width:52ch">Checking Telegram bot…</div>
+      <button class="btn sec" id="tgsetup" type="button" style="flex:none" hidden>Set up Telegram bot</button>
+    </div>
+    <div class="status" id="tgsetupmsg" style="margin:-6px 0 14px;font-family:var(--mono);font-size:12.5px"></div>
+    <div class="card">
+      <div class="grid2">
+        <div><label>Business name<input id="bname" placeholder="e.g. Bella Nails"></label></div>
+        <div><label>Trade<select id="trade"></select></label></div>
+      </div>
+      <div class="reg" id="reg"></div>
+      <div class="grid2">
+        <div><label>Front-desk name <span class="hint">what it calls itself</span><input id="fname" placeholder="defaults to business name"></label></div>
+        <div><label>Link name <span class="hint">in the web address</span><input id="slug" placeholder="auto"></label></div>
+      </div>
+      <label>Leads Telegram ID <span class="hint">optional, add later in the client's page</span><input id="chat" placeholder="e.g. 420583513"></label>
+      <button class="btn" id="create">Create front desk</button>
+      <div class="err" id="err"></div>
+      <div class="result" id="result" hidden>
+        <h3>Done. Here's their front desk.</h3>
+        <div class="lbl">Customer link (their bio / QR)</div>
+        <div class="linkbox"><input id="rlink" readonly><button class="copy" data-t="rlink">Copy</button></div>
+        <div class="lbl">Admin link (send to the client)</div>
+        <div class="linkbox"><input id="radmin" readonly><button class="copy" data-t="radmin">Copy</button></div>
+        <div id="qr"></div>
+      </div>
+    </div>
+
+    <h2>Your clients</h2>
+    <div class="card">
+      <div class="toolbar"><input id="search" placeholder="Search clients…"></div>
+      <div class="thead" id="thead" hidden><div>Business</div><div>Trade</div><div>Status</div><div>Leads</div><div style="text-align:right">Manage</div></div>
+      <div id="clients"><div class="empty">Loading…</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const WORKER="https://nimbus-desk.propsightsg.workers.dev", BASE=location.origin+location.pathname.replace(/\/[^/]*$/,"");
+  const TRADES=[["beauty","Beauty & grooming"],["home","Home & trades"],["interior","Interior design"],["renovation","Renovation contractor"],["cleaning","Cleaning & laundry"],["tuition","Tuition & enrichment"],["fitness","Fitness & wellness"],["fnb","Food & beverage"],["pet","Pet services"],["events","Events & creative"],["automotive","Automotive & workshop"],["professional","Professional & business services"],["repairs","Repairs & personal retail"],["property","Property / real estate"],["insurance","Insurance & financial"],["general","General / other"]];
+  const REG={property:"Regulated (CEA): informs and books only, never advises.",insurance:"Regulated (MAS): informs and books only, no product advice."};
+  const $=id=>document.getElementById(id);
+  let KEY=localStorage.getItem("n9_owner")||"", ALL=[];
+
+  function eh(s){return String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+  function ftime(s){if(!s)return"—";try{return new Date(String(s).replace(" ","T")+"Z").toLocaleDateString("en-SG",{day:"numeric",month:"short"});}catch(e){return"—";}}
+  function slugify(s){return String(s||"").toLowerCase().trim().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,40);}
+  async function api(path,body){try{const r=await fetch(WORKER+path,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});return{status:r.status,data:await r.json().catch(()=>({}))};}catch(e){return{status:0,data:{}};}}
+
+  const tsel=$("trade"); TRADES.forEach(t=>{const o=document.createElement("option");o.value=t[0];o.textContent=t[1];tsel.appendChild(o);});
+  tsel.onchange=()=>{const r=REG[tsel.value];$("reg").textContent=r||"";$("reg").style.display=r?"block":"none";};
+  $("bname").addEventListener("input",()=>{if(!$("slug").dataset.touched)$("slug").value=slugify($("bname").value);});
+  $("slug").addEventListener("input",()=>$("slug").dataset.touched="1");
+
+  async function unlock(){
+    KEY=$("okey").value.trim(); if(!KEY)return;
+    const {status}=await api("/admin/list",{key:KEY});
+    if(status===401){$("gateerr").textContent="Wrong password.";return;}
+    if(status===0){$("gateerr").textContent="Couldn't reach the server, try again.";return;}
+    localStorage.setItem("n9_owner",KEY); showApp();
+  }
+  function showApp(){$("gate").hidden=true;$("app").hidden=false;$("logout").hidden=false;loadClients();checkTg();}
+  async function checkTg(){
+    const {status,data}=await api("/admin/tg-status",{key:KEY});
+    if(status===200&&data.ok&&data.setup){ $("tgcardtext").innerHTML="&#10003; Telegram bot is set up. Your clients can connect their phones."; $("tgcardtext").style.color="#2f7d54"; $("tgsetup").hidden=true; }
+    else if(status===200&&data.ok){ $("tgcardtext").textContent="Telegram bot not set up yet. Click once so every client's Connect Telegram button works."; $("tgcardtext").style.color=""; $("tgsetup").hidden=false; }
+    else { $("tgcardtext").textContent="One-time setup so the client Connect Telegram button works."; $("tgsetup").hidden=false; }
+  }
+  $("unlock").onclick=unlock; $("okey").addEventListener("keydown",e=>{if(e.key==="Enter")unlock();});
+  $("logout").onclick=()=>{localStorage.removeItem("n9_owner");location.reload();};
+
+  function render(list){
+    const el=$("clients");
+    if(!list.length){ $("thead").hidden=true; el.innerHTML=ALL.length?'<div class="empty">No clients match your search.</div>':'<div class="empty"><b>No clients yet.</b><br>Add your first client above to create a front desk.</div>'; return; }
+    $("thead").hidden=false; el.innerHTML="";
+    list.forEach(c=>{const paused=c.status!=="active"; const admin=`${BASE}/admin.html?c=${c.slug}&k=${c.admin_token}`;
+      const d=document.createElement("div"); d.className="crow";
+      d.innerHTML=
+        `<div class="biz"><div class="who">${eh(c.business_name)}</div><div class="slug">${eh(c.slug)}</div></div>`+
+        `<div class="trcell tr">${eh((TRADES.find(t=>t[0]===c.trade)||[])[1]||c.trade||"")}</div>`+
+        `<div class="statuscell"><span class="pill ${paused?'paused':'live'}">${paused?'Paused':'Live'}</span></div>`+
+        `<div class="leadcell">${c.new_count?('<span class="n">'+c.new_count+' new</span>'):('<span class="t">'+(c.lead_count||0)+' total</span>')}<div class="t">last ${ftime(c.last_lead)}</div></div>`+
+        `<div class="acts"><a class="manage" href="${admin}">manage →</a><button class="lnkbtn" data-act="pause" data-slug="${c.slug}" data-status="${paused?'active':'paused'}">${paused?'resume':'pause'}</button><button class="lnkbtn rm" data-act="del" data-slug="${c.slug}" data-name="${eh(c.business_name)}">remove</button></div>`;
+      el.appendChild(d);});
+  }
+  async function loadClients(){
+    const {status,data}=await api("/admin/list",{key:KEY});
+    if(status!==200){ $("thead").hidden=true; $("clients").innerHTML='<div class="empty" style="color:#b3261e">Couldn\'t load your clients. <button class="lnkbtn" onclick="loadClients()">retry</button></div>'; return; }
+    ALL=data.clients||[]; applySearch();
+  }
+  function applySearch(){const q=$("search").value.toLowerCase().trim(); render(q?ALL.filter(c=>(c.business_name||"").toLowerCase().includes(q)||(c.slug||"").includes(q)):ALL);}
+  $("search").addEventListener("input",applySearch);
+  $("clients").addEventListener("click",async e=>{const b=e.target.closest("button[data-act]");if(!b)return;
+    if(b.dataset.act==="del"){if(!confirm("Remove "+b.dataset.name+"? This deletes their front desk and leads for good."))return;await api("/admin/delete",{key:KEY,slug:b.dataset.slug});loadClients();}
+    if(b.dataset.act==="pause"){await api("/admin/pause",{key:KEY,slug:b.dataset.slug,status:b.dataset.status});loadClients();}
+  });
+
+  $("create").onclick=async()=>{
+    $("err").textContent=""; const business_name=$("bname").value.trim(),trade=tsel.value,slug=$("slug").value.trim()||slugify(business_name),frontdesk_name=$("fname").value.trim(),lead_chat_id=$("chat").value.trim();
+    if(!business_name){$("err").textContent="Enter a business name.";return;}
+    if(!slug){$("err").textContent="Type a link name using letters or numbers.";$("slug").focus();return;}
+    $("create").disabled=true;
+    const {status,data}=await api("/admin/create",{key:KEY,business_name,trade,slug,frontdesk_name,lead_chat_id});
+    $("create").disabled=false;
+    if(status===0){$("err").textContent="Couldn't reach the server, try again.";return;}
+    if(status!==200||!data.ok){$("err").textContent=data.error==="slug_taken"?"That link name is taken, change it.":"Couldn't create ("+(data.error||status)+").";return;}
+    $("rlink").value=data.link;$("radmin").value=data.admin;$("result").hidden=false;
+    $("qr").innerHTML=""; try{new QRCode($("qr"),{text:data.link,width:140,height:140,colorDark:"#171512",colorLight:"#ffffff"});}catch(e){$("qr").innerHTML='<img alt="QR" src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data='+encodeURIComponent(data.link)+'">';}
+    $("bname").value="";$("fname").value="";$("slug").value="";$("slug").dataset.touched="";$("chat").value="";
+    loadClients();
+  };
+  document.querySelectorAll(".copy").forEach(b=>b.addEventListener("click",()=>{const i=$(b.dataset.t);i.select();document.execCommand("copy");b.textContent="Copied";setTimeout(()=>b.textContent="Copy",1200);}));
+  $("tgsetup").onclick=async()=>{ $("tgsetup").disabled=true; $("tgsetupmsg").textContent="Setting up…"; const {status,data}=await api("/admin/tg-setup",{key:KEY}); $("tgsetup").disabled=false; if(status===200&&data.ok){ $("tgsetupmsg").textContent=""; checkTg(); } else { $("tgsetupmsg").textContent="Couldn't set up ("+(data.error||(data.result&&data.result.description)||status)+")."; $("tgsetupmsg").style.color="#b3261e"; } };
+
+  if(KEY){(async()=>{const{status}=await api("/admin/list",{key:KEY});if(status===200)showApp();else if(status===401){localStorage.removeItem("n9_owner");}})();}
+</script>
+</body>
+</html>

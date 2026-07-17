@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Front desk</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23171512'/%3E%3Csvg x='5.5' y='5.5' width='21' height='21' viewBox='0 0 64 64'%3E%3Crect x='9' y='45.5' width='46' height='5.8' rx='2.9' fill='%23f3efe8'/%3E%3Cpath d='M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z' fill='%23f3efe8'/%3E%3Ccircle cx='32' cy='26.5' r='3.9' fill='%23e8663a'/%3E%3C/svg%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link id="fontlink" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f3efe8;--ink:#171512;--muted:#635b4f;
+    --accent:#e8663a;--accent-ink:#b24714;--line:rgba(23,21,18,.12);
+    --mono:"Spline Sans Mono",ui-monospace,monospace;
+    /* style-driven tokens (Clean = defaults) */
+    --font:"Plus Jakarta Sans",system-ui,sans-serif;
+    --font-head:"Plus Jakarta Sans",system-ui,sans-serif;
+    --name-weight:700;--name-size:16px;--name-spacing:-.01em;
+    --label-font:var(--mono);--label-size:11px;--label-spacing:.04em;--label-transform:uppercase;
+    --who-fg:var(--muted);
+    --av-radius:13px;--av-bg:var(--ink);
+    --deskbg:#fbf9f5;
+    --head-bg:#fbf9f5;--head-fg:var(--ink);--head-border:1px solid var(--line);
+    --bubble-radius:16px;--bubble-tail:5px;
+    --in-bg:#efe9df;--in-fg:var(--ink);
+    --out-bg:var(--ink);--out-fg:#fbf9f5;
+    --chip-bg:transparent;--chip-fg:var(--accent-ink);--chip-border:1px solid rgba(178,71,20,.35);--chip-weight:500;--chip-radius:100px;
+    --input-bg:#efe9df;
+    --voice-bg:rgba(232,102,58,.11);--voice-fg:var(--accent-ink);--voice-border:1px solid rgba(178,71,20,.32);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  [hidden]{display:none!important}
+  html,body{height:100%}
+  body{font-family:var(--font);background:var(--bg);color:var(--ink);display:flex;align-items:center;justify-content:center;-webkit-font-smoothing:antialiased;line-height:1.5}
+  .desk{width:100%;max-width:800px;height:100dvh;max-height:900px;display:flex;flex-direction:column;background:var(--deskbg);position:relative;overflow:hidden}
+  @media(min-width:560px){.desk{border:1px solid var(--line);border-radius:22px;height:min(100dvh,860px);box-shadow:0 40px 90px -50px rgba(23,21,18,.5);margin:16px}}
+  /* header */
+  .dhead{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:var(--head-border);flex:none;background:var(--head-bg);color:var(--head-fg)}
+  .davatar{position:relative;width:44px;height:44px;border-radius:var(--av-radius);background:var(--av-bg);flex:none;display:flex;align-items:center;justify-content:center}
+  .davatar svg{width:26px;height:26px}
+  .davatar::after{content:"";position:absolute;right:-2px;bottom:-2px;width:13px;height:13px;border-radius:50%;background:#2f9e5f;border:2.5px solid var(--head-bg)}
+  .dmeta{min-width:0;flex:1}
+  .dname{font-family:var(--font-head);font-weight:var(--name-weight);font-size:var(--name-size);letter-spacing:var(--name-spacing);line-height:1.15;color:var(--head-fg);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .dwho{font-family:var(--font);font-size:12.5px;color:var(--who-fg);margin-top:3px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .dvoice{margin-left:auto;display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px 0 10px;border-radius:100px;border:var(--voice-border);background:var(--voice-bg);color:var(--voice-fg);cursor:pointer;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.03em;text-transform:uppercase}
+  .dvoice svg{width:14px;height:14px}
+  .dvoice.muted{background:transparent;border-color:var(--line);color:var(--muted);opacity:.85}
+  @media(max-width:559px){
+    .dvoice{width:34px;height:34px;padding:0;gap:0;justify-content:center}
+    .dvoice #vlabel{display:none}
+    .dvoice svg{width:16px;height:16px}
+  }
+  /* thread */
+  .dthread{flex:1;overflow-y:auto;padding:20px 18px;display:flex;flex-direction:column;gap:11px;scroll-behavior:smooth}
+  .msg{max-width:86%;padding:12px 15px;border-radius:var(--bubble-radius);font-size:15px;line-height:1.45;white-space:pre-line}
+  .msg.in{background:var(--in-bg);color:var(--in-fg);border-bottom-left-radius:var(--bubble-tail);align-self:flex-start}
+  .msg.out{background:var(--out-bg);color:var(--out-fg);border-bottom-right-radius:var(--bubble-tail);align-self:flex-end}
+  .typing{align-self:flex-start;display:flex;gap:4px;padding:14px 15px;background:var(--in-bg);border-radius:var(--bubble-radius);border-bottom-left-radius:var(--bubble-tail)}
+  .typing span{width:6px;height:6px;border-radius:50%;background:var(--muted);opacity:.4;animation:bl 1.4s infinite both}
+  .typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+  @keyframes bl{0%,60%,100%{opacity:.35}30%{opacity:1}}
+  /* chips */
+  .chipwrap{flex:none}
+  .chiptoggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 16px 5px;background:none;border:none;cursor:pointer;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+  .chiptoggle .chevron{flex:none;transition:transform .2s;transform:rotate(180deg)}
+  .chipwrap.collapsed .chiptoggle .chevron{transform:rotate(0deg)}
+  .chipwrap.collapsed .dchips{display:none}
+  .dchips{display:flex;flex-wrap:wrap;gap:7px;padding:2px 16px 12px;flex:none}
+  .chip{font-family:var(--font);font-size:12.5px;font-weight:var(--chip-weight);color:var(--chip-fg);background:var(--chip-bg);border:var(--chip-border);border-radius:var(--chip-radius);padding:7px 12px;cursor:pointer;transition:opacity .2s,transform .15s}
+  .chip:hover{opacity:.82}
+  .chip:active{transform:scale(.97)}
+  .chip.gone{opacity:.4}
+  /* input */
+  .dbar{display:flex;align-items:center;gap:8px;padding:11px 14px 12px;border-top:1px solid var(--line);flex:none}
+  .dinput{flex:1;min-width:0;border:none;background:var(--input-bg);border-radius:100px;padding:12px 16px;font-family:var(--font);font-size:15px;color:var(--ink);outline:none}
+  .dinput::placeholder{color:var(--muted)}
+  .dsend{width:40px;height:40px;border-radius:50%;border:none;background:var(--accent-ink);color:#fff;flex:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .15s}
+  .dsend:hover{transform:translateY(-1px)}
+  .dsend:disabled{opacity:.45;transform:none}
+  .dfoot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 16px 12px;flex:none}
+  .dlead{font-family:var(--mono);font-size:11px;color:var(--accent-ink);background:none;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:.04em}
+  .powered{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.02em;text-decoration:none}
+  .powered b{color:var(--ink);font-weight:500}
+  /* lead form */
+  .lead{position:absolute;inset:0;background:rgba(23,21,18,.4);display:none;align-items:flex-end;z-index:5}
+  .lead.on{display:flex}
+  .leadcard{background:var(--deskbg);width:100%;border-radius:22px 22px 0 0;padding:22px 20px 24px}
+  .leadcard h3{font-family:var(--font-head);font-size:19px;font-weight:var(--name-weight);letter-spacing:-.01em}
+  .leadcard p{font-size:13.5px;color:var(--muted);margin-top:5px}
+  .leadcard input{width:100%;border:1px solid var(--line);background:var(--input-bg);border-radius:12px;padding:13px 15px;font-family:var(--font);font-size:15px;color:var(--ink);margin-top:12px;outline:none}
+  .leadcard input:focus{border-color:var(--accent-ink)}
+  .leadbtns{display:flex;gap:10px;margin-top:16px}
+  .leadsend{flex:1;background:var(--accent-ink);color:#fff;border:none;border-radius:100px;padding:13px;font-family:var(--font);font-weight:600;font-size:15px;cursor:pointer}
+  .leadcancel{background:none;border:none;color:var(--muted);font-family:var(--font);font-size:14px;cursor:pointer;padding:0 10px}
+  .center{height:100%;display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:var(--mono);font-size:14px;padding:24px;text-align:center}
+
+  /* ============ STYLES ============ */
+  /* CLEAN — cool, crisp, minimal; distinct from Warm's cream */
+  [data-style="clean"]{
+    --bg:#e7eaec;--deskbg:#f2f4f5;
+    --head-bg:#fbfcfd;--head-border:1px solid rgba(20,28,38,.08);
+    --in-bg:#e6eaed;
+    --out-bg:var(--ink);--out-fg:#f2f4f5;
+    --av-radius:12px;
+  }
+  /* WARM — editorial serif, circle avatar, cosy cream, rounded bubbles */
+  [data-style="warm"]{
+    --font:"Figtree",system-ui,sans-serif;--font-head:"Hedvig Letters Serif",Georgia,serif;
+    --name-weight:500;--name-size:20px;--name-spacing:0;
+    --label-font:"Figtree",sans-serif;--label-transform:none;--label-spacing:.005em;--label-size:12px;
+    --av-radius:50%;
+    --bg:#e2d3ba;--deskbg:#efe4ce;--head-bg:#ece0c7;--head-border:1px solid rgba(23,21,18,.1);
+    --bubble-radius:20px;--in-bg:#e5d7bd;
+    --out-bg:var(--accent-ink);--out-fg:#fff;
+    --chip-bg:rgba(232,102,58,.12);--chip-fg:var(--accent-ink);--chip-border:1px solid transparent;--chip-weight:600;
+    --input-bg:#e5d7bd;
+  }
+  /* BOLD — heavy grotesque, thick rule, chunky squarer bubbles, solid chips */
+  [data-style="bold"]{
+    --font:"Bricolage Grotesque",system-ui,sans-serif;--font-head:"Bricolage Grotesque",system-ui,sans-serif;
+    --name-weight:800;--name-size:22px;--name-spacing:-.03em;
+    --av-radius:12px;
+    --bg:#eceae3;--deskbg:#ffffff;--head-bg:#ffffff;--head-border:2px solid var(--ink);
+    --bubble-radius:9px;--in-bg:#f0eee7;
+    --out-bg:var(--accent);--out-fg:#171512;
+    --chip-bg:var(--ink);--chip-fg:#fff;--chip-border:1px solid var(--ink);--chip-weight:600;--chip-radius:9px;
+    --input-bg:#f0eee7;
+  }
+  /* SLEEK — tight Space Grotesk, dark header bar, cool ground, refined */
+  [data-style="sleek"]{
+    --font:"Space Grotesk",system-ui,sans-serif;--font-head:"Space Grotesk",system-ui,sans-serif;
+    --name-weight:600;--name-size:16px;--name-spacing:-.01em;
+    --av-radius:11px;--av-bg:var(--accent);
+    --bg:#e7e7e4;--deskbg:#f7f7f5;
+    --head-bg:#1b1917;--head-fg:#f4f3f0;--head-border:none;--who-fg:rgba(244,243,240,.62);
+    --bubble-radius:13px;--in-bg:#ecebe5;
+    --out-bg:#1b1917;--out-fg:#f4f3f0;
+    --chip-bg:transparent;--chip-fg:var(--accent-ink);--chip-border:1px solid var(--line);
+    --input-bg:#ecebe5;
+    --voice-bg:rgba(244,243,240,.1);--voice-fg:#f4f3f0;--voice-border:1px solid rgba(244,243,240,.24);
+  }
+  /* announcement banner: thin, brand-tinted, scrolls only if too long, static bubble not a chat message */
+  .dannounce{display:flex;align-items:center;gap:8px;flex:none;padding:7px 14px;background:var(--accent-ink);color:#fff;font-size:12.5px;line-height:1.3;font-weight:500}
+  .daicon{flex:none;display:inline-flex;opacity:.92}
+  .daviewport{flex:1;overflow:hidden;white-space:nowrap}
+  .datrack{display:inline-flex;white-space:nowrap;will-change:transform}
+  .datrack.scroll{animation:marq linear infinite}
+  .dannounce:hover .datrack.scroll{animation-play-state:paused}
+  .datext{padding-right:46px}
+  @keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media(prefers-reduced-motion:reduce){.datrack.scroll{animation:none!important}.daviewport{overflow-x:auto}}
+  .dwa{flex:none;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:#25D366;color:#fff;text-decoration:none;transition:transform .15s}
+  .dwa:hover{transform:translateY(-1px)}
+  /* booking */
+  .bookrow{padding:0 16px 10px;flex:none}
+  .bookcta{width:100%;display:flex;align-items:center;justify-content:center;gap:7px;background:var(--accent);color:#fff;border:none;border-radius:100px;padding:9px 12px;font-family:var(--font);font-weight:700;font-size:14px;cursor:pointer;transition:transform .15s}
+  .bookcta:hover{transform:translateY(-1px)}
+  .book{position:absolute;inset:0;z-index:30;background:var(--dbg,#fbf7f1);display:none;flex-direction:column}
+  .book.on{display:flex}
+  .bookhead{display:flex;align-items:center;gap:8px;padding:13px 14px;border-bottom:1px solid var(--line,rgba(23,21,18,.12));flex:none}
+  .bookhead h3{flex:1;font-size:16px;font-weight:700;text-align:center;font-family:var(--font)}
+  .bookback,.bookx{background:none;border:none;color:var(--accent-ink);cursor:pointer;font-family:var(--font);font-weight:600;font-size:14px;padding:4px 6px;min-width:44px}
+  .bookx{font-size:22px;line-height:1;font-weight:400}
+  .bookbody{flex:1;overflow-y:auto;padding:15px;display:flex;flex-direction:column;gap:9px}
+  .bookopt{text-align:left;background:var(--pin,#efe9df);border:1px solid var(--line,rgba(23,21,18,.1));border-radius:12px;padding:13px 15px;font-family:var(--font);font-size:15px;font-weight:600;color:var(--ink,#171512);cursor:pointer}
+  .bookopt.bookslot{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:11px 12px}
+  .bookslot .bt{font-size:15px;font-weight:600}
+  .bookslot .bl{font-size:11.5px;font-weight:500;color:var(--muted);line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .bookopt:hover{border-color:var(--accent)}
+  .booktimes{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .bookfield{display:flex;flex-direction:column;gap:5px;margin-bottom:3px}
+  .bookfield label{font-size:12.5px;color:var(--muted,#6b5c4f);font-weight:600}
+  .bookfield input,.bookfield select{border:1px solid var(--line,rgba(23,21,18,.15));border-radius:10px;padding:11px 12px;font-family:var(--font);font-size:15px;background:#fff;color:var(--ink,#171512)}
+  .bookconfirm{background:var(--accent);color:#fff;border:none;border-radius:100px;padding:14px;font-family:var(--font);font-weight:700;font-size:15px;cursor:pointer;margin-top:4px}
+  .bookcal{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;background:transparent;border:1px solid var(--line,rgba(23,21,18,.16));color:var(--ink,#171512);border-radius:100px;padding:13px;font-family:var(--font);font-weight:600;font-size:14.5px;cursor:pointer;margin-top:10px}
+  .bookcancel{display:block;width:100%;background:none;border:none;color:var(--muted,#6b5c4f);font-family:var(--font);font-size:13px;cursor:pointer;padding:12px 8px 2px;text-decoration:underline;text-underline-offset:2px}
+  .bookconfirm:disabled{opacity:.6}
+  .bookmsg{text-align:center;color:var(--muted,#6b5c4f);font-size:14.5px;padding:16px 8px;line-height:1.5}
+  .booksuccess{text-align:center;padding:22px 12px}
+  .booksuccess .bstick{width:56px;height:56px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+  .booksuccess h4{font-size:19px;font-weight:800;font-family:var(--font)}
+  .booksuccess p{color:var(--muted,#6b5c4f);margin-top:8px;font-size:14.5px;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="desk" id="desk" style="display:none">
+  <div class="dhead">
+    <span class="davatar" aria-hidden="true"><svg viewBox="0 0 64 64"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="#F3EFE8"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="#F3EFE8"/><circle cx="32" cy="26.5" r="3.9" fill="#e8663a"/></svg></span>
+    <div class="dmeta">
+      <div class="dname" id="dname">Front desk</div>
+      <div class="dwho" id="dwho"></div>
+    </div>
+    <a class="dwa" id="dwa" target="_blank" rel="noopener" hidden aria-label="Message us on WhatsApp"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.2 4.79 1.2h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.8 14.01c-.24.68-1.42 1.31-1.96 1.36-.5.05-1.13.07-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.79-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3s.75-2.13 1.02-2.42c.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.82 2.01.89 2.16.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.6-.07.16-.19.69-.81.87-1.09.18-.28.36-.23.61-.14.25.09 1.58.75 1.85.89.27.14.45.21.51.32.06.11.06.64-.18 1.32z"/></svg></a>
+    <button class="dvoice" id="dvoice" type="button" aria-pressed="true" aria-label="Voice on, tap to turn off">
+      <svg id="vicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14"/></svg>
+      <span id="vlabel">Voice on</span>
+    </button>
+  </div>
+  <div class="dannounce" id="dannounce" role="status" aria-live="polite" hidden>
+    <span class="daicon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4L6 9H3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h1l1 5h3l-1-5 13 5V4z"/></svg></span>
+    <div class="daviewport"><div class="datrack" id="datrack"><span class="datext" id="datext"></span></div></div>
+  </div>
+  <div class="dthread" id="thread" role="log" aria-live="polite"></div>
+  <div class="chipwrap" id="chipwrap" hidden>
+    <button class="chiptoggle" id="chiptoggle" type="button" aria-expanded="true" aria-controls="chips"><span>Quick questions</span><svg class="chevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+    <div class="dchips" id="chips"></div>
+  </div>
+  <div class="bookrow" id="bookrow" hidden><button class="bookcta" id="bookbtn" type="button"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Book an appointment</button></div>
+  <form class="dbar" id="bar">
+    <input class="dinput" id="input" type="text" placeholder="Type your message" autocomplete="off" aria-label="Message">
+    <button class="dsend" id="send" type="submit" aria-label="Send"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+  </form>
+  <div class="dfoot">
+    <button class="dlead" id="leadopen" type="button">Leave your details</button>
+    <a class="powered" href="https://reception.sg/" target="_blank" rel="noopener">powered by <b>Reception</b></a>
+  </div>
+  <div class="lead" id="lead">
+    <form class="leadcard" id="leadform">
+      <h3>Leave your details</h3>
+      <p>We'll get back to you shortly.</p>
+      <input id="lhp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
+      <input id="lname" type="text" placeholder="Your name" autocomplete="name">
+      <input id="lcontact" type="text" placeholder="Phone or email" autocomplete="tel">
+      <p style="font-size:11px;color:var(--muted);margin-top:11px;line-height:1.45">By sending, you're happy for us to use your details to follow up on your enquiry.</p>
+      <div class="leadbtns"><button class="leadsend" type="submit">Send</button><button class="leadcancel" type="button" id="leadcancel">Cancel</button></div>
+    </form>
+  </div>
+  <div class="book" id="book">
+    <div class="bookhead"><button class="bookback" id="bookback" type="button" hidden>Back</button><h3 id="booktitle">Book an appointment</h3><button class="bookx" id="bookx" type="button" aria-label="Close">×</button></div>
+    <div class="bookbody" id="bookbody"></div>
+  </div>
+</div>
+<div class="center" id="fallback">Loading front desk...</div>
+
+<script>
+  const WORKER = "https://nimbus-desk.propsightsg.workers.dev";
+  const slug = new URLSearchParams(location.search).get("c") || "";
+  const PREVIEW = new URLSearchParams(location.search).get("preview") === "1";
+  const DEMO = new URLSearchParams(location.search).get("demo") === "1";
+  const $ = id => document.getElementById(id);
+  const thread = $("thread"), chipsEl = $("chips");
+  const chipwrap = $("chipwrap"), chiptoggle = $("chiptoggle");
+  let chipsAutoCollapsed = false;
+  chiptoggle.addEventListener("click",()=>{ const c=chipwrap.classList.toggle("collapsed"); chiptoggle.setAttribute("aria-expanded",String(!c)); chipsAutoCollapsed=true; });
+  function collapseChips(){ if(chipwrap.hidden||chipwrap.classList.contains("collapsed"))return; chipwrap.classList.add("collapsed"); chiptoggle.setAttribute("aria-expanded","false"); }
+  const history = [];
+  let muted = false, busy = false, cfg = null;
+  const REDUCE = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const audio = new Audio(); audio.preload = "auto";
+  // iOS/Safari: media playback needs a user gesture. Prime the element on the
+  // first tap so voice (which plays after an async fetch, outside the gesture) works.
+  let audioUnlocked=false;
+  function unlockAudio(){ if(audioUnlocked) return; audioUnlocked=true;
+    try{ audio.src="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAgD4AAIA+AAABAAgAZGF0YQAAAAA="; const p=audio.play();
+      if(p) p.then(()=>{audio.pause();audio.currentTime=0;}).catch(()=>{}); }catch(e){} }
+  ['pointerdown','touchend','click'].forEach(ev=>document.addEventListener(ev,unlockAudio,{once:true,passive:true}));
+
+  const FONTS = {
+    clean: "family=Plus+Jakarta+Sans:wght@400;500;600;700",
+    warm:  "family=Figtree:wght@400;500;600&family=Hedvig+Letters+Serif",
+    bold:  "family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800",
+    sleek: "family=Space+Grotesk:wght@400;500;600;700"
+  };
+
+  function darken(hex, f){ const m=hex.replace('#','').match(/.{2}/g); if(!m) return hex;
+    return '#'+m.map(h=>Math.max(0,Math.min(255,Math.round(parseInt(h,16)*f))).toString(16).padStart(2,'0')).join(''); }
+
+  function add(cls, text){ const el=document.createElement("div"); el.className="msg "+cls; el.textContent=text;
+    thread.appendChild(el); thread.scrollTop=thread.scrollHeight; return el; }
+  function typing(){ const el=document.createElement("div"); el.className="typing"; el.setAttribute("aria-hidden","true");
+    el.innerHTML="<span></span><span></span><span></span>"; thread.appendChild(el); thread.scrollTop=thread.scrollHeight; return el; }
+
+  async function speak(text){ if(PREVIEW||muted||!text) return;
+    try{ const r=await fetch(WORKER,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({c:slug,text,voice:(cfg&&cfg.voice)||undefined})});
+      if(!r.ok) return; const b=await r.blob(); audio.pause(); audio.src=URL.createObjectURL(b); audio.currentTime=0; const p=audio.play(); if(p)p.catch(()=>{}); }catch(e){} }
+
+  async function respond(text){
+    if(PREVIEW||busy) return; collapseChips(); busy=true; $("send").disabled=true;
+    add("out", text); history.push({role:"user",content:text});
+    let msgs=history.slice(-12); if(msgs.length&&msgs[0].role!=="user")msgs=msgs.slice(1);
+    const t=typing();
+    const ctrl=new AbortController(); const to=setTimeout(()=>ctrl.abort(),9000);
+    try{
+      const r=await fetch(WORKER,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({c:slug,messages:msgs}),signal:ctrl.signal});
+      const data=await r.json(); t.remove();
+      const reply=(data&&data.reply)||"Sorry, could you say that again?";
+      add("in",reply); history.push({role:"assistant",content:reply}); speak(reply);
+    }catch(e){ t.remove(); add("in","Sorry, I dropped for a second there. Try me again, or leave your details below."); }
+    finally{ clearTimeout(to); busy=false; $("send").disabled=false; $("input").focus(); }
+  }
+
+  // voice toggle
+  $("dvoice").addEventListener("click",()=>{ muted=!muted; $("dvoice").classList.toggle("muted",muted);
+    $("dvoice").setAttribute("aria-pressed",String(!muted)); $("vlabel").textContent=muted?"Voice off":"Voice on";
+    $("vicon").innerHTML=muted?'<path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M23 9l-6 6M17 9l6 6"/>':'<path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14"/>';
+    if(muted)audio.pause(); });
+
+  // input
+  $("bar").addEventListener("submit",e=>{ e.preventDefault(); const v=$("input").value.trim(); if(!v)return; $("input").value=""; if(DEMO){ add("in","This is a preview, tap a question below to try me. Want your own front desk like this? Get in touch and we will set one up."); return; } respond(v); });
+
+  // lead form
+  $("leadopen").addEventListener("click",()=>$("lead").classList.add("on"));
+  $("leadcancel").addEventListener("click",()=>$("lead").classList.remove("on"));
+  $("leadform").addEventListener("submit",async e=>{ e.preventDefault();
+    if($("lhp").value) return;   // honeypot: bots fill this, humans don't
+    const name=$("lname").value.trim(), contact=$("lcontact").value.trim();
+    const okContact=/@/.test(contact)||/\d{7,}/.test(contact.replace(/[\s-]/g,""));
+    if(!okContact){ $("lcontact").style.borderColor="#b3261e"; $("lcontact").placeholder="Enter a phone or email"; $("lcontact").focus(); return; }
+    const recent=history.filter(m=>m.role==="user").slice(-3).map(m=>m.content).join(" | ");
+    const btn=$("leadform").querySelector(".leadsend"), bt=btn.textContent; btn.disabled=true; btn.textContent="Sending...";
+    let ok=false;
+    try{ const r=await fetch(WORKER+"/lead",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({c:slug,name,contact,intent:recent})}); ok=r.ok; }catch(e){ ok=false; }
+    btn.disabled=false; btn.textContent=bt;
+    if(!ok){ let er=$("lerr"); if(!er){ er=document.createElement("p"); er.id="lerr"; er.style.cssText="color:#b3261e;font-size:12px;margin-top:10px;line-height:1.4"; $("leadform").querySelector(".leadbtns").before(er); } er.textContent="Sorry, that didn't send just now. Please try again."; return; }
+    const er=$("lerr"); if(er) er.remove();
+    $("lead").classList.remove("on"); $("lname").value=""; $("lcontact").value="";
+    add("in", "Thanks"+(name?", "+name:"")+", we've got your details and will follow up shortly."); });
+
+  // ---- booking flow ----
+  let bookSlots=[], bookSelSlot=null, bookToken=null, bookEnds="";
+  const bookBody=()=>$("bookbody");
+  function bookDayLabel(iso){ const p=iso.split(" "); const dt=new Date(p[0]+"T"+p[1]+":00+08:00"); return dt.toLocaleDateString("en-SG",{weekday:"short",day:"numeric",month:"short",timeZone:"Asia/Singapore"}); }
+  function bookTimeLabel(iso){ const p=iso.split(" "); const dt=new Date(p[0]+"T"+p[1]+":00+08:00"); return dt.toLocaleTimeString("en-SG",{hour:"numeric",minute:"2-digit",hour12:true,timeZone:"Asia/Singapore"}); }
+  function bookHead(title, back){ $("booktitle").textContent=title; $("bookback").hidden=!back; $("bookback")._go=back||null; }
+  function openBook(){ $("book").classList.add("on"); loadBookSlots(); }
+  function closeBook(){ $("book").classList.remove("on"); }
+  async function loadBookSlots(){
+    bookHead("Book an appointment", null); bookBody().innerHTML='<div class="bookmsg">Loading times\u2026</div>';
+    try{ const r=await fetch(WORKER+"/slots",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({c:slug})}); const d=await r.json(); bookSlots=(d&&d.slots)||[]; }catch(e){ bookSlots=[]; }
+    if(!bookSlots.length){ bookBody().innerHTML='<div class="bookmsg">No open times right now. Leave your details and we\'ll arrange one for you.</div>'; const b=document.createElement("button"); b.className="bookconfirm"; b.textContent="Leave your details"; b.onclick=()=>{ closeBook(); $("lead").classList.add("on"); }; bookBody().appendChild(b); return; }
+    renderBookDays();
+  }
+  function renderBookDays(){
+    bookHead("Pick a day", null);
+    const days=[...new Set(bookSlots.map(s=>s.starts_at.split(" ")[0]))]; bookBody().innerHTML="";
+    days.forEach(day=>{ const first=bookSlots.find(s=>s.starts_at.startsWith(day)); const n=bookSlots.filter(s=>s.starts_at.startsWith(day)).length;
+      const b=document.createElement("button"); b.className="bookopt"; b.innerHTML=bookDayLabel(first.starts_at)+' <span style="float:right;color:var(--muted);font-weight:500">'+n+' time'+(n>1?'s':'')+'</span>'; b.onclick=()=>renderBookTimes(day); bookBody().appendChild(b); });
+  }
+  function renderBookTimes(day){
+    bookHead("Pick a time", renderBookDays);
+    const slots=bookSlots.filter(s=>s.starts_at.startsWith(day)); bookBody().innerHTML='<div class="booktimes"></div>'; const grid=bookBody().querySelector(".booktimes");
+    slots.forEach(s=>{ const b=document.createElement("button"); b.className="bookopt bookslot"; b.onclick=()=>renderBookForm(s);
+      const t=document.createElement("span"); t.className="bt"; t.textContent=bookTimeLabel(s.starts_at); b.appendChild(t);
+      if(s.label){ const l=document.createElement("span"); l.className="bl"; l.textContent=s.label; b.appendChild(l); }
+      grid.appendChild(b); });
+  }
+  function renderBookForm(slot){
+    bookSelSlot=slot; bookHead("Your details", ()=>renderBookTimes(slot.starts_at.split(" ")[0]));
+    const svcOpts=((cfg&&cfg.services)||[]).map(x=>'<option>'+String(x||"").replace(/[<>"]/g,'')+'</option>').join("");
+    const svcField = slot.label
+      ? '<div class="bookfield"><label>For</label><div style="padding:11px 14px;background:rgba(23,21,18,.05);border-radius:10px;font-weight:600">'+String(slot.label).replace(/[<>"&]/g,'')+'</div></div>'
+      : '<div class="bookfield"><label>What is it for?</label><select id="bksvc">'+svcOpts+'<option value="__other">Something else</option></select></div>'+
+        '<div class="bookfield" id="bkotherwrap" hidden><label>Tell us</label><input id="bkother" placeholder="What would you like?"></div>';
+    bookBody().innerHTML=
+      '<div style="text-align:center;font-weight:700;margin-bottom:4px">'+bookDayLabel(slot.starts_at)+' \u00b7 '+bookTimeLabel(slot.starts_at)+'</div>'+
+      '<div class="bookfield"><label>Your name</label><input id="bkname" autocomplete="name"></div>'+
+      '<div class="bookfield"><label>Phone or email</label><input id="bkcontact" autocomplete="tel"></div>'+
+      svcField+
+      '<button class="bookconfirm" id="bkconfirm">Confirm booking</button>'+
+      '<div class="bookmsg" id="bkerr" style="color:#b3261e;display:none;padding:8px 0 0"></div>';
+    if($("bksvc")) $("bksvc").onchange=()=>{ $("bkotherwrap").hidden = $("bksvc").value!=="__other"; };
+    $("bkconfirm").onclick=doBook;
+  }
+  async function doBook(){
+    const name=$("bkname").value.trim(), contact=$("bkcontact").value.trim(); let svc=(bookSelSlot&&bookSelSlot.label)?bookSelSlot.label:($("bksvc")?$("bksvc").value:""); if(svc==="__other") svc=($("bkother")?$("bkother").value.trim():"");
+    const err=$("bkerr"); err.style.display="none";
+    if(!name||!contact){ err.textContent="Please add your name and number."; err.style.display="block"; return; }
+    $("bkconfirm").disabled=true; $("bkconfirm").textContent="Booking\u2026";
+    let d={}; try{ const r=await fetch(WORKER+"/book",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({c:slug,id:bookSelSlot.id,name,contact,service:svc})}); d=await r.json(); }catch(e){ d={}; }
+    $("bkconfirm").disabled=false; $("bkconfirm").textContent="Confirm booking";
+    if(d.ok){ bookToken=d.token||null; bookEnds=d.ends_at||""; renderBookSuccess(bookSelSlot); }
+    else if(d.taken){ err.textContent="Sorry, that time was just taken. Please pick another."; err.style.display="block"; setTimeout(()=>{ bookSlots=bookSlots.filter(s=>s.id!==bookSelSlot.id); loadBookSlots(); }, 1500); }
+    else { err.textContent="Couldn't book that just now, please try again."; err.style.display="block"; }
+  }
+  function renderBookSuccess(slot){
+    bookHead("Booked", null);
+    bookBody().innerHTML='<div class="booksuccess"><div class="bstick"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><h4>You are booked in</h4><p>'+bookDayLabel(slot.starts_at)+' at '+bookTimeLabel(slot.starts_at)+'. We will see you then. If anything changes we will be in touch.</p></div>';
+    const cal=document.createElement("button"); cal.className="bookcal"; cal.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Add to calendar'; cal.onclick=()=>addToCalendar(slot); bookBody().appendChild(cal);
+    const b=document.createElement("button"); b.className="bookconfirm"; b.textContent="Done"; b.onclick=closeBook; bookBody().appendChild(b);
+    if(bookToken){ const cx=document.createElement("button"); cx.className="bookcancel"; cx.textContent="Can't make it? Cancel this booking"; cx.onclick=()=>doRelease(bookToken, cx); bookBody().appendChild(cx); }
+  }
+  function fmtICS(d){ return d.toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,""); }
+  function addToCalendar(slot){
+    const biz=(cfg&&(cfg.business||cfg.name))||"Appointment";
+    const startD=new Date(String(slot.starts_at).replace(" ","T")+":00+08:00");
+    const endD=bookEnds?new Date(String(bookEnds).replace(" ","T")+":00+08:00"):new Date(startD.getTime()+3600000);
+    const uid=(bookToken||Math.random().toString(36).slice(2))+"@reception";
+    const cancelUrl=bookToken?(location.origin+location.pathname+"?c="+encodeURIComponent(slug)+"&cancel="+bookToken):"";
+    const esc=s=>String(s).replace(/([,;\\])/g,"\\$1").replace(/\n/g,"\\n");
+    const desc="Booked with "+biz+"."+(cancelUrl?(" Need to cancel? "+cancelUrl):"");
+    const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Reception//Front Desk//EN","BEGIN:VEVENT","UID:"+uid,"DTSTAMP:"+fmtICS(new Date()),"DTSTART:"+fmtICS(startD),"DTEND:"+fmtICS(endD),"SUMMARY:"+esc(biz),"DESCRIPTION:"+esc(desc),"END:VEVENT","END:VCALENDAR"].join("\r\n");
+    const blob=new Blob([ics],{type:"text/calendar;charset=utf-8"}); const u=URL.createObjectURL(blob);
+    const a=document.createElement("a"); a.href=u; a.download="appointment.ics"; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(u),4000);
+  }
+  async function doRelease(token, btn){
+    if(btn){ btn.disabled=true; btn.textContent="Cancelling…"; }
+    let d={}; try{ const r=await fetch(WORKER+"/booking-release",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({c:slug,token})}); d=await r.json(); }catch(e){}
+    if(d.ok){ bookHead("Cancelled",null); bookBody().innerHTML='<div class="bookmsg">Your booking is cancelled and that time is open again. Thanks for letting us know.</div>'; const b=document.createElement("button"); b.className="bookconfirm"; b.textContent="Close"; b.onclick=closeBook; bookBody().appendChild(b); }
+    else if(btn){ btn.disabled=false; btn.textContent="Couldn't cancel, try again"; }
+  }
+  function showCancelPrompt(token){
+    $("desk").style.display="none"; const fb=$("fallback"); fb.style.display="flex";
+    fb.innerHTML='<div style="text-align:center;max-width:330px;margin:auto"><h3 style="font-size:20px;margin-bottom:10px">Cancel your booking?</h3><p style="color:var(--muted);margin-bottom:20px;line-height:1.5">This frees the time for someone else. You can always book again after.</p><button id="cxyes" class="bookconfirm" style="margin-bottom:8px">Yes, cancel it</button><button id="cxno" style="background:none;border:none;color:var(--muted);font-family:var(--font);font-size:14px;cursor:pointer;padding:8px">Keep my booking</button></div>';
+    $("cxyes").onclick=async()=>{ const y=$("cxyes"); y.disabled=true; y.textContent="Cancelling…"; let d={}; try{ const r=await fetch(WORKER+"/booking-release",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({c:slug,token})}); d=await r.json(); }catch(e){} fb.innerHTML=d.ok?'<div style="text-align:center;margin:auto"><h3 style="font-size:20px;margin-bottom:8px">Booking cancelled</h3><p style="color:var(--muted)">That time is open again. Thanks for letting us know.</p></div>':'<div style="text-align:center;margin:auto"><p style="color:var(--muted)">This booking is already cancelled, or the link has expired.</p></div>'; };
+    $("cxno").onclick=()=>{ location.href=location.pathname+"?c="+encodeURIComponent(slug); };
+  }
+  $("bookbtn").addEventListener("click",openBook);
+  $("bookx").addEventListener("click",closeBook);
+  $("bookback").addEventListener("click",()=>{ const g=$("bookback")._go; if(g)g(); });
+
+  function setupAnnounce(text){
+    const wrap=$("dannounce"), track=$("datrack"), first=$("datext");
+    first.textContent=text; wrap.hidden=false;
+    requestAnimationFrame(()=>{
+      const vp=wrap.querySelector(".daviewport");
+      if(first.scrollWidth > vp.clientWidth + 4){
+        const clone=first.cloneNode(true); clone.removeAttribute("id"); clone.setAttribute("aria-hidden","true"); track.appendChild(clone);
+        track.classList.add("scroll");
+        track.style.animationDuration=Math.max(9,(first.scrollWidth+46)/40)+"s";
+      }
+    });
+  }
+
+  function resetAnnounce(){ const wrap=$("dannounce"),track=$("datrack"); wrap.hidden=true; track.classList.remove("scroll"); track.style.animationDuration=""; [...track.querySelectorAll(".datext")].forEach((el,i)=>{ if(i>0) el.remove(); }); $("datext").textContent=""; }
+  const TRADE_LABELS={beauty:"Beauty & grooming",home:"Home & trades",interior:"Interior design",renovation:"Renovation contractor",cleaning:"Cleaning & laundry",tuition:"Tuition & enrichment",fitness:"Fitness & wellness",fnb:"Food & beverage",pet:"Pet services",events:"Events & creative",automotive:"Automotive & workshop",professional:"Professional & business services",repairs:"Repairs & personal retail",property:"Property / real estate",insurance:"Insurance & financial"};
+  function applyConfig(c){
+    cfg=c||{};
+    const style=["clean","warm","bold","sleek"].includes(cfg.style)?cfg.style:"clean";
+    document.documentElement.dataset.style=style;
+    $("fontlink").href="https://fonts.googleapis.com/css2?"+FONTS[style]+"&family=Spline+Sans+Mono:wght@400;500&display=swap";
+    const accent=cfg.accent||"#e8663a"; const ink=darken(accent,.72);
+    document.documentElement.style.setProperty("--accent",accent);
+    document.documentElement.style.setProperty("--accent-ink",ink);
+    const nm=cfg.name||"Front desk";
+    document.title=nm+" · Front desk"; $("dname").textContent=nm;
+    const desc=(cfg.tagline&&cfg.tagline.trim())||TRADE_LABELS[cfg.trade]||"";
+    if(desc){ $("dwho").textContent=desc; $("dwho").style.display=""; } else { $("dwho").style.display="none"; }
+    if(cfg.whatsapp){ const digits=String(cfg.whatsapp).replace(/\D/g,""); const num=(digits.length===8&&/^[89]/.test(digits))?("65"+digits):digits;
+      $("dwa").href="https://wa.me/"+num+"?text="+encodeURIComponent("Hi "+(cfg.business||nm)+", I have a question."); $("dwa").hidden=false; }
+    else { $("dwa").hidden=true; }
+    $("bookrow").hidden = !cfg.booking;
+    thread.innerHTML=""; chipsEl.innerHTML=""; history.length=0; resetAnnounce();
+    if(cfg.announcement && cfg.announcement.trim()) setupAnnounce(cfg.announcement.trim());
+    add("in", cfg.greeting||("Hi, welcome to "+nm+". Ask me anything."));
+    (cfg.pills||[]).forEach(p=>{ const b=document.createElement("button"); b.className="chip"; b.type="button"; b.textContent=p.q;
+      b.addEventListener("click",()=>{ if(busy)return; collapseChips(); busy=true; $("send").disabled=true; b.classList.add("gone");
+        add("out",p.q); history.push({role:"user",content:p.q}); const t=typing();
+        setTimeout(()=>{ t.remove(); add("in",p.a); history.push({role:"assistant",content:p.a}); speak(p.say||p.a); busy=false; $("send").disabled=false; }, REDUCE?150:650);
+      }); chipsEl.appendChild(b); });
+    chipsAutoCollapsed=false; chipwrap.hidden=!(cfg.pills&&cfg.pills.length); chipwrap.classList.remove("collapsed"); chiptoggle.setAttribute("aria-expanded","true");
+    $("fallback").style.display="none"; $("desk").style.display="flex";
+  }
+
+  // boot
+  (async function(){
+    if(PREVIEW){
+      addEventListener("message",e=>{ const d=e.data; if(d&&d.type==="reception-preview"&&d.config) applyConfig(d.config); });
+      $("input").readOnly=true; $("input").placeholder="Preview";
+      try{ parent.postMessage({type:"reception-preview-ready"},"*"); }catch(_){}
+      applyConfig({style:"clean",name:"Your front desk",greeting:"Hi, this is a live preview. Change anything on the left and it shows here."});
+      return;
+    }
+    if(!slug){ $("fallback").textContent="No front desk specified."; return; }
+    const cancelParam=new URLSearchParams(location.search).get("cancel");
+    if(cancelParam){ showCancelPrompt(cancelParam); return; }
+    try{
+      const r=await fetch(WORKER+"/config?c="+encodeURIComponent(slug));
+      if(!r.ok){ $("fallback").textContent="This front desk isn't available right now."; return; }
+      applyConfig(await r.json()); if(DEMO) $("input").placeholder="Preview, tap a question to try me";
+    }catch(e){ $("fallback").textContent="Couldn't load the front desk. Please try again."; }
+  })();
+</script>
+</body>
+</html>
