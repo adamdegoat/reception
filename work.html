@@ -32,6 +32,21 @@
   .fdrow{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,1.8vw,26px);align-items:end}
   @media(max-width:1000px){.fdrow{grid-template-columns:repeat(2,1fr);max-width:640px;margin:0 auto;gap:30px}}
   @media(max-width:540px){.fdrow{grid-template-columns:1fr;max-width:330px}}
+  @media(min-width:1001px){
+    .fdrow{gap:0;padding:20px 3% 0;align-items:end}
+    .fdrow .fdmock{position:relative}
+    .fdrow .fdmock:nth-child(1){z-index:2}
+    .fdrow .fdmock:nth-child(2){z-index:4;transform:translateY(-18px)}
+    .fdrow .fdmock:nth-child(3){z-index:3;transform:translateY(-7px)}
+    .fdrow .fdmock:nth-child(4){z-index:1}
+    .fdrow .fdmock:nth-child(1) .pbody{transform:rotate(-5.5deg)}
+    .fdrow .fdmock:nth-child(2) .pbody{transform:rotate(2.5deg)}
+    .fdrow .fdmock:nth-child(3) .pbody{transform:rotate(-2deg)}
+    .fdrow .fdmock:nth-child(4) .pbody{transform:rotate(5.5deg)}
+    .fdrow .pbody{box-shadow:0 48px 78px -36px rgba(23,21,18,.62);transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s}
+    .fdrow .fdmock:hover{z-index:9}
+    .fdrow .fdmock:hover .pbody{transform:rotate(0) translateY(-10px);box-shadow:0 62px 96px -40px rgba(23,21,18,.66)}
+  }
   .fdmock{display:flex;flex-direction:column;gap:14px}
   .pbody{background:#141210;border-radius:38px;padding:9px;box-shadow:0 34px 66px -34px rgba(23,21,18,.55)}
   .pscreen{border-radius:30px;overflow:hidden;background:var(--dbg,#fbf9f5);display:flex;flex-direction:column;height:392px}
@@ -99,29 +114,31 @@
   /* custom builds */
   .cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,28px)}
   @media(max-width:820px){.cgrid{grid-template-columns:1fr;max-width:440px;margin:0 auto}}
-  .ccard{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card);display:flex;flex-direction:column}
-  .cviz{background:var(--bg);border-bottom:1px solid var(--line);padding:20px;min-height:186px;display:flex;flex-direction:column;gap:10px;justify-content:center}
-  .cbody{padding:18px 20px 22px}
+  .ccard{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--card);display:flex;flex-direction:column;box-shadow:0 22px 46px -30px rgba(23,21,18,.34);transition:transform .32s cubic-bezier(.16,1,.3,1),box-shadow .32s}
+  .ccard:hover{transform:translateY(-5px);box-shadow:0 40px 68px -34px rgba(23,21,18,.44)}
+  .cviz{background:linear-gradient(157deg,#f7f0e4,#ece1cf);border-bottom:1px solid var(--line);padding:24px 22px;min-height:202px;display:flex;flex-direction:column;gap:11px;justify-content:center}
+  .cbody{padding:19px 21px 23px}
   .cbody h3{font-size:19px;font-weight:700;letter-spacing:-.01em}
   .cbody p{margin-top:7px;font-size:14.5px;color:var(--muted);line-height:1.45}
-  .cbody .q{margin-top:12px;font-family:var(--mono);font-size:11.5px;color:var(--accent-ink);text-transform:uppercase;letter-spacing:.04em}
-  /* booking viz */
-  .bkslot{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:13px}
-  .bkslot.taken{opacity:1;color:#63605a}
+  .cbody .q{margin-top:14px;display:inline-block;font-family:var(--mono);font-size:10.5px;color:var(--accent-ink);text-transform:uppercase;letter-spacing:.05em;background:rgba(232,102,58,.1);border:1px solid rgba(178,71,20,.28);border-radius:100px;padding:4px 11px}
+  /* booking viz -> white floating rows */
+  .bkslot{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid rgba(23,21,18,.06);border-radius:11px;padding:12px 14px;font-size:13px;box-shadow:0 9px 20px -13px rgba(23,21,18,.32)}
+  .bkslot.taken{opacity:.62;box-shadow:none;background:rgba(255,255,255,.55)}
   .bkslot b{font-weight:600}
   .bkslot .go{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--accent-ink)}
-  .bkslot.taken .go{color:#63605a}
-  /* quote viz */
-  .qtr{display:flex;align-items:center;justify-content:space-between;font-size:13px;padding:7px 0;border-bottom:1px solid var(--line)}
+  .bkslot.taken .go{color:#8a8175}
+  /* quote viz -> one white panel */
+  .qpanel{background:#fff;border:1px solid rgba(23,21,18,.06);border-radius:13px;padding:13px 16px;box-shadow:0 12px 26px -15px rgba(23,21,18,.34)}
+  .qtr{display:flex;align-items:center;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--line)}
   .qtr:last-of-type{border-bottom:none}
-  .qtot{display:flex;align-items:center;justify-content:space-between;margin-top:6px;padding-top:11px;border-top:2px solid var(--ink);font-weight:700;font-size:16px}
-  .qtot span{color:var(--accent-ink)}
-  /* automation viz */
-  .aflow{display:flex;flex-direction:column;gap:9px}
-  .astep{display:flex;align-items:center;gap:11px;font-size:13px}
+  .qtot{display:flex;align-items:center;justify-content:space-between;margin-top:8px;padding-top:12px;border-top:2px solid var(--ink);font-weight:700;font-size:16px}
+  .qtot span:last-child{color:var(--accent-ink)}
+  /* automation viz -> white step pills */
+  .aflow{display:flex;flex-direction:column;gap:0}
+  .astep{display:flex;align-items:center;gap:11px;font-size:13px;background:#fff;border:1px solid rgba(23,21,18,.06);border-radius:11px;padding:10px 13px;box-shadow:0 9px 20px -14px rgba(23,21,18,.3);position:relative;z-index:1}
   .adot{width:26px;height:26px;border-radius:8px;background:rgba(232,102,58,.14);color:var(--accent-ink);flex:none;display:flex;align-items:center;justify-content:center}
   .adot svg{width:15px;height:15px}
-  .aline{width:1px;height:12px;background:var(--line);margin-left:13px}
+  .aline{width:2px;height:11px;background:rgba(178,71,20,.32);margin-left:25px;position:relative;z-index:0}
   /* voice sampler */
   .voicebar{margin-top:clamp(28px,4vw,40px);padding:clamp(18px,3vw,24px);background:var(--card);border:1px solid var(--line);border-radius:16px}
   .voicebar-h{font-size:15.5px;color:var(--muted);line-height:1.55;max-width:60ch}
@@ -336,9 +353,11 @@
         </div>
         <div class="ccard">
           <div class="cviz">
-            <div class="qtr"><span>Aircon service · 3 units</span><span>S$90</span></div>
-            <div class="qtr"><span>Chemical wash · 1 unit</span><span>S$90</span></div>
-            <div class="qtot"><span>Your estimate</span><span>S$180</span></div>
+            <div class="qpanel">
+              <div class="qtr"><span>Aircon service · 3 units</span><span>S$90</span></div>
+              <div class="qtr"><span>Chemical wash · 1 unit</span><span>S$90</span></div>
+              <div class="qtot"><span>Your estimate</span><span>S$180</span></div>
+            </div>
           </div>
           <div class="cbody"><h3>Quote tools</h3><p>Custom calculators so customers get an instant estimate, and you get a warm enquiry.</p><div class="q">Quoted</div></div>
         </div>
