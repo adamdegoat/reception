@@ -68,7 +68,7 @@
   </div>
   <p>Every client also gets two links of their own, made when you create them:</p>
   <ul>
-    <li>A <b>customer link and QR</b> for them to share: <code>.../f.html?c=their-name</code></li>
+    <li>A <b>customer link and QR</b> for them to share: <code>reception.sg/their-name</code></li>
     <li>An <b>admin link</b> to fill in their details: <code>.../admin.html?c=their-name&k=their-key</code></li>
   </ul>
   <div class="tip"><b>Your console password (owner key)</b> unlocks the console and the owner-only settings. Keep it private, it can be changed anytime. Your own Telegram is set as the owner, so <b>you</b> get the alerts in section 04 and 09.</div>
@@ -118,7 +118,7 @@
   </ul>
 
   <h2 id="s8"><span class="n">08</span>Show a prospect (your best sales move)</h2>
-  <p>Open the <b>live demo</b> (<code>site-amber.html</code>) on your phone in front of them. It is a real, working boutique site with the front desk built in. Tap <b>Ask Amber</b>, type a question, and let them hear it answer out loud. Then say: "This is yours, in your name and colours, in a few hours, for S$349 a month." That demo closes more than any pitch.</p>
+  <p>Open the <b>live demo</b> (<code>site-amber.html</code>) on your phone in front of them. It is a real, working boutique site with the front desk built in. Tap <b>Ask Amber</b>, type a question, and let them hear it answer out loud. Then say: "This is yours, in your name and colours, in a few minutes, for S$349 a month." That demo closes more than any pitch.</p>
   <p>Your sales site and the Work page carry the same examples if you would rather send a link first.</p>
 
   <h2 id="s9"><span class="n">09</span>Common tasks (all in the owner console)</h2>
@@ -142,7 +142,7 @@
   <h2 id="s11"><span class="n">11</span>Under the hood (only if you are tinkering)</h2>
   <p>You do not need this to run the business, but for reference:</p>
   <ul>
-    <li>The <b>sales site, admin and front desk</b> are plain web pages hosted free on GitHub Pages (the <code>adamdegoat.github.io</code> repo, folder <code>nimbusnine</code>). Publishing a change is a <code>git push</code>.</li>
+    <li>The <b>sales site, admin and front desk</b> are plain web pages hosted free on GitHub Pages (the <code>adamdegoat/reception</code> repo, served at <code>reception.sg</code>). Publishing a change is a <code>git push</code>.</li>
     <li>The <b>brain</b> is one Cloudflare Worker called <code>nimbus-desk</code>. Every client is a row in its database (D1); the code is generic. Deploying a change is <code>wrangler deploy</code> from <code>~/nimbus-desk</code>.</li>
     <li>Replies use Claude (Haiku); voice uses a free text-to-speech; alerts use the Telegram bot. Secrets (the API keys, your owner key, your Telegram ID) live in the Worker, not in any page.</li>
     <li>There are <b>Privacy</b> and <b>Terms</b> pages (linked in every footer) written for Singapore's PDPA. Point clients there if they ask.</li>

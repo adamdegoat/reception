@@ -142,7 +142,7 @@
   let KEY=localStorage.getItem("n9_owner")||"", ALL=[];
 
   function eh(s){return String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
-  function ftime(s){if(!s)return"—";try{return new Date(String(s).replace(" ","T")+"Z").toLocaleDateString("en-SG",{day:"numeric",month:"short"});}catch(e){return"—";}}
+  function ftime(s){if(!s)return"-";try{return new Date(String(s).replace(" ","T")+"Z").toLocaleDateString("en-SG",{day:"numeric",month:"short"});}catch(e){return"-";}}
   function slugify(s){return String(s||"").toLowerCase().trim().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,40);}
   async function api(path,body){try{const r=await fetch(WORKER+path,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});return{status:r.status,data:await r.json().catch(()=>({}))};}catch(e){return{status:0,data:{}};}}
 
