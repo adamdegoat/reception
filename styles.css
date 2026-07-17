@@ -36,13 +36,13 @@ header.scrolled{background:rgba(243,239,232,.86);backdrop-filter:blur(12px);
 .brandmark{display:flex;align-items:center;gap:11px;color:inherit}
 .onlight{width:11px;height:11px;border-radius:50%;background:var(--accent);flex:none}
 .brandmk{flex:none;display:block}
-.brandmark .brandmk{width:25px;height:25px}
+.brandmark .brandmk{width:31px;height:31px}
 .avatar .brandmk{width:23px;height:23px}
 .bmtext{display:flex;flex-direction:column;line-height:1}
-.bmname{font-weight:700;font-size:19px;letter-spacing:-.02em;display:inline-flex;align-items:flex-start}
-.aibadge{width:10px;height:10px;margin-left:2px;margin-top:1px;flex:none}
+.bmname{font-weight:700;font-size:23px;letter-spacing:-.02em;display:inline-flex;align-items:flex-start}
+.aibadge{width:12px;height:12px;margin-left:3px;margin-top:1px;flex:none}
 .fbrand .bmname .aibadge circle{fill:var(--accent)}
-.bmsub{font-family:var(--mono);font-size:9.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px;white-space:nowrap}
+.bmsub{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:5px;white-space:nowrap}
 .fbrand .bmsub{color:var(--muted-cream)}
 .navcluster{display:flex;align-items:center;gap:clamp(16px,2.4vw,32px)}
 nav.links{display:flex;align-items:center;gap:clamp(16px,2.4vw,32px);font-size:15.5px;font-weight:500;color:inherit}
