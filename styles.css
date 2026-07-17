@@ -252,6 +252,15 @@ footer{background:var(--dark);color:var(--light);padding:clamp(64px,10vh,104px) 
 .flagfoot{margin-top:auto;padding-top:32px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .flagprice{font-family:var(--font);font-size:21px;font-weight:700;letter-spacing:-.01em}.flagprice span{font-size:13px;font-weight:500;opacity:.88}
 .flagship .btn{background:var(--ink);color:var(--light);box-shadow:none}
+/* horizontal flagship (home page, single featured product) */
+.flaghz{background:var(--accent);color:var(--ink);border-radius:22px;padding:clamp(28px,3.4vw,44px);margin-top:clamp(28px,4vh,44px);display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(30px,4.5vw,64px);align-items:center;box-shadow:0 40px 80px -52px rgba(120,54,24,.5)}
+@media(max-width:820px){.flaghz{grid-template-columns:1fr;gap:24px;align-items:start}}
+.flaghz .flagfeats{margin-top:0}
+.flaghz .btn{background:var(--ink);color:var(--light);box-shadow:none}
+.flaghz-buy{margin-top:22px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.pricemore{margin-top:clamp(16px,2.4vh,24px);display:flex;align-items:baseline;justify-content:space-between;gap:8px 28px;flex-wrap:wrap}
+.pricemore p{font-size:15.5px;color:var(--muted);line-height:1.5;max-width:66ch;margin:0}
+.pricemore .hlink{font-size:15.5px;white-space:nowrap}
 
 
 /* chat header + message bubbles (shared by the front-desk demo) */
