@@ -31,7 +31,11 @@
   /* front-desk phone mockups */
   .fdrow{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,1.8vw,26px);align-items:end}
   @media(max-width:1000px){.fdrow{grid-template-columns:repeat(2,1fr);max-width:640px;margin:0 auto;gap:30px}}
-  @media(max-width:540px){.fdrow{grid-template-columns:1fr;max-width:330px}}
+  @media(max-width:540px){
+    .fdrow{display:flex;gap:14px;max-width:none;margin:0;padding:2px 0 16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;align-items:stretch}
+    .fdrow::-webkit-scrollbar{display:none}
+    .fdmock{flex:0 0 auto;width:210px;scroll-snap-align:start}
+  }
   @media(min-width:1001px){
     .fdrow{gap:0;max-width:860px;margin:0 auto;padding:20px 0 0;align-items:end}
     .fdrow .fdmock{position:relative}
