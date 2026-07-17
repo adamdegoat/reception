@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Reception</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23171512'/%3E%3Csvg x='5.5' y='5.5' width='21' height='21' viewBox='0 0 64 64'%3E%3Crect x='9' y='45.5' width='46' height='5.8' rx='2.9' fill='%23f3efe8'/%3E%3Cpath d='M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z' fill='%23f3efe8'/%3E%3Ccircle cx='32' cy='26.5' r='3.9' fill='%23e8663a'/%3E%3C/svg%3E%3C/svg%3E">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#f3efe8;color:#171512;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;display:grid;place-items:center;min-height:100vh;text-align:center;padding:24px;line-height:1.5}
+  #ld{color:#8a8175;font-size:14px;font-family:ui-monospace,monospace;letter-spacing:.03em}
+  #nf{display:none;max-width:400px}
+  #nf .mk{width:52px;height:52px;border-radius:14px;background:#171512;display:grid;place-items:center;margin:0 auto 18px}
+  #nf .mk svg{width:30px;height:30px}
+  #nf h1{font-size:23px;font-weight:700;margin:0 0 8px;letter-spacing:-.01em}
+  #nf p{color:#635b4f;margin:0 0 22px;font-size:15px}
+  #nf a{display:inline-block;background:#b24714;color:#fff;text-decoration:none;padding:12px 22px;border-radius:100px;font-weight:600;font-size:14.5px}
+</style>
+</head>
+<body>
+<div id="ld">Loading...</div>
+<div id="nf">
+  <div class="mk"><svg viewBox="0 0 64 64"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="#f3efe8"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="#f3efe8"/><circle cx="32" cy="26.5" r="3.9" fill="#e8663a"/></svg></div>
+  <h1>Page not found</h1>
+  <p>This link does not lead anywhere. Head back to the main site.</p>
+  <a href="https://reception.sg/">Go to Reception</a>
+</div>
+<script>
+(function(){
+  var WORKER="https://nimbus-desk.propsightsg.workers.dev";
+  var PAGES={about:1,pricing:1,work:1,why:1,"get-started":1,privacy:1,terms:1,manual:1,admin:1,booking:1,leads:1,add:1,"site-amber":1,f:1,index:1};
+  var seg=location.pathname.replace(/^\/+|\/+$/g,"").split("/")[0].toLowerCase();
+  if(!seg){ location.replace("/"); return; }
+  if(PAGES[seg]){ location.replace("/"+seg+".html"+location.search+location.hash); return; }
+  if(!/^[a-z0-9][a-z0-9-]{0,60}$/.test(seg)){ notFound(); return; }
+  function go(){ location.replace("/f.html?c="+encodeURIComponent(seg)+location.hash); }
+  function notFound(){ var l=document.getElementById("ld"); if(l)l.style.display="none"; document.getElementById("nf").style.display="block"; }
+  fetch(WORKER+"/config?c="+encodeURIComponent(seg)).then(function(r){
+    if(r.status===404){ notFound(); } else { go(); }
+  }).catch(go);
+})();
+</script>
+</body>
+</html>
