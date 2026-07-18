@@ -12,51 +12,28 @@
   :root{--bg:#f3efe8;--card:#fbf8f1;--surface:#ece3d4;--ink:#171512;--muted:#635b4f;--accent:#e8663a;--accent-ink:#b24714;--line:rgba(23,21,18,.13);--font:"Bricolage Grotesque",system-ui,sans-serif;--mono:"Spline Sans Mono",monospace}
   *{margin:0;padding:0;box-sizing:border-box}
   [hidden]{display:none!important}
-  body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;padding:22px clamp(14px,4vw,30px) 80px}
+  body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;padding:20px clamp(14px,4vw,30px) 80px}
   .wrap{max-width:820px;margin:0 auto}
   a{color:inherit}
-  .top{display:flex;align-items:center;gap:12px;margin-bottom:6px}
-  .top .back{font-family:var(--mono);font-size:12px;color:var(--accent-ink);text-decoration:none}
-  h1{font-size:clamp(24px,5vw,31px);font-weight:800;letter-spacing:-.02em;margin-top:12px}
+  /* sub-nav */
+  .subnav{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+  .sntabs{display:flex;gap:3px;background:var(--card);border:1px solid var(--line);border-radius:100px;padding:4px}
+  .sntabs a{font-size:13px;font-weight:600;color:var(--muted);text-decoration:none;padding:6px 15px;border-radius:100px;transition:background .15s,color .15s}
+  .sntabs a:hover{color:var(--ink)}
+  .sntabs a.on{background:var(--accent-ink);color:#fff}
+  .snback{font-family:var(--mono);font-size:11.5px;color:var(--muted);text-decoration:none}
+  .snback:hover{color:var(--accent-ink)}
+  h1{font-size:clamp(24px,5vw,31px);font-weight:800;letter-spacing:-.02em}
   .sub{color:var(--muted);font-size:15px;margin-top:4px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 18px;margin-top:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:16px}
+  .cardh{font-size:16px;font-weight:700}
   .toggle{display:flex;align-items:center;justify-content:space-between;gap:14px}
-  .toggle b{font-size:16px}
-  .toggle p{color:var(--muted);font-size:13.5px;margin-top:2px;max-width:40ch}
+  .toggle p{color:var(--muted);font-size:13.5px;margin-top:2px;max-width:44ch}
   .sw{flex:none;width:52px;height:30px;border-radius:100px;border:none;background:var(--surface);position:relative;cursor:pointer;transition:background .2s}
   .sw::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .2s}
   .sw.on{background:var(--accent)}
   .sw.on::after{transform:translateX(22px)}
-  .calhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-  .calhead b{font-size:16px}
-  .navb{background:var(--surface);border:none;width:34px;height:34px;border-radius:9px;cursor:pointer;font-size:17px;color:var(--ink)}
-  .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
-  .cwd{text-align:center;font-family:var(--mono);font-size:10.5px;color:var(--muted);text-transform:uppercase;padding-bottom:3px}
-  .cday{aspect-ratio:1;border:1px solid var(--line);border-radius:9px;background:var(--bg);cursor:pointer;font-family:var(--font);font-size:14px;color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;position:relative}
-  .cday.blank{border:none;background:none;cursor:default}
-  .cday.past{color:var(--muted);opacity:.45;cursor:not-allowed}
-  .cday.has{border-color:var(--accent);font-weight:700}
-  .cday.sel{background:var(--accent);color:#fff;border-color:var(--accent)}
-  .cday .dot{width:5px;height:5px;border-radius:50%;background:var(--accent)}
-  .cday.sel .dot{background:#fff}
-  .dayp{margin-top:16px}
-  .dayp h3{font-size:16px;font-weight:700}
-  .slotline{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 12px;border:1px solid var(--line);border-radius:11px;margin-top:8px;background:var(--bg)}
-  .slotline .t{font-weight:600;font-size:15px}
-  .slotline.booked{background:#f6ede4;border-color:#e6c9b3}
-  .slotline .who{font-size:12.5px;color:var(--muted)}
-  .slotline .rm{background:none;border:none;color:#b3261e;cursor:pointer;font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.03em}
-  .slotline .tag{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--accent-ink);background:rgba(232,102,58,.12);padding:3px 7px;border-radius:6px}
-  .slotline.passed{opacity:.55;background:transparent}
-  .slotline .right{display:flex;align-items:center;gap:9px}
-  .slotline .tag.passedtag{color:var(--muted);background:rgba(23,21,18,.06)}
-  .addrow{display:flex;gap:8px;align-items:flex-end;margin-top:12px;flex-wrap:wrap}
-  .addrow .f{display:flex;flex-direction:column;gap:4px}
-  .addrow label{font-size:11.5px;color:var(--muted);font-weight:600}
-  .addrow input{border:1px solid var(--line);border-radius:9px;padding:9px 10px;font-family:var(--font);font-size:15px;background:var(--bg)}
-  .addrow .addbtn{background:var(--accent-ink);color:#fff;border:none;border-radius:9px;padding:10px 16px;font-family:var(--font);font-weight:600;font-size:14px;cursor:pointer}
-  .adderr{color:#b3261e;font-size:13px;margin-top:8px;display:none}
-  .hint{color:var(--muted);font-size:13px;margin-top:8px}
+  /* upcoming bookings */
   .bkitem{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:12px 0;border-top:1px solid var(--line)}
   .bkitem:first-of-type{border-top:none}
   .bkinfo{min-width:0}
@@ -67,6 +44,44 @@
   .bkacts{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap}
   .bkbtn{display:inline-flex;align-items:center;font-family:var(--mono);font-size:10.5px;font-weight:500;text-transform:uppercase;letter-spacing:.03em;color:var(--accent-ink);background:rgba(232,102,58,.1);border:1px solid rgba(178,71,20,.28);border-radius:100px;padding:6px 12px;text-decoration:none;cursor:pointer;transition:background .15s}
   .bkbtn:hover{background:rgba(232,102,58,.2)}
+  /* calendar */
+  .calhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+  .calhead b{font-size:16px}
+  .navb{background:var(--surface);border:none;width:34px;height:34px;border-radius:9px;cursor:pointer;font-size:17px;color:var(--ink)}
+  .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+  .cwd{text-align:center;font-family:var(--mono);font-size:10.5px;color:var(--muted);text-transform:uppercase;padding-bottom:3px}
+  .cday{min-height:48px;border:1px solid var(--line);border-radius:9px;background:var(--bg);cursor:pointer;font-family:var(--font);font-size:14px;color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;position:relative;padding:4px}
+  .cday.blank{border:none;background:none;cursor:default}
+  .cday.past{color:var(--muted);opacity:.45;cursor:not-allowed}
+  .cday.today{border-color:var(--ink)}
+  .cday.has{border-color:var(--accent);font-weight:700}
+  .cday.sel{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .cday .dot{width:5px;height:5px;border-radius:50%;background:var(--accent)}
+  .cday.sel .dot{background:#fff}
+  /* day panel + slots */
+  .dayp{margin-top:16px}
+  .dayp h3{font-size:16px;font-weight:700}
+  .slotline{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 12px;border:1px solid var(--line);border-radius:11px;margin-top:8px;background:var(--bg)}
+  .slotline .t{font-weight:600;font-size:15px}
+  .slotline.booked{background:#f6ede4;border-color:#e6c9b3}
+  .slotline .who{font-size:12.5px;color:var(--muted)}
+  .slotline .rm{background:none;border:none;color:#b3261e;cursor:pointer;font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.03em}
+  .slotline.passed{opacity:.55;background:transparent}
+  .slotline .right{display:flex;align-items:center;gap:9px}
+  .slotline .tag{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--accent-ink);background:rgba(232,102,58,.12);padding:3px 7px;border-radius:6px}
+  .slotline .tag.passedtag{color:var(--muted);background:rgba(23,21,18,.06)}
+  /* slot adder */
+  .adder{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+  .addlabel{font-size:13.5px;font-weight:700;margin-bottom:9px}
+  .addone{margin-top:20px}
+  .addrow{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap}
+  .addrow .f{display:flex;flex-direction:column;gap:4px}
+  .addrow label{font-size:11.5px;color:var(--muted);font-weight:600}
+  .addrow input,.addrow select{border:1px solid var(--line);border-radius:9px;padding:9px 10px;font-family:var(--font);font-size:15px;background:var(--bg);color:var(--ink)}
+  .addrow .addbtn{background:var(--accent-ink);color:#fff;border:none;border-radius:9px;padding:10px 16px;font-family:var(--font);font-weight:600;font-size:14px;cursor:pointer}
+  .addrow .addbtn:disabled{opacity:.5}
+  .adderr{color:#b3261e;font-size:13px;margin-top:8px;display:none}
+  .hint{color:var(--muted);font-size:13px;margin-top:8px}
   .center{text-align:center;color:var(--muted);padding:40px 10px}
   #app{display:none}
 </style>
@@ -77,39 +92,57 @@
   <div id="loaderr" class="center" hidden style="color:#b3261e"><span id="loaderrmsg"></span></div>
 
   <div id="app">
-    <div class="top"><a class="back" id="back">‹ Back to console</a></div>
+    <nav class="subnav">
+      <div class="sntabs">
+        <a id="tabFd" href="#">Front desk</a>
+        <a id="tabBk" href="#" class="on">Bookings</a>
+        <a id="tabLd" href="#">Leads</a>
+      </div>
+      <a class="snback" id="back" href="#">‹ Back to console</a>
+    </nav>
     <h1>Bookings &amp; calendar</h1>
     <div class="sub" id="bizname"></div>
 
     <div class="card">
       <div class="toggle">
-        <div><b>Take bookings</b><p>When on, a "Book an appointment" button shows on your front desk and customers can grab the times you set below.</p></div>
+        <div><b style="font-size:16px">Take bookings</b><p>When on, a "Book an appointment" button shows on your front desk and customers can grab the times you set below.</p></div>
         <button class="sw" id="sw" type="button" role="switch" aria-label="Take bookings"></button>
       </div>
+    </div>
+
+    <div class="card">
+      <div class="cardh">Upcoming bookings</div>
+      <div id="bookings" style="margin-top:6px"><div class="hint">No bookings yet. They'll appear here, and on your Telegram and Leads.</div></div>
     </div>
 
     <div class="card" id="calcard">
       <div class="calhead"><button class="navb" id="prev" type="button" aria-label="Previous month">‹</button><b id="calmonth"></b><button class="navb" id="next" type="button" aria-label="Next month">›</button></div>
       <div class="cal" id="cal"></div>
-      <div class="hint">Tap a day, then add the times you can take (each slot is one appointment). No auto-fill, you set exactly what you want.</div>
+      <div class="hint">Tap a day to set the times you can take (each slot is one appointment).</div>
       <div class="dayp" id="dayp" hidden>
         <h3 id="daytitle"></h3>
         <div id="dayslots"></div>
-        <div class="addrow">
-          <div class="f" style="flex:1"><label>What is it for? <span class="hint" style="font-weight:400">optional, shows on the slot &middot; <span id="alabelct">0</span>/32</span></label><input type="text" id="alabel" maxlength="32" placeholder="e.g. Consultation, Site visit"></div>
+        <div class="adder">
+          <div class="addlabel">Fill the day</div>
+          <div class="addrow">
+            <div class="f"><label>From</label><input type="time" id="fillfrom" step="900" value="10:00"></div>
+            <div class="f"><label>Until</label><input type="time" id="filluntil" step="900" value="18:00"></div>
+            <div class="f"><label>Each slot</label><select id="filllen"><option value="30">30 min</option><option value="45">45 min</option><option value="60" selected>1 hour</option><option value="90">1.5 hours</option><option value="120">2 hours</option></select></div>
+            <button class="addbtn" id="fillbtn" type="button">Generate</button>
+          </div>
+          <div class="hint">Creates back-to-back slots for this day. Remove any you don't want below.</div>
+          <div class="addone">
+            <div class="addlabel">Or add one slot</div>
+            <div class="addrow">
+              <div class="f"><label>Start</label><input type="time" id="astart" step="900"></div>
+              <div class="f"><label>End</label><input type="time" id="aend" step="900"></div>
+              <div class="f" style="flex:1;min-width:130px"><label>What is it for? <span class="hint" style="font-weight:400;display:inline">optional</span></label><input type="text" id="alabel" maxlength="32" placeholder="e.g. Consultation"></div>
+              <button class="addbtn" id="addslot" type="button">Add slot</button>
+            </div>
+          </div>
+          <div class="adderr" id="adderr"></div>
         </div>
-        <div class="addrow">
-          <div class="f"><label>Start</label><input type="time" id="astart" step="900"></div>
-          <div class="f"><label>End</label><input type="time" id="aend" step="900"></div>
-          <button class="addbtn" id="addslot" type="button">Add slot</button>
-        </div>
-        <div class="adderr" id="adderr"></div>
       </div>
-    </div>
-
-    <div class="card">
-      <b style="font-size:16px">Upcoming bookings</b>
-      <div id="bookings" style="margin-top:6px"><div class="hint">No bookings yet. They will appear here, and on your Telegram and Leads.</div></div>
     </div>
   </div>
 </div>
@@ -118,7 +151,6 @@
   const WORKER="https://nimbus-desk.propsightsg.workers.dev", BASE=location.origin+location.pathname.replace(/\/[^/]*$/,"");
   const $=id=>document.getElementById(id);
   let bizName="there", reviewLink="";
-  // one-tap message link to the CUSTOMER: WhatsApp if a phone, email if an address
   function waLink(contact, text){
     const c=String(contact||"").trim(); if(!c) return null;
     if(/@/.test(c)) return "mailto:"+encodeURIComponent(c)+"?body="+encodeURIComponent(text);
@@ -137,7 +169,9 @@
   function todaySG(){return new Date(Date.now()+8*3600000).toISOString().slice(0,10);}
   function nowSG(){return new Date(Date.now()+8*3600000).toISOString().slice(0,16).replace("T"," ");}
   function pad(n){return String(n).padStart(2,"0");}
-  function timeLabel(hm){const [h,m]=hm.split(":").map(Number);const ap=h<12?"am":"pm";let hh=h%12;if(hh===0)hh=12;return hh+":"+pad(m)+" "+ap;}
+  function hm(mins){return pad(Math.floor(mins/60))+":"+pad(mins%60);}
+  function toMin(t){const[h,m]=t.split(":").map(Number);return h*60+m;}
+  function timeLabel(hmStr){const [h,m]=hmStr.split(":").map(Number);const ap=h<12?"am":"pm";let hh=h%12;if(hh===0)hh=12;return hh+":"+pad(m)+" "+ap;}
 
   async function reload(){
     const {status,data}=await api("/admin/slots",{c:slug,k:key});
@@ -152,18 +186,18 @@
     if(!view){const [y,m]=t.split("-");view={y:+y,m:+m-1};}
     $("calmonth").textContent=MON[view.m]+" "+view.y;
     const first=new Date(Date.UTC(view.y,view.m,1));
-    let startWd=(first.getUTCDay()+6)%7; // Mon=0
+    let startWd=(first.getUTCDay()+6)%7;
     const days=new Date(Date.UTC(view.y,view.m+1,0)).getUTCDate();
     const nw=nowSG(); const openByDay={}; slots.forEach(s=>{ if(s.status==="open"&&s.starts_at>=nw){const d=s.starts_at.split(" ")[0]; openByDay[d]=(openByDay[d]||0)+1;} });
     let html=WD.map(w=>'<div class="cwd">'+w+'</div>').join("");
     for(let i=0;i<startWd;i++) html+='<div class="cday blank"></div>';
     for(let d=1;d<=days;d++){
       const ds=view.y+"-"+pad(view.m+1)+"-"+pad(d);
-      const past=ds<t; const has=openByDay[ds]>0; const sel=ds===selDay;
-      html+='<button class="cday'+(past?" past":"")+(has?" has":"")+(sel?" sel":"")+'" data-d="'+ds+'"'+(past?" disabled":"")+'>'+d+(has?'<span class="dot"></span>':'')+'</button>';
+      const past=ds<t; const has=openByDay[ds]>0; const sel=ds===selDay; const today=ds===t;
+      html+='<button class="cday'+(past?" past":"")+(today?" today":"")+(has?" has":"")+(sel?" sel":"")+'" data-d="'+ds+'"'+(past?" disabled":"")+'>'+d+(has?'<span class="dot"></span>':'')+'</button>';
     }
     $("cal").innerHTML=html;
-    $("cal").querySelectorAll(".cday[data-d]:not(.past)").forEach(b=>b.onclick=()=>{ selDay=b.dataset.d; renderCal(); renderDay(selDay); });
+    $("cal").querySelectorAll(".cday[data-d]:not(.past)").forEach(b=>b.onclick=()=>{ selDay=b.dataset.d; renderCal(); renderDay(selDay); $("dayp").scrollIntoView({behavior:"smooth",block:"nearest"}); });
   }
 
   function renderDay(ds){
@@ -171,7 +205,7 @@
     const dt=new Date(ds+"T00:00:00+08:00");
     $("daytitle").textContent=dt.toLocaleDateString("en-SG",{weekday:"long",day:"numeric",month:"long",timeZone:"Asia/Singapore"});
     const mine=slots.filter(s=>s.starts_at.startsWith(ds)).sort((a,b)=>a.starts_at<b.starts_at?-1:1);
-    if(!mine.length){ $("dayslots").innerHTML='<div class="hint">No slots yet for this day. Add one below.</div>'; }
+    if(!mine.length){ $("dayslots").innerHTML='<div class="hint">No slots yet for this day. Add some below.</div>'; }
     else{
       $("dayslots").innerHTML=mine.map(s=>{
         const t=s.starts_at.split(" ")[1]+" to "+s.ends_at.split(" ")[1];
@@ -190,17 +224,33 @@
     if(!selDay){ err.textContent="Pick a day first."; err.style.display="block"; return; }
     if(!st||!en){ err.textContent="Add a start and end time."; err.style.display="block"; return; }
     if(en<=st){ err.textContent="End time must be after the start."; err.style.display="block"; return; }
-    const starts_at=selDay+" "+st, ends_at=selDay+" "+en;
     $("addslot").disabled=true;
-    const {data}=await api("/admin/slot-add",{c:slug,k:key,starts_at,ends_at,label:$("alabel").value.trim()});
+    const {data}=await api("/admin/slot-add",{c:slug,k:key,starts_at:selDay+" "+st,ends_at:selDay+" "+en,label:$("alabel").value.trim()});
     $("addslot").disabled=false;
     if(!data.ok){ err.textContent=data.error==="past"?"That time is in the past.":"Couldn't add that slot."; err.style.display="block"; return; }
-    $("astart").value=""; $("aend").value=""; $("alabel").value=""; if($("alabelct"))$("alabelct").textContent="0"; reload();
+    $("astart").value=""; $("aend").value=""; $("alabel").value=""; reload();
+  }
+
+  async function fillDay(){
+    const err=$("adderr"); err.style.display="none";
+    if(!selDay){ err.textContent="Pick a day first."; err.style.display="block"; return; }
+    const from=$("fillfrom").value, until=$("filluntil").value, len=+$("filllen").value;
+    if(!from||!until){ err.textContent="Set a from and until time."; err.style.display="block"; return; }
+    if(toMin(until)<=toMin(from)){ err.textContent="'Until' must be after 'from'."; err.style.display="block"; return; }
+    const startM=toMin(from), endM=toMin(until); const list=[];
+    for(let cur=startM; cur+len<=endM; cur+=len){ list.push({starts_at:selDay+" "+hm(cur), ends_at:selDay+" "+hm(cur+len)}); }
+    if(!list.length){ err.textContent="That range is shorter than one slot. Widen it or pick a shorter slot length."; err.style.display="block"; return; }
+    $("fillbtn").disabled=true; $("fillbtn").textContent="Adding…";
+    const {data}=await api("/admin/slots-add-bulk",{c:slug,k:key,slots:list});
+    $("fillbtn").disabled=false; $("fillbtn").textContent="Generate";
+    if(!data.ok){ err.textContent="Couldn't add those slots, try again."; err.style.display="block"; return; }
+    if(data.added===0){ err.textContent="Those times are all in the past for today, pick later times."; err.style.display="block"; }
+    reload();
   }
 
   function renderBookings(){
     const booked=slots.filter(s=>s.status==="booked").sort((a,b)=>a.starts_at<b.starts_at?-1:1);
-    if(!booked.length){ $("bookings").innerHTML='<div class="hint">No bookings yet. They will appear here, and on your Telegram and Leads.</div>'; return; }
+    if(!booked.length){ $("bookings").innerHTML='<div class="hint">No bookings yet. They\'ll appear here, and on your Telegram and Leads.</div>'; return; }
     $("bookings").innerHTML=booked.map(s=>{
       const dt=new Date(s.starts_at.replace(" ","T")+":00+08:00");
       const when=dt.toLocaleDateString("en-SG",{weekday:"short",day:"numeric",month:"short",timeZone:"Asia/Singapore"})+" at "+timeLabel(s.starts_at.split(" ")[1]);
@@ -217,7 +267,9 @@
 
   $("sw").onclick=async()=>{ const on=!bookingOn; $("sw").classList.toggle("on",on); await api("/admin/booking-toggle",{c:slug,k:key,on}); bookingOn=on; };
   $("addslot").onclick=addSlot;
-  $("alabel").addEventListener("input",()=>{$("alabelct").textContent=$("alabel").value.length;});
+  $("fillbtn").onclick=fillDay;
+  // auto-fill the End time from Start (+1h) as a convenience, still fully editable
+  $("astart").addEventListener("change",()=>{ const st=$("astart").value; if(st&&!$("aend").value){ $("aend").value=hm(Math.min(toMin(st)+60,23*60+59)); } });
   $("prev").onclick=()=>{ view.m--; if(view.m<0){view.m=11;view.y--;} renderCal(); };
   $("next").onclick=()=>{ view.m++; if(view.m>11){view.m=0;view.y++;} renderCal(); };
 
@@ -227,7 +279,8 @@
     if(status!==200||!data.ok){ $("loading").hidden=true; $("loaderr").hidden=false; $("loaderrmsg").textContent=status===401?"This link is wrong or has been reset.":"Couldn't load your bookings."; return; }
     $("bizname").textContent=data.business_name||"";
     bizName=data.business_name||"there"; reviewLink=(data.config&&data.config.review_link)||"";
-    $("back").href=BASE+"/admin.html?c="+slug+"&k="+key;
+    const q="?c="+slug+"&k="+key;
+    $("tabFd").href=BASE+"/admin.html"+q; $("tabBk").href=BASE+"/booking.html"+q; $("tabLd").href=BASE+"/leads.html"+q; $("back").href=BASE+"/admin.html"+q;
     $("loading").hidden=true; $("app").style.display="block";
     await reload();
   })();
