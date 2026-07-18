@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Reception is a 24/7 front desk that answers every customer, captures every lead, upsells your services and takes bookings, in English and Mandarin. We set it up, you run it from one simple page. From S$199 a month.">
+<meta name="description" content="How to get started with Reception. We set your 24/7 front desk up for you, usually live in a few minutes, and you run it from one simple page. Here is exactly how it works. From S$199 a month.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Reception">
-<meta property="og:title" content="Get started with Reception">
-<meta property="og:description" content="A 24/7 front desk that answers customers, captures leads, upsells and books them in. We set it up, you run it from one simple page. From S$199/mo.">
+<meta property="og:title" content="How to get started with Reception">
+<meta property="og:description" content="We set your front desk up for you, and you run it from one simple page. Here is exactly how getting set up and managing it works. From S$199/mo.">
 <meta property="og:image" content="https://reception.sg/og.png">
 <meta property="og:url" content="https://reception.sg/get-started.html">
 <meta name="twitter:card" content="summary_large_image">
-<title>Get started · Your 24/7 front desk, set up for you · Reception</title>
+<title>Get started · How Reception works, step by step</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23171512'/%3E%3Csvg x='5.5' y='5.5' width='21' height='21' viewBox='0 0 64 64'%3E%3Crect x='9' y='45.5' width='46' height='5.8' rx='2.9' fill='%23f3efe8'/%3E%3Cpath d='M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z' fill='%23f3efe8'/%3E%3Ccircle cx='32' cy='26.5' r='3.9' fill='%23e8663a'/%3E%3C/svg%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,77 +19,57 @@
 <link rel="canonical" href="https://reception.sg/get-started.html">
 <link rel="stylesheet" href="styles.css?v=57">
 <style>
-  /* ===== Get started ===== */
-  /* hero */
-  .gshero{padding:clamp(94px,12vh,128px) 0 clamp(30px,5vh,56px)}
-  .gsherogrid{display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(34px,5vw,68px);align-items:center}
-  @media(max-width:900px){.gsherogrid{grid-template-columns:1fr;gap:38px}}
-  .gshero h1{font-size:clamp(31px,4.5vw,52px);font-weight:800;letter-spacing:-.032em;line-height:1.04;max-width:15ch}
-  .gshero h1 em{font-style:normal;color:var(--accent-ink)}
-  .gshero .lede{margin-top:19px;font-size:clamp(16px,1.55vw,18.5px);color:var(--muted);line-height:1.58;max-width:53ch}
-  .capstrip{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
-  .capstrip span{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--accent-ink);background:rgba(232,102,58,.1);border:1px solid rgba(178,71,20,.22);border-radius:100px;padding:7px 13px;white-space:nowrap}
-  .gsherocta{display:flex;align-items:center;gap:20px;margin-top:30px;flex-wrap:wrap}
-  /* phone (hero + built desk) */
-  .phone{width:100%;max-width:314px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:30px;box-shadow:0 44px 84px -46px rgba(23,21,18,.52);overflow:hidden}
-  .phone img{display:block;width:100%}
-  .phhead{display:flex;align-items:center;gap:11px;padding:15px 17px;background:#efe7d8;border-bottom:1px solid rgba(23,21,18,.07)}
-  .phav{width:38px;height:38px;border-radius:50%;background:var(--ink);position:relative;flex:none;display:flex;align-items:center;justify-content:center}
-  .phav svg{width:22px;height:22px}
-  .phav .dot{position:absolute;right:-1px;bottom:-1px;width:12px;height:12px;border-radius:50%;background:#3aa564;border:2px solid #efe7d8}
-  .phname{display:block;font-family:Georgia,"Times New Roman",serif;font-size:19px;font-weight:400;color:var(--ink);line-height:1.1}
-  .phsub{display:block;font-size:11.5px;color:var(--muted);margin-top:3px}
-  .phbody{padding:16px 15px;display:flex;flex-direction:column;gap:9px;background:#f6efe2}
-  .pbub{max-width:88%;padding:10px 13px;border-radius:15px;font-size:13.5px;line-height:1.42}
-  .pin{background:#e7dcc7;color:var(--ink);border-bottom-left-radius:5px;align-self:flex-start}
-  .pout{background:#b8532a;color:#fff;border-bottom-right-radius:5px;align-self:flex-end}
-  .phchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:5px}
-  .phchips span{font-size:11px;font-weight:600;color:#b8532a;background:rgba(184,83,42,.13);border-radius:100px;padding:6px 11px}
-  /* section labels + shared */
+  /* ===== Get started (how-to) ===== */
+  .gsintro{padding:clamp(96px,13vh,140px) 0 clamp(8px,3vh,26px)}
   .gslabel{font-family:var(--mono);font-size:12.5px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--accent-ink)}
+  .gsintro h1{font-size:clamp(30px,4.4vw,50px);font-weight:800;letter-spacing:-.03em;line-height:1.05;max-width:19ch;margin-top:14px}
+  .gsintro p{margin-top:18px;font-size:clamp(16px,1.6vw,19px);color:var(--muted);line-height:1.55;max-width:56ch}
+  .gsintro p b{color:var(--ink);font-weight:700}
   /* steps */
   .gsteps{padding-top:clamp(30px,5vh,54px)}
-  .gstep{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);align-items:center;padding:clamp(34px,5.5vh,64px) 0;border-top:1px solid var(--line)}
+  .gsteps>.wrap>.gslabel{margin-bottom:8px}
+  .gsteps h2{font-size:clamp(24px,3vw,36px);font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
+  .gstep{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);align-items:center;padding:clamp(32px,5vh,60px) 0;border-top:1px solid var(--line)}
   .gstep:nth-child(odd) .gsvis{order:-1}
-  @media(max-width:840px){.gstep{grid-template-columns:1fr;gap:28px}.gstep:nth-child(odd) .gsvis{order:0}}
+  @media(max-width:840px){.gstep{grid-template-columns:1fr;gap:26px}.gstep:nth-child(odd) .gsvis{order:0}}
   .gsnum{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:13px;background:var(--ink);color:var(--light);font-weight:800;font-size:17px;margin-bottom:18px}
-  .gstep h3{font-size:clamp(22px,2.7vw,31px);font-weight:700;letter-spacing:-.02em;line-height:1.09}
+  .gstep h3{font-size:clamp(21px,2.5vw,29px);font-weight:700;letter-spacing:-.02em;line-height:1.1}
   .gstep p{margin-top:11px;font-size:clamp(15.5px,1.5vw,17.5px);color:var(--muted);line-height:1.55;max-width:42ch}
   .gstep .who{margin-top:15px;font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--accent-ink)}
   .gsvis{display:flex;justify-content:center}
   /* link + qr card */
-  .sharecard{width:100%;max-width:340px;background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:0 34px 70px -46px rgba(23,21,18,.5);padding:24px 22px;display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center}
+  .sharecard{width:100%;max-width:330px;background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:0 34px 70px -46px rgba(23,21,18,.5);padding:24px 22px;display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center}
   .biolink{display:flex;align-items:center;gap:11px;width:100%;background:rgba(232,102,58,.1);border:1.5px solid rgba(178,71,20,.4);border-radius:13px;padding:13px 15px;color:var(--accent-ink)}
   .biolink svg{width:18px;height:18px;flex:none}.biolink b{font-size:14.5px}
-  .qrbox{width:122px;height:122px;border-radius:14px;background:#fff;border:1px solid var(--line);display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:repeat(7,1fr);gap:2px;padding:12px}
+  .qrbox{width:120px;height:120px;border-radius:14px;background:#fff;border:1px solid var(--line);display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:repeat(7,1fr);gap:2px;padding:12px}
   .qrbox i{background:var(--ink);border-radius:1px}.qrbox i.o{background:transparent}
   .sharerow{display:flex;gap:7px;flex-wrap:wrap;justify-content:center}
   .sharerow span{font-size:12px;font-weight:500;background:var(--surface);border:1px solid var(--line);border-radius:100px;padding:6px 12px}
-  /* device screenshots */
+  /* device frames */
   .browserframe{width:100%;background:var(--card);border:1px solid var(--line);border-radius:15px;overflow:hidden;box-shadow:0 46px 96px -54px rgba(23,21,18,.5)}
   .bfbar{display:flex;align-items:center;gap:7px;padding:12px 15px;border-bottom:1px solid var(--line);background:var(--surface)}
   .bfbar i{width:11px;height:11px;border-radius:50%;background:#d9cdb8;flex:none}
   .bfurl{margin-left:11px;font-family:var(--mono);font-size:11.5px;color:var(--muted);background:var(--card);border:1px solid var(--line);border-radius:7px;padding:5px 12px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-  .browserframe img{display:block;width:100%}
-  .phoneframe{width:100%;max-width:300px;margin:0 auto;border-radius:26px;overflow:hidden;border:1px solid var(--line);box-shadow:0 40px 80px -46px rgba(23,21,18,.5)}
-  .phoneframe img{display:block;width:100%}
-  /* run-it-from-one-page */
+  .browserframe img{display:block;width:100%;height:auto}
+  .phoneframe{width:100%;max-width:290px;margin:0 auto;border-radius:26px;overflow:hidden;border:1px solid var(--line);box-shadow:0 40px 80px -46px rgba(23,21,18,.5)}
+  .phoneframe img{display:block;width:100%;height:auto}
+  /* Part 2: running it */
   .runwrap{background:var(--surface)}
-  .runhead{max-width:64ch}
-  .runhead h2{font-size:clamp(26px,3.4vw,40px);font-weight:700;letter-spacing:-.025em;line-height:1.08;margin-top:14px}
-  .runhead p{margin-top:14px;font-size:clamp(16px,1.5vw,18px);color:var(--muted);line-height:1.58;max-width:56ch}
-  .runrow{display:flex;flex-wrap:wrap;gap:18px 34px;margin-top:26px}
-  .runrow li{list-style:none;position:relative;padding-left:28px;font-size:15.5px;color:var(--ink);line-height:1.4;max-width:30ch}
+  .runwrap h2{font-size:clamp(26px,3.4vw,40px);font-weight:700;letter-spacing:-.025em;line-height:1.08;margin-top:12px}
+  .runwrap>.wrap>p{margin-top:15px;font-size:clamp(16px,1.5vw,18px);color:var(--muted);line-height:1.58;max-width:60ch}
+  .runrow{display:flex;flex-wrap:wrap;gap:14px 34px;margin-top:24px;margin-bottom:6px}
+  .runrow li{list-style:none;position:relative;padding-left:28px;font-size:15.5px;color:var(--ink);line-height:1.4}
   .runrow li::before{content:"\2713";position:absolute;left:0;top:0;color:var(--accent-ink);font-weight:800}
-  .runshot{margin-top:clamp(30px,4vw,44px)}
-  /* smarter section */
-  .smartgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(24px,3.2vw,46px) clamp(30px,4vw,60px);margin-top:clamp(28px,4vh,44px)}
-  @media(max-width:720px){.smartgrid{grid-template-columns:1fr;gap:30px}}
-  .smartitem{display:flex;gap:15px;align-items:flex-start}
-  .smartic{width:42px;height:42px;border-radius:12px;background:rgba(232,102,58,.12);color:var(--accent-ink);flex:none;display:flex;align-items:center;justify-content:center}
-  .smartic svg{width:22px;height:22px}
-  .smartitem h3{font-size:18px;font-weight:700;letter-spacing:-.01em}
-  .smartitem p{margin-top:6px;font-size:15px;color:var(--muted);line-height:1.5;max-width:38ch}
+  .runshot{margin-top:clamp(28px,4vw,44px)}
+  .runcap{margin-top:14px;font-family:var(--mono);font-size:12.5px;color:var(--muted);text-align:center}
+  /* what it does */
+  .doesgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(22px,3vw,42px) clamp(30px,4vw,60px);margin-top:clamp(26px,4vh,42px)}
+  @media(max-width:720px){.doesgrid{grid-template-columns:1fr;gap:26px}}
+  .doesitem{display:flex;gap:14px;align-items:flex-start}
+  .doesic{width:40px;height:40px;border-radius:11px;background:rgba(232,102,58,.12);color:var(--accent-ink);flex:none;display:flex;align-items:center;justify-content:center}
+  .doesic svg{width:21px;height:21px}
+  .doesitem h3{font-size:17.5px;font-weight:700;letter-spacing:-.01em}
+  .doesitem p{margin-top:5px;font-size:14.5px;color:var(--muted);line-height:1.5;max-width:40ch}
   /* need / don't need */
   .needwrap{background:var(--card)}
   .needgrid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,64px)}
@@ -100,10 +80,7 @@
   .needlist.yes li::before{content:"\2713";position:absolute;left:0;top:0;color:var(--accent-ink);font-weight:800}
   .needlist.no li{color:var(--muted)}
   .needlist.no li::before{content:"\2212";position:absolute;left:0;top:0;color:var(--muted);font-weight:700}
-  @media(max-width:600px){
-    .gshero{padding:82px 0 20px}
-    .gstep{padding:24px 0}
-  }
+  @media(max-width:600px){ .gsintro{padding:82px 0 8px} .gstep{padding:24px 0} }
 </style>
 </head>
 <body>
@@ -131,48 +108,18 @@
 </header>
 
 <main id="top">
-  <section class="gshero">
-    <div class="wrap gsherogrid">
-      <div>
-        <h1 class="shead">Answers every customer, captures every lead. <em>Upsells for you, books them in.</em></h1>
-        <p class="lede">A 24/7 front desk that talks to every customer in your name, answers their questions, upsells your services, takes bookings, and sends you a short summary of what each one wants. It even speaks with your customers in English or Mandarin. We set the whole thing up, and you run it from one simple page.</p>
-        <div class="capstrip">
-          <span>Answers 24/7</span>
-          <span>Captures every lead</span>
-          <span>Upsells your services</span>
-          <span>Takes bookings</span>
-          <span>Tells you what each customer wants</span>
-          <span>English + Mandarin</span>
-          <span>AI for your business</span>
-        </div>
-        <div class="gsherocta">
-          <a class="btn" href="#start">Get started free
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="hlink" href="#how">See how it works</a>
-        </div>
-      </div>
-      <div class="gsvis">
-        <div class="phone" role="img" aria-label="Example front desk chat: it answers a price, suggests an add-on, and takes the customer's details.">
-          <div class="phhead">
-            <span class="phav"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="#F3EFE8"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="#F3EFE8"/><circle cx="32" cy="26.5" r="3.9" fill="#e8663a"/></svg><span class="dot"></span></span>
-            <span><span class="phname">Amber</span><span class="phsub">Nail &amp; lash studio, Tampines</span></span>
-          </div>
-          <div class="phbody">
-            <div class="pbub pin">Hi, welcome to Amber Nail &amp; Lash. Ask about gel, lashes or prices.</div>
-            <div class="pbub pout">How much for a gel manicure?</div>
-            <div class="pbub pin">Gel manicure is S$45. I can also add a pedicure for S$38 if you'd like to treat your feet too. Can I take your name and number to book you in?</div>
-            <div class="pbub pout">Sarah, 9123 4567</div>
-            <div class="pbub pin">Thanks Sarah, we'll be in touch shortly to confirm your slot.</div>
-          </div>
-        </div>
-      </div>
+  <section class="gsintro">
+    <div class="wrap">
+      <div class="gslabel">Get started</div>
+      <h1>You build nothing. We set it up, you run it from one simple page.</h1>
+      <p>Two parts, both easy: <b>getting set up</b>, where we do the work, and <b>running it</b>, where you change anything yourself, anytime. Here is exactly how both go.</p>
     </div>
   </section>
 
-  <section class="gsteps" id="how">
+  <section class="gsteps">
     <div class="wrap">
-      <div class="gslabel">How it works</div>
-      <h2 class="shead" style="font-size:clamp(28px,3.6vw,44px);margin-top:12px;max-width:20ch">Live in a few minutes. You build nothing.</h2>
+      <div class="gslabel">Part 1 &middot; Getting set up</div>
+      <h2>Live in a few minutes.</h2>
 
       <div class="gstep">
         <div>
@@ -182,7 +129,7 @@
           <div class="who">About 15 minutes of your time</div>
         </div>
         <div class="gsvis">
-          <div class="phoneframe"><img src="img/shot-frontdesk-crop.png?v=2" alt="A finished Reception front desk, branded for a nail and lash studio, greeting a customer." width="620" height="557"></div>
+          <div class="phoneframe"><img src="img/gs-fd2.png?v=1" alt="A finished Reception front desk, branded for a nail and lash studio, greeting a customer." width="820" height="679"></div>
         </div>
       </div>
 
@@ -205,14 +152,14 @@
       <div class="gstep">
         <div>
           <span class="gsnum">3</span>
-          <h3>Every enquiry lands on you, already summarized.</h3>
-          <p>The moment someone's interested, it takes their name and number and sends you a short line on exactly what they want, so you know who to call back first. It's saved for you too, nothing slips.</p>
+          <h3>Enquiries land on you, already summarized.</h3>
+          <p>The moment someone's interested, it takes their name and number and sends you a short line on exactly what they want, straight to your phone. It's saved on your leads page too, so nothing slips.</p>
           <div class="who">You stop missing customers</div>
         </div>
         <div class="gsvis">
-          <div class="browserframe" style="max-width:520px">
+          <div class="browserframe" style="max-width:480px">
             <div class="bfbar"><i></i><i></i><i></i><span class="bfurl">reception.sg/leads</span></div>
-            <img src="img/shot-leads.png?v=2" alt="The Reception leads page, showing three enquiries, each with a one-line summary of what the customer wants and their phone number." width="1300" height="1008">
+            <img src="img/gs-leads2.png?v=1" alt="The Reception leads page, showing three enquiries, each with a one-line summary of what the customer wants and their number." width="1440" height="1072">
           </div>
         </div>
       </div>
@@ -221,54 +168,55 @@
 
   <section class="sec runwrap">
     <div class="wrap">
-      <div class="runhead">
-        <div class="gslabel">Running it is the easy part</div>
-        <h2>Everything on one simple page.</h2>
-        <p>Change your prices, hours, services or answers whenever you like, from a page as easy as editing your Instagram bio. Pick the voice, set an announcement, see your week at a glance. No apps to download, no training, and a real person in Singapore is a message away.</p>
-        <ul class="runrow">
-          <li>Edit prices, hours and answers anytime</li>
-          <li>See your week: enquiries, bookings, messages</li>
-          <li>Pick the voice and the look</li>
-          <li>Changes go live on the very next customer</li>
-        </ul>
-      </div>
+      <div class="gslabel">Part 2 &middot; Running it</div>
+      <h2>Change anything from one page.</h2>
+      <p>This is your console. Update your prices, hours, services, greeting and answers whenever you like, and it goes live on your very next customer. Pick the voice, set an announcement, and see your week at a glance. No apps to download, no training. Prefer we do it? A real person in Singapore is a message away.</p>
+      <ul class="runrow">
+        <li>Your services and prices</li>
+        <li>Your opening hours</li>
+        <li>The questions customers tap</li>
+        <li>Your greeting and announcement</li>
+        <li>Your voice and colours</li>
+        <li>Where your leads go</li>
+      </ul>
       <div class="runshot">
         <div class="browserframe" style="max-width:940px;margin:0 auto">
           <div class="bfbar"><i></i><i></i><i></i><span class="bfurl">reception.sg/console</span></div>
-          <img src="img/shot-admin.png?v=2" alt="The Reception console: a clean page to edit your business name, services, prices, hours, voice and greeting, with your week's stats at the top." width="1600" height="1138">
+          <img src="img/gs-console.png?v=1" alt="The Reception console: one page to edit your business name, services, prices, hours, greeting and voice, with your week's stats at the top." width="2000" height="1452">
         </div>
+        <div class="runcap">Your actual console. Edit here, save, and it's live on the next customer.</div>
       </div>
     </div>
   </section>
 
   <section class="sec">
     <div class="wrap">
-      <div class="gslabel">Smarter than you'd think</div>
-      <h2 class="shead" style="font-size:clamp(26px,3.4vw,40px);margin-top:12px;max-width:18ch">It does more than answer questions.</h2>
-      <div class="smartgrid">
-        <div class="smartitem">
-          <span class="smartic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
-          <div><h3>It tells you what they want</h3><p>Not just a name and number. A short line on what each customer is after, so you follow up ready to win the job.</p></div>
+      <div class="gslabel">While it runs</div>
+      <h2 style="font-size:clamp(24px,3.2vw,38px);font-weight:700;letter-spacing:-.02em;margin-top:12px;max-width:20ch">What it does for you, day and night.</h2>
+      <div class="doesgrid">
+        <div class="doesitem">
+          <span class="doesic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <div><h3>Tells you what they want</h3><p>Every lead comes with a short line on what the customer is after, so you follow up ready to win the job.</p></div>
         </div>
-        <div class="smartitem">
-          <span class="smartic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg></span>
-          <div><h3>It upsells your services</h3><p>When it fits, it suggests a matching add-on from your own menu, briefly and naturally, to lift the value of each visit.</p></div>
+        <div class="doesitem">
+          <span class="doesic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg></span>
+          <div><h3>Upsells your services</h3><p>When it fits, it suggests a matching add-on from your own menu, to lift the value of each visit.</p></div>
         </div>
-        <div class="smartitem">
-          <span class="smartic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18M3 12h18M3 19h12"/></svg></span>
-          <div><h3>English and Mandarin</h3><p>When a customer writes in Mandarin, it replies and speaks back in a natural Mandarin voice, on its own. Nothing to set up.</p></div>
+        <div class="doesitem">
+          <span class="doesic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18M3 12h18M3 19h12"/></svg></span>
+          <div><h3>English and Mandarin</h3><p>When a customer writes in Mandarin, it replies and speaks back in a natural Mandarin voice, on its own.</p></div>
         </div>
-        <div class="smartitem">
-          <span class="smartic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
-          <div><h3>It takes bookings</h3><p>Switch on your own calendar and customers pick a time themselves. Every booking lands with you, ready to go.</p></div>
+        <div class="doesitem">
+          <span class="doesic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+          <div><h3>Takes bookings</h3><p>Switch on your own calendar and customers pick a time themselves. Every booking lands with you.</p></div>
         </div>
-        <div class="smartitem">
-          <span class="smartic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
-          <div><h3>It never invents a price</h3><p>It only answers from your real prices and hours. If it doesn't know something, it never guesses, it takes their details and passes them to you.</p></div>
+        <div class="doesitem">
+          <span class="doesic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          <div><h3>Never invents a price</h3><p>It only answers from your real prices and hours. If it doesn't know, it never guesses, it takes their details.</p></div>
         </div>
-        <div class="smartitem">
-          <span class="smartic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1L12 16.7 5.7 21l2.3-7.1-6-4.5h7.6z"/></svg></span>
-          <div><h3>AI for the rest of your business</h3><p>When you're ready, we build websites, custom tools and complex AI systems around your front desk too, scoped in a free chat.</p></div>
+        <div class="doesitem">
+          <span class="doesic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1L12 16.7 5.7 21l2.3-7.1-6-4.5h7.6z"/></svg></span>
+          <div><h3>More AI when you're ready</h3><p>Websites, custom tools and complex AI systems, built around your front desk and scoped in a free chat.</p></div>
         </div>
       </div>
     </div>
@@ -284,7 +232,7 @@
             <li>Your main services and prices</li>
             <li>Your opening hours</li>
             <li>Your logo and colours, if you have them</li>
-            <li>A WhatsApp number for enquiries to land on</li>
+            <li>A phone number for enquiries to land on</li>
           </ul>
         </div>
         <div class="needcol">
@@ -308,7 +256,7 @@
         <div class="q"><h3>How long until it's live?</h3><p>Usually within a few minutes of our first chat. We set it all up and show you before it goes live.</p></div>
         <div class="q"><h3>What does it cost?</h3><p>The front desk is S$199 a month as a founding-member rate if you join by 31 October, then S$249, set up for you, no hidden fees and no lock-in. Websites and complex AI systems are quoted separately. See the <a href="pricing.html" style="color:var(--accent-ink);font-weight:600;border-bottom:1.5px solid rgba(178,71,20,.35)">pricing page</a> for the full picture.</p></div>
         <div class="q"><h3>Do I pay upfront?</h3><p>No. Tell us your basics and we build your front desk for you to try, free. You talk to it yourself, and you only pay when you're happy and ready to go live.</p></div>
-        <div class="q"><h3>How do I manage it?</h3><p>From one simple page. Change your prices, hours, services and answers yourself anytime, or message us and we'll do it for you. Changes go live on the next customer.</p></div>
+        <div class="q"><h3>How do I manage it?</h3><p>From one simple page, your console. Change your prices, hours, services and answers yourself anytime, and it's live on the next customer. Or message us and we'll do it for you.</p></div>
         <div class="q"><h3>Does it really speak Mandarin?</h3><p>Yes. When a customer writes in Mandarin, it replies and speaks back in a natural Mandarin voice on its own. You don't set anything up.</p></div>
         <div class="q"><h3>What if it says something wrong?</h3><p>It only answers from what you give it, your real prices, services and hours. If it doesn't know something, it never guesses, it takes the customer's details and passes them to you.</p></div>
         <div class="q"><h3>Where do my enquiries go?</h3><p>Straight to your Telegram or WhatsApp the moment someone leaves their details, each with a short summary of what they want, and they're saved on your leads page too. Nothing is sold or shared.</p></div>
