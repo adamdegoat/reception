@@ -112,7 +112,6 @@
         <div><label>Front-desk name <span class="hint">what it calls itself</span><input id="fname" placeholder="defaults to business name"></label></div>
         <div><label>Link name <span class="hint">in the web address</span><input id="slug" placeholder="auto"></label></div>
       </div>
-      <label>Leads Telegram ID <span class="hint">optional, add later in the client's page</span><input id="chat" placeholder="e.g. 420583513"></label>
       <button class="btn" id="create">Create front desk</button>
       <div class="err" id="err"></div>
       <div class="result" id="result" hidden>
@@ -196,17 +195,17 @@
   });
 
   $("create").onclick=async()=>{
-    $("err").textContent=""; const business_name=$("bname").value.trim(),trade=tsel.value,slug=$("slug").value.trim()||slugify(business_name),frontdesk_name=$("fname").value.trim(),lead_chat_id=$("chat").value.trim();
+    $("err").textContent=""; const business_name=$("bname").value.trim(),trade=tsel.value,slug=$("slug").value.trim()||slugify(business_name),frontdesk_name=$("fname").value.trim();
     if(!business_name){$("err").textContent="Enter a business name.";return;}
     if(!slug){$("err").textContent="Type a link name using letters or numbers.";$("slug").focus();return;}
     $("create").disabled=true;
-    const {status,data}=await api("/admin/create",{key:KEY,business_name,trade,slug,frontdesk_name,lead_chat_id});
+    const {status,data}=await api("/admin/create",{key:KEY,business_name,trade,slug,frontdesk_name});
     $("create").disabled=false;
     if(status===0){$("err").textContent="Couldn't reach the server, try again.";return;}
     if(status!==200||!data.ok){$("err").textContent=data.error==="slug_taken"?"That link name is taken, change it.":"Couldn't create ("+(data.error||status)+").";return;}
     $("rlink").value=data.link;$("radmin").value=data.admin;$("result").hidden=false;
     $("qr").innerHTML=""; try{new QRCode($("qr"),{text:data.link,width:140,height:140,colorDark:"#171512",colorLight:"#ffffff"});}catch(e){$("qr").innerHTML='<img alt="QR" src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data='+encodeURIComponent(data.link)+'">';}
-    $("bname").value="";$("fname").value="";$("slug").value="";$("slug").dataset.touched="";$("chat").value="";
+    $("bname").value="";$("fname").value="";$("slug").value="";$("slug").dataset.touched="";
     loadClients();
   };
   document.querySelectorAll(".copy").forEach(b=>b.addEventListener("click",()=>{const i=$(b.dataset.t);i.select();document.execCommand("copy");b.textContent="Copied";setTimeout(()=>b.textContent="Copy",1200);}));
