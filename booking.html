@@ -18,14 +18,15 @@
   /* sub-nav */
   .tbar{position:sticky;top:0;z-index:50;background:rgba(243,239,232,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin-bottom:20px}
   .tbar-in{max-width:900px;margin:0 auto;padding:10px clamp(14px,4vw,28px);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-  .brand{display:inline-flex;align-items:center;gap:9px;font-weight:800;font-size:16px;letter-spacing:-.02em;color:var(--ink)}
+  .brand{display:inline-flex;align-items:center;gap:9px;font-weight:800;font-size:16px;letter-spacing:-.02em;color:var(--ink);min-height:34px}
   .brand svg{width:25px;height:25px;flex:none}
   .brand .csl{color:var(--muted);font-weight:600}
   .sntabs{display:flex;gap:3px;background:var(--card);border:1px solid var(--line);border-radius:100px;padding:4px}
   .sntabs a{font-size:13px;font-weight:600;color:var(--muted);text-decoration:none;padding:6px 15px;border-radius:100px;transition:background .15s,color .15s;cursor:pointer;white-space:nowrap}
   .sntabs a:hover{color:var(--ink)}
   .sntabs a.on{background:var(--accent-ink);color:#fff}
-  @media(max-width:560px){.brand .csl{display:none}.tbar-in{gap:9px}.sntabs a{padding:6px 12px}}
+  @media(max-width:640px){.sntabs{order:3;flex-basis:100%;margin:9px 0 0;justify-content:center}}
+  @media(max-width:600px){.brand .csl{display:none}.tbar-in{gap:9px}.sntabs a{padding:6px 13px}}
   h1{font-size:clamp(24px,5vw,31px);font-weight:800;letter-spacing:-.02em}
   .sub{color:var(--muted);font-size:15px;margin-top:4px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:16px}
