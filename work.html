@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="What Reception builds for Singapore small businesses: 24/7 front desks in your brand, full websites with the front desk built in, and custom tools and complex AI automation systems.">
+<meta name="description" content="What Reception builds for Singapore small businesses: a 24/7 front desk in your brand, plus AI built into the rest of your business, websites, booking, quote tools, follow-ups and more.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Reception">
-<meta property="og:title" content="Our work: front desks, websites, custom tools and complex AI automation systems">
-<meta property="og:description" content="Real examples of the 24/7 front desk, websites with the front desk built in, and custom tools and complex AI automation systems for Singapore small businesses.">
+<meta property="og:title" content="Our work: the front desk, plus AI built into the rest of your business">
+<meta property="og:description" content="Real examples of the 24/7 front desk, plus the websites, booking, tools and automations we build into a Singapore small business.">
 <meta property="og:image" content="https://reception.sg/og.png">
 <meta property="og:url" content="https://reception.sg/work.html">
 <meta name="twitter:card" content="summary_large_image">
-<title>Our work · AI front desks &amp; websites · Reception Singapore</title>
+<title>Our work · Front desks + AI for your business · Reception</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23171512'/%3E%3Csvg x='5.5' y='5.5' width='21' height='21' viewBox='0 0 64 64'%3E%3Crect x='9' y='45.5' width='46' height='5.8' rx='2.9' fill='%23f3efe8'/%3E%3Cpath d='M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z' fill='%23f3efe8'/%3E%3Ccircle cx='32' cy='26.5' r='3.9' fill='%23e8663a'/%3E%3C/svg%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Spline+Sans+Mono:wght@400;500&family=Hedvig+Letters+Serif&family=Archivo+Black&family=Hanken+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Spline+Sans+Mono:wght@400;500&family=Hedvig+Letters+Serif&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://reception.sg/work.html">
 <link rel="stylesheet" href="styles.css?v=57">
 <style>
@@ -144,6 +144,37 @@
   .adot{width:26px;height:26px;border-radius:8px;background:rgba(232,102,58,.14);color:var(--accent-ink);flex:none;display:flex;align-items:center;justify-content:center}
   .adot svg{width:15px;height:15px}
   .aline{width:2px;height:11px;background:rgba(178,71,20,.32);margin-left:25px;position:relative;z-index:0}
+  /* website card = link */
+  a.ccard{text-decoration:none;color:inherit}
+  .cbody h3:has(.clink){display:flex;align-items:center;gap:7px}
+  .cbody h3 .clink{color:var(--accent-ink);display:inline-flex;transition:transform .2s}
+  a.ccard:hover .clink{transform:translate(2px,-2px)}
+  /* mini website viz */
+  .miniweb{background:#fff;border:1px solid rgba(23,21,18,.07);border-radius:11px;overflow:hidden;box-shadow:0 12px 26px -15px rgba(23,21,18,.34)}
+  .mwbar{display:flex;align-items:center;gap:5px;padding:8px 11px;background:#f3efe8;border-bottom:1px solid var(--line)}
+  .mwbar i{width:7px;height:7px;border-radius:50%;background:rgba(23,21,18,.16)}
+  .mwbar span{margin-left:8px;font-family:var(--mono);font-size:9.5px;color:#8a8175}
+  .mwbody{padding:15px 16px;display:flex;flex-direction:column;gap:8px}
+  .mwh{height:11px;width:62%;border-radius:4px;background:var(--ink)}
+  .mwl{height:7px;width:100%;border-radius:4px;background:rgba(23,21,18,.12)}
+  .mwl.short{width:74%}
+  .mwbtn{margin-top:5px;align-self:flex-start;font-size:11px;font-weight:600;color:#fff;background:var(--accent-ink);border-radius:7px;padding:5px 12px}
+  /* form viz */
+  .cform{display:flex;flex-direction:column;gap:8px}
+  .cfrow{background:#fff;border:1px solid rgba(23,21,18,.06);border-radius:9px;padding:8px 12px;display:flex;flex-direction:column;gap:6px;box-shadow:0 9px 20px -15px rgba(23,21,18,.28)}
+  .cfrow i{font-style:normal;font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.05em;color:#8a8175}
+  .cfrow b{height:6px;width:58%;border-radius:3px;background:rgba(23,21,18,.14)}
+  .cfbtn{align-self:flex-start;font-size:11px;font-weight:600;color:#fff;background:var(--accent-ink);border-radius:8px;padding:6px 13px;margin-top:2px}
+  /* analysis chart viz */
+  .chartv{background:#fff;border:1px solid rgba(23,21,18,.06);border-radius:13px;padding:15px 16px 13px;box-shadow:0 12px 26px -15px rgba(23,21,18,.34)}
+  .cbars{display:flex;align-items:flex-end;gap:7px;height:62px}
+  .cbars span{flex:1;border-radius:4px 4px 0 0;background:linear-gradient(var(--accent),#c2562a)}
+  .cnum{margin-top:11px;padding-top:11px;border-top:1px solid var(--line)}
+  .cnum b{display:block;font-size:13px;font-weight:700}
+  .cnum span{font-size:11.5px;color:var(--muted)}
+  /* one real example */
+  .realex-h{font-size:15.5px;color:var(--muted);line-height:1.55;max-width:62ch}
+  .realex-h b{color:var(--ink);font-weight:700}
   /* voice sampler */
   .voicebar{margin-top:clamp(28px,4vw,40px);padding:clamp(18px,3vw,24px);background:var(--card);border:1px solid var(--line);border-radius:16px}
   .voicebar-h{font-size:15.5px;color:var(--muted);line-height:1.55;max-width:60ch}
@@ -188,7 +219,7 @@
   <section class="wlede">
     <div class="wrap">
       <h1 class="shead" style="font-size:clamp(34px,5.2vw,64px);max-width:16ch">Our work.</h1>
-      <p class="ssub" style="max-width:58ch">It starts with a front desk that answers every customer in your brand. When you're ready, we add the website, the booking, and the tools that run your trade, all designed around your business. These are examples, yours is built for you.</p>
+      <p class="ssub" style="max-width:58ch">Two things. A front desk that answers every customer in your brand, and AI built into everything behind it: websites, booking, quote tools, follow-ups, whatever your trade needs. These are examples, yours is built for you.</p>
     </div>
   </section>
 
@@ -197,7 +228,7 @@
     <div class="wrap">
       <div class="tierhead">
         <div>
-          <div class="tiernum">Front desks</div>
+          <div class="tiernum">The front desk</div>
           <h2 class="tiertitle">Answered in seconds, in your brand.</h2>
           <p class="tiersub">Your 24/7 assistant on its own link and QR. It answers, takes bookings and captures every enquiry, in four styles, any trade, your name, colours and a voice you choose.</p>
         </div>
@@ -258,107 +289,33 @@
     </div>
   </section>
 
-  <!-- TIER 2: websites -->
+  <!-- PILLAR 2: AI integration across the business -->
   <section class="wsec tint">
     <div class="wrap">
       <div class="tierhead">
         <div>
-          <div class="tiernum">Websites</div>
-          <h2 class="tiertitle">A full site, with the front desk built in.</h2>
-          <p class="tiersub">A real website in your brand that sells while you sleep, with the front desk answering right inside it. Scoped in your free consultation.</p>
-        </div>
-      </div>
-      <div class="sitehero">
-        <div class="sitebar"><i></i><i></i><i></i><span class="url">ambernaillash.sg</span><span class="sitelive"><span class="d"></span>Live example</span></div>
-        <div class="siteframe">
-          <iframe src="site-amber.html" title="Amber Nail & Lash website" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
-          <a class="siteover" href="site-amber.html" target="_blank" rel="noopener" aria-label="Open the Amber Nail & Lash live example site">
-            <span class="siteopen">Open the live site
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
-          </a>
-        </div>
-      </div>
-      <div class="sitecap"><b>Amber Nail & Lash</b><span>A real, working example, with the front desk built in. Click to open it.</span></div>
-
-      <div class="sitegrid">
-        <!-- editorial cafe -->
-        <figure class="smock">
-          <div class="wsbar"><i></i><i></i><i></i><span class="wsurl">fernsandfilter.sg</span></div>
-          <div class="wspage" style="--sbg:#14231d;--sink:#eef0e9;--sacc:#8fc0a0;--sfont:'Hedvig Letters Serif',serif;--stw:500;--slw:500;--sline:rgba(255,255,255,.15);--sactx:#14231d">
-            <div class="wsnav"><span class="wslogo">Ferns &amp; Filter</span><span class="wslinks">Menu · Visit · Order</span></div>
-            <div class="wshero">
-              <span class="wseyebrow">Cafe · Tiong Bahru</span>
-              <h4 class="wstitle">Slow mornings, good coffee.</h4>
-              <div class="wscta"><span class="wsbtn">Reserve a table</span><span class="wsbtn ghost">See the menu</span></div>
-            </div>
-            <div class="wsstrip">
-              <div class="wsmrow"><span>Single-origin pour-over</span><span>$7</span></div>
-              <div class="wsmrow"><span>Kaya toast set</span><span>$9</span></div>
-              <div class="wsmrow"><span>House cold brew</span><span>$6</span></div>
-            </div>
-          </div>
-          <figcaption class="smcap"><b>Ferns &amp; Filter</b><span>Editorial</span></figcaption>
-        </figure>
-        <!-- bold industrial reno -->
-        <figure class="smock">
-          <div class="wsbar"><i></i><i></i><i></i><span class="wsurl">northlinereno.sg</span></div>
-          <div class="wspage" style="--sbg:#fbfaf8;--sink:#191919;--sacc:#b8441c;--sfont:'Archivo Black',sans-serif;--stw:400;--slw:400;--sline:rgba(23,21,18,.13);--sactx:#fff;--sbr:5px">
-            <div class="wsnav"><span class="wslogo">NORTHLINE</span><span class="wslinks">Work · Process · Quote</span></div>
-            <div class="wshero">
-              <span class="wseyebrow">Renovation · Islandwide</span>
-              <h4 class="wstitle">BUILT PROPERLY, ONCE.</h4>
-              <div class="wscta"><span class="wsbtn">Get a quote</span><span class="wsbtn ghost">Our work</span></div>
-            </div>
-            <div class="wsstrip">
-              <div class="wstiles">
-                <span class="wstile" style="--tbg:#d4d0c9">HDB · Tampines</span>
-                <span class="wstile" style="--tbg:#c2beb6">Condo · Novena</span>
-                <span class="wstile" style="--tbg:#aeaaa1">Landed · B.Timah</span>
-              </div>
-            </div>
-          </div>
-          <figcaption class="smcap"><b>Northline Reno</b><span>Bold, industrial</span></figcaption>
-        </figure>
-        <!-- minimal wellness -->
-        <figure class="smock">
-          <div class="wsbar"><i></i><i></i><i></i><span class="wsurl">studio-ora.sg</span></div>
-          <div class="wspage" style="--sbg:#f4f1ea;--sink:#2c2925;--sacc:#b0764f;--sfont:'Plus Jakarta Sans',sans-serif;--stw:700;--slw:700;--sline:rgba(44,41,37,.12);--sactx:#fff">
-            <div class="wsnav"><span class="wslogo">Ora</span><span class="wslinks">Classes · Pricing · Book</span></div>
-            <div class="wshero">
-              <span class="wseyebrow">Pilates · Holland Village</span>
-              <h4 class="wstitle">Move well. Feel steady.</h4>
-              <div class="wscta"><span class="wsbtn">Book a class</span><span class="wsbtn ghost">Timetable</span></div>
-            </div>
-            <div class="wsstrip">
-              <div class="wsmrow"><span>Reformer Flow</span><span>8:00am</span></div>
-              <div class="wsmrow"><span>Mat Basics</span><span>10:00am</span></div>
-              <div class="wsmrow"><span>Prenatal</span><span>6:00pm</span></div>
-            </div>
-          </div>
-          <figcaption class="smcap"><b>Studio Ora</b><span>Minimal, airy</span></figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- TIER 3: custom builds -->
-  <section class="wsec">
-    <div class="wrap">
-      <div class="tierhead">
-        <div>
-          <div class="tiernum">Custom builds</div>
-          <h2 class="tiertitle">For whatever your trade keeps doing by hand.</h2>
-          <p class="tiersub">Quote tools, forms, follow-ups, and more. We scope it around how you actually work, and quote it to fit.</p>
+          <div class="tiernum">Everything else</div>
+          <h2 class="tiertitle">AI, built into the rest of your business.</h2>
+          <p class="tiersub">The front desk is where it starts. When you're ready, we add whatever fits your trade: a website that sells while you sleep, booking and reminders that run themselves, quote tools, follow-ups, even sense made of your own numbers. All in your brand, all scoped in a free consultation.</p>
         </div>
       </div>
       <div class="cgrid">
+        <a class="ccard" href="site-amber.html" target="_blank" rel="noopener">
+          <div class="cviz">
+            <div class="miniweb">
+              <div class="mwbar"><i></i><i></i><i></i><span>yoursite.sg</span></div>
+              <div class="mwbody"><span class="mwh"></span><span class="mwl"></span><span class="mwl short"></span><span class="mwbtn">Book now</span></div>
+            </div>
+          </div>
+          <div class="cbody"><h3>A website<span class="clink" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></h3><p>A full site in your brand, with the front desk answering right inside it. Open a real one we shipped.</p><div class="q">From S$1,299</div></div>
+        </a>
         <div class="ccard">
           <div class="cviz">
             <div class="bkslot"><b>Sat, 2:00pm</b><span class="go">Book</span></div>
             <div class="bkslot taken"><b>Sat, 3:30pm</b><span class="go">Taken</span></div>
             <div class="bkslot"><b>Sat, 5:00pm</b><span class="go">Book</span></div>
           </div>
-          <div class="cbody"><h3>Custom forms</h3><p>Intake forms, sign-ups or detailed enquiries, filled in online and sent straight to you.</p><div class="q">Quoted</div></div>
+          <div class="cbody"><h3>Booking</h3><p>Customers pick a time themselves, you stop the phone tag, and no slot ever gets double-booked.</p><div class="q">Quoted</div></div>
         </div>
         <div class="ccard">
           <div class="cviz">
@@ -372,17 +329,55 @@
         </div>
         <div class="ccard">
           <div class="cviz">
+            <div class="cform">
+              <span class="cfrow"><i>Name</i><b></b></span>
+              <span class="cfrow"><i>What you need</i><b></b></span>
+              <span class="cfrow"><i>When</i><b></b></span>
+              <span class="cfbtn">Send to us</span>
+            </div>
+          </div>
+          <div class="cbody"><h3>Custom forms</h3><p>Intake forms, sign-ups or detailed enquiries, filled in online and sent straight to your phone.</p><div class="q">Quoted</div></div>
+        </div>
+        <div class="ccard">
+          <div class="cviz">
             <div class="aflow">
               <div class="astep"><span class="adot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Enquiry received</div>
               <div class="aline"></div>
-              <div class="astep"><span class="adot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg></span>Reminder sent, day before</div>
+              <div class="astep"><span class="adot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg></span>Reminder, day before</div>
               <div class="aline"></div>
               <div class="astep"><span class="adot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.5 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3 9.2l5.9-.9z"/></svg></span>Review request, after</div>
             </div>
           </div>
-          <div class="cbody"><h3>Automations</h3><p>Reminders, follow-ups and review requests, sent on their own and never forgotten.</p><div class="q">Quoted</div></div>
+          <div class="cbody"><h3>Follow-ups &amp; reviews</h3><p>Reminders, thank-yous and review requests, sent on their own and never forgotten.</p><div class="q">Quoted</div></div>
+        </div>
+        <div class="ccard">
+          <div class="cviz">
+            <div class="chartv">
+              <div class="cbars"><span style="height:38%"></span><span style="height:55%"></span><span style="height:46%"></span><span style="height:70%"></span><span style="height:62%"></span><span style="height:88%"></span></div>
+              <div class="cnum"><b>Busiest: Saturday</b><span>Most-asked: pricing</span></div>
+            </div>
+          </div>
+          <div class="cbody"><h3>Your numbers, made sense of</h3><p>What customers ask most, your busiest times, where enquiries come from, turned into plain answers you can act on.</p><div class="q">Quoted</div></div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- PILLAR 2: one real, shipped example -->
+  <section class="wsec">
+    <div class="wrap">
+      <div class="realex-h" style="margin-bottom:20px"><b>See one we built.</b> A real, working website with the front desk answering right inside it, the same one you can talk to on the home page.</div>
+      <div class="sitehero">
+        <div class="sitebar"><i></i><i></i><i></i><span class="url">ambernaillash.sg</span><span class="sitelive"><span class="d"></span>Live example</span></div>
+        <div class="siteframe">
+          <iframe src="site-amber.html" title="Amber Nail & Lash website" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+          <a class="siteover" href="site-amber.html" target="_blank" rel="noopener" aria-label="Open the Amber Nail & Lash live example site">
+            <span class="siteopen">Open the live site
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+          </a>
+        </div>
+      </div>
+      <div class="sitecap"><b>Amber Nail &amp; Lash</b><span>A website with the front desk built in. Click to open it.</span></div>
     </div>
   </section>
 
@@ -415,7 +410,7 @@
       <a class="brandmark fbrand" href="index.html" aria-label="Reception, AI front desk, Singapore, home">
         <svg class="brandmk" viewBox="0 0 64 64" aria-hidden="true"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="currentColor"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="currentColor"/><circle cx="32" cy="26.5" r="3.9" fill="#e8663a"/></svg><span class="bmtext"><span class="bmname">reception<svg class="aibadge" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#b8532a"/><text x="12" y="16.2" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="700" font-size="11" letter-spacing="-.5" fill="#fff">AI</text></svg></span><span class="bmsub" aria-hidden="true">Front desk · Singapore</span></span>
       </a>
-      <p class="ftag">The 24/7 front desk for small businesses, plus websites, custom tools and complex AI automation systems.</p>
+      <p class="ftag">The 24/7 front desk for small businesses, plus AI built into the rest of your business.</p>
     </div>
     <nav class="fcol" aria-label="Footer">
       <span class="fh">Explore</span>
