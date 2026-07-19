@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Analytics · Reception</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23171512'/%3E%3Csvg x='5.5' y='5.5' width='21' height='21' viewBox='0 0 64 64'%3E%3Crect x='9' y='45.5' width='46' height='5.8' rx='2.9' fill='%23f3efe8'/%3E%3Cpath d='M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z' fill='%23f3efe8'/%3E%3Ccircle cx='32' cy='26.5' r='3.9' fill='%23e8663a'/%3E%3C/svg%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#f3efe8;--card:#fbf8f1;--surface:#ece3d4;--ink:#171512;--muted:#635b4f;--accent:#e8663a;--accent-ink:#b24714;--line:rgba(23,21,18,.13);--font:"Bricolage Grotesque",system-ui,sans-serif;--mono:"Spline Sans Mono",monospace}
+  *{margin:0;padding:0;box-sizing:border-box}
+  [hidden]{display:none!important}
+  body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;padding:0 0 80px}
+  .wrap{max-width:820px;margin:0 auto;padding:0 clamp(14px,4vw,30px)}
+  a{color:inherit}
+  /* shared console sub-nav */
+  .tbar{position:sticky;top:0;z-index:50;background:rgba(243,239,232,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin-bottom:20px}
+  .tbar-in{max-width:900px;margin:0 auto;padding:10px clamp(14px,4vw,28px);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .brand{display:inline-flex;align-items:center;gap:9px;font-weight:800;font-size:16px;letter-spacing:-.02em;color:var(--ink);min-height:34px}
+  .brand svg{width:25px;height:25px;flex:none}
+  .brand .csl{color:var(--muted);font-weight:600}
+  .sntabs{display:flex;gap:3px;background:var(--card);border:1px solid var(--line);border-radius:100px;padding:4px}
+  .sntabs a{font-size:13px;font-weight:600;color:var(--muted);text-decoration:none;padding:6px 14px;border-radius:100px;transition:background .15s,color .15s;cursor:pointer;white-space:nowrap}
+  .sntabs a:hover{color:var(--ink)}
+  .sntabs a.on{background:var(--accent-ink);color:#fff}
+  @media(max-width:680px){.sntabs{order:3;flex-basis:100%;margin:9px 0 0;justify-content:center}}
+  @media(max-width:600px){.brand .csl{display:none}.tbar-in{gap:9px}.sntabs a{padding:6px 11px}}
+  h1{font-size:clamp(24px,5vw,31px);font-weight:800;letter-spacing:-.02em}
+  .sub{color:var(--muted);font-size:15px;margin-top:4px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:16px}
+  .card h2{font-size:16px;font-weight:700;letter-spacing:-.01em}
+  .card .note{color:var(--muted);font-size:13px;margin-top:2px}
+  /* headline stat cards */
+  .stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:16px}
+  @media(max-width:560px){.stats{grid-template-columns:1fr;gap:10px}}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+  .stat b{display:block;font-size:34px;font-weight:800;letter-spacing:-.03em;line-height:1}
+  .stat span{display:block;font-size:13.5px;color:var(--ink);margin-top:8px;font-weight:600}
+  .stat small{display:block;font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:3px;letter-spacing:.02em}
+  /* takeaway line */
+  .takeaway{font-size:15px;margin-top:14px;line-height:1.55}
+  .takeaway b{font-weight:700}
+  /* 14-day bar chart */
+  .chart{display:flex;align-items:flex-end;gap:4px;height:110px;margin-top:16px}
+  .bar{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
+  .bar i{display:block;width:100%;max-width:22px;background:var(--accent);border-radius:4px 4px 0 0;min-height:3px;transition:background .15s}
+  .bar.zero i{background:var(--surface)}
+  .bar em{font-family:var(--mono);font-size:9.5px;color:var(--muted);font-style:normal;margin-top:6px;white-space:nowrap}
+  .chartlbls{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-top:2px}
+  /* weekday row */
+  .wkrow{display:flex;gap:6px;margin-top:16px}
+  .wd{flex:1;text-align:center}
+  .wd i{display:block;height:44px;display:flex;align-items:flex-end;justify-content:center}
+  .wd i b{display:block;width:70%;max-width:26px;background:var(--surface);border-radius:4px 4px 0 0;min-height:4px}
+  .wd.top i b{background:var(--accent)}
+  .wd span{display:block;font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:6px}
+  .wd.top span{color:var(--accent-ink);font-weight:600}
+  /* what they wanted */
+  .brief{padding:13px 0;border-top:1px solid var(--line);display:flex;gap:12px;align-items:flex-start}
+  .brief:first-of-type{border-top:none}
+  .brief .dot{flex:none;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-top:7px}
+  .brief .txt{font-size:14.5px;line-height:1.5}
+  .brief .when{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:3px}
+  /* follow-up nudge */
+  .nudge{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(232,102,58,.09);border:1px solid rgba(178,71,20,.28);border-radius:14px;padding:15px 17px;margin-top:16px;flex-wrap:wrap}
+  .nudge .nt{font-size:14.5px;font-weight:600}
+  .nudge a{display:inline-flex;align-items:center;gap:6px;background:var(--accent-ink);color:#fff;text-decoration:none;font-size:13.5px;font-weight:600;border-radius:100px;padding:9px 16px;white-space:nowrap}
+  .empty{color:var(--muted);font-size:15px;padding:32px 6px;text-align:center;line-height:1.6}
+  .center{text-align:center;color:var(--muted);padding:40px 10px}
+  #app{display:none}
+</style>
+</head>
+<body>
+<header class="tbar">
+  <div class="tbar-in">
+    <div class="brand"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="#171512"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="#171512"/><circle cx="32" cy="26.5" r="3.9" fill="#e8663a"/></svg>Reception <span class="csl">Console</span></div>
+    <nav class="sntabs">
+      <a id="tabFd" href="#">Front desk</a>
+      <a id="tabBk" href="#">Bookings</a>
+      <a id="tabLd" href="#">Leads</a>
+      <a id="tabAn" href="#" class="on">Analytics</a>
+    </nav>
+  </div>
+</header>
+<div class="wrap">
+  <div id="loading" class="center">Loading…</div>
+  <div id="loaderr" class="center" hidden style="color:#b3261e"><span id="loaderrmsg"></span></div>
+
+  <div id="app">
+    <h1>Analytics</h1>
+    <div class="sub" id="bizname"></div>
+
+    <!-- headline -->
+    <div class="stats" id="stats" hidden>
+      <div class="stat"><b id="stEnq">0</b><span>enquiries captured</span><small>last 30 days</small></div>
+      <div class="stat"><b id="stBk">0</b><span>bookings taken</span><small>last 30 days</small></div>
+      <div class="stat"><b id="stMsg">0</b><span>messages answered</span><small>this week</small></div>
+    </div>
+
+    <!-- follow up -->
+    <div class="nudge" id="nudge" hidden>
+      <div class="nt" id="nudgeText"></div>
+      <a id="nudgeLink" href="#">See leads</a>
+    </div>
+
+    <!-- 14-day activity -->
+    <div class="card" id="cardChart" hidden>
+      <h2>Enquiries over the last 2 weeks</h2>
+      <div class="note" id="chartNote"></div>
+      <div class="chart" id="chart"></div>
+      <div class="chartlbls"><span id="chartFrom"></span><span id="chartTo">Today</span></div>
+    </div>
+
+    <!-- when they reach out -->
+    <div class="card" id="cardWhen" hidden>
+      <h2>When customers reach out</h2>
+      <div class="takeaway" id="whenText"></div>
+      <div class="wkrow" id="wkrow"></div>
+    </div>
+
+    <!-- what they wanted -->
+    <div class="card" id="cardWant" hidden>
+      <h2>What customers wanted lately</h2>
+      <div class="note">The last few enquiries your front desk captured, in plain words.</div>
+      <div id="briefs" style="margin-top:6px"></div>
+    </div>
+
+    <div class="empty" id="emptyState" hidden>
+      Once customers start messaging your front desk, this page fills up with how many reach out, when they do it, and what they want, all in plain language. Nothing to set up.
+    </div>
+  </div>
+</div>
+
+<script>
+  const WORKER="https://nimbus-desk.propsightsg.workers.dev", BASE=location.origin+location.pathname.replace(/\/[^/]*$/,"");
+  const $=id=>document.getElementById(id);
+  const P=new URLSearchParams(location.search), slug=P.get("c")||"", key=P.get("k")||"";
+  function eh(s){return String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+  async function api(path,body){try{const r=await fetch(WORKER+path,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});return{status:r.status,data:await r.json().catch(()=>({}))};}catch(e){return{status:0,data:{}};}}
+  function relTime(s){ if(!s) return ""; try{ const d=new Date(String(s).replace(" ","T")+"Z"); const mins=Math.round((Date.now()-d.getTime())/60000); if(mins<60) return mins<=1?"just now":mins+" min ago"; const h=Math.round(mins/60); if(h<24) return h+(h===1?" hour ago":" hours ago"); const days=Math.round(h/24); if(days<7) return days+(days===1?" day ago":" days ago"); return d.toLocaleDateString("en-SG",{day:"numeric",month:"short",timeZone:"Asia/Singapore"}); }catch(e){return "";} }
+  const DAYS=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  const ORDER=[1,2,3,4,5,6,0]; // display Mon..Sun
+
+  function render(a){
+    $("bizname").textContent=bizName;
+    const anyEnq=(a.totalEnq||0)>0 || (a.briefs&&a.briefs.length);
+    if(!anyEnq && !(a.bk30>0) && !(a.msg7>0)){ $("emptyState").hidden=false; return; }
+
+    // headline
+    $("stEnq").textContent=a.enq30||0; $("stBk").textContent=a.bk30||0; $("stMsg").textContent=a.msg7||0;
+    $("stats").hidden=false;
+
+    // follow-up nudge
+    if((a.newCount||0)>0){
+      $("nudgeText").textContent=a.newCount+" "+(a.newCount===1?"enquiry":"enquiries")+" waiting for you to follow up.";
+      $("nudgeLink").href=BASE+"/leads.html?c="+encodeURIComponent(slug)+"&k="+encodeURIComponent(key);
+      $("nudge").hidden=false;
+    }
+
+    // 14-day chart
+    const daily=a.daily||[];
+    if(daily.length){
+      const max=Math.max(1,...daily.map(x=>x.n));
+      $("chart").innerHTML=daily.map(x=>{
+        const h=x.n? Math.max(6,Math.round(x.n/max*100)) : 0;
+        const dd=new Date(x.d+"T00:00:00");
+        const lbl=dd.toLocaleDateString("en-SG",{day:"numeric"});
+        return '<div class="bar'+(x.n?'':' zero')+'" title="'+x.d+': '+x.n+'"><i style="height:'+h+'%"></i><em>'+(x.n||'')+'</em></div>';
+      }).join("");
+      const from=new Date(daily[0].d+"T00:00:00");
+      $("chartFrom").textContent=from.toLocaleDateString("en-SG",{day:"numeric",month:"short"});
+      const tot=daily.reduce((s,x)=>s+x.n,0);
+      $("chartNote").textContent=tot?(tot+" "+(tot===1?"enquiry":"enquiries")+" in the last 14 days."):"No enquiries in the last 14 days yet.";
+      $("cardChart").hidden=false;
+    }
+
+    // when they reach out (weekday + time of day) — needs enough data
+    const wk=a.weekday||[], hr=a.hour||[];
+    const wkTotal=wk.reduce((s,n)=>s+n,0);
+    if(wkTotal>=3){
+      const topDay=wk.indexOf(Math.max(...wk));
+      const morning=hr.slice(6,12).reduce((s,n)=>s+n,0), afternoon=hr.slice(12,17).reduce((s,n)=>s+n,0),
+            evening=hr.slice(17,22).reduce((s,n)=>s+n,0), night=hr.slice(22,24).concat(hr.slice(0,6)).reduce((s,n)=>s+n,0);
+      const buckets=[["morning",morning],["afternoon",afternoon],["evening",evening],["night",night]];
+      buckets.sort((x,y)=>y[1]-x[1]);
+      const dayName=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][topDay];
+      $("whenText").innerHTML="Your busiest day is <b>"+dayName+"</b>, and most people reach out in the <b>"+buckets[0][0]+"</b>. Worth being ready to reply then.";
+      const wmax=Math.max(1,...wk);
+      $("wkrow").innerHTML=ORDER.map(i=>{
+        const h=wk[i]?Math.max(8,Math.round(wk[i]/wmax*100)):0;
+        return '<div class="wd'+(i===topDay?' top':'')+'"><i><b style="height:'+h+'%"></b></i><span>'+DAYS[i][0]+'</span></div>';
+      }).join("");
+      $("cardWhen").hidden=false;
+    }
+
+    // what they wanted
+    if(a.briefs && a.briefs.length){
+      $("briefs").innerHTML=a.briefs.map(b=>'<div class="brief"><span class="dot"></span><div><div class="txt">'+eh(b.intent)+'</div><div class="when">'+relTime(b.at)+'</div></div></div>').join("");
+      $("cardWant").hidden=false;
+    }
+  }
+
+  let bizName="";
+  (async()=>{
+    if(!slug||!key){ $("loading").hidden=true; $("loaderr").hidden=false; $("loaderrmsg").textContent="Open this from your console."; return; }
+    const q="?c="+encodeURIComponent(slug)+"&k="+encodeURIComponent(key);
+    $("tabFd").href=BASE+"/admin.html"+q; $("tabBk").href=BASE+"/booking.html"+q; $("tabLd").href=BASE+"/leads.html"+q; $("tabAn").href=BASE+"/analytics.html"+q;
+    // business name (best-effort)
+    const g=await api("/admin/get",{c:slug,k:key});
+    if(g.status===200&&g.data){ bizName=g.data.business_name||""; } else if(g.status===401){ $("loading").hidden=true; $("loaderr").hidden=false; $("loaderrmsg").textContent="That link isn't valid. Check your console link."; return; }
+    const {status,data}=await api("/admin/analytics",{c:slug,k:key});
+    $("loading").hidden=true;
+    if(status===200&&data&&data.ok){ $("app").style.display="block"; render(data); }
+    else if(status===401){ $("loaderr").hidden=false; $("loaderrmsg").textContent="That link isn't valid."; }
+    else { $("loaderr").hidden=false; $("loaderrmsg").textContent="Couldn't load analytics, try again in a moment."; }
+  })();
+</script>
+</body>
+</html>

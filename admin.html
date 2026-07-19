@@ -106,7 +106,7 @@
   .svc .price{grid-column:2;grid-row:1}
   .svc .del{grid-column:3;grid-row:1;height:42px;width:44px}
   .svc .desc{grid-column:1/-1;grid-row:2}
-  @media(max-width:640px){
+  @media(max-width:680px){
     .svc{grid-template-columns:1fr 104px 34px;padding:12px}
     .svc .del{width:34px}
   }
@@ -174,7 +174,7 @@
   .tbtn:hover{border-color:var(--accent-ink)}
   .tbtn.save{background:var(--accent-ink);color:#fff;border-color:var(--accent-ink)}
   .sntabs{display:flex;gap:3px;background:var(--card);border:1px solid var(--line);border-radius:100px;padding:4px}
-  .sntabs a{font-size:13px;font-weight:600;color:var(--muted);text-decoration:none;padding:6px 15px;border-radius:100px;transition:background .15s,color .15s;cursor:pointer;white-space:nowrap}
+  .sntabs a{font-size:13px;font-weight:600;color:var(--muted);text-decoration:none;padding:6px 13px;border-radius:100px;transition:background .15s,color .15s;cursor:pointer;white-space:nowrap}
   .sntabs a:hover{color:var(--ink)}
   .sntabs a.on{background:var(--accent-ink);color:#fff}
   .body{max-width:1080px;margin:0 auto;padding:20px clamp(14px,4vw,28px) 90px;display:flex;flex-direction:column;gap:16px}
@@ -184,7 +184,7 @@
   @media(max-width:860px){.compactgrid{column-count:auto;display:flex;flex-direction:column;gap:16px}.compactgrid>.card{margin:0}}
   .pagehd{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
   .pagehd h1{font-size:clamp(22px,3.2vw,30px);font-weight:800;letter-spacing:-.025em}
-  @media(max-width:640px){.tbar-in{flex-wrap:wrap}.sntabs{order:3;flex-basis:100%;margin:9px 0 0;justify-content:center}}
+  @media(max-width:680px){.tbar-in{flex-wrap:wrap}.sntabs{order:3;flex-basis:100%;margin:9px 0 0;justify-content:center}}
   @media(max-width:600px){.tbar .brand .csl{display:none}.tbar-in{gap:9px}.tbtn{padding:8px 11px;font-size:12px}.tbar-actions{gap:6px;margin-left:auto}.tbfull{display:none}.sntabs a{padding:6px 13px}}
   .pvmodal .pvphone{width:min(340px,86vw)}
   .pvmodal{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:18px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s ease,visibility .18s ease}
@@ -207,6 +207,7 @@
         <a id="tabFd" class="on" href="#">Front desk</a>
         <a id="tabBk" href="#">Bookings</a>
         <a id="tabLd" href="#">Leads</a>
+        <a id="tabAn" href="#">Analytics</a>
       </nav>
       <div class="tbar-actions">
         <a class="tbtn" id="back" href="add.html" hidden>Clients</a>
@@ -466,7 +467,7 @@
     $("statuspill").textContent=paused?"Paused":"Live"; $("statuspill").className="pill "+(paused?"paused":"live");
     function updReg(){const t=tsel.value;if(REG[t]){$("reg").textContent=REG[t];$("reg").hidden=false;$("tradehint").textContent="";}else{$("reg").hidden=true;}}
     updReg(); tsel.addEventListener("change",updReg);
-    const link=BASE+"/"+encodeURIComponent(slug); $("link").value=link; $("preview").href=link; const q="?c="+slug+"&k="+key; $("tabFd").href=BASE+"/admin.html"+q; $("tabBk").href=BASE+"/booking.html"+q; $("tabLd").href=BASE+"/leads.html"+q;
+    const link=BASE+"/"+encodeURIComponent(slug); $("link").value=link; $("preview").href=link; const q="?c="+slug+"&k="+key; $("tabFd").href=BASE+"/admin.html"+q; $("tabBk").href=BASE+"/booking.html"+q; $("tabLd").href=BASE+"/leads.html"+q; $("tabAn").href=BASE+"/analytics.html"+q;
     $("tgconnect").href="https://t.me/Nimbusninebot?start="+encodeURIComponent(key||"");
     try{new QRCode($("qr"),{text:link,width:150,height:150,colorDark:"#171512",colorLight:"#ffffff"});}catch(e){$("qr").innerHTML='<img alt="QR" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(link)+'">';}
     // OWNER extras
