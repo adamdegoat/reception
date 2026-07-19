@@ -107,6 +107,7 @@
 
     <div class="btnrow">
       <button class="btn" id="print">Save as PDF</button>
+      <a class="btn sec" href="tracker.html">All invoices</a>
     </div>
     <div class="note">Tip: test-scan the PayNow QR once with your own banking app before you send it to a client. The typed PayNow line always works even if a QR doesn't.</div>
   </div>
@@ -166,6 +167,7 @@
 <script>
   var $=function(id){return document.getElementById(id);};
   var LS="receptionInvoice";
+  var LSLIST="receptionInvoiceList";
   // ---- PayNow EMV QR ----
   function tlv(id,val){var l=(''+val.length).padStart(2,'0');return id+l+val;}
   function crc16(s){var crc=0xFFFF;for(var i=0;i<s.length;i++){crc^=s.charCodeAt(i)<<8;for(var j=0;j<8;j++){crc=(crc&0x8000)?((crc<<1)^0x1021):(crc<<1);crc&=0xFFFF;}}return crc.toString(16).toUpperCase().padStart(4,'0');}
@@ -226,13 +228,40 @@
     // invoice number: auto-advances each time you Save as PDF (still editable)
     var nextSeq=(+(saved.seq||0))+1;
     $('fnum').value='INV-'+('000'+nextSeq).slice(-4);
+    // if opened from the tracker to edit / make a receipt, prefill from the saved record
+    try{
+      var loadNum=new URLSearchParams(location.search).get('load');
+      if(loadNum){
+        var ll=JSON.parse(localStorage.getItem(LSLIST)||'[]');
+        var r=ll.filter(function(x){return x.num===loadNum;})[0];
+        if(r){
+          $('fnum').value=r.num;
+          $('fclient').value=(r.client&&r.client!=='—')?r.client:'';
+          $('famount').value=r.amount;
+          if(r.start)$('fstart').value=r.start;
+          if(r.issued)$('fissued').value=r.issued;
+          $('fpaid').checked=!!r.paid;
+          $('fpaiddate').style.display=r.paid?'block':'none';
+          if(r.paidDate)$('fpaiddate').value=r.paidDate;
+        }
+      }
+    }catch(e){}
     ['fpaynow','fclient','famount','fstart','fnum','fissued','fpaid','fpaiddate'].forEach(function(id){
       $(id).addEventListener('input',render);$(id).addEventListener('change',render);
     });
     $('fpaid').addEventListener('change',function(){$('fpaiddate').style.display=this.checked?'block':'none';});
     $('print').addEventListener('click',function(){
-      var m=(''+$('fnum').value).match(/(\d+)\s*$/);
+      var num=$('fnum').value.trim();
+      var m=num.match(/(\d+)\s*$/);
       if(m){try{var s=JSON.parse(localStorage.getItem(LS)||'{}');s.seq=+m[1];localStorage.setItem(LS,JSON.stringify(s));}catch(e){}}
+      // record into the tracker list (upsert by invoice number)
+      try{
+        var list=JSON.parse(localStorage.getItem(LSLIST)||'[]');
+        var rec={num:num,client:($('fclient').value.trim()||'—'),amount:+$('famount').value||0,start:$('fstart').value,issued:$('fissued').value,paid:$('fpaid').checked,paidDate:$('fpaid').checked?$('fpaiddate').value:null};
+        var idx=-1;for(var k=0;k<list.length;k++){if(list[k].num===num){idx=k;break;}}
+        if(idx>=0){rec.ts=list[idx].ts;list[idx]=rec;}else{rec.ts=Date.now();list.push(rec);}
+        localStorage.setItem(LSLIST,JSON.stringify(list));
+      }catch(e){}
       window.print();
     });
     render();
