@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Invoice maker · Reception SG</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23171512'/%3E%3Csvg x='5.5' y='5.5' width='21' height='21' viewBox='0 0 64 64'%3E%3Crect x='9' y='45.5' width='46' height='5.8' rx='2.9' fill='%23f3efe8'/%3E%3Cpath d='M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z' fill='%23f3efe8'/%3E%3Ccircle cx='32' cy='26.5' r='3.9' fill='%23e8663a'/%3E%3C/svg%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
+<style>
+  :root{--bg:#f3efe8;--card:#fbf8f1;--surface:#ece3d4;--ink:#171512;--muted:#635b4f;--accent:#e8663a;--accent-ink:#b24714;--line:rgba(23,21,18,.13);--font:"Bricolage Grotesque",system-ui,sans-serif;--mono:"Spline Sans Mono",monospace;--ok:#2f7d54}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;padding:26px clamp(14px,4vw,34px) 90px}
+  .layout{max-width:1040px;margin:0 auto;display:grid;grid-template-columns:340px 1fr;gap:28px;align-items:start}
+  @media(max-width:820px){.layout{grid-template-columns:1fr;gap:20px}}
+  /* controls */
+  .controls{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;position:sticky;top:20px}
+  @media(max-width:820px){.controls{position:static}}
+  .controls h1{font-size:19px;font-weight:800;letter-spacing:-.02em}
+  .controls .sub{color:var(--muted);font-size:13px;margin-top:2px;margin-bottom:12px}
+  label{display:block;font-size:12.5px;font-weight:600;margin:13px 0 5px}
+  label .h{font-weight:400;color:var(--muted);font-size:11.5px}
+  input{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:9px;padding:10px 12px;font-family:var(--font);font-size:15px;color:var(--ink);outline:none}
+  input:focus{border-color:var(--accent-ink)}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .paidrow{display:flex;align-items:center;gap:9px;margin-top:16px;padding:11px 13px;background:var(--bg);border:1px solid var(--line);border-radius:10px;cursor:pointer}
+  .paidrow input{width:auto}
+  .paidrow b{font-size:13.5px}
+  .btnrow{display:flex;gap:9px;margin-top:18px}
+  .btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;background:var(--accent-ink);color:#fff;border:none;border-radius:100px;padding:12px;font-family:var(--font);font-weight:600;font-size:14.5px;cursor:pointer}
+  .btn.sec{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .note{font-size:11.5px;color:var(--muted);margin-top:12px;line-height:1.45}
+  /* invoice sheet */
+  .sheetwrap{display:flex;justify-content:center}
+  .sheet{width:100%;max-width:640px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 30px 70px -44px rgba(23,21,18,.5);padding:clamp(26px,4.5vw,44px);color:var(--ink)}
+  .ihead{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;border-bottom:1px solid var(--line);padding-bottom:22px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em}
+  .brand svg{width:26px;height:26px}
+  .bizmeta{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:9px;line-height:1.6}
+  .doctype{text-align:right;flex:none}
+  .doctype .dt{font-size:22px;font-weight:800;letter-spacing:-.02em;text-transform:uppercase}
+  .doctype .dmeta{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:8px;line-height:1.7}
+  .paidstamp{display:none;margin-top:10px;font-family:var(--mono);font-size:12px;font-weight:500;color:var(--ok);border:1.5px solid var(--ok);border-radius:6px;padding:5px 10px;letter-spacing:.05em;text-transform:uppercase}
+  .parties{display:flex;justify-content:space-between;gap:24px;margin-top:22px;flex-wrap:wrap}
+  .pblk .plabel{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+  .pblk .pval{font-size:15.5px;font-weight:700;margin-top:5px}
+  .pblk .psub{font-size:12.5px;color:var(--muted);margin-top:2px}
+  table{width:100%;border-collapse:collapse;margin-top:24px}
+  thead th{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);text-align:left;padding:0 0 9px;border-bottom:1px solid var(--line)}
+  thead th.r{text-align:right}
+  tbody td{padding:14px 0;font-size:14.5px;vertical-align:top;border-bottom:1px solid var(--line)}
+  tbody td:first-child{padding-right:16px}
+  tbody td.r{text-align:right;white-space:nowrap}
+  .iname{font-weight:600}
+  .iper{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .totrow{display:flex;justify-content:flex-end;margin-top:16px}
+  .totbox{min-width:200px}
+  .totline{display:flex;justify-content:space-between;font-size:14px;padding:5px 0}
+  .totline.grand{font-size:17px;font-weight:800;border-top:2px solid var(--ink);margin-top:5px;padding-top:11px}
+  .gstnote{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-top:6px;text-align:right}
+  .payblk{display:flex;justify-content:space-between;gap:22px;align-items:center;margin-top:26px;padding:20px;background:#faf6ef;border:1px solid var(--line);border-radius:12px;flex-wrap:wrap}
+  .payinfo .ph{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent-ink)}
+  .payinfo .pd{font-size:14px;margin-top:6px;line-height:1.7}
+  .payinfo .pd b{font-weight:700}
+  .qrbox{flex:none;width:118px;height:118px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px;display:flex;align-items:center;justify-content:center}
+  .qrbox img,.qrbox canvas{width:100%!important;height:100%!important}
+  .ifoot{margin-top:24px;font-size:12px;color:var(--muted);line-height:1.5;border-top:1px solid var(--line);padding-top:16px}
+  .paid .paidstamp{display:inline-block}
+  .paid .payblk{opacity:.5}
+  @media print{
+    body{background:#fff;padding:0}
+    .layout{display:block;max-width:none}
+    .controls{display:none}
+    .sheet{border:none;box-shadow:none;border-radius:0;max-width:none;padding:8mm 6mm}
+    .sheetwrap{display:block}
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+  <!-- controls (not printed) -->
+  <div class="controls">
+    <h1>Invoice maker</h1>
+    <div class="sub">Reception SG · fill, then Save as PDF.</div>
+
+    <label>Your PayNow mobile <span class="h">saved on this device</span></label>
+    <input id="fpaynow" placeholder="e.g. 9123 4567" inputmode="tel">
+
+    <label>Client business name</label>
+    <input id="fclient" placeholder="e.g. Bloom Nails">
+
+    <label>Amount (S$)</label>
+    <input id="famount" type="number" min="0" step="1" value="199">
+
+    <label>Billing period starts <span class="h">their cycle date</span></label>
+    <input id="fstart" type="date">
+
+    <div class="row">
+      <div><label>Invoice no.</label><input id="fnum"></div>
+      <div><label>Issued</label><input id="fissued" type="date"></div>
+    </div>
+
+    <label class="paidrow"><input type="checkbox" id="fpaid"><b>Mark as paid</b> <span class="h" style="margin-left:auto" id="paidhint">makes it a receipt</span></label>
+    <input id="fpaiddate" type="date" style="margin-top:8px;display:none">
+
+    <div class="btnrow">
+      <button class="btn" id="print">Save as PDF</button>
+    </div>
+    <div class="note">Tip: test-scan the PayNow QR once with your own banking app before you send it to a client. The typed PayNow line always works even if a QR doesn't.</div>
+  </div>
+
+  <!-- the invoice / receipt (printed) -->
+  <div class="sheetwrap"><div class="sheet" id="sheet">
+    <div class="ihead">
+      <div>
+        <div class="brand"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="#171512"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="#171512"/><circle cx="32" cy="26.5" r="3.9" fill="#e8663a"/></svg>Reception SG</div>
+        <div class="bizmeta">UEN 53528300L<br>Singapore<br>hello@reception.sg</div>
+      </div>
+      <div class="doctype">
+        <div class="dt" id="dtLabel">Invoice</div>
+        <div class="dmeta"><span id="oNum">RCP-0001</span><br>Issued <span id="oIssued">—</span></div>
+        <div class="paidstamp" id="oPaid">Paid</div>
+      </div>
+    </div>
+
+    <div class="parties">
+      <div class="pblk">
+        <div class="plabel">Billed to</div>
+        <div class="pval" id="oClient">Client name</div>
+      </div>
+      <div class="pblk" style="text-align:right">
+        <div class="plabel">Billing period</div>
+        <div class="pval" id="oPeriod" style="font-size:14px;font-weight:600">—</div>
+        <div class="psub" id="oDue">Due —</div>
+      </div>
+    </div>
+
+    <table>
+      <thead><tr><th>Description</th><th class="r">Amount</th></tr></thead>
+      <tbody><tr>
+        <td><div class="iname">Reception front desk subscription</div><div class="iper" id="oLinePeriod">—</div></td>
+        <td class="r" id="oLineAmt">S$199.00</td>
+      </tr></tbody>
+    </table>
+
+    <div class="totrow"><div class="totbox">
+      <div class="totline"><span>Subtotal</span><span id="oSub">S$199.00</span></div>
+      <div class="totline grand"><span>Total</span><span id="oTotal">S$199.00</span></div>
+      <div class="gstnote">Not GST-registered · no GST charged</div>
+    </div></div>
+
+    <div class="payblk">
+      <div class="payinfo">
+        <div class="ph">Pay by PayNow</div>
+        <div class="pd">To <b id="oPay">—</b><br>Amount <b id="oPayAmt">S$199.00</b><br>Reference <b id="oRef">—</b></div>
+      </div>
+      <div class="qrbox"><div id="qr"></div></div>
+    </div>
+
+    <div class="ifoot">Thank you. Reception SG · a business registered in Singapore (UEN 53528300L). Questions? hello@reception.sg</div>
+  </div></div>
+</div>
+
+<script>
+  var $=function(id){return document.getElementById(id);};
+  var LS="receptionInvoice";
+  // ---- PayNow EMV QR ----
+  function tlv(id,val){var l=(''+val.length).padStart(2,'0');return id+l+val;}
+  function crc16(s){var crc=0xFFFF;for(var i=0;i<s.length;i++){crc^=s.charCodeAt(i)<<8;for(var j=0;j<8;j++){crc=(crc&0x8000)?((crc<<1)^0x1021):(crc<<1);crc&=0xFFFF;}}return crc.toString(16).toUpperCase().padStart(4,'0');}
+  function sgMobile(raw){var d=(''+raw).replace(/\D/g,'');if(d.length===8)d='65'+d;else if(d.indexOf('65')!==0)d='65'+d;return '+'+d;}
+  function payNowQR(mobile,amount,ref){
+    var merchant=tlv('00','SG.PAYNOW')+tlv('01','0')+tlv('02',mobile)+tlv('03','1');
+    var body=tlv('00','01')+tlv('01','12')+tlv('26',merchant)+tlv('52','0000')+tlv('53','702')+tlv('54',(+amount).toFixed(2))+tlv('58','SG')+tlv('59','Reception SG')+tlv('60','Singapore')+tlv('62',tlv('01',ref.slice(0,25)));
+    body+='6304';return body+crc16(body);
+  }
+  function fmtDate(d){try{return d.toLocaleDateString('en-SG',{day:'numeric',month:'short',year:'numeric'});}catch(e){return '';}}
+  function money(n){return 'S$'+(+n).toFixed(2);}
+  function refFor(client){return (client||'CLIENT').toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,12)||'CLIENT';}
+
+  function addMonth(d){var e=new Date(d.getTime());var day=e.getDate();e.setMonth(e.getMonth()+1);if(e.getDate()<day)e.setDate(0);e.setDate(e.getDate()-1);return e;}
+  function parseD(v){if(!v)return null;var p=v.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
+  function iso(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}
+
+  function render(){
+    var paynow=$('fpaynow').value.trim();
+    var client=$('fclient').value.trim()||'Client name';
+    var amount=+$('famount').value||0;
+    var start=parseD($('fstart').value);
+    var issued=parseD($('fissued').value)||new Date();
+    var paid=$('fpaid').checked;
+    var paidDate=parseD($('fpaiddate').value)||new Date();
+    // period
+    var periodTxt='—', linePeriod='—', dueTxt='—';
+    if(start){var end=addMonth(start);periodTxt=fmtDate(start)+' – '+fmtDate(end);linePeriod=periodTxt;
+      var due=new Date(start.getTime());due.setDate(due.getDate()+7);dueTxt='Due by '+fmtDate(due);}
+    $('oClient').textContent=client;
+    $('oPeriod').textContent=periodTxt;
+    $('oLinePeriod').textContent=linePeriod;
+    $('oDue').textContent=paid?('Paid '+fmtDate(paidDate)):dueTxt;
+    $('oNum').textContent=$('fnum').value||'RCP-0001';
+    $('oIssued').textContent=fmtDate(issued);
+    $('oLineAmt').textContent=money(amount);$('oSub').textContent=money(amount);$('oTotal').textContent=money(amount);$('oPayAmt').textContent=money(amount);
+    var ref=refFor(client);$('oRef').textContent=ref;
+    $('oPay').textContent=paynow?('PayNow '+paynow):'(add your PayNow mobile)';
+    // doc type / paid
+    $('dtLabel').textContent=paid?'Receipt':'Invoice';
+    $('sheet').classList.toggle('paid',paid);
+    // QR
+    var qbox=$('qr');qbox.innerHTML='';
+    if(paynow&&amount>0){try{new QRCode(qbox,{text:payNowQR(sgMobile(paynow),amount,ref),width:104,height:104,correctLevel:QRCode.CorrectLevel.M});}catch(e){}}
+    // persist
+    try{localStorage.setItem(LS,JSON.stringify({paynow:paynow,amount:$('famount').value,num:$('fnum').value}));}catch(e){}
+  }
+
+  // init
+  (function(){
+    var saved={};try{saved=JSON.parse(localStorage.getItem(LS)||'{}');}catch(e){}
+    if(saved.paynow)$('fpaynow').value=saved.paynow;
+    if(saved.amount)$('famount').value=saved.amount;
+    var today=new Date();
+    $('fissued').value=iso(today);
+    $('fstart').value=iso(today);
+    $('fpaiddate').value=iso(today);
+    // invoice number: RCP-YYYYMM-#, # bumped per generate on this device
+    var seq=(+(saved.seq||0))+1;
+    $('fnum').value=saved.num||('RCP-'+today.getFullYear()+('0'+(today.getMonth()+1)).slice(-2)+'-'+('00'+seq).slice(-3));
+    ['fpaynow','fclient','famount','fstart','fnum','fissued','fpaid','fpaiddate'].forEach(function(id){
+      $(id).addEventListener('input',render);$(id).addEventListener('change',render);
+    });
+    $('fpaid').addEventListener('change',function(){$('fpaiddate').style.display=this.checked?'block':'none';});
+    $('print').addEventListener('click',function(){window.print();});
+    render();
+  })();
+</script>
+</body>
+</html>
