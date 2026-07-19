@@ -663,11 +663,20 @@ html{overflow-x:clip}                 /* belt-and-braces: no sideways scroll on 
 .slide[data-st="bold"] .msg.out{background:var(--accent);color:#171512}
 .slide[data-st="bold"] .pill-btn{background:var(--ink);color:#fff;border-color:var(--ink);border-radius:9px;font-weight:600}
 
-/* larger, more commanding hero phone on wide screens (still a real-phone shape) */
-@media(min-width:1000px){.demo{max-width:392px}}
+/* On desktop, present the demo exactly as a real front desk looks on a computer:
+   a 480x820 rounded card with a soft border + shadow — NOT a phone (no bezel/notch/status bar). */
+@media(min-width:1000px){
+  .demo{max-width:480px}
+  .devbody{background:transparent;border-radius:0;padding:0;box-shadow:none}
+  .devscreen{height:min(820px,84vh);aspect-ratio:auto;border-radius:30px;
+    border:1px solid rgba(23,21,18,.16);
+    box-shadow:0 2px 8px -2px rgba(23,21,18,.1),0 40px 90px -44px rgba(23,21,18,.5)}
+  .island,.devstatus{display:none}
+  .deviframe{border-radius:30px}
+}
 @media(min-width:1201px){
-  .heroStage .breakout{right:calc(50% + 238px);top:128px}
-  .heroStage .leadchip{left:calc(50% + 220px);top:378px}
+  .heroStage .breakout{right:calc(50% + 286px);top:150px}
+  .heroStage .leadchip{left:calc(50% + 268px);top:432px}
 }
 
 /* ===== Mobile: tighten vertical rhythm (kill dead space) ===== */
