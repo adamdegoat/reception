@@ -663,6 +663,13 @@ html{overflow-x:clip}                 /* belt-and-braces: no sideways scroll on 
 .slide[data-st="bold"] .msg.out{background:var(--accent);color:#171512}
 .slide[data-st="bold"] .pill-btn{background:var(--ink);color:#fff;border-color:var(--ink);border-radius:9px;font-weight:600}
 
+/* larger, more commanding hero phone on wide screens (still a real-phone shape) */
+@media(min-width:1000px){.demo{max-width:392px}}
+@media(min-width:1201px){
+  .heroStage .breakout{right:calc(50% + 238px);top:128px}
+  .heroStage .leadchip{left:calc(50% + 220px);top:378px}
+}
+
 /* ===== Mobile: tighten vertical rhythm (kill dead space) ===== */
 @media(max-width:600px){
   .sec{padding:24px 0}
@@ -674,7 +681,8 @@ html{overflow-x:clip}                 /* belt-and-braces: no sideways scroll on 
   .hero{padding:80px 0 12px}
   .worklede{padding:82px 0 10px}
   footer{padding:36px 0}
-  .heroStage{margin-top:14px}
+  .heroStage{margin-top:14px;margin-left:-8px;margin-right:-8px}
+  .demo{max-width:none}
   .buildGrid{margin-top:18px;gap:16px}
   .feats2{margin-top:18px}
   .deliverGrid{margin-top:18px;gap:20px}
