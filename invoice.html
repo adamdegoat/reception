@@ -210,8 +210,8 @@
     // QR
     var qbox=$('qr');qbox.innerHTML='';
     if(paynow&&amount>0){try{new QRCode(qbox,{text:payNowQR(sgMobile(paynow),amount,ref),width:104,height:104,correctLevel:QRCode.CorrectLevel.M});}catch(e){}}
-    // persist
-    try{localStorage.setItem(LS,JSON.stringify({paynow:paynow,amount:$('famount').value,num:$('fnum').value}));}catch(e){}
+    // persist settings (not the number — that advances on save)
+    try{var st=JSON.parse(localStorage.getItem(LS)||'{}');st.paynow=paynow;st.amount=$('famount').value;localStorage.setItem(LS,JSON.stringify(st));}catch(e){}
   }
 
   // init
@@ -223,14 +223,18 @@
     $('fissued').value=iso(today);
     $('fstart').value=iso(today);
     $('fpaiddate').value=iso(today);
-    // invoice number: RCP-YYYYMM-#, # bumped per generate on this device
-    var seq=(+(saved.seq||0))+1;
-    $('fnum').value=saved.num||('RCP-'+today.getFullYear()+('0'+(today.getMonth()+1)).slice(-2)+'-'+('00'+seq).slice(-3));
+    // invoice number: auto-advances each time you Save as PDF (still editable)
+    var nextSeq=(+(saved.seq||0))+1;
+    $('fnum').value='INV-'+('000'+nextSeq).slice(-4);
     ['fpaynow','fclient','famount','fstart','fnum','fissued','fpaid','fpaiddate'].forEach(function(id){
       $(id).addEventListener('input',render);$(id).addEventListener('change',render);
     });
     $('fpaid').addEventListener('change',function(){$('fpaiddate').style.display=this.checked?'block':'none';});
-    $('print').addEventListener('click',function(){window.print();});
+    $('print').addEventListener('click',function(){
+      var m=(''+$('fnum').value).match(/(\d+)\s*$/);
+      if(m){try{var s=JSON.parse(localStorage.getItem(LS)||'{}');s.seq=+m[1];localStorage.setItem(LS,JSON.stringify(s));}catch(e){}}
+      window.print();
+    });
     render();
   })();
 </script>
