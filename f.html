@@ -15,8 +15,8 @@
     --accent:#e8663a;--accent-ink:#b24714;--line:rgba(23,21,18,.12);
     --mono:"Spline Sans Mono",ui-monospace,monospace;
     /* style-driven tokens (Clean = defaults) */
-    --font:"Plus Jakarta Sans",system-ui,sans-serif;
-    --font-head:"Plus Jakarta Sans",system-ui,sans-serif;
+    --font:"Hanken Grotesk",system-ui,sans-serif;
+    --font-head:"Hanken Grotesk",system-ui,sans-serif;
     --name-weight:700;--name-size:16px;--name-spacing:-.01em;
     --label-font:var(--mono);--label-size:11px;--label-spacing:.04em;--label-transform:uppercase;
     --who-fg:var(--muted);
@@ -102,25 +102,28 @@
   .center{height:100%;display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:var(--mono);font-size:14px;padding:24px;text-align:center}
 
   /* ============ STYLES ============ */
-  /* CLEAN - cool, crisp, minimal; distinct from Warm's cream */
+  /* MINIMAL (key: clean) - cool, crisp, neutral grotesque, restrained */
   [data-style="clean"]{
-    --bg:#e7eaec;--deskbg:#f2f4f5;
-    --head-bg:#fbfcfd;--head-border:1px solid rgba(20,28,38,.08);
-    --in-bg:#e6eaed;
-    --out-bg:var(--ink);--out-fg:#f2f4f5;
-    --av-radius:12px;
+    --font:"Hanken Grotesk",system-ui,sans-serif;--font-head:"Hanken Grotesk",system-ui,sans-serif;
+    --name-weight:700;--name-size:16px;--name-spacing:-.015em;
+    --bg:#e8eaec;--deskbg:#f5f6f7;
+    --head-bg:#fcfdfe;--head-border:1px solid rgba(20,28,38,.07);
+    --av-radius:11px;
+    --bubble-radius:14px;--in-bg:#e9ebee;
+    --out-bg:var(--ink);--out-fg:#f5f6f7;
+    --input-bg:#e9ebee;
   }
-  /* WARM - editorial serif, circle avatar, cosy cream, rounded bubbles */
+  /* BOUTIQUE (key: warm) - humanist serif heading, warm greige clay, circle avatar, rounded */
   [data-style="warm"]{
     --font:"Figtree",system-ui,sans-serif;--font-head:"Hedvig Letters Serif",Georgia,serif;
     --name-weight:500;--name-size:20px;--name-spacing:0;
     --label-font:"Figtree",sans-serif;--label-transform:none;--label-spacing:.005em;--label-size:12px;
     --av-radius:50%;
-    --bg:#e2d3ba;--deskbg:#efe4ce;--head-bg:#ece0c7;--head-border:1px solid rgba(23,21,18,.1);
-    --bubble-radius:20px;--in-bg:#e5d7bd;
+    --bg:#dcd0c3;--deskbg:#efe7dc;--head-bg:#eae0d3;--head-border:1px solid rgba(23,21,18,.09);
+    --bubble-radius:19px;--in-bg:#e7ddcf;
     --out-bg:var(--accent-ink);--out-fg:#fff;
     --chip-bg:rgba(232,102,58,.12);--chip-fg:var(--accent-ink);--chip-border:1px solid transparent;--chip-weight:600;
-    --input-bg:#e5d7bd;
+    --input-bg:#e7ddcf;
   }
   /* BOLD - heavy grotesque, thick rule, chunky squarer bubbles, solid chips */
   [data-style="bold"]{
@@ -145,6 +148,44 @@
     --chip-bg:transparent;--chip-fg:var(--accent-ink);--chip-border:1px solid var(--line);
     --input-bg:#ecebe5;
     --voice-bg:rgba(244,243,240,.1);--voice-fg:#f4f3f0;--voice-border:1px solid rgba(244,243,240,.24);
+  }
+  /* ELEGANT - high-contrast Prata display serif, ivory, hairlines, crisp chips */
+  [data-style="elegant"]{
+    --font:"Hanken Grotesk",system-ui,sans-serif;--font-head:"Prata",Georgia,serif;
+    --name-weight:400;--name-size:20px;--name-spacing:.005em;
+    --label-font:var(--mono);--label-size:10px;--label-spacing:.14em;--label-transform:uppercase;
+    --av-radius:50%;--av-bg:var(--ink);
+    --bg:#e6e0d4;--deskbg:#f6f2ea;--head-bg:#f6f2ea;--head-border:1px solid rgba(23,21,18,.1);
+    --bubble-radius:7px;--in-bg:#efe8db;
+    --out-bg:var(--ink);--out-fg:#f6f2ea;
+    --chip-bg:transparent;--chip-fg:var(--ink);--chip-border:1px solid rgba(23,21,18,.24);--chip-weight:500;--chip-radius:3px;
+    --input-bg:#efe8db;
+  }
+  /* NOIR - fully dark surface, luminous accent bubble, off-white text */
+  [data-style="noir"]{
+    --font:"Instrument Sans",system-ui,sans-serif;--font-head:"Instrument Sans",system-ui,sans-serif;
+    --name-weight:600;--name-size:16px;--name-spacing:-.01em;
+    --ink:#f3efe9;--muted:rgba(243,239,233,.6);
+    --av-radius:11px;--av-bg:var(--accent);
+    --bg:#100f0e;--deskbg:#1a1917;
+    --head-bg:#201e1b;--head-fg:#f3efe9;--head-border:1px solid rgba(255,255,255,.07);--who-fg:rgba(243,239,233,.55);
+    --bubble-radius:13px;--in-bg:#2a2825;--in-fg:#f3efe9;
+    --out-bg:var(--accent);--out-fg:#ffffff;
+    --chip-bg:transparent;--chip-fg:#f3efe9;--chip-border:1px solid rgba(255,255,255,.22);--chip-weight:500;
+    --input-bg:#2a2825;
+    --voice-bg:rgba(255,255,255,.08);--voice-fg:#f3efe9;--voice-border:1px solid rgba(255,255,255,.2);
+  }
+  /* SOFT - rounded friendly Quicksand, soft warm, very rounded bubbles, circle avatar */
+  [data-style="soft"]{
+    --font:"Quicksand",system-ui,sans-serif;--font-head:"Quicksand",system-ui,sans-serif;
+    --name-weight:700;--name-size:17px;--name-spacing:0;
+    --label-font:"Quicksand",sans-serif;--label-transform:none;--label-spacing:.01em;--label-size:12px;
+    --av-radius:50%;
+    --bg:#f0e5db;--deskbg:#fdf6ef;--head-bg:#fdf6ef;--head-border:1px solid rgba(23,21,18,.07);
+    --bubble-radius:20px;--in-bg:#f4ece4;
+    --out-bg:var(--accent-ink);--out-fg:#fff;
+    --chip-bg:rgba(232,102,58,.1);--chip-fg:var(--accent-ink);--chip-border:1px solid transparent;--chip-weight:600;--chip-radius:100px;
+    --input-bg:#f4ece4;
   }
   /* announcement banner: thin, brand-tinted, scrolls only if too long, static bubble not a chat message */
   .dannounce{display:flex;align-items:center;gap:8px;flex:none;padding:7px 14px;background:var(--accent-ink);color:#fff;font-size:12.5px;line-height:1.3;font-weight:500}
@@ -263,10 +304,13 @@
   ['pointerdown','touchend','click'].forEach(ev=>document.addEventListener(ev,unlockAudio,{once:true,passive:true}));
 
   const FONTS = {
-    clean: "family=Plus+Jakarta+Sans:wght@400;500;600;700",
-    warm:  "family=Figtree:wght@400;500;600&family=Hedvig+Letters+Serif",
-    bold:  "family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800",
-    sleek: "family=Space+Grotesk:wght@400;500;600;700"
+    clean:   "family=Hanken+Grotesk:wght@400;500;600;700",
+    warm:    "family=Figtree:wght@400;500;600&family=Hedvig+Letters+Serif",
+    bold:    "family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800",
+    sleek:   "family=Space+Grotesk:wght@400;500;600;700",
+    elegant: "family=Hanken+Grotesk:wght@400;500;600&family=Prata",
+    noir:    "family=Instrument+Sans:wght@400;500;600",
+    soft:    "family=Quicksand:wght@400;500;600;700"
   };
 
   function darken(hex, f){ const m=hex.replace('#','').match(/.{2}/g); if(!m) return hex;
@@ -432,7 +476,7 @@
   const TRADE_LABELS={beauty:"Beauty & grooming",home:"Home & trades",interior:"Interior design",renovation:"Renovation contractor",cleaning:"Cleaning & laundry",tuition:"Tuition & enrichment",fitness:"Fitness & wellness",fnb:"Food & beverage",pet:"Pet services",events:"Events & creative",automotive:"Automotive & workshop",professional:"Professional & business services",repairs:"Repairs & personal retail",property:"Property / real estate",insurance:"Insurance & financial"};
   function applyConfig(c){
     cfg=c||{};
-    const style=["clean","warm","bold","sleek"].includes(cfg.style)?cfg.style:"clean";
+    const style=["clean","warm","bold","sleek","elegant","noir","soft"].includes(cfg.style)?cfg.style:"clean";
     document.documentElement.dataset.style=style;
     $("fontlink").href="https://fonts.googleapis.com/css2?"+FONTS[style]+"&family=Spline+Sans+Mono:wght@400;500&display=swap";
     const accent=cfg.accent||"#e8663a"; const ink=darken(accent,.72);

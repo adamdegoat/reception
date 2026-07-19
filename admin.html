@@ -43,8 +43,8 @@
   input:focus,select:focus,textarea:focus{border-color:var(--accent-ink)}
   .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   @media(max-width:520px){.row2{grid-template-columns:1fr}}
-  .stylepick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
-  @media(max-width:520px){.stylepick{grid-template-columns:1fr}}
+  .stylepick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px}
+  @media(max-width:520px){.stylepick{grid-template-columns:repeat(2,1fr)}}
   .styleopt{text-align:left;background:var(--bg);border:1.5px solid var(--line);border-radius:15px;padding:9px 9px 12px;cursor:pointer;font-family:var(--font);transition:border-color .15s,background .15s,box-shadow .15s}
   .styleopt:hover{border-color:var(--accent-ink)}
   .styleopt.sel{border-color:var(--accent-ink);background:rgba(232,102,58,.07);box-shadow:0 0 0 3px rgba(232,102,58,.12)}
@@ -59,14 +59,14 @@
   .spv .spv-b:last-child{margin-bottom:0}
   .spv .spv-in{background:#fff;color:#171512}
   .spv .spv-out{margin-left:auto;background:#b24714;color:#fff}
-  .spv-clean{background:#f2f4f5;font-family:"Plus Jakarta Sans",sans-serif}
-  .spv-clean .spv-av{background:#141c26}
-  .spv-clean .spv-in{background:#e6eaed}
-  .spv-clean .spv-out{background:#171512;color:#f2f4f5}
-  .spv-warm{background:#efe4ce;font-family:"Figtree",system-ui,sans-serif}
+  .spv-clean{background:#f5f6f7}
+  .spv-clean .spv-av{background:#171512}
+  .spv-clean .spv-in{background:#e9ebee}
+  .spv-clean .spv-out{background:#171512;color:#f5f6f7}
+  .spv-warm{background:#efe7dc;font-family:"Figtree",system-ui,sans-serif}
   .spv-warm .spv-av{border-radius:50%}
   .spv-warm .spv-b{border-radius:12px}
-  .spv-warm .spv-in{background:#e5d7bd}
+  .spv-warm .spv-in{background:#e7ddcf}
   .spv-warm .spv-out{background:#b24714;color:#fff}
   .spv-bold{background:#fff;font-family:"Bricolage Grotesque",system-ui,sans-serif;border:2px solid #171512}
   .spv-bold .spv-hd{border-bottom:2px solid #171512;padding-bottom:5px}
@@ -78,6 +78,22 @@
   .spv-sleek .spv-b{border-radius:10px}
   .spv-sleek .spv-in{background:#ecebe5}
   .spv-sleek .spv-out{background:#1b1917;color:#f4f3f0}
+  .spv-elegant{background:#f6f2ea}
+  .spv-elegant .spv-av{background:#171512;border-radius:50%}
+  .spv-elegant .spv-b{border-radius:3px}
+  .spv-elegant .spv-in{background:#efe8db}
+  .spv-elegant .spv-out{background:#171512;color:#f6f2ea}
+  .spv-noir{background:#1a1917;padding:0 8px 8px}
+  .spv-noir .spv-hd{background:#201e1b;margin:0 -8px 7px;padding:6px 8px}
+  .spv-noir .spv-av{background:#e8663a}
+  .spv-noir .spv-b{border-radius:10px}
+  .spv-noir .spv-in{background:#2a2825;color:#f3efe9}
+  .spv-noir .spv-out{background:#e8663a;color:#fff}
+  .spv-soft{background:#fdf6ef}
+  .spv-soft .spv-av{border-radius:50%}
+  .spv-soft .spv-b{border-radius:12px}
+  .spv-soft .spv-in{background:#f4ece4}
+  .spv-soft .spv-out{background:#b24714;color:#fff}
   .voicepick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
   @media(max-width:520px){.voicepick{grid-template-columns:1fr}}
   .voiceopt{display:flex;align-items:center;gap:12px;text-align:left;background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:11px 13px;cursor:pointer;transition:border-color .15s,background .15s}
@@ -254,19 +270,31 @@
         <div class="stylepick" id="stylepick">
           <button type="button" class="styleopt" data-style="clean">
             <span class="spv spv-clean"><span class="spv-hd"><span class="spv-av"></span></span><span class="spv-b spv-in">Hi there</span><span class="spv-b spv-out">Sure!</span></span>
-            <span class="snm">Clean</span><span class="sdesc">Minimal, modern</span>
+            <span class="snm">Minimal</span><span class="sdesc">Clean, neutral</span>
           </button>
           <button type="button" class="styleopt" data-style="warm">
             <span class="spv spv-warm"><span class="spv-hd"><span class="spv-av"></span></span><span class="spv-b spv-in">Hi there</span><span class="spv-b spv-out">Sure!</span></span>
-            <span class="snm">Warm</span><span class="sdesc">Serif, cosy, boutique</span>
+            <span class="snm">Boutique</span><span class="sdesc">Warm serif, cosy</span>
           </button>
           <button type="button" class="styleopt" data-style="bold">
             <span class="spv spv-bold"><span class="spv-hd"><span class="spv-av"></span></span><span class="spv-b spv-in">Hi there</span><span class="spv-b spv-out">Sure!</span></span>
-            <span class="snm">Bold</span><span class="sdesc">Big, chunky, punchy</span>
+            <span class="snm">Bold</span><span class="sdesc">Chunky, punchy</span>
           </button>
           <button type="button" class="styleopt" data-style="sleek">
             <span class="spv spv-sleek"><span class="spv-hd"><span class="spv-av"></span></span><span class="spv-b spv-in">Hi there</span><span class="spv-b spv-out">Sure!</span></span>
-            <span class="snm">Sleek</span><span class="sdesc">Dark, tight, premium</span>
+            <span class="snm">Sleek</span><span class="sdesc">Dark header, modern</span>
+          </button>
+          <button type="button" class="styleopt" data-style="elegant">
+            <span class="spv spv-elegant"><span class="spv-hd"><span class="spv-av"></span></span><span class="spv-b spv-in">Hi there</span><span class="spv-b spv-out">Sure!</span></span>
+            <span class="snm">Elegant</span><span class="sdesc">Serif, refined, luxe</span>
+          </button>
+          <button type="button" class="styleopt" data-style="noir">
+            <span class="spv spv-noir"><span class="spv-hd"><span class="spv-av"></span></span><span class="spv-b spv-in">Hi there</span><span class="spv-b spv-out">Sure!</span></span>
+            <span class="snm">Noir</span><span class="sdesc">Dark, dramatic</span>
+          </button>
+          <button type="button" class="styleopt" data-style="soft">
+            <span class="spv spv-soft"><span class="spv-hd"><span class="spv-av"></span></span><span class="spv-b spv-in">Hi there</span><span class="spv-b spv-out">Sure!</span></span>
+            <span class="snm">Soft</span><span class="sdesc">Rounded, friendly</span>
           </button>
         </div>
 
@@ -390,7 +418,7 @@
 
   // style picker
   let selStyle="clean";
-  function setStyle(s,dirty){ selStyle=["clean","warm","bold","sleek"].includes(s)?s:"clean";
+  function setStyle(s,dirty){ selStyle=["clean","warm","bold","sleek","elegant","noir","soft"].includes(s)?s:"clean";
     document.querySelectorAll("#stylepick .styleopt").forEach(b=>b.classList.toggle("sel",b.dataset.style===selStyle));
     if(dirty)markDirty(); }
   document.querySelectorAll("#stylepick .styleopt").forEach(b=>b.addEventListener("click",()=>setStyle(b.dataset.style,true)));
