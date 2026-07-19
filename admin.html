@@ -8,7 +8,7 @@
 <title>Front desk · Reception</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23171512'/%3E%3Csvg x='5.5' y='5.5' width='21' height='21' viewBox='0 0 64 64'%3E%3Crect x='9' y='45.5' width='46' height='5.8' rx='2.9' fill='%23f3efe8'/%3E%3Cpath d='M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z' fill='%23f3efe8'/%3E%3Ccircle cx='32' cy='26.5' r='3.9' fill='%23e8663a'/%3E%3C/svg%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500&family=Hedvig+Letters+Serif&family=Plus+Jakarta+Sans:wght@500;700&family=Space+Grotesk:wght@500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500&family=Plus+Jakarta+Sans:wght@500;700&family=Space+Grotesk:wght@500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
 <style>
   :root{--bg:#f3efe8;--card:#fbf8f1;--surface:#ece3d4;--ink:#171512;--muted:#635b4f;--accent:#e8663a;--accent-ink:#b24714;--line:rgba(23,21,18,.13);--font:"Bricolage Grotesque",system-ui,sans-serif;--mono:"Spline Sans Mono",monospace}
@@ -52,11 +52,10 @@
   .styleopt .sdesc{display:block;font-size:12px;color:var(--muted);margin-top:1px;padding:0 4px}
   .styleopt.sel .snm{color:var(--accent-ink)}
   /* live mini-preview of each front-desk style */
-  .spv{display:block;border-radius:11px;padding:9px;overflow:hidden;min-height:98px;border:1px solid rgba(23,21,18,.05)}
-  .spv .spv-hd{display:flex;align-items:center;gap:6px;margin-bottom:8px}
-  .spv .spv-av{width:17px;height:17px;border-radius:5px;background:#b24714;flex:none}
-  .spv .spv-nm{font-size:12px;font-weight:700;color:#171512;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .spv .spv-b{display:block;width:fit-content;max-width:82%;font-size:10.5px;line-height:1.3;padding:6px 9px;border-radius:11px;margin-bottom:5px}
+  .spv{display:block;border-radius:10px;padding:8px;overflow:hidden;border:1px solid rgba(23,21,18,.05)}
+  .spv .spv-hd{display:flex;align-items:center;gap:6px;margin-bottom:7px}
+  .spv .spv-av{width:14px;height:14px;border-radius:4px;background:#b24714;flex:none}
+  .spv .spv-b{display:block;width:fit-content;max-width:78%;font-size:9.5px;line-height:1.25;padding:4px 8px;border-radius:9px;margin-bottom:4px}
   .spv .spv-b:last-child{margin-bottom:0}
   .spv .spv-in{background:#fff;color:#171512}
   .spv .spv-out{margin-left:auto;background:#b24714;color:#fff}
@@ -66,20 +65,17 @@
   .spv-clean .spv-out{background:#171512;color:#f2f4f5}
   .spv-warm{background:#efe4ce;font-family:"Figtree",system-ui,sans-serif}
   .spv-warm .spv-av{border-radius:50%}
-  .spv-warm .spv-nm{font-family:"Hedvig Letters Serif",Georgia,serif;font-weight:500;font-size:13px}
-  .spv-warm .spv-b{border-radius:14px}
+  .spv-warm .spv-b{border-radius:12px}
   .spv-warm .spv-in{background:#e5d7bd}
   .spv-warm .spv-out{background:#b24714;color:#fff}
   .spv-bold{background:#fff;font-family:"Bricolage Grotesque",system-ui,sans-serif;border:2px solid #171512}
-  .spv-bold .spv-hd{border-bottom:2px solid #171512;padding-bottom:7px}
-  .spv-bold .spv-nm{font-weight:800;font-size:13px;letter-spacing:-.03em}
-  .spv-bold .spv-b{border-radius:6px}
+  .spv-bold .spv-hd{border-bottom:2px solid #171512;padding-bottom:5px}
+  .spv-bold .spv-b{border-radius:5px;font-weight:600}
   .spv-bold .spv-in{background:#f0eee7}
-  .spv-bold .spv-out{background:#e8663a;color:#171512;font-weight:600}
-  .spv-sleek{background:#f7f7f5;font-family:"Space Grotesk",system-ui,sans-serif;padding:0 9px 9px}
-  .spv-sleek .spv-hd{background:#1b1917;margin:0 -9px 9px;padding:8px 9px}
-  .spv-sleek .spv-nm{color:#f4f3f0;font-weight:600;font-size:11.5px}
-  .spv-sleek .spv-b{border-radius:12px}
+  .spv-bold .spv-out{background:#e8663a;color:#171512}
+  .spv-sleek{background:#f7f7f5;font-family:"Space Grotesk",system-ui,sans-serif;padding:0 8px 8px}
+  .spv-sleek .spv-hd{background:#1b1917;margin:0 -8px 7px;padding:6px 8px}
+  .spv-sleek .spv-b{border-radius:10px}
   .spv-sleek .spv-in{background:#ecebe5}
   .spv-sleek .spv-out{background:#1b1917;color:#f4f3f0}
   .voicepick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
@@ -257,19 +253,19 @@
         <div class="sec-h">The style your front desk wears. Your name and colours stay yours.</div>
         <div class="stylepick" id="stylepick">
           <button type="button" class="styleopt" data-style="clean">
-            <span class="spv spv-clean"><span class="spv-hd"><span class="spv-av"></span><span class="spv-nm">Bloom Studio</span></span><span class="spv-b spv-in">Hi, how can I help?</span><span class="spv-b spv-out">What time do you open?</span></span>
+            <span class="spv spv-clean"><span class="spv-hd"><span class="spv-av"></span></span><span class="spv-b spv-in">Hi there</span><span class="spv-b spv-out">Sure!</span></span>
             <span class="snm">Clean</span><span class="sdesc">Minimal, modern</span>
           </button>
           <button type="button" class="styleopt" data-style="warm">
-            <span class="spv spv-warm"><span class="spv-hd"><span class="spv-av"></span><span class="spv-nm">Bloom Studio</span></span><span class="spv-b spv-in">Hi, how can I help?</span><span class="spv-b spv-out">What time do you open?</span></span>
+            <span class="spv spv-warm"><span class="spv-hd"><span class="spv-av"></span></span><span class="spv-b spv-in">Hi there</span><span class="spv-b spv-out">Sure!</span></span>
             <span class="snm">Warm</span><span class="sdesc">Serif, cosy, boutique</span>
           </button>
           <button type="button" class="styleopt" data-style="bold">
-            <span class="spv spv-bold"><span class="spv-hd"><span class="spv-av"></span><span class="spv-nm">Bloom Studio</span></span><span class="spv-b spv-in">Hi, how can I help?</span><span class="spv-b spv-out">What time do you open?</span></span>
+            <span class="spv spv-bold"><span class="spv-hd"><span class="spv-av"></span></span><span class="spv-b spv-in">Hi there</span><span class="spv-b spv-out">Sure!</span></span>
             <span class="snm">Bold</span><span class="sdesc">Big, chunky, punchy</span>
           </button>
           <button type="button" class="styleopt" data-style="sleek">
-            <span class="spv spv-sleek"><span class="spv-hd"><span class="spv-av"></span><span class="spv-nm">Bloom Studio</span></span><span class="spv-b spv-in">Hi, how can I help?</span><span class="spv-b spv-out">What time do you open?</span></span>
+            <span class="spv spv-sleek"><span class="spv-hd"><span class="spv-av"></span></span><span class="spv-b spv-in">Hi there</span><span class="spv-b spv-out">Sure!</span></span>
             <span class="snm">Sleek</span><span class="sdesc">Dark, tight, premium</span>
           </button>
         </div>
