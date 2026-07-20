@@ -60,7 +60,7 @@
   .pfact span{display:block;margin-top:7px;font-size:15px;line-height:1.5;color:rgba(245,242,236,.72)}
 
   /* how it works for you: alternating rows */
-  .pfor{padding:clamp(56px,8vh,96px) 0}
+  .pfor{padding:clamp(56px,8vh,96px) 0;background:var(--surface)}
   .pforrow{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center;padding:clamp(30px,4vh,48px) 0;border-top:1px solid var(--line)}
   .pforrow:first-of-type{border-top:none}
   @media(max-width:820px){.pforrow{grid-template-columns:1fr;gap:18px}}
@@ -118,6 +118,12 @@
   .pfinal h2{font-size:clamp(30px,4.6vw,52px);font-weight:800;letter-spacing:-.03em;line-height:1.05;max-width:20ch;margin:0 auto;text-wrap:balance}
   .pfinal p{margin-top:18px;font-size:18px;color:var(--muted);max-width:44ch;margin-left:auto;margin-right:auto}
   .pfinal .pbtn{margin-top:30px}
+  .pduo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,3.6vw,54px);margin-top:clamp(30px,4vw,48px)}
+  @media(max-width:760px){.pduo{grid-template-columns:1fr;gap:34px}}
+  .pcolh{font-size:clamp(18px,2vw,23px);font-weight:700;letter-spacing:-.015em;line-height:1.15}
+  .pcol>p{margin-top:10px;font-size:15.5px;line-height:1.55;color:var(--muted);max-width:44ch}
+  .pcol .leadcard,.pcol .ceabox{margin-top:22px}
+  .pfinmicro{margin-top:22px;font-family:var(--mono);font-size:13px;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -160,39 +166,15 @@
     </div>
   </section>
 
-  <!-- SPEED -->
-  <section class="pspeed">
-    <div class="wrap">
-      <h2>In property, the <em>fastest reply</em> usually wins.</h2>
-      <p class="lede">Buyers message several agents at once and go with whoever gets back to them first. And most enquiries land in the evening or on the weekend, when you're driving, at a viewing, or finally off. Every one you answer an hour late is a commission that went to someone quicker.</p>
-      <div class="pfacts">
-        <div class="pfact"><b>Seconds, not hours</b><span>Reception replies the moment a lead messages, day or night, so you're never the slow one.</span></div>
-        <div class="pfact"><b>While you're busy</b><span>At a viewing or with another client, it holds the conversation and keeps the lead warm.</span></div>
-        <div class="pfact"><b>Nothing slips</b><span>Every enquiry is captured with the details, and lands on your phone. None forgotten at 11pm.</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOR YOU -->
+  <!-- BUILT FOR YOU, SAFE BY DESIGN -->
   <section class="pfor">
     <div class="wrap">
-      <h2 class="shead" style="max-width:18ch">Built around how you <em>actually work.</em></h2>
-
-      <div class="pforrow">
-        <div class="pfortext">
-          <h3>It knows the right questions to ask</h3>
-          <p>Buyer, seller, landlord or tenant. Their budget, the area and property type, and how soon they're moving. It gathers the details naturally, so the lead you get is one you can actually act on.</p>
-        </div>
-        <div class="pforvis">
-          <div class="qchips">
-            <span class="qchip on">Buyer</span><span class="qchip">Seller</span><span class="qchip">Landlord</span><span class="qchip">Tenant</span>
-            <span class="qchip on">3-room, Tampines</span><span class="qchip on">Budget S$600k</span><span class="qchip on">Move in 3 months</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="pforrow">
-        <div class="pforvis">
+      <h2 class="shead" style="max-width:22ch">Built for property. <em>Safe for you.</em></h2>
+      <p class="ssub" style="max-width:58ch">It answers buyers, sellers and tenants in your name, qualifies them, and books the viewing, then hands you a lead ready to close. And it never says a word a licensed agent shouldn't.</p>
+      <div class="pduo">
+        <div class="pcol">
+          <div class="pcolh">Every enquiry, qualified and yours</div>
+          <p>Who they are, their budget, the area and how soon they're moving, captured naturally. It lands on your phone the moment they're done, so you follow up already knowing their story.</p>
           <div class="leadcard">
             <div class="lchead"><span class="dot"></span>New enquiry, sent to your phone</div>
             <div class="lcname">Jason Tan</div>
@@ -200,18 +182,9 @@
             <div class="lctags"><span class="lctag">9123 4567</span><span class="lctag">Wants a viewing this weekend</span></div>
           </div>
         </div>
-        <div class="pfortext">
-          <h3>The lead lands ready to close</h3>
-          <p>Name, number, what they want and when. Straight to your phone the moment they're done, so you follow up already knowing their story, not chasing a "hi" from three hours ago.</p>
-        </div>
-      </div>
-
-      <div class="pforrow">
-        <div class="pfortext">
-          <h3>It never crosses the line. That stays with you.</h3>
-          <p>It shares general information and takes details. It never quotes a price, a valuation, stamp duty or eligibility, because that is your call as the licensed agent. CEA-safe by design, so you're never exposed by something it said.</p>
-        </div>
-        <div class="pforvis">
+        <div class="pcol">
+          <div class="pcolh">It never crosses the line</div>
+          <p>It shares general information and takes details, but never quotes a price, valuation, stamp duty or eligibility. That stays your call as the licensed agent. CEA-safe by design.</p>
           <div class="ceabox">
             <div class="cearow"><svg class="no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg><span>Never quotes a valuation, PSF, ABSD or loan figure</span></div>
             <div class="cearow"><svg class="no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg><span>Never judges eligibility or tells anyone what to buy</span></div>
@@ -223,50 +196,6 @@
     </div>
   </section>
 
-  <!-- GROW / ANALYTICS -->
-  <section class="pgrow">
-    <div class="wrap">
-      <div class="pgrowgrid">
-        <div>
-          <h2 class="shead" style="max-width:16ch">It also shows you <em>where your business comes from.</em></h2>
-          <p class="ssub" style="max-width:44ch">Every enquiry becomes something you can learn from. See your busiest hours, the areas and budgets buyers keep asking about, and how many leads came in while you were unreachable. It's not just a front desk, it's a read on your own demand, so you know where to spend your time.</p>
-        </div>
-        <div class="statpanel">
-          <div class="sptitle">Your last 14 days</div>
-          <div class="sprow"><span class="k">Enquiries captured</span><span class="v">38</span></div>
-          <div class="sprow"><span class="k">Caught after hours</span><span class="v">23</span></div>
-          <div class="sprow"><span class="k">Most-asked area</span><span class="v">Tampines</span></div>
-          <div class="spbars"><i style="height:34%"></i><i style="height:52%"></i><i style="height:40%"></i><i style="height:70%"></i><i style="height:58%"></i><i style="height:88%"></i><i style="height:64%"></i></div>
-          <div class="spcap">Enquiries by day, busiest on Sunday evenings</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SETUP -->
-  <section class="psetup">
-    <div class="wrap">
-      <h2 class="shead" style="max-width:16ch">We set it up. You share <em>one link.</em></h2>
-      <div class="psteps">
-        <div class="pstep"><div class="n">Step one</div><h4>Tell us about you</h4><p>Your name, the areas you cover, how you like to sound. A short chat, nothing technical.</p></div>
-        <div class="pstep"><div class="n">Step two</div><h4>We build your desk</h4><p>In your name and colours, tuned for property, usually live within minutes. We do all of it.</p></div>
-        <div class="pstep"><div class="n">Step three</div><h4>Put it everywhere</h4><p>One link and QR for your bio, your listings, your WhatsApp. From then on, nothing gets missed.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section class="sec">
-    <div class="wrap">
-      <div class="pricecard">
-        <div class="amt">S$99<span> / month</span></div>
-        <div class="sub">Founding rate, locked in. Then S$149. No setup fee, no lock-in, no per-message charges. Cancel anytime.</div>
-        <a class="pbtn" href="https://wa.me/6583219747?text=Hi%2C%20I%27m%20a%20property%20agent%20and%20I%27d%20like%20a%20front%20desk." target="_blank" rel="noopener">Set up your desk
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
-    </div>
-  </section>
-
   <!-- FINAL -->
   <section class="pfinal">
     <div class="wrap">
@@ -274,6 +203,7 @@
       <p>Your next buyer is messaging tonight. Make sure someone answers.</p>
       <a class="pbtn" href="https://wa.me/6583219747?text=Hi%2C%20I%27m%20a%20property%20agent%20and%20I%27d%20like%20a%20front%20desk." target="_blank" rel="noopener">Set up your desk
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <div class="pfinmicro">S$99/month founding rate · Live within minutes · No lock-in</div>
     </div>
   </section>
 </main>
