@@ -129,6 +129,8 @@
   .faqc .qa.a{align-items:flex-start}
   .faqc .qa+.qa{margin-top:7px}
   .faqc .fa,.svc .dtx{min-height:44px;line-height:1.5;resize:none;overflow:hidden}
+  .faqc .btag{display:none;flex:none;font-size:10px;font-weight:600;letter-spacing:.02em;color:var(--muted);background:var(--line);border-radius:100px;padding:3px 8px;white-space:nowrap}
+  .faqc.isbtn .btag{display:inline-block}
   .qb{width:26px;height:26px;flex:none;border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:500;font-size:12px;background:rgba(178,71,20,.13);color:var(--accent-ink)}
   .qb.a{background:var(--surface);color:var(--muted);margin-top:8px}
   .svchead{display:none}
@@ -365,7 +367,7 @@
       </div>
       <div class="card">
         <div class="sec-t">Questions customers can tap</div>
-        <div class="sec-h">Write the questions people ask most, and your answer. The first five show as tappable buttons on your front desk, and tapping shows your answer instantly, free. Customers can still type anything else, and the front desk answers from everything above.</div>
+        <div class="sec-h">Write the questions customers ask most, with your answer, tapping a button shows it instantly, free. On your front desk a Services button always appears first on its own, then the first six questions here become buttons too. Any question after the sixth still works, customers just type it instead. They can also type anything else, and the desk answers from everything you filled in above.</div>
         <div id="faqs"></div>
         <button class="addbtn" id="addfaq" type="button">+ Add a question</button>
       </div>
@@ -422,11 +424,12 @@
     d.innerHTML=`<label class="f name"><span class="fl">Service</span><input placeholder="Service name" value="${eh(s.name)}"></label><label class="f desc"><span class="fl">Description</span><textarea class="dtx" rows="1" placeholder="Short description">${eh(s.desc)}</textarea></label><label class="f price"><span class="fl">Price</span><input placeholder="e.g. S$45" value="${eh(s.price)}"></label><button class="del" type="button">×</button>`;
     d.querySelector(".del").onclick=()=>{d.remove();markDirty();}; d.querySelectorAll("input,textarea").forEach(i=>i.oninput=()=>{if(i.tagName==="TEXTAREA")grow(i);markDirty();}); return d;}
   function faqRow(f={}){const d=document.createElement("div");d.className="faqc";
-    d.innerHTML=`<div class="qa"><span class="qb">Q</span><input placeholder="What customers ask" value="${eh(f.q)}"><button class="del" type="button">×</button></div><div class="qa a"><span class="qb a">A</span><textarea class="fa" rows="2" placeholder="How you want it answered">${eh(f.a)}</textarea></div>`;
-    d.querySelector(".del").onclick=()=>{d.remove();markDirty();}; d.querySelectorAll("input,textarea").forEach(i=>i.oninput=()=>{if(i.tagName==="TEXTAREA")grow(i);markDirty();}); return d;}
+    d.innerHTML=`<div class="qa"><span class="qb">Q</span><input placeholder="What customers ask" value="${eh(f.q)}"><span class="btag">Shows as button</span><button class="del" type="button">×</button></div><div class="qa a"><span class="qb a">A</span><textarea class="fa" rows="2" placeholder="How you want it answered">${eh(f.a)}</textarea></div>`;
+    d.querySelector(".del").onclick=()=>{d.remove();markFaqButtons();markDirty();}; d.querySelectorAll("input,textarea").forEach(i=>i.oninput=()=>{if(i.tagName==="TEXTAREA")grow(i);markDirty();}); return d;}
+  function markFaqButtons(){const rows=[...document.querySelectorAll("#faqs .faqc")];const many=rows.length>6;rows.forEach((r,i)=>r.classList.toggle("isbtn",many&&i<6));}
   window.addEventListener("resize",growAll);
   $("addsvc").onclick=()=>{const r=svcRow();$("services").appendChild(r);r.querySelectorAll("textarea").forEach(grow);markDirty();};
-  $("addfaq").onclick=()=>{const r=faqRow();$("faqs").appendChild(r);r.querySelectorAll("textarea").forEach(grow);markDirty();};
+  $("addfaq").onclick=()=>{const r=faqRow();$("faqs").appendChild(r);r.querySelectorAll("textarea").forEach(grow);markFaqButtons();markDirty();};
   $("announce").addEventListener("input",()=>{$("anncount").textContent=$("announce").value.length+" / 90";});
   ["bname","fname","tone","greeting","tagline","telegram","about","hours","announce","whatsapp","trade","areas","trackrec","listings","credentials","freeconsult"].forEach(id=>$(id).addEventListener("input",markDirty));
 
@@ -464,7 +467,7 @@
   function currentConfig(){
     const svcRows=[...$("services").querySelectorAll(".svc")].map(r=>{const i=r.querySelectorAll("input,textarea");return{name:(i[0]?i[0].value:"").trim(),price:(i[2]?i[2].value:"").trim()};}).filter(s=>s.name);
     const svcPill=svcRows.length?[{q:"Services",a:"Here are our services:\n"+svcRows.slice(0,20).map(s=>"• "+s.name+(s.price?", "+s.price:"")).join("\n"),say:"Here are our services."}]:[];
-    const faqPills=[...$("faqs").querySelectorAll(".faqc")].map(row=>{const i=row.querySelectorAll("input,textarea");return{q:i[0].value.trim(),a:i[1].value.trim()};}).filter(p=>p.q&&p.a).slice(0,5);
+    const faqPills=[...$("faqs").querySelectorAll(".faqc")].map(row=>{const i=row.querySelectorAll("input,textarea");return{q:i[0].value.trim(),a:i[1].value.trim()};}).filter(p=>p.q&&p.a).slice(0,6);
     return {
     style:selStyle, accent:selAccent, voice:selVoice,
     name:($("fname").value.trim()||$("bname").value.trim()||"Front desk"),
@@ -503,7 +506,7 @@
     updateTradeFields();
     $("hours").value=typeof cfg.hours==="string"?cfg.hours:"";
     (cfg.services||[]).forEach(s=>$("services").appendChild(svcRow(s))); if(!(cfg.services||[]).length)$("services").appendChild(svcRow());
-    (cfg.faq||[]).forEach(f=>$("faqs").appendChild(faqRow(f))); if(!(cfg.faq||[]).length)$("faqs").appendChild(faqRow());
+    (cfg.faq||[]).forEach(f=>$("faqs").appendChild(faqRow(f))); if(!(cfg.faq||[]).length)$("faqs").appendChild(faqRow()); markFaqButtons();
     $("announce").value=cfg.announcement||""; $("anncount").textContent=$("announce").value.length+" / 90";
     const paused=data.status!=="active";
     $("statuspill").textContent=paused?"Paused":"Live"; $("statuspill").className="pill "+(paused?"paused":"live");
