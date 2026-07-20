@@ -85,8 +85,8 @@
     <h1>Invoice maker</h1>
     <div class="sub">Reception SG · fill, then Save as PDF.</div>
 
-    <label>Your PayNow mobile <span class="h">saved on this device</span></label>
-    <input id="fpaynow" placeholder="e.g. 9123 4567" inputmode="tel">
+    <label>Your PayNow mobile <span class="h">your number, prefilled</span></label>
+    <input id="fpaynow" placeholder="e.g. 9123 4567" inputmode="tel" value="8321 9747">
 
     <label>Client business name</label>
     <input id="fclient" placeholder="e.g. Marcus Lim Property">
@@ -219,7 +219,7 @@
   // init
   (function(){
     var saved={};try{saved=JSON.parse(localStorage.getItem(LS)||'{}');}catch(e){}
-    if(saved.paynow)$('fpaynow').value=saved.paynow;
+    $('fpaynow').value=saved.paynow||'8321 9747';
     if(saved.amount)$('famount').value=saved.amount;
     var today=new Date();
     $('fissued').value=iso(today);
