@@ -111,8 +111,8 @@
   .btn:disabled{opacity:.5;cursor:default}
   .btn.wide{width:100%}
   /* services */
-  .svc{display:grid;grid-template-columns:1fr 160px 44px;column-gap:10px;row-gap:7px;margin-top:8px;align-items:end;padding:13px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
-  .svc .f{display:block;min-width:0}
+  .svc{display:grid;grid-template-columns:1fr 160px 44px;column-gap:10px;row-gap:4px;margin-top:8px;align-items:start;padding:11px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+  .svc .f{display:block;min-width:0;margin:0}
   .svc .fl{display:block;font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:3px}
   .svc .name{grid-column:1;grid-row:1}
   .svc .price{grid-column:2;grid-row:1}
@@ -248,7 +248,7 @@
       <div class="card">
         <div class="sec-t">The basics</div>
         <div class="row2">
-          <div><label>Business name<input id="bname"></label></div>
+          <div><label>Business name <span class="hint">your name, or your business name</span><input id="bname"></label></div>
           <div><label>Trade<select id="trade" disabled></select></label><div class="hint" id="tradehint" style="margin-top:5px"></div></div>
         </div>
         <div class="row2">
@@ -257,8 +257,8 @@
         </div>
         <div id="ownerbox" hidden><label>Daily chat limit <span class="hint">owner only, chats per day before the busy message shows</span><input id="dailycap" type="number" min="50" max="50000" step="50"></label></div>
         <label>What you do <span class="hint">one short line under your name, e.g. Property agent, or Financial adviser</span><input id="tagline" placeholder="e.g. Property agent, East side"></label>
-        <label>Greeting <span class="hint">first message customers see</span><input id="greeting"></label>
-        <label>Announcement <span class="hint">optional, shows as a banner across the top of your front desk, clear it to hide</span><textarea id="announce" maxlength="90" rows="2" placeholder="e.g. 20% off gel this week, or Closed 25 Dec" style="min-height:52px"></textarea></label>
+        <label>Greeting <span class="hint">first message customers see</span><input id="greeting" placeholder="e.g. Hi, this is Marcus's front desk. Ask about a listing, or buying, selling or renting."></label>
+        <label>Announcement <span class="hint">optional, shows as a banner across the top of your front desk, clear it to hide</span><textarea id="announce" maxlength="90" rows="2" placeholder="e.g. Free home valuation this month, or away 25 to 28 Dec" style="min-height:52px"></textarea></label>
         <div class="hint" id="anncount" style="margin-top:5px">0 / 90</div>
         <label>WhatsApp for customers <span class="hint">optional, adds a WhatsApp button to your front desk, e.g. 9123 4567</span><input id="whatsapp" placeholder="e.g. 9123 4567"></label>
         <label>Google review link <span class="hint">optional, powers the one-tap "ask for a review" button on your bookings</span><input id="reviewlink" placeholder="e.g. your Google review URL"></label>
@@ -331,7 +331,7 @@
       </div>
       <div class="card">
         <div class="sec-t">About your business</div>
-        <div class="sec-h">Write a short bio, as plain facts about you and your business: your background, what you focus on, what makes you different. Write it in your own words, the desk turns it into natural answers for customers. No need to describe the desk itself.</div>
+        <div class="sec-h">A short bio, written the way your desk should describe you to a customer, so write it as "Marcus is..." rather than "I am...". Keep it to plain facts: your background, what you focus on, what makes you different. No need to describe the desk itself.</div>
         <textarea id="about" placeholder="e.g. Marcus Lim is a CEA-registered property agent with 8 years in the market, focused on HDB resale and condos in the East. He handles viewings and negotiation himself."></textarea>
 
       </div>
@@ -357,7 +357,7 @@
       <div class="widestack">
       <div class="card">
         <div class="sec-t">Services &amp; prices</div>
-        <div class="sec-h">Your price list, this is what the front desk quotes customers. One row per service.</div>
+        <div class="sec-h">What you offer, and any price you want the desk to share (like a listing's asking price). It only states exactly what you put here, never a valuation, estimate or figure you didn't give it.</div>
         <div class="svchead"><span>Service</span><span>Description</span><span>Price</span><span></span></div>
         <div id="services"></div>
         <button class="addbtn" id="addsvc" type="button">+ Add a service</button>
