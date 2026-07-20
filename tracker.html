@@ -108,7 +108,7 @@
   function del(num){if(!confirm('Delete '+num+'? This only removes it from this list.'))return;save(load().filter(function(x){return x.num!==num;}));render();}
 
   function rowHtml(r){
-    var period=r.start?(fmt(r.start).replace(/ \d{4}$/,'')+' – '+addMonth(r.start)):'';
+    var period=r.start?(fmt(r.start).replace(/ \d{4}$/,'')+' to '+addMonth(r.start)):'';
     var meta=[r.num,r.client!=='—'&&period?period:period].filter(Boolean).join(' · ');
     var actions=r.paid
       ? '<a class="mini" href="invoice.html?load='+encodeURIComponent(r.num)+'">Receipt</a>'

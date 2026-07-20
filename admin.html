@@ -495,7 +495,7 @@
   $("addlisting").onclick=()=>{const r=listingRow();$("listingsBox").appendChild(r);r.querySelectorAll("textarea").forEach(grow);markDirty();};
   $("addfaq").onclick=()=>{const r=faqRow();$("faqs").appendChild(r);r.querySelectorAll("textarea").forEach(grow);markFaqButtons();markDirty();};
   $("announce").addEventListener("input",()=>{$("anncount").textContent=$("announce").value.length+" / 90";});
-  ["bname","fname","tone","greeting","tagline","telegram","about","hours","announce","whatsapp","trade","areas","trackrec","credentials","freeconsult"].forEach(id=>$(id).addEventListener("input",markDirty));
+  ["bname","fname","tone","greeting","tagline","telegram","about","hours","announce","whatsapp","reviewlink","trade","areas","trackrec","credentials","freeconsult"].forEach(id=>$(id).addEventListener("input",markDirty));
 
   // style picker
   let selStyle="clean";

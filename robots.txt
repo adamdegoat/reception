@@ -7,6 +7,8 @@ Disallow: /booking.html
 Disallow: /manual.html
 Disallow: /og-card.html
 Disallow: /f.html
-Disallow: /site-amber.html
+Disallow: /analytics.html
+Disallow: /invoice.html
+Disallow: /tracker.html
 
 Sitemap: https://reception.sg/sitemap.xml

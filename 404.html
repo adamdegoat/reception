@@ -29,7 +29,7 @@
 <script>
 (function(){
   var WORKER="https://nimbus-desk.propsightsg.workers.dev";
-  var PAGES={about:1,pricing:1,work:1,why:1,"get-started":1,privacy:1,terms:1,manual:1,admin:1,booking:1,leads:1,add:1,f:1,index:1};
+  var PAGES={about:1,pricing:1,work:1,why:1,"get-started":1,"property-agents":1,"insurance-financial":1,privacy:1,terms:1,manual:1,admin:1,booking:1,leads:1,add:1,f:1,index:1};
   var seg=location.pathname.replace(/^\/+|\/+$/g,"").split("/")[0].toLowerCase();
   if(!seg){ location.replace("/"); return; }
   if(PAGES[seg]){ location.replace("/"+seg+".html"+location.search+location.hash); return; }

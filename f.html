@@ -264,7 +264,7 @@
 </aside>
 <div class="desk" id="desk">
   <div class="dhead">
-    <span class="davatar" aria-hidden="true"><svg viewBox="0 0 64 64"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="#F3EFE8"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="#F3EFE8"/><circle cx="32" cy="26.5" r="3.9" fill="#e8663a"/></svg></span>
+    <span class="davatar" aria-hidden="true"><svg viewBox="0 0 64 64"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="#F3EFE8"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="#F3EFE8"/><circle cx="32" cy="26.5" r="3.9" fill="var(--accent)"/></svg></span>
     <div class="dmeta">
       <div class="dname" id="dname">Front desk</div>
       <div class="dwho" id="dwho"></div>
@@ -516,7 +516,7 @@
     document.documentElement.style.setProperty("--accent-ink",ink);
     const nm=cfg.name||"Front desk";
     document.title=nm+" · Front desk"; $("dname").textContent=nm;
-    const desc=(cfg.tagline&&cfg.tagline.trim())||TRADE_LABELS[cfg.trade]||"";
+    const desc=String(cfg.tagline||"").trim()||TRADE_LABELS[cfg.trade]||"";
     if(desc){ $("dwho").textContent=desc; $("dwho").style.display=""; } else { $("dwho").style.display="none"; }
     const first=(nm.split(/\s+/)[0]||nm);
     $("bpName").textContent=nm;
@@ -545,9 +545,9 @@
     else { $("dwa").hidden=true; }
     $("bookrow").hidden = !cfg.booking;
     thread.innerHTML=""; chipsEl.innerHTML=""; history.length=0; resetAnnounce();
-    if(cfg.announcement && cfg.announcement.trim()) setupAnnounce(cfg.announcement.trim());
+    if(String(cfg.announcement||"").trim()) setupAnnounce(String(cfg.announcement).trim());
     add("in", cfg.greeting||("Hi, welcome to "+nm+". Ask me anything."));
-    (cfg.pills||[]).forEach(p=>{ const b=document.createElement("button"); b.className="chip"; b.type="button"; b.textContent=p.q;
+    (cfg.pills||[]).filter(p=>p&&p.q&&p.a).forEach(p=>{ const b=document.createElement("button"); b.className="chip"; b.type="button"; b.textContent=p.q;
       b.addEventListener("click",()=>{ if(busy)return; collapseChips(); busy=true; $("send").disabled=true; b.classList.add("gone");
         add("out",p.q); history.push({role:"user",content:p.q}); const t=typing();
         setTimeout(()=>{ t.remove(); add("in",p.a); history.push({role:"assistant",content:p.a}); speak(p.say||p.a); busy=false; $("send").disabled=false; }, REDUCE?150:650);

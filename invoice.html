@@ -121,7 +121,7 @@
       </div>
       <div class="doctype">
         <div class="dt" id="dtLabel">Invoice</div>
-        <div class="dmeta"><span id="oNum">RCP-0001</span><br>Issued <span id="oIssued">—</span></div>
+        <div class="dmeta"><span id="oNum">RCP-0001</span><br>Issued <span id="oIssued"></span></div>
         <div class="paidstamp" id="oPaid">Paid</div>
       </div>
     </div>
@@ -133,15 +133,15 @@
       </div>
       <div class="pblk" style="text-align:right">
         <div class="plabel">Billing period</div>
-        <div class="pval" id="oPeriod" style="font-size:14px;font-weight:600">—</div>
-        <div class="psub" id="oDue">Due —</div>
+        <div class="pval" id="oPeriod" style="font-size:14px;font-weight:600"></div>
+        <div class="psub" id="oDue">Due</div>
       </div>
     </div>
 
     <table>
       <thead><tr><th>Description</th><th class="r">Amount</th></tr></thead>
       <tbody><tr>
-        <td><div class="iname">Reception front desk subscription</div><div class="iper" id="oLinePeriod">—</div></td>
+        <td><div class="iname">Reception front desk subscription</div><div class="iper" id="oLinePeriod"></div></td>
         <td class="r" id="oLineAmt">S$149.00</td>
       </tr></tbody>
     </table>
@@ -155,7 +155,7 @@
     <div class="payblk">
       <div class="payinfo">
         <div class="ph">Pay by PayNow</div>
-        <div class="pd">To <b id="oPay">—</b><br>Amount <b id="oPayAmt">S$149.00</b><br>Reference <b id="oRef">—</b></div>
+        <div class="pd">To <b id="oPay"></b><br>Amount <b id="oPayAmt">S$149.00</b><br>Reference <b id="oRef"></b></div>
       </div>
       <div class="qrbox"><div id="qr"></div></div>
     </div>
@@ -194,8 +194,8 @@
     var paid=$('fpaid').checked;
     var paidDate=parseD($('fpaiddate').value)||new Date();
     // period
-    var periodTxt='—', linePeriod='—', dueTxt='—';
-    if(start){var end=addMonth(start);periodTxt=fmtDate(start)+' – '+fmtDate(end);linePeriod=periodTxt;
+    var periodTxt='', linePeriod='', dueTxt='';
+    if(start){var end=addMonth(start);periodTxt=fmtDate(start)+' to '+fmtDate(end);linePeriod=periodTxt;
       var due=new Date(start.getTime());due.setDate(due.getDate()+7);dueTxt='Due by '+fmtDate(due);}
     $('oClient').textContent=client;
     $('oPeriod').textContent=periodTxt;
@@ -257,7 +257,7 @@
       // record into the tracker list (upsert by invoice number)
       try{
         var list=JSON.parse(localStorage.getItem(LSLIST)||'[]');
-        var rec={num:num,client:($('fclient').value.trim()||'—'),amount:+$('famount').value||0,start:$('fstart').value,issued:$('fissued').value,paid:$('fpaid').checked,paidDate:$('fpaid').checked?$('fpaiddate').value:null};
+        var rec={num:num,client:($('fclient').value.trim()||''),amount:+$('famount').value||0,start:$('fstart').value,issued:$('fissued').value,paid:$('fpaid').checked,paidDate:$('fpaid').checked?$('fpaiddate').value:null};
         var idx=-1;for(var k=0;k<list.length;k++){if(list[k].num===num){idx=k;break;}}
         if(idx>=0){rec.ts=list[idx].ts;list[idx]=rec;}else{rec.ts=Date.now();list.push(rec);}
         localStorage.setItem(LSLIST,JSON.stringify(list));
