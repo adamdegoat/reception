@@ -295,7 +295,6 @@
           <div><label>Front-desk name <span class="hint">the name it answers by, e.g. Marcus</span><input id="fname" placeholder="defaults to your business name"></label></div>
           <div><label>Tone<select id="tone"><option value="warm">Warm</option><option value="professional">Professional</option><option value="straight-talking">Straight-talking</option></select></label></div>
         </div>
-        <div id="ownerbox" hidden><label>Daily chat limit <span class="hint">owner only, chats per day before the busy message shows</span><input id="dailycap" type="number" min="50" max="50000" step="50"></label></div>
         <label>What you do <span class="hint">one line under your name, e.g. Property agent</span><input id="tagline" placeholder="e.g. Property agent, East side"></label>
         <label>Greeting <span class="hint">first message customers see</span><input id="greeting" placeholder="e.g. Hi, this is Marcus's front desk. Ask about a listing, or buying, selling or renting."></label>
         <label>Announcement <span class="hint">optional, a banner across the top; clear to hide</span><textarea id="announce" maxlength="90" rows="2" placeholder="e.g. Free home valuation this month, or away 25 to 28 Dec" style="min-height:52px"></textarea></label>
@@ -446,6 +445,7 @@
         <div class="lbl" id="adminlbl" style="margin-top:16px" hidden>Admin link (send to the client)</div>
         <div class="linkbox" id="adminbox" hidden><input id="adminlink" readonly><button class="copy" data-t="adminlink">Copy</button></div>
         <button class="btn sec sm" id="resetbtn" style="margin-top:10px" hidden>Reset admin link</button>
+        <div id="ownerbox" hidden style="margin-top:18px;padding-top:16px;border-top:1px solid var(--line)"><div class="lbl" style="margin-bottom:6px">Daily chat limit <span class="hint" style="font-weight:400">owner only, chats/day before the busy message shows</span></div><input id="dailycap" type="number" min="50" max="50000" step="50" style="max-width:200px"></div>
       </div>
       </div>
       <div class="saverow" style="justify-content:center;margin-top:2px"><button class="btn" id="save2" style="min-width:220px">Save changes</button><span class="status" id="status2"></span></div>
