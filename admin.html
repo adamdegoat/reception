@@ -209,7 +209,7 @@
   .pvcap{text-align:center;font-size:12px;color:var(--muted);margin-top:8px}
   /* ---- rebuilt console: sticky top bar + single column + modal preview ---- */
   .tbar{position:sticky;top:0;z-index:50;background:rgba(243,239,232,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  .tbar-in{max-width:900px;margin:0 auto;padding:10px clamp(14px,4vw,28px);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px}
+  .tbar-in{max-width:1080px;margin:0 auto;padding:10px clamp(14px,4vw,28px);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px}
   .tbar-actions{display:flex;align-items:center;gap:8px}
   .tbar .brand{gap:9px;font-weight:800;font-size:16px;letter-spacing:-.02em;color:var(--ink);min-height:34px}
   .tbar .brand svg{width:25px;height:25px}
@@ -222,6 +222,13 @@
   .sntabs a{font-size:13px;font-weight:600;color:var(--muted);text-decoration:none;padding:6px 13px;border-radius:100px;transition:background .15s,color .15s;cursor:pointer;white-space:nowrap}
   .sntabs a:hover{color:var(--ink)}
   .sntabs a.on{background:var(--accent-ink);color:#fff}
+  /* client-side Front desk / Appearance split, keeps one page + one Save */
+  .appview{display:none}
+  body.tab-appearance .card:not(.appview){display:none}
+  body.tab-appearance .appview{display:block}
+  .ownerlink{margin-left:4px;font-size:12px;font-weight:600;color:var(--accent-ink);text-decoration:none;border:1px solid var(--line);border-radius:100px;padding:4px 11px;white-space:nowrap}
+  .ownerlink:hover{background:var(--card)}
+  @media(max-width:600px){.ownerlink{padding:4px 9px;font-size:11.5px}}
   .tbar-in>.brand{justify-self:start}.tbar-in>.sntabs{justify-self:center}.tbar-in>.tbar-actions{justify-self:end}
   .body{max-width:1080px;margin:0 auto;padding:20px clamp(14px,4vw,28px) 90px;display:flex;flex-direction:column;gap:16px}
   .compactgrid{column-count:2;column-gap:16px}
@@ -230,7 +237,7 @@
   @media(max-width:860px){.compactgrid{column-count:auto;display:flex;flex-direction:column;gap:16px}.compactgrid>.card{margin:0}}
   .pagehd{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
   .pagehd h1{font-size:clamp(22px,3.2vw,30px);font-weight:800;letter-spacing:-.025em}
-  @media(max-width:680px){.tbar-in{display:flex;flex-wrap:wrap}.sntabs{order:3;flex-basis:100%;margin:9px 0 0;justify-content:center}.tbar-actions{margin-left:auto}}
+  @media(max-width:680px){.tbar-in{display:flex;flex-wrap:wrap}.sntabs{order:3;flex-basis:100%;margin:9px 0 0;justify-content:center;flex-wrap:wrap;gap:4px}.tbar-actions{margin-left:auto}}
   @media(max-width:600px){.tbar .brand .csl{display:none}.tbar-in{gap:9px}.tbtn{padding:8px 11px;font-size:12px}.tbar-actions{gap:6px;margin-left:auto}.tbfull{display:none}.sntabs a{padding:6px 13px}}
   .pvmodal .pvphone{width:min(340px,86vw)}
   .pvmodal{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:18px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s ease,visibility .18s ease}
@@ -248,15 +255,15 @@
 <div id="app" hidden>
   <header class="tbar">
     <div class="tbar-in">
-      <div class="brand"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="#171512"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="#171512"/><circle cx="32" cy="26.5" r="3.9" fill="#e8663a"/></svg><span class="bname">Reception</span><span class="csl">Console</span></div>
+      <div class="brand"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="#171512"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="#171512"/><circle cx="32" cy="26.5" r="3.9" fill="#e8663a"/></svg><span class="bname">Reception</span><span class="csl">Console</span><a class="ownerlink" id="back" href="add.html" hidden>Clients</a></div>
       <nav class="sntabs">
         <a id="tabFd" class="on" href="#">Front desk</a>
+        <a id="tabAp" href="#">Appearance</a>
         <a id="tabBk" href="#">Bookings</a>
         <a id="tabLd" href="#">Leads</a>
         <a id="tabAn" href="#">Analytics</a>
       </nav>
       <div class="tbar-actions">
-        <a class="tbtn" id="back" href="add.html" hidden>Clients</a>
         <button class="tbtn" id="pvbtn" type="button">Preview</button>
         <button class="tbtn save" id="save">Save<span class="tbfull"> changes</span></button>
       </div>
@@ -297,7 +304,7 @@
         <label>Google review link <span class="hint">optional, powers the one-tap "ask for a review" button on your bookings</span><input id="reviewlink" placeholder="e.g. your Google review URL"></label>
 
       </div>
-      <div class="card">
+      <div class="card appview">
         <div class="sec-t">Your look</div>
         <div class="sec-h">The style your front desk wears. Your name and colours stay yours.</div>
         <div class="stylepick" id="stylepick">
@@ -369,7 +376,7 @@
         </div>
 
       </div>
-      <div class="card">
+      <div class="card appview">
         <div class="sec-t">Voice</div>
         <div class="sec-h">The voice your front desk speaks in. Tap play to hear each one.</div>
         <div class="voicepick" id="voicepick">
@@ -490,6 +497,11 @@
     renderDeskPreview();
     if(dirty)markDirty(); }
   document.querySelectorAll("#stylepick .styleopt").forEach(b=>b.addEventListener("click",()=>setStyle(b.dataset.style,true)));
+  // Front desk / Appearance tabs: client-side view toggle (same page, one Save)
+  function showConsoleTab(ap){ document.body.classList.toggle("tab-appearance",ap); $("tabFd").classList.toggle("on",!ap); $("tabAp").classList.toggle("on",ap); window.scrollTo(0,0); }
+  $("tabFd").addEventListener("click",e=>{e.preventDefault();showConsoleTab(false);});
+  $("tabAp").addEventListener("click",e=>{e.preventDefault();showConsoleTab(true);});
+  if(P.get("view")==="appearance") showConsoleTab(true);
   // live "your desk" preview (mirrors the front desk's style + colour tokens)
   function darken(hex,f){ const m=String(hex).replace('#','').match(/.{2}/g); if(!m)return hex; return '#'+m.map(h=>Math.max(0,Math.min(255,Math.round(parseInt(h,16)*f))).toString(16).padStart(2,'0')).join(''); }
   function renderDeskPreview(){ const pv=$("deskpv"); if(!pv)return; pv.dataset.style=selStyle; pv.style.setProperty("--accent",selAccent); pv.style.setProperty("--accent-ink",darken(selAccent,.72)); if($("dpvname"))$("dpvname").textContent=($("fname").value.trim()||$("bname").value.trim()||"Your front desk"); }

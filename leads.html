@@ -17,7 +17,7 @@
   a{color:inherit}
   /* shared console sub-nav */
   .tbar{position:sticky;top:0;z-index:50;background:rgba(243,239,232,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin-bottom:20px}
-  .tbar-in{max-width:900px;margin:0 auto;padding:10px clamp(14px,4vw,28px);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px}
+  .tbar-in{max-width:1080px;margin:0 auto;padding:10px clamp(14px,4vw,28px);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px}
   .brand{display:inline-flex;align-items:center;gap:9px;font-weight:800;font-size:16px;letter-spacing:-.02em;color:var(--ink);min-height:34px}
   .brand svg{width:25px;height:25px;flex:none}
   .brand .csl{color:var(--muted);font-weight:600}
@@ -26,7 +26,7 @@
   .sntabs a:hover{color:var(--ink)}
   .sntabs a.on{background:var(--accent-ink);color:#fff}
   .tbar-in>.brand{justify-self:start}.tbar-in>.sntabs{justify-self:center}.tbar-in>.tbar-actions{justify-self:end}
-  @media(max-width:680px){.tbar-in{display:flex;flex-wrap:wrap}.sntabs{order:3;flex-basis:100%;margin:9px 0 0;justify-content:center}.tbar-actions{margin-left:auto}}
+  @media(max-width:680px){.tbar-in{display:flex;flex-wrap:wrap}.sntabs{order:3;flex-basis:100%;margin:9px 0 0;justify-content:center;flex-wrap:wrap;gap:4px}.tbar-actions{margin-left:auto}}
   @media(max-width:600px){.brand .csl{display:none}.tbar-in{gap:9px}.sntabs a{padding:6px 13px}}
   h1{font-size:clamp(24px,5vw,31px);font-weight:800;letter-spacing:-.02em}
   .sub{color:var(--muted);font-size:15px;margin-top:4px}
@@ -68,6 +68,7 @@
     <div class="brand"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="#171512"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="#171512"/><circle cx="32" cy="26.5" r="3.9" fill="#e8663a"/></svg>Reception <span class="csl">Console</span></div>
     <nav class="sntabs">
       <a id="tabFd" href="#">Front desk</a>
+      <a id="tabAp" href="#">Appearance</a>
       <a id="tabBk" href="#">Bookings</a>
       <a id="tabLd" href="#" class="on">Leads</a>
       <a id="tabAn" href="#">Analytics</a>
@@ -160,7 +161,7 @@
     if(status!==200||!data.ok){ $("loading").hidden=true; $("loaderr").hidden=false; $("loaderrmsg").textContent=status===401?"This link is wrong or has been reset.":"Couldn't load your leads."; return; }
     bizName=data.business_name||""; $("bizname").textContent=bizName;
     const q="?c="+slug+"&k="+key;
-    $("tabFd").href=BASE+"/admin.html"+q; $("tabBk").href=BASE+"/booking.html"+q; $("tabLd").href=BASE+"/leads.html"+q; $("tabAn").href=BASE+"/analytics.html"+q;
+    $("tabFd").href=BASE+"/admin.html"+q; $("tabAp").href=BASE+"/admin.html"+q+"&view=appearance"; $("tabBk").href=BASE+"/booking.html"+q; $("tabLd").href=BASE+"/leads.html"+q; $("tabAn").href=BASE+"/analytics.html"+q;
     $("loading").hidden=true; $("app").style.display="block";
     load();
   })();
