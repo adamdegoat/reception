@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="styles.css?v=60">
 <style>
   /* ===== Insurance and financial advisers vertical page ===== */
+  /* Vertical accent: deep professional teal (trust), distinct from the property page's terracotta */
+  :root{--accent:#23a093;--accent-ink:#12564e}
   .vhead{position:sticky;top:0;z-index:50;background:rgba(243,239,232,.86);backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
   .vhead.scrolled{border-color:var(--line)}
   .vhead .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:16px;padding-bottom:16px}
@@ -46,12 +48,12 @@
   .pspeed{background:var(--ink);color:var(--surface);padding:clamp(56px,8vh,96px) 0;position:relative}
   .pspeed .shead{color:var(--surface)}
   .pspeed h2{font-size:clamp(28px,3.8vw,46px);font-weight:800;letter-spacing:-.025em;line-height:1.06;max-width:20ch;text-wrap:balance}
-  .pspeed h2 em{font-style:normal;color:#f0864f}
+  .pspeed h2 em{font-style:normal;color:#35c2b0}
   .pspeed .lede{margin-top:20px;font-size:clamp(17px,1.7vw,19px);line-height:1.6;color:rgba(245,242,236,.72);max-width:52ch}
   .pfacts{margin-top:clamp(36px,5vh,52px);display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,40px)}
   @media(max-width:760px){.pfacts{grid-template-columns:1fr;gap:26px}}
   .pfact{border-top:1.5px solid rgba(245,242,236,.22);padding-top:18px}
-  .pfact b{display:block;font-size:clamp(22px,2.6vw,30px);font-weight:800;letter-spacing:-.02em;color:#f0864f}
+  .pfact b{display:block;font-size:clamp(22px,2.6vw,30px);font-weight:800;letter-spacing:-.02em;color:#35c2b0}
   .pfact span{display:block;margin-top:7px;font-size:15px;line-height:1.5;color:rgba(245,242,236,.72)}
 
   /* how it works for you: alternating rows */
@@ -92,7 +94,7 @@
   .sprow .k{font-size:15px;color:var(--ink)}
   .sprow .v{font-weight:800;font-size:22px;letter-spacing:-.02em}
   .spbars{margin-top:22px;display:flex;align-items:flex-end;gap:8px;height:96px}
-  .spbars i{flex:1;background:linear-gradient(to top,var(--accent-ink),#e8895f);border-radius:5px 5px 0 0;min-height:8px}
+  .spbars i{flex:1;background:linear-gradient(to top,var(--accent-ink),var(--accent));border-radius:5px 5px 0 0;min-height:8px}
   .spcap{margin-top:12px;font-family:var(--mono);font-size:11px;color:var(--muted);text-align:center}
 
   /* setup + pricing + cta reuse .sec */
@@ -120,7 +122,7 @@
 <header class="vhead" id="vhead">
   <div class="wrap">
     <a class="brandmark" href="index.html" aria-label="Reception, home">
-      <svg class="brandmk" viewBox="0 0 64 64" aria-hidden="true"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="currentColor"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="currentColor"/><circle cx="32" cy="26.5" r="3.9" fill="#e8663a"/></svg><span class="bmtext"><span class="bmname">reception<svg class="aibadge" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#b8532a"/><text x="12" y="16.2" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="700" font-size="11" letter-spacing="-.5" fill="#fff">AI</text></svg></span><span class="bmsub" aria-hidden="true">Insurance &amp; financial</span></span>
+      <svg class="brandmk" viewBox="0 0 64 64" aria-hidden="true"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="currentColor"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="currentColor"/><circle cx="32" cy="26.5" r="3.9" fill="#23a093"/></svg><span class="bmtext"><span class="bmname">reception<svg class="aibadge" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#12564e"/><text x="12" y="16.2" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="700" font-size="11" letter-spacing="-.5" fill="#fff">AI</text></svg></span><span class="bmsub" aria-hidden="true">Insurance &amp; financial</span></span>
     </a>
     <a class="vcta" href="https://wa.me/6583219747?text=Hi%2C%20I%27m%20a%20financial%20adviser%20and%20I%27d%20like%20a%20front%20desk." target="_blank" rel="noopener">Set up your desk
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -140,7 +142,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
             <a class="plink" href="#try">See it answer, live</a>
           </div>
-          <div class="pmicro"><span><b>S$99</b>/month founding rate</span><span><b>Live</b> in a day</span><span><b>No</b> lock-in</span></div>
+          <div class="pmicro"><span><b>S$99</b>/month founding rate</span><span><b>Live</b> within minutes</span><span><b>No</b> lock-in</span></div>
         </div>
         <div id="try">
           <div class="pdeskwrap">
@@ -241,7 +243,7 @@
       <h2 class="shead" style="max-width:16ch">We set it up. You share <em>one link.</em></h2>
       <div class="psteps">
         <div class="pstep"><div class="n">Step one</div><h4>Tell us about you</h4><p>Your name, what you help clients with, how you like to sound. A short chat, nothing technical.</p></div>
-        <div class="pstep"><div class="n">Step two</div><h4>We build your desk</h4><p>In your name and colours, with the MAS guardrails built in, usually live the same day. We do all of it.</p></div>
+        <div class="pstep"><div class="n">Step two</div><h4>We build your desk</h4><p>In your name and colours, with the MAS guardrails built in, usually live within minutes. We do all of it.</p></div>
         <div class="pstep"><div class="n">Step three</div><h4>Put it everywhere</h4><p>One link and QR for your bio, your posts, your WhatsApp. From then on, nothing gets missed.</p></div>
       </div>
     </div>
