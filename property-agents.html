@@ -124,6 +124,28 @@
   .pcol>p{margin-top:10px;font-size:15.5px;line-height:1.55;color:var(--muted);max-width:44ch}
   .pcol .leadcard,.pcol .ceabox{margin-top:22px}
   .pfinmicro{margin-top:22px;font-family:var(--mono);font-size:13px;color:var(--muted)}
+  /* chat-led top */
+  .pdemo{padding:clamp(30px,4.5vh,58px) 0 clamp(38px,5.5vh,74px);text-align:center}
+  .peyebrow2{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:15px}
+  .pdemo h1{font-size:clamp(27px,3.4vw,42px);font-weight:800;letter-spacing:-.025em;line-height:1.07;max-width:18ch;margin:0 auto;text-wrap:balance}
+  .pdemo .pdsub{margin:16px auto 0;font-size:clamp(16px,1.35vw,18px);color:var(--muted);line-height:1.55;max-width:52ch}
+  .pdemodesk{max-width:480px;margin:clamp(28px,3.8vw,44px) auto 0;position:relative}
+  .pdemodesk::before{content:"";position:absolute;z-index:-1;inset:-10% -16%;background:radial-gradient(50% 44% at 50% 32%,color-mix(in srgb,var(--accent) 20%,transparent),transparent 70%)}
+  .pdemodesk .pdesk{width:100%;background:var(--card);border:1px solid rgba(23,21,18,.16);border-radius:30px;overflow:hidden;box-shadow:0 2px 8px -2px rgba(23,21,18,.1),0 44px 90px -46px rgba(23,21,18,.5)}
+  .pdemodesk .pdesk iframe{display:block;width:100%;height:660px;border:0;background:#f2f4f5}
+  .pdemocta{margin-top:clamp(26px,3.4vw,40px);display:inline-flex;flex-direction:column;align-items:center;gap:14px}
+  .pdemocta .pmicro{justify-content:center;flex-wrap:wrap}
+  /* informative field scenes */
+  .pinfo{padding:clamp(48px,7vh,88px) 0}
+  .pinfo.tint{background:var(--surface)}
+  .pinfo h2{font-size:clamp(25px,3.2vw,38px);font-weight:800;letter-spacing:-.025em;line-height:1.08;max-width:20ch}
+  .pinfo .plead{margin-top:15px;font-size:clamp(16px,1.4vw,18px);color:var(--muted);line-height:1.55;max-width:58ch}
+  .pscenes{margin-top:clamp(26px,3.4vw,42px);border-top:1px solid var(--line)}
+  .pscene{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(18px,3vw,48px);padding:clamp(20px,2.6vw,28px) 0;border-bottom:1px solid var(--line)}
+  @media(max-width:700px){.pscene{grid-template-columns:1fr;gap:9px}}
+  .pscene .moment{font-size:clamp(17px,1.7vw,20px);font-weight:700;letter-spacing:-.01em;line-height:1.25}
+  .pscene .resp{font-size:15.5px;color:var(--muted);line-height:1.56}
+  .pscene .resp b{color:var(--ink);font-weight:600}
 </style>
 </head>
 <body>
@@ -142,31 +164,36 @@
 </header>
 
 <main>
-  <!-- HERO -->
-  <section class="phero">
+  <!-- CHAT-LED TOP -->
+  <section class="pdemo">
     <div class="wrap">
-      <div class="pherogrid">
-        <div>
-          <h1 class="ph1">The buyer you can't answer <em>books someone else.</em></h1>
-          <p class="phsub">Reception is the 24/7 front desk built for Singapore property agents. It answers every buyer, seller and tenant the second they message, in your name, captures who they are and what they want, and books the viewing, even while you're at one. You just get the lead on your phone, ready to close.</p>
-          <div class="phactions">
-            <a class="pbtn" href="https://wa.me/6583219747?text=Hi%2C%20I%27m%20a%20property%20agent%20and%20I%27d%20like%20a%20front%20desk." target="_blank" rel="noopener">Set up your desk
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-            <a class="plink" href="#try">See it answer, live</a>
-          </div>
-          <div class="pmicro"><span><b>S$99</b>/month founding rate</span><span><b>Live</b> within minutes</span><span><b>No</b> lock-in</span></div>
-        </div>
-        <div id="try">
-          <div class="pdeskwrap">
-            <div class="pdesk"><iframe src="f.html?c=propertydemo" title="A property agent's front desk, live" loading="lazy"></iframe></div>
-          </div>
-          <div class="pdesktag"><span class="d"></span>A real agent's desk. Ask it anything.</div>
-        </div>
+      <div class="peyebrow2">For property agents · Singapore</div>
+      <h1>This is a property agent's front desk. It's live.</h1>
+      <p class="pdsub">Ask it about a listing, or about buying, selling or renting. It answers, qualifies the lead, and books the viewing, in the agent's name, exactly as it would for you.</p>
+      <div class="pdemodesk">
+        <div class="pdesk"><iframe src="f.html?c=propertydemo" title="A property agent's front desk, live" loading="lazy"></iframe></div>
+      </div>
+      <div class="pdemocta">
+        <a class="pbtn" href="https://wa.me/6583219747?text=Hi%2C%20I%27m%20a%20property%20agent%20and%20I%27d%20like%20a%20front%20desk." target="_blank" rel="noopener">Set up your desk <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <div class="pmicro"><span><b>S$99</b>/month founding rate</span><span><b>Live</b> within minutes</span><span><b>No</b> lock-in</span></div>
       </div>
     </div>
   </section>
 
-  <!-- BUILT FOR YOU, SAFE BY DESIGN -->
+  <!-- FIELD-SPECIFIC SCENARIOS -->
+  <section class="pinfo tint">
+    <div class="wrap">
+      <h2>The enquiries slipping past you right now.</h2>
+      <p class="plead">Buyers rarely wait. They message whoever they find, whenever they think of it, and go with whoever gets back first. Here is where a front desk that never sleeps changes your week.</p>
+      <div class="pscenes">
+        <div class="pscene"><div class="moment">11pm. A buyer messages about your PropertyGuru listing.</div><div class="resp">You're asleep. By morning they've messaged three other agents. Reception replies in seconds, in your name, and qualifies them, so you wake up to a <b>lead, not a missed message</b>.</div></div>
+        <div class="pscene"><div class="moment">Mid-viewing. "Is the Bedok unit still available?"</div><div class="resp">You're with another client and can't reach your phone. It handles the question and <b>books the next viewing</b> without you lifting a finger.</div></div>
+        <div class="pscene"><div class="moment">Sunday, family time. Three enquiries land at once.</div><div class="resp">It answers all three, captures budget, area and timeline, and sends each straight to your phone, <b>ready for Monday morning</b>.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUALIFY + COMPLIANCE -->
   <section class="pfor">
     <div class="wrap">
       <h2 class="shead" style="max-width:22ch">Built for property. <em>Safe for you.</em></h2>
@@ -196,13 +223,12 @@
     </div>
   </section>
 
-  <!-- FINAL -->
+  <!-- CLOSE -->
   <section class="pfinal">
     <div class="wrap">
       <h2>Stop losing leads you never even saw.</h2>
       <p>Your next buyer is messaging tonight. Make sure someone answers.</p>
-      <a class="pbtn" href="https://wa.me/6583219747?text=Hi%2C%20I%27m%20a%20property%20agent%20and%20I%27d%20like%20a%20front%20desk." target="_blank" rel="noopener">Set up your desk
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="pbtn" href="https://wa.me/6583219747?text=Hi%2C%20I%27m%20a%20property%20agent%20and%20I%27d%20like%20a%20front%20desk." target="_blank" rel="noopener">Set up your desk <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <div class="pfinmicro">S$99/month founding rate · Live within minutes · No lock-in</div>
     </div>
   </section>
