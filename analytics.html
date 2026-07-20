@@ -106,6 +106,23 @@
       <a id="nudgeLink" href="#">See leads</a>
     </div>
 
+    <!-- vertical-aware insights -->
+    <style>
+    .ingrid{display:grid;grid-template-columns:1fr 1fr;gap:22px 34px;margin-top:14px}
+    @media(max-width:620px){.ingrid{grid-template-columns:1fr;gap:20px}}
+    .inh{font-family:var(--mono,"Spline Sans Mono",monospace);font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#8a8178;margin-bottom:11px}
+    .inrow{display:flex;align-items:center;gap:11px;margin-bottom:10px}
+    .inlbl{width:112px;font-size:13.5px;flex:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .inbar{flex:1;height:9px;background:#ece3d4;border-radius:100px;overflow:hidden}
+    .inbar i{display:block;height:100%;border-radius:100px}
+    .inrow b{font-size:13px;font-weight:700;width:22px;text-align:right}
+    </style>
+    <div class="card" id="cardInsights" hidden>
+      <h2 id="inTitle"></h2>
+      <div class="note" id="inNote"></div>
+      <div class="ingrid" id="inBody"></div>
+    </div>
+
     <!-- 14-day activity -->
     <div class="card" id="cardChart" hidden>
       <h2>Enquiries over the last 2 weeks</h2>
@@ -175,6 +192,31 @@
       const tot=daily.reduce((s,x)=>s+x.n,0);
       $("chartNote").textContent=tot?(tot+" "+(tot===1?"enquiry":"enquiries")+" in the last 14 days."):"No enquiries in the last 14 days yet.";
       $("cardChart").hidden=false;
+    }
+
+    // vertical-aware insights (property: who + where; insurance/financial: top topics)
+    const ins=a.insights||{};
+    const inbar=(label,n,max,color)=>'<div class="inrow"><span class="inlbl">'+eh(label)+'</span><span class="inbar"><i style="width:'+Math.max(8,Math.round(n/max*100))+'%;background:'+color+'"></i></span><b>'+n+'</b></div>';
+    if(ins.kind==="property"){
+      const roles=Object.entries(ins.roles||{}).filter(r=>r[1]>0);
+      const areas=ins.topAreas||[];
+      if(roles.length || areas.length){
+        $("inTitle").textContent="Who's asking, and where";
+        $("inNote").textContent="From what your desk captured, so you can see where the demand is.";
+        const rmax=Math.max(1,...roles.map(r=>r[1])), amax=Math.max(1,...areas.map(x=>x.n));
+        let html='<div><div class="inh">Who’s reaching out</div>'+roles.map(r=>inbar(r[0],r[1],rmax,"#b24714")).join("")+'</div>';
+        if(areas.length) html+='<div><div class="inh">Where they’re looking</div>'+areas.map(x=>inbar(x.name,x.n,amax,"#26506b")).join("")+'</div>';
+        $("inBody").innerHTML=html; $("cardInsights").hidden=false;
+      }
+    } else if(ins.kind==="topics"){
+      const topics=ins.topTopics||[];
+      if(topics.length){
+        $("inTitle").textContent="What they're asking about";
+        $("inNote").textContent="The topics your prospects raise most, so you know what's in demand.";
+        const tmax=Math.max(1,...topics.map(t=>t.n));
+        $("inBody").innerHTML='<div style="grid-column:1/-1">'+topics.map(t=>inbar(t.name,t.n,tmax,"#155e63")).join("")+'</div>';
+        $("cardInsights").hidden=false;
+      }
     }
 
     // when they reach out (weekday + time of day) — needs enough data
