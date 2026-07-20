@@ -335,6 +335,19 @@
         <textarea id="about" placeholder="e.g. CEA-registered property agent, focus on HDB resale and condos in the East, 8 years in the market..."></textarea>
 
       </div>
+      <div class="card" id="tradeCard" hidden>
+        <div class="sec-t">Tuned for your trade</div>
+        <div class="sec-h">A few details that let the desk represent you: it can answer "do you cover my area?" and "are you experienced?", and route better. Only what fits your trade shows here.</div>
+        <div id="propFields" hidden>
+          <label>Areas and property types you cover <span class="hint">the desk answers "do you cover X?" from this</span><input id="areas" placeholder="e.g. Tampines, Bedok, Pasir Ris. HDB resale and condos in the East."></label>
+          <label style="display:block;margin-top:14px">Your track record <span class="hint">stated exactly as you write it, the desk never inflates it</span><input id="trackrec" placeholder="e.g. 8 years, PropNex Gold, 120+ deals. CEA reg R012345A."></label>
+          <label style="display:block;margin-top:14px">Current listings, no price <span class="hint">it mentions these and offers a viewing, never quotes a price</span><textarea id="listings" placeholder="e.g. 4-room HDB Tampines St 45, high floor, renovated. 2-bed condo Bedok, for rent, pool view."></textarea></label>
+        </div>
+        <div id="insFields" hidden>
+          <label>Your credentials and standing <span class="hint">the desk answers "are you qualified?" from this</span><input id="credentials" placeholder="e.g. MDRT 5x, CFP, 12 years, with Financial Alliance."></label>
+          <label style="display:block;margin-top:14px">Your free consultation offer <span class="hint">it answers "is it free?" from this</span><input id="freeconsult" placeholder="e.g. Free, no-obligation 45-min review, online or in person."></label>
+        </div>
+      </div>
       <div class="card">
         <div class="sec-t">Opening hours</div>
         <input id="hours" placeholder="e.g. Mon to Fri 10:00 to 19:00, Sat 10:00 to 18:00, Sun closed">
@@ -400,6 +413,7 @@
   function ftime(s){try{return new Date(String(s).replace(" ","T")+"Z").toLocaleString("en-SG",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});}catch(e){return s;}}
   async function api(path,body){try{const r=await fetch(WORKER+path,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});return{status:r.status,data:await r.json().catch(()=>({}))};}catch(e){return{status:0,data:{}};}}
   function markDirty(){dirty=true;setStatus("Unsaved changes","dirty");updatePreview();}
+  function updateTradeFields(){const t=$("trade").value,p=t==="property",i=t==="insurance";$("propFields").hidden=!p;$("insFields").hidden=!i;$("tradeCard").hidden=!(p||i);}
   function setStatus(t,cls){["status","status2"].forEach(id=>{$(id).textContent=t;$(id).className="status"+(cls?" "+cls:"");});}
 
   const tsel=$("trade"); TRADES.forEach(t=>{const o=document.createElement("option");o.value=t[0];o.textContent=t[1];tsel.appendChild(o);});
@@ -414,7 +428,7 @@
   $("addsvc").onclick=()=>{const r=svcRow();$("services").appendChild(r);r.querySelectorAll("textarea").forEach(grow);markDirty();};
   $("addfaq").onclick=()=>{const r=faqRow();$("faqs").appendChild(r);r.querySelectorAll("textarea").forEach(grow);markDirty();};
   $("announce").addEventListener("input",()=>{$("anncount").textContent=$("announce").value.length+" / 90";});
-  ["bname","fname","tone","greeting","tagline","telegram","about","hours","announce","whatsapp","trade"].forEach(id=>$(id).addEventListener("input",markDirty));
+  ["bname","fname","tone","greeting","tagline","telegram","about","hours","announce","whatsapp","trade","areas","trackrec","listings","credentials","freeconsult"].forEach(id=>$(id).addEventListener("input",markDirty));
 
   // style picker
   let selStyle="clean";
@@ -484,6 +498,9 @@
     setVoice(cfg.voice||"ava",false);
     setAccent(cfg.accent||"#e8663a",false); $("whatsapp").value=cfg.whatsapp||""; $("reviewlink").value=cfg.review_link||"";
     $("about").value=cfg.about||"";
+    $("areas").value=cfg.areas||""; $("trackrec").value=cfg.track_record||""; $("listings").value=cfg.listings||"";
+    $("credentials").value=cfg.credentials||""; $("freeconsult").value=cfg.free_consult||"";
+    updateTradeFields();
     $("hours").value=typeof cfg.hours==="string"?cfg.hours:"";
     (cfg.services||[]).forEach(s=>$("services").appendChild(svcRow(s))); if(!(cfg.services||[]).length)$("services").appendChild(svcRow());
     (cfg.faq||[]).forEach(f=>$("faqs").appendChild(faqRow(f))); if(!(cfg.faq||[]).length)$("faqs").appendChild(faqRow());
@@ -513,7 +530,7 @@
   async function save(){
     const services=[...$("services").querySelectorAll(".svc")].map(r=>{const i=r.querySelectorAll("input,textarea");return{name:i[0].value.trim(),desc:i[1].value.trim(),price:i[2].value.trim()};}).filter(s=>s.name);
     const faq=[...$("faqs").querySelectorAll(".faqc")].map(r=>{const i=r.querySelectorAll("input,textarea");return{q:i[0].value.trim(),a:i[1].value.trim()};}).filter(f=>f.q&&f.a);
-    const config={tone:$("tone").value,greeting:$("greeting").value.trim(),tagline:$("tagline").value.trim(),style:selStyle,voice:selVoice,about:$("about").value.trim(),services,hours:$("hours").value.trim(),faq,announcement:$("announce").value.trim(),accent:selAccent,whatsapp:$("whatsapp").value.trim(),review_link:$("reviewlink").value.trim()};
+    const config={tone:$("tone").value,greeting:$("greeting").value.trim(),tagline:$("tagline").value.trim(),style:selStyle,voice:selVoice,about:$("about").value.trim(),services,hours:$("hours").value.trim(),faq,announcement:$("announce").value.trim(),accent:selAccent,whatsapp:$("whatsapp").value.trim(),review_link:$("reviewlink").value.trim(),areas:$("areas").value.trim(),track_record:$("trackrec").value.trim(),listings:$("listings").value.trim(),credentials:$("credentials").value.trim(),free_consult:$("freeconsult").value.trim()};
     const body={c:slug,k:key,config,frontdesk_name:$("fname").value.trim(),business_name:$("bname").value.trim(),lead_chat_id:$("telegram").value.trim()};
     if(OWNER){ body.trade=tsel.value; body.key=OWNER; body.daily_cap=parseInt($("dailycap").value,10)||1500; }
     [$("save"),$("save2")].forEach(b=>b.disabled=true); setStatus("Saving…","");
