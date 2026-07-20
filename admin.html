@@ -164,6 +164,38 @@
   .swatch.sel{border-color:var(--ink);box-shadow:0 0 0 2px var(--card),0 0 0 4px var(--ink)}
   .swatch.custom{position:relative;overflow:hidden;background:conic-gradient(from 0deg,#e8663a,#c2568a,#6a4bd0,#2f6fd0,#2f8f5f,#e8663a)}
   .swatch.custom input{position:absolute;inset:-4px;width:calc(100% + 8px);height:calc(100% + 8px);opacity:0;cursor:pointer;border:0;padding:0}
+  /* live "your desk" preview: chosen style + chosen colour together */
+  .deskpv{
+    --accent:#e8663a;--accent-ink:#b24714;
+    --font:"Hanken Grotesk",system-ui,sans-serif;--font-head:"Hanken Grotesk",system-ui,sans-serif;
+    --name-weight:700;--name-size:15px;--name-spacing:-.01em;
+    --av-radius:9px;--av-bg:var(--ink);
+    --deskbg:#f5f6f7;--head-bg:#fcfdfe;--head-fg:#171512;--head-border:1px solid rgba(20,28,38,.07);
+    --bubble-radius:12px;--in-bg:#e9ebee;--in-fg:#171512;--out-bg:var(--ink);--out-fg:#f5f6f7;
+    --chip-bg:transparent;--chip-fg:var(--accent-ink);--chip-border:1px solid color-mix(in srgb,var(--accent-ink) 34%,transparent);--chip-weight:500;--chip-radius:100px;
+    display:block;margin-top:10px;border-radius:15px;overflow:hidden;border:1px solid var(--line);background:var(--deskbg);font-family:var(--font)}
+  .deskpv .dpv-hd{display:flex;align-items:center;gap:9px;padding:10px 12px;background:var(--head-bg);border-bottom:var(--head-border)}
+  .deskpv .dpv-av{width:30px;height:30px;flex:none;border-radius:var(--av-radius);background:var(--av-bg);display:flex;align-items:center;justify-content:center;color:#fff}
+  .deskpv .dpv-av svg{width:18px;height:18px}
+  .deskpv .dpv-nm{font-family:var(--font-head);font-weight:var(--name-weight);font-size:var(--name-size);letter-spacing:var(--name-spacing);color:var(--head-fg);line-height:1.15}
+  .deskpv .dpv-who{font-size:10.5px;color:var(--head-fg);opacity:.6;margin-top:2px}
+  .deskpv .dpv-body{padding:12px;display:flex;flex-direction:column;gap:6px}
+  .deskpv .dpv-b{max-width:82%;padding:8px 11px;font-size:12.5px;line-height:1.35;border-radius:var(--bubble-radius)}
+  .deskpv .dpv-in{align-self:flex-start;background:var(--in-bg);color:var(--in-fg);border-bottom-left-radius:4px}
+  .deskpv .dpv-out{align-self:flex-end;background:var(--out-bg);color:var(--out-fg);border-bottom-right-radius:4px}
+  .deskpv .dpv-chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 11px}
+  .deskpv .dpv-chip{font-size:11px;font-weight:var(--chip-weight);color:var(--chip-fg);background:var(--chip-bg);border:var(--chip-border);border-radius:var(--chip-radius);padding:6px 11px}
+  .deskpv .dpv-inrow{display:flex;align-items:center;gap:8px;padding:0 12px 12px}
+  .deskpv .dpv-input{flex:1;background:var(--in-bg);color:var(--in-fg);opacity:.82;border-radius:100px;padding:9px 13px;font-size:11px}
+  .deskpv .dpv-send{width:30px;height:30px;flex:none;border-radius:50%;background:var(--accent-ink);color:#fff;display:flex;align-items:center;justify-content:center}
+  .deskpv .dpv-send svg{width:15px;height:15px}
+  .deskpv[data-style="clean"]{--font:"Hanken Grotesk",system-ui,sans-serif;--font-head:"Hanken Grotesk",system-ui,sans-serif;--name-weight:700;--name-size:15px;--av-radius:9px;--deskbg:#f5f6f7;--head-bg:#fcfdfe;--head-border:1px solid rgba(20,28,38,.07);--bubble-radius:12px;--in-bg:#e9ebee;--out-bg:var(--ink);--out-fg:#f5f6f7}
+  .deskpv[data-style="warm"]{--font:"Figtree",system-ui,sans-serif;--font-head:"Hedvig Letters Serif",Georgia,serif;--name-weight:500;--name-size:18px;--name-spacing:0;--av-radius:50%;--deskbg:#efe7dc;--head-bg:#eae0d3;--head-border:1px solid rgba(23,21,18,.09);--bubble-radius:16px;--in-bg:#e7ddcf;--out-bg:var(--accent-ink);--out-fg:#fff;--chip-bg:color-mix(in srgb,var(--accent) 14%,transparent);--chip-fg:var(--accent-ink);--chip-border:1px solid transparent;--chip-weight:600}
+  .deskpv[data-style="bold"]{--font:"Bricolage Grotesque",system-ui,sans-serif;--font-head:"Bricolage Grotesque",system-ui,sans-serif;--name-weight:800;--name-size:19px;--name-spacing:-.03em;--av-radius:10px;--deskbg:#fff;--head-bg:#fff;--head-border:2px solid var(--ink);--bubble-radius:8px;--in-bg:#f0eee7;--out-bg:var(--accent);--out-fg:#171512;--chip-bg:var(--ink);--chip-fg:#fff;--chip-border:1px solid var(--ink);--chip-weight:600;--chip-radius:8px}
+  .deskpv[data-style="sleek"]{--font:"Space Grotesk",system-ui,sans-serif;--font-head:"Space Grotesk",system-ui,sans-serif;--name-weight:600;--name-size:15px;--av-radius:9px;--av-bg:var(--accent);--deskbg:#f7f7f5;--head-bg:#1b1917;--head-fg:#f4f3f0;--head-border:none;--bubble-radius:12px;--in-bg:#ecebe5;--out-bg:#1b1917;--out-fg:#f4f3f0;--chip-bg:transparent;--chip-fg:var(--accent-ink);--chip-border:1px solid var(--line)}
+  .deskpv[data-style="elegant"]{--font:"Hanken Grotesk",system-ui,sans-serif;--font-head:"Prata",Georgia,serif;--name-weight:400;--name-size:18px;--name-spacing:.005em;--av-radius:50%;--av-bg:var(--ink);--deskbg:#f6f2ea;--head-bg:#f6f2ea;--head-border:1px solid rgba(23,21,18,.1);--bubble-radius:6px;--in-bg:#efe8db;--out-bg:var(--ink);--out-fg:#f6f2ea;--chip-bg:transparent;--chip-fg:#171512;--chip-border:1px solid rgba(23,21,18,.24);--chip-weight:500;--chip-radius:3px}
+  .deskpv[data-style="noir"]{--font:"Instrument Sans",system-ui,sans-serif;--font-head:"Instrument Sans",system-ui,sans-serif;--name-weight:600;--name-size:15px;--av-radius:9px;--av-bg:var(--accent);--deskbg:#1a1917;--head-bg:#201e1b;--head-fg:#f3efe9;--head-border:1px solid rgba(255,255,255,.07);--bubble-radius:12px;--in-bg:#2a2825;--in-fg:#f3efe9;--out-bg:var(--accent);--out-fg:#fff;--chip-bg:transparent;--chip-fg:#f3efe9;--chip-border:1px solid rgba(255,255,255,.22);--chip-weight:500}
+  .deskpv[data-style="soft"]{--font:"Quicksand",system-ui,sans-serif;--font-head:"Quicksand",system-ui,sans-serif;--name-weight:700;--name-size:16px;--av-radius:50%;--deskbg:#fdf6ef;--head-bg:#fdf6ef;--head-border:1px solid rgba(23,21,18,.07);--bubble-radius:17px;--in-bg:#f4ece4;--out-bg:var(--accent-ink);--out-fg:#fff;--chip-bg:color-mix(in srgb,var(--accent) 12%,transparent);--chip-fg:var(--accent-ink);--chip-border:1px solid transparent;--chip-weight:600;--chip-radius:100px}
   /* live preview */
   .pvwrap{margin-bottom:6px}
   .statgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-top:11px}
@@ -315,6 +347,26 @@
           <button type="button" class="swatch" data-c="#333333" style="background:#333333" aria-label="Charcoal"></button>
           <label class="swatch custom" aria-label="Custom colour"><input type="color" id="customcol" value="#b8532a"></label>
         </div>
+        <div class="sec-t" style="margin-top:24px">Your desk, live</div>
+        <div class="sec-h">Your chosen style with your colour, together. It updates as you pick.</div>
+        <div class="deskpv" id="deskpv" data-style="clean" aria-hidden="true">
+          <div class="dpv-hd">
+            <div class="dpv-av"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="currentColor"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="currentColor"/><circle cx="32" cy="26.5" r="3.9" fill="#fff"/></svg></div>
+            <div><div class="dpv-nm" id="dpvname">Your front desk</div><div class="dpv-who">24/7 front desk</div></div>
+          </div>
+          <div class="dpv-body">
+            <div class="dpv-b dpv-in">Hi, do you cover Tampines?</div>
+            <div class="dpv-b dpv-out">Yes, that's one of our main areas. May I take your name and number?</div>
+          </div>
+          <div class="dpv-chips">
+            <div class="dpv-chip">Services</div>
+            <div class="dpv-chip">What areas?</div>
+          </div>
+          <div class="dpv-inrow">
+            <div class="dpv-input">Type your message</div>
+            <div class="dpv-send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+          </div>
+        </div>
 
       </div>
       <div class="card">
@@ -436,8 +488,13 @@
   let selStyle="clean";
   function setStyle(s,dirty){ selStyle=["clean","warm","bold","sleek","elegant","noir","soft"].includes(s)?s:"clean";
     document.querySelectorAll("#stylepick .styleopt").forEach(b=>b.classList.toggle("sel",b.dataset.style===selStyle));
+    renderDeskPreview();
     if(dirty)markDirty(); }
   document.querySelectorAll("#stylepick .styleopt").forEach(b=>b.addEventListener("click",()=>setStyle(b.dataset.style,true)));
+  // live "your desk" preview (mirrors the front desk's style + colour tokens)
+  function darken(hex,f){ const m=String(hex).replace('#','').match(/.{2}/g); if(!m)return hex; return '#'+m.map(h=>Math.max(0,Math.min(255,Math.round(parseInt(h,16)*f))).toString(16).padStart(2,'0')).join(''); }
+  function renderDeskPreview(){ const pv=$("deskpv"); if(!pv)return; pv.dataset.style=selStyle; pv.style.setProperty("--accent",selAccent); pv.style.setProperty("--accent-ink",darken(selAccent,.72)); if($("dpvname"))$("dpvname").textContent=($("fname").value.trim()||$("bname").value.trim()||"Your front desk"); }
+  ["bname","fname"].forEach(id=>$(id).addEventListener("input",renderDeskPreview));
 
   // voice picker
   let selVoice="ava";
@@ -457,7 +514,7 @@
   let selAccent="#e8663a";
   function setAccent(hex,d){ if(!/^#?[0-9a-fA-F]{6}$/.test(String(hex||"")))return; selAccent=hex[0]==="#"?hex:("#"+hex);
     document.querySelectorAll("#colourpick .swatch[data-c]").forEach(sw=>sw.classList.toggle("sel",sw.dataset.c.toLowerCase()===selAccent.toLowerCase()));
-    if($("customcol"))$("customcol").value=selAccent; if(d)markDirty(); }
+    if($("customcol"))$("customcol").value=selAccent; renderDeskPreview(); if(d)markDirty(); }
   document.querySelectorAll("#colourpick .swatch[data-c]").forEach(sw=>sw.addEventListener("click",()=>setAccent(sw.dataset.c,true)));
   $("customcol").addEventListener("input",()=>setAccent($("customcol").value,true));
 
