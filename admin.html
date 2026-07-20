@@ -400,7 +400,11 @@
         <div id="propFields" hidden>
           <label>Areas and property types you cover <span class="hint">the desk answers "do you cover X?" from this</span><input id="areas" placeholder="e.g. Tampines, Bedok, Pasir Ris. HDB resale and condos in the East."></label>
           <label style="display:block;margin-top:14px">Your track record <span class="hint">stated as you write it, never inflated</span><input id="trackrec" placeholder="e.g. 8 years, PropNex Gold, 120+ deals. CEA reg R012345A."></label>
-          <label style="display:block;margin-top:14px">Current listings, no price <span class="hint">it mentions these and offers a viewing, never quotes a price</span><textarea id="listings" placeholder="e.g. 4-room HDB Tampines St 45, high floor, renovated. 2-bed condo Bedok, for rent, pool view."></textarea></label>
+          <div style="margin-top:16px">
+            <div style="font-weight:600;font-size:14px;margin-bottom:2px">Current listings <span class="hint">shows as its own button; the desk lists them and offers a viewing</span></div>
+            <div id="listingsBox"></div>
+            <button class="addbtn" id="addlisting" type="button">+ Add a listing</button>
+          </div>
         </div>
         <div id="insFields" hidden>
           <label>Your credentials and standing <span class="hint">the desk answers "are you qualified?" from this</span><input id="credentials" placeholder="e.g. MDRT 5x, CFP, 12 years, with Financial Alliance."></label>
@@ -486,9 +490,13 @@
   function markFaqButtons(){const rows=[...document.querySelectorAll("#faqs .faqc")];const many=rows.length>6;rows.forEach((r,i)=>r.classList.toggle("isbtn",many&&i<6));}
   window.addEventListener("resize",growAll);
   $("addsvc").onclick=()=>{const r=svcRow();$("services").appendChild(r);r.querySelectorAll("textarea").forEach(grow);markDirty();};
+  function listingRow(l={}){const d=document.createElement("div");d.className="svc";
+    d.innerHTML=`<label class="f name"><span class="fl">Listing</span><input placeholder="e.g. 4-room HDB, Tampines St 45" value="${eh(l.title)}"></label><label class="f desc"><span class="fl">Details</span><textarea class="dtx" rows="1" placeholder="e.g. high floor, renovated, for rent">${eh(l.desc)}</textarea></label><label class="f price"><span class="fl">Price</span><input placeholder="e.g. asking S$680k" value="${eh(l.price)}"></label><button class="del" type="button">×</button>`;
+    d.querySelector(".del").onclick=()=>{d.remove();markDirty();}; d.querySelectorAll("input,textarea").forEach(i=>i.oninput=()=>{if(i.tagName==="TEXTAREA")grow(i);markDirty();}); return d;}
+  $("addlisting").onclick=()=>{const r=listingRow();$("listingsBox").appendChild(r);r.querySelectorAll("textarea").forEach(grow);markDirty();};
   $("addfaq").onclick=()=>{const r=faqRow();$("faqs").appendChild(r);r.querySelectorAll("textarea").forEach(grow);markFaqButtons();markDirty();};
   $("announce").addEventListener("input",()=>{$("anncount").textContent=$("announce").value.length+" / 90";});
-  ["bname","fname","tone","greeting","tagline","telegram","about","hours","announce","whatsapp","trade","areas","trackrec","listings","credentials","freeconsult"].forEach(id=>$(id).addEventListener("input",markDirty));
+  ["bname","fname","tone","greeting","tagline","telegram","about","hours","announce","whatsapp","trade","areas","trackrec","credentials","freeconsult"].forEach(id=>$(id).addEventListener("input",markDirty));
 
   // style picker
   let selStyle="clean";
@@ -568,7 +576,7 @@
     setVoice(cfg.voice||"ava",false);
     setAccent(cfg.accent||"#e8663a",false); $("whatsapp").value=cfg.whatsapp||""; $("reviewlink").value=cfg.review_link||"";
     $("about").value=cfg.about||"";
-    $("areas").value=cfg.areas||""; $("trackrec").value=cfg.track_record||""; $("listings").value=cfg.listings||"";
+    $("areas").value=cfg.areas||""; $("trackrec").value=cfg.track_record||""; $("listingsBox").innerHTML=""; (Array.isArray(cfg.listings)?cfg.listings:[]).forEach(l=>$("listingsBox").appendChild(listingRow(l)));
     $("credentials").value=cfg.credentials||""; $("freeconsult").value=cfg.free_consult||"";
     updateTradeFields();
     $("hours").value=typeof cfg.hours==="string"?cfg.hours:"";
@@ -599,8 +607,9 @@
 
   async function save(){
     const services=[...$("services").querySelectorAll(".svc")].map(r=>{const i=r.querySelectorAll("input,textarea");return{name:i[0].value.trim(),desc:i[1].value.trim(),price:i[2].value.trim()};}).filter(s=>s.name);
+    const listings=[...$("listingsBox").querySelectorAll(".svc")].map(r=>{const i=r.querySelectorAll("input,textarea");return{title:i[0].value.trim(),desc:i[1].value.trim(),price:i[2].value.trim()};}).filter(l=>l.title);
     const faq=[...$("faqs").querySelectorAll(".faqc")].map(r=>{const i=r.querySelectorAll("input,textarea");return{q:i[0].value.trim(),a:i[1].value.trim()};}).filter(f=>f.q&&f.a);
-    const config={tone:$("tone").value,greeting:$("greeting").value.trim(),tagline:$("tagline").value.trim(),style:selStyle,voice:selVoice,about:$("about").value.trim(),services,hours:$("hours").value.trim(),faq,announcement:$("announce").value.trim(),accent:selAccent,whatsapp:$("whatsapp").value.trim(),review_link:$("reviewlink").value.trim(),areas:$("areas").value.trim(),track_record:$("trackrec").value.trim(),listings:$("listings").value.trim(),credentials:$("credentials").value.trim(),free_consult:$("freeconsult").value.trim()};
+    const config={tone:$("tone").value,greeting:$("greeting").value.trim(),tagline:$("tagline").value.trim(),style:selStyle,voice:selVoice,about:$("about").value.trim(),services,hours:$("hours").value.trim(),faq,announcement:$("announce").value.trim(),accent:selAccent,whatsapp:$("whatsapp").value.trim(),review_link:$("reviewlink").value.trim(),areas:$("areas").value.trim(),track_record:$("trackrec").value.trim(),listings,credentials:$("credentials").value.trim(),free_consult:$("freeconsult").value.trim()};
     const body={c:slug,k:key,config,frontdesk_name:$("fname").value.trim(),business_name:$("bname").value.trim(),lead_chat_id:$("telegram").value.trim()};
     if(OWNER){ body.trade=tsel.value; body.key=OWNER; body.daily_cap=parseInt($("dailycap").value,10)||1500; }
     [$("save"),$("save2")].forEach(b=>b.disabled=true); setStatus("Saving…","");
