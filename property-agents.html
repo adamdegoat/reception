@@ -317,6 +317,6 @@
   addEventListener('scroll',()=>vh.classList.toggle('scrolled',scrollY>20),{passive:true});
   document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}}));
 </script>
-<script src="form.js" defer></script>
+<script src="form.js?v=2" defer></script>
 </body>
 </html>

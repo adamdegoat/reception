@@ -99,7 +99,7 @@
   var initialBody = body.innerHTML;
 
   function wire() {
-    body.querySelector(".rf-x") && overlay.querySelector(".rf-x").addEventListener("click", close);
+    var xb = overlay.querySelector(".rf-x"); if (xb) xb.addEventListener("click", close);
     trades = overlay.querySelector("#rfTrades");
     form = overlay.querySelector("#rfForm");
     errEl = overlay.querySelector("#rfErr");
