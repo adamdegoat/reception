@@ -7,7 +7,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23171512'/%3E%3Csvg x='5.5' y='5.5' width='21' height='21' viewBox='0 0 64 64'%3E%3Crect x='9' y='45.5' width='46' height='5.8' rx='2.9' fill='%23f3efe8'/%3E%3Cpath d='M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z' fill='%23f3efe8'/%3E%3Ccircle cx='32' cy='26.5' r='3.9' fill='%23e8663a'/%3E%3C/svg%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=60">
+<link rel="stylesheet" href="styles.css?v=61">
 <style>
   /* ===== Property agents vertical page ===== */
   .vhead{position:sticky;top:0;z-index:50;background:rgba(243,239,232,.86);backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
@@ -199,7 +199,7 @@
       <svg class="brandmk" viewBox="0 0 64 64" aria-hidden="true"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="currentColor"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="currentColor"/><circle cx="32" cy="26.5" r="3.9" fill="#e8663a"/></svg><span class="bmtext"><span class="bmname">reception<svg class="aibadge" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#b8532a"/><text x="12" y="16.2" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="700" font-size="11" letter-spacing="-.5" fill="#fff">AI</text></svg></span><span class="bmsub" aria-hidden="true">For property agents</span></span>
     </a>
     </div>
-    <a class="vcta" href="https://wa.me/6583219747?text=Hi%2C%20I%27m%20a%20property%20agent%20and%20I%27d%20like%20a%20front%20desk." target="_blank" rel="noopener">Set up your desk
+    <a class="vcta" href="get-started.html" data-signup data-trade="Property agent">Set up your desk
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
   </div>
 </header>
@@ -213,7 +213,7 @@
       <p class="pdsub">This is exactly what a buyer, seller or tenant sees on your link. Ask it anything, it answers, qualifies the lead, and books the viewing, in your name.</p>
       <div class="pstageframe"><iframe src="f.html?c=propertydemo" title="A property agent's front desk, live" loading="lazy"></iframe></div>
       <div class="pdemocta">
-        <a class="pbtn" href="https://wa.me/6583219747?text=Hi%2C%20I%27m%20a%20property%20agent%20and%20I%27d%20like%20a%20front%20desk." target="_blank" rel="noopener">Set up your desk <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="pbtn" href="get-started.html" data-signup data-trade="Property agent">Set up your desk <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <div class="pmicro"><span><b>S$99</b>/month founding rate</span><span><b>Live</b> within minutes</span><span><b>No</b> lock-in</span></div>
       </div>
     </div>
@@ -298,7 +298,7 @@
     <div class="wrap">
       <h2>Stop losing leads you never even saw.</h2>
       <p>Your next buyer is messaging tonight. Make sure someone answers.</p>
-      <a class="pbtn" href="https://wa.me/6583219747?text=Hi%2C%20I%27m%20a%20property%20agent%20and%20I%27d%20like%20a%20front%20desk." target="_blank" rel="noopener">Set up your desk <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="pbtn" href="get-started.html" data-signup data-trade="Property agent">Set up your desk <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <div class="pfinmicro">S$99/month founding rate · Live within minutes · No lock-in</div>
     </div>
   </section>
@@ -317,5 +317,6 @@
   addEventListener('scroll',()=>vh.classList.toggle('scrolled',scrollY>20),{passive:true});
   document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}}));
 </script>
+<script src="form.js" defer></script>
 </body>
 </html>
