@@ -445,7 +445,6 @@
         <div class="lbl" id="adminlbl" style="margin-top:16px" hidden>Admin link (send to the client)</div>
         <div class="linkbox" id="adminbox" hidden><input id="adminlink" readonly><button class="copy" data-t="adminlink">Copy</button></div>
         <button class="btn sec sm" id="resetbtn" style="margin-top:10px" hidden>Reset admin link</button>
-        <div id="ownerbox" hidden style="margin-top:18px;padding-top:16px;border-top:1px solid var(--line)"><div class="lbl" style="margin-bottom:6px">Daily chat limit <span class="hint" style="font-weight:400">owner only, chats/day before the busy message shows</span></div><input id="dailycap" type="number" min="50" max="50000" step="50" style="max-width:200px"></div>
       </div>
       </div>
       <div class="saverow" style="justify-content:center;margin-top:2px"><button class="btn" id="save2" style="min-width:220px">Save changes</button><span class="status" id="status2"></span></div>
@@ -597,7 +596,6 @@
       $("pausebtn").hidden=false; $("pausebtn").textContent=paused?"Resume":"Pause";
       $("adminlbl").hidden=false; $("adminbox").hidden=false; $("adminlink").value=location.origin+location.pathname+"?c="+slug+"&k="+key;
       $("resetbtn").hidden=false;
-      $("ownerbox").hidden=false; $("dailycap").value=data.daily_cap||1500; $("dailycap").addEventListener("input",markDirty);
     } else { tsel.disabled=true; $("tradehint").textContent="Ask us to change your trade."; }
     $("loading").hidden=true; $("app").hidden=false;
     growAll(); [80,300,800,1600].forEach(ms=>setTimeout(growAll,ms)); if(document.fonts&&document.fonts.ready)document.fonts.ready.then(growAll);
@@ -611,7 +609,7 @@
     const faq=[...$("faqs").querySelectorAll(".faqc")].map(r=>{const i=r.querySelectorAll("input,textarea");return{q:i[0].value.trim(),a:i[1].value.trim()};}).filter(f=>f.q&&f.a);
     const config={tone:$("tone").value,greeting:$("greeting").value.trim(),tagline:$("tagline").value.trim(),style:selStyle,voice:selVoice,about:$("about").value.trim(),services,hours:$("hours").value.trim(),faq,announcement:$("announce").value.trim(),accent:selAccent,whatsapp:$("whatsapp").value.trim(),review_link:$("reviewlink").value.trim(),areas:$("areas").value.trim(),track_record:$("trackrec").value.trim(),listings,credentials:$("credentials").value.trim(),free_consult:$("freeconsult").value.trim()};
     const body={c:slug,k:key,config,frontdesk_name:$("fname").value.trim(),business_name:$("bname").value.trim(),lead_chat_id:$("telegram").value.trim()};
-    if(OWNER){ body.trade=tsel.value; body.key=OWNER; body.daily_cap=parseInt($("dailycap").value,10)||1500; }
+    if(OWNER){ body.trade=tsel.value; body.key=OWNER; }
     [$("save"),$("save2")].forEach(b=>b.disabled=true); setStatus("Saving…","");
     const {status,data}=await api("/admin/save",body);
     [$("save"),$("save2")].forEach(b=>b.disabled=false);
