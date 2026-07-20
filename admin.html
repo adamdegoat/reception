@@ -296,12 +296,12 @@
           <div><label>Tone<select id="tone"><option value="warm">Warm</option><option value="professional">Professional</option><option value="straight-talking">Straight-talking</option></select></label></div>
         </div>
         <div id="ownerbox" hidden><label>Daily chat limit <span class="hint">owner only, chats per day before the busy message shows</span><input id="dailycap" type="number" min="50" max="50000" step="50"></label></div>
-        <label>What you do <span class="hint">one short line under your name, e.g. Property agent, or Financial adviser</span><input id="tagline" placeholder="e.g. Property agent, East side"></label>
+        <label>What you do <span class="hint">one line under your name, e.g. Property agent</span><input id="tagline" placeholder="e.g. Property agent, East side"></label>
         <label>Greeting <span class="hint">first message customers see</span><input id="greeting" placeholder="e.g. Hi, this is Marcus's front desk. Ask about a listing, or buying, selling or renting."></label>
-        <label>Announcement <span class="hint">optional, shows as a banner across the top of your front desk, clear it to hide</span><textarea id="announce" maxlength="90" rows="2" placeholder="e.g. Free home valuation this month, or away 25 to 28 Dec" style="min-height:52px"></textarea></label>
+        <label>Announcement <span class="hint">optional, a banner across the top; clear to hide</span><textarea id="announce" maxlength="90" rows="2" placeholder="e.g. Free home valuation this month, or away 25 to 28 Dec" style="min-height:52px"></textarea></label>
         <div class="hint" id="anncount" style="margin-top:5px">0 / 90</div>
-        <label>WhatsApp for customers <span class="hint">optional, adds a WhatsApp button to your front desk, e.g. 9123 4567</span><input id="whatsapp" placeholder="e.g. 9123 4567"></label>
-        <label>Google review link <span class="hint">optional, powers the one-tap "ask for a review" button on your bookings</span><input id="reviewlink" placeholder="e.g. your Google review URL"></label>
+        <label>WhatsApp for customers <span class="hint">optional, adds a WhatsApp button, e.g. 9123 4567</span><input id="whatsapp" placeholder="e.g. 9123 4567"></label>
+        <label>Google review link <span class="hint">optional, powers the review button on bookings</span><input id="reviewlink" placeholder="e.g. your Google review URL"></label>
 
       </div>
       <div class="card appview">
@@ -355,7 +355,7 @@
           <label class="swatch custom" aria-label="Custom colour"><input type="color" id="customcol" value="#b8532a"></label>
         </div>
         <div class="sec-t" style="margin-top:24px">Your desk, live</div>
-        <div class="sec-h">Your chosen style with your colour, together. It updates as you pick.</div>
+        <div class="sec-h">Your style and colour together. Updates as you pick.</div>
         <div class="deskpv" id="deskpv" data-style="clean" aria-hidden="true">
           <div class="dpv-hd">
             <div class="dpv-av"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="currentColor"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="currentColor"/><circle cx="32" cy="26.5" r="3.9" fill="#fff"/></svg></div>
@@ -390,16 +390,16 @@
       </div>
       <div class="card">
         <div class="sec-t">About your business</div>
-        <div class="sec-h">A short bio, written the way your desk should describe you to a customer, so write it as "Marcus is..." rather than "I am...". Keep it to plain facts: your background, what you focus on, what makes you different. No need to describe the desk itself.</div>
+        <div class="sec-h">A short bio in third person, "Marcus is...", not "I am...". Your background, focus, and what sets you apart.</div>
         <textarea id="about" placeholder="e.g. Marcus Lim is a CEA-registered property agent with 8 years in the market, focused on HDB resale and condos in the East. He handles viewings and negotiation himself."></textarea>
 
       </div>
       <div class="card" id="tradeCard" hidden>
         <div class="sec-t">Tuned for your trade</div>
-        <div class="sec-h">A few details that let the desk represent you: it can answer "do you cover my area?" and "are you experienced?", and route better. Only what fits your trade shows here.</div>
+        <div class="sec-h">Details that help the desk represent you and answer "do you cover my area?". Only what fits your trade shows.</div>
         <div id="propFields" hidden>
           <label>Areas and property types you cover <span class="hint">the desk answers "do you cover X?" from this</span><input id="areas" placeholder="e.g. Tampines, Bedok, Pasir Ris. HDB resale and condos in the East."></label>
-          <label style="display:block;margin-top:14px">Your track record <span class="hint">stated exactly as you write it, the desk never inflates it</span><input id="trackrec" placeholder="e.g. 8 years, PropNex Gold, 120+ deals. CEA reg R012345A."></label>
+          <label style="display:block;margin-top:14px">Your track record <span class="hint">stated as you write it, never inflated</span><input id="trackrec" placeholder="e.g. 8 years, PropNex Gold, 120+ deals. CEA reg R012345A."></label>
           <label style="display:block;margin-top:14px">Current listings, no price <span class="hint">it mentions these and offers a viewing, never quotes a price</span><textarea id="listings" placeholder="e.g. 4-room HDB Tampines St 45, high floor, renovated. 2-bed condo Bedok, for rent, pool view."></textarea></label>
         </div>
         <div id="insFields" hidden>
@@ -416,7 +416,7 @@
       <div class="widestack">
       <div class="card">
         <div class="sec-t">Services &amp; prices</div>
-        <div class="sec-h">What you offer, and any price you want the desk to share (like a listing's asking price). This list also becomes the very first button on your front desk, so customers can see your full range in one tap. It only states exactly what you put here, never a valuation, estimate or figure you didn't give it.</div>
+        <div class="sec-h">What you offer, with any price you want shared. Shows as the first button on your desk, and only ever states what you put here.</div>
         <div class="svchead"><span>Service</span><span>Description</span><span>Price</span><span></span></div>
         <div id="services"></div>
         <button class="addbtn" id="addsvc" type="button">+ Add a service</button>
@@ -424,7 +424,7 @@
       </div>
       <div class="card">
         <div class="sec-t">Questions customers can tap</div>
-        <div class="sec-h">Write the questions customers ask most, with your answer, tapping a button shows it instantly, free. On your front desk a Services button always appears first on its own, then the first six questions here become buttons too. Any question after the sixth still works, customers just type it instead. They can also type anything else, and the desk answers from everything you filled in above.</div>
+        <div class="sec-h">Common questions and your answers. The first 6 show as tappable buttons (a Services button is always first). Anything more, customers just type.</div>
         <div id="faqs"></div>
         <button class="addbtn" id="addfaq" type="button">+ Add a question</button>
       </div>
