@@ -94,15 +94,14 @@
   .spv-soft .spv-b{border-radius:12px}
   .spv-soft .spv-in{background:#f4ece4}
   .spv-soft .spv-out{background:#b24714;color:#fff}
-  .voicepick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
-  @media(max-width:520px){.voicepick{grid-template-columns:1fr}}
-  .voiceopt{display:flex;align-items:center;gap:12px;text-align:left;background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:11px 13px;cursor:pointer;transition:border-color .15s,background .15s}
+  .voicepick{display:grid;grid-template-columns:repeat(auto-fill,minmax(122px,1fr));gap:8px;margin-top:8px}
+  .voiceopt{position:relative;display:block;text-align:left;background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:11px 12px 12px;cursor:pointer;transition:border-color .15s,background .15s}
   .voiceopt:hover{border-color:var(--accent-ink)}
   .voiceopt.sel{border-color:var(--accent-ink);background:rgba(232,102,58,.07)}
-  .voiceopt b{font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--ink)}
+  .voiceopt b{display:block;font-size:14.5px;font-weight:700;letter-spacing:-.01em;color:var(--ink);padding-right:26px}
   .voiceopt.sel b{color:var(--accent-ink)}
-  .voiceopt .vnote{display:block;font-size:12.5px;color:var(--muted);margin-top:1px}
-  .vplay{flex:none;width:34px;height:34px;border-radius:50%;border:1.5px solid var(--accent-ink);background:var(--card);color:var(--accent-ink);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
+  .voiceopt .vnote{display:block;font-size:11.5px;color:var(--muted);line-height:1.32;margin-top:2px}
+  .vplay{position:absolute;top:9px;right:9px;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--accent-ink);background:var(--card);color:var(--accent-ink);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
   .vplay:hover{background:rgba(232,102,58,.12)}
   .vplay.playing{background:var(--accent-ink);color:#fff}
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--accent-ink);color:#fff;border:none;border-radius:100px;padding:12px 22px;font-family:var(--font);font-weight:600;font-size:15px;cursor:pointer}
@@ -359,7 +358,7 @@
       <div class="widestack">
       <div class="card">
         <div class="sec-t">Services &amp; prices</div>
-        <div class="sec-h">What you offer, and any price you want the desk to share (like a listing's asking price). It only states exactly what you put here, never a valuation, estimate or figure you didn't give it.</div>
+        <div class="sec-h">What you offer, and any price you want the desk to share (like a listing's asking price). This list also becomes the very first button on your front desk, so customers can see your full range in one tap. It only states exactly what you put here, never a valuation, estimate or figure you didn't give it.</div>
         <div class="svchead"><span>Service</span><span>Description</span><span>Price</span><span></span></div>
         <div id="services"></div>
         <button class="addbtn" id="addsvc" type="button">+ Add a service</button>

@@ -53,6 +53,29 @@
   .browserframe img{display:block;width:100%;height:auto}
   .phoneframe{width:100%;max-width:290px;margin:0 auto;border-radius:26px;overflow:hidden;border:1px solid var(--line);box-shadow:0 40px 80px -46px rgba(23,21,18,.5)}
   .phoneframe img{display:block;width:100%;height:auto}
+  /* Part 1: compact setup strip */
+  .setup{padding-top:clamp(34px,5vh,58px)}
+  .setup>.wrap>.gslabel{margin-bottom:8px}
+  .setup h2{font-size:clamp(24px,3vw,36px);font-weight:700;letter-spacing:-.02em;margin-bottom:clamp(22px,3.2vw,38px)}
+  .setstrip{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--card)}
+  .setstep{padding:clamp(22px,2.6vw,32px);border-left:1px solid var(--line)}
+  .setstep:first-child{border-left:0}
+  .setstep .gsnum{width:38px;height:38px;border-radius:11px;font-size:16px;margin-bottom:15px}
+  .setstep h3{font-size:clamp(18px,1.9vw,21px);font-weight:700;letter-spacing:-.015em;line-height:1.15}
+  .setstep p{margin-top:9px;font-size:14.5px;color:var(--muted);line-height:1.52;max-width:38ch}
+  .setstep .who{margin-top:14px;font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--accent-ink)}
+  @media(max-width:760px){.setstrip{grid-template-columns:1fr}.setstep{border-left:0;border-top:1px solid var(--line)}.setstep:first-child{border-top:0}}
+  /* share bar: link + qr kept together */
+  .sharebar{display:flex;align-items:center;gap:clamp(20px,3vw,32px);margin-top:20px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:clamp(18px,2.4vw,26px) clamp(20px,2.6vw,30px)}
+  .qrsm{width:98px;height:98px;flex:none;border-radius:12px;background:#fff;border:1px solid var(--line);display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:repeat(7,1fr);gap:2px;padding:10px}
+  .qrsm i{background:var(--ink);border-radius:1px}.qrsm i.o{background:transparent}
+  .sharebody{flex:1;min-width:0}
+  .sblbl{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--accent-ink)}
+  .sharelink{display:inline-flex;align-items:center;gap:9px;margin-top:10px;background:rgba(232,102,58,.1);border:1.5px solid rgba(178,71,20,.4);border-radius:11px;padding:10px 14px;color:var(--accent-ink)}
+  .sharelink svg{width:16px;height:16px;flex:none}.sharelink b{font-size:14px}
+  .sharebar .sharerow{margin-top:12px;justify-content:flex-start}
+  .sharenote{margin-top:12px;font-size:13.5px;color:var(--muted);line-height:1.5;max-width:52ch}
+  @media(max-width:560px){.sharebar{flex-direction:column;align-items:flex-start}}
   /* Part 2: running it */
   .runwrap{background:var(--surface)}
   .runwrap h2{font-size:clamp(26px,3.4vw,40px);font-weight:700;letter-spacing:-.025em;line-height:1.08;margin-top:12px}
@@ -116,52 +139,53 @@
     </div>
   </section>
 
-  <section class="gsteps">
+  <section class="sec setup">
     <div class="wrap">
       <div class="gslabel">Part 1 &middot; Getting set up</div>
       <h2>Live in a few minutes.</h2>
-
-      <div class="gstep">
-        <div>
+      <div class="setstrip">
+        <div class="setstep">
           <span class="gsnum">1</span>
-          <h3>Tell us your basics. We build the whole thing.</h3>
-          <p>WhatsApp us your services, prices and hours. We build your front desk in your name and colours, with a voice you pick, and show it to you first. You try it free before you pay a cent.</p>
+          <h3>Tell us your basics.</h3>
+          <p>WhatsApp us your services, prices and hours. We build your front desk in your name and colours, with a voice you pick, and show it to you first, free, before you pay a cent.</p>
           <div class="who">About 15 minutes of your time</div>
         </div>
-        <div class="gsvis">
-          <div class="phoneframe"><img src="img/gs-fd2.png?v=1" alt="A finished Reception front desk, branded for a property agent, answering a buyer." width="820" height="679"></div>
-        </div>
-      </div>
-
-      <div class="gstep">
-        <div>
+        <div class="setstep">
           <span class="gsnum">2</span>
-          <h3>You get one link and a QR code.</h3>
-          <p>Put them wherever customers already find you: your Instagram bio, WhatsApp, name cards, a sticker on the shopfront. No website needed. Want a full site later? We build that too.</p>
+          <h3>You get one link and a QR.</h3>
+          <p>Put them wherever customers already find you: your Instagram bio, WhatsApp, name cards, a sticker on the shopfront. No website needed.</p>
           <div class="who">Share it anywhere</div>
         </div>
-        <div class="gsvis">
-          <div class="sharecard">
-            <a class="biolink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg><b>reception.sg/marcus</b></a>
-            <div class="qrbox" aria-hidden="true"><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i><i class="o"></i><i></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i></div>
-            <div class="sharerow"><span>Instagram bio</span><span>WhatsApp</span><span>Shopfront QR</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="gstep">
-        <div>
+        <div class="setstep">
           <span class="gsnum">3</span>
-          <h3>Enquiries land on you, already summarized.</h3>
-          <p>The moment someone's interested, it takes their name and number and sends you a short line on exactly what they want, straight to your phone. It's saved on your leads page too, so nothing slips.</p>
+          <h3>Enquiries land on you.</h3>
+          <p>The moment someone's interested, it takes their name and number and sends you a short line on exactly what they want, straight to your phone.</p>
           <div class="who">You stop missing customers</div>
         </div>
-        <div class="gsvis">
-          <div class="browserframe" style="max-width:480px">
-            <div class="bfbar"><i></i><i></i><i></i><span class="bfurl">reception.sg/leads</span></div>
-            <img src="img/gs-leads2.png?v=1" alt="The Reception leads page, showing three enquiries, each with a one-line summary of what the customer wants and their number." width="1440" height="1072">
-          </div>
+      </div>
+      <div class="sharebar">
+        <div class="qrsm" aria-hidden="true"><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i><i class="o"></i><i></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i></div>
+        <div class="sharebody">
+          <div class="sblbl">Your link and QR, ready to share</div>
+          <a class="sharelink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg><b>reception.sg/marcus</b></a>
+          <div class="sharerow"><span>Instagram bio</span><span>WhatsApp</span><span>Name cards</span><span>Shopfront QR</span></div>
+          <p class="sharenote">Put it where customers already find you. No website needed, and if you want a full site later, we build that too.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="gslabel">Then the enquiries start</div>
+      <h2 style="font-size:clamp(24px,3vw,36px);font-weight:700;letter-spacing:-.02em;margin-top:10px;max-width:20ch">Every enquiry lands on you, already summarised.</h2>
+      <p style="margin-top:14px;font-size:clamp(16px,1.5vw,18px);color:var(--muted);line-height:1.58;max-width:62ch">The moment someone's interested, the desk takes their name and number and sends you a short line on exactly what they want, straight to your phone. It's saved here on your leads page too, so nothing ever slips.</p>
+      <div class="runshot">
+        <div class="browserframe" style="max-width:940px;margin:0 auto">
+          <div class="bfbar"><i></i><i></i><i></i><span class="bfurl">reception.sg/leads</span></div>
+          <img src="img/gs-leads2.png?v=1" alt="The Reception leads page, showing several enquiries, each with a one-line summary of what the customer wants and their number." width="1440" height="1072">
+        </div>
+        <div class="runcap">Your actual leads page. Every enquiry with a one-line summary and their number, ready to follow up.</div>
       </div>
     </div>
   </section>
