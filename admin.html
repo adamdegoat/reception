@@ -587,7 +587,7 @@
     function updReg(){const t=tsel.value;if(REG[t]){$("reg").textContent=REG[t];$("reg").hidden=false;$("tradehint").textContent="";}else{$("reg").hidden=true;}}
     updReg(); tsel.addEventListener("change",updReg);
     const link=BASE+"/"+encodeURIComponent(slug); $("link").value=link; $("preview").href=link; const q="?c="+slug+"&k="+key; $("tabFd").href=BASE+"/admin.html"+q; $("tabBk").href=BASE+"/booking.html"+q; $("tabLd").href=BASE+"/leads.html"+q; $("tabAn").href=BASE+"/analytics.html"+q;
-    $("tgconnect").href="https://t.me/Nimbusninebot?start="+encodeURIComponent(key||"");
+    $("tgconnect").href="https://t.me/receptionbot?start="+encodeURIComponent(key||"");
     try{new QRCode($("qr"),{text:link,width:150,height:150,colorDark:"#171512",colorLight:"#ffffff"});}catch(e){$("qr").innerHTML='<img alt="QR" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(link)+'">';}
     // OWNER extras
     if(OWNER){
