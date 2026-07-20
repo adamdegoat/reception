@@ -113,6 +113,10 @@
     .hook{border-top:2px solid var(--ink);padding-top:15px}
     .hook h3{font-size:clamp(18px,1.9vw,21px);font-weight:700;letter-spacing:-.015em;line-height:1.15}
     .hook p{margin-top:9px;font-size:15.5px;line-height:1.55;color:var(--muted);max-width:34ch}
+    .nocatch{list-style:none;margin-top:26px;display:flex;flex-direction:column;gap:13px}
+    .nocatch li{position:relative;padding-left:29px;font-size:15.5px;line-height:1.5;color:var(--muted);max-width:44ch}
+    .nocatch li::before{content:"\2713";position:absolute;left:0;top:0;color:var(--accent-ink);font-weight:800}
+    .nocatch li b{color:var(--ink);font-weight:700}
   </style>
   <section class="hooks">
     <div class="wrap">
@@ -143,6 +147,11 @@
             <span class="linkpill"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>One link<span>, ready to share</span></span>
             <span class="linkpill"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm10-2h2v2h-2v-2zm4 0h2v2h-2v-2zm-4 4h2v2h-2v-2zm2 2h2v2h-2v-2zm2-2h2v2h-2v-2zm0 4h2v2h-2v-2z"/></svg>One QR code</span>
           </div>
+          <ul class="nocatch">
+            <li><b>No separate business number.</b> It runs on your own link and QR code, nothing new to install on your phone.</li>
+            <li><b>No per-message fees.</b> One flat monthly price, no surprise usage bills however busy it gets.</li>
+            <li><b>No complicated onboarding.</b> Send us your details, we build it, and you're live the same day.</li>
+          </ul>
           <p style="margin-top:24px"><a class="hlink" href="why.html">See why it works</a></p>
         </div>
         <div class="shareside"><div class="sharestage" aria-hidden="true">
