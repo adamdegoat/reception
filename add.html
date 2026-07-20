@@ -96,7 +96,7 @@
 
   <div id="app" hidden>
     <h1>Add a client</h1>
-    <p class="sub">Pick their trade and a starter front desk loads. You or the client fill in the real prices after.</p>
+    <p class="sub">Pick their trade and a starter front desk loads. You or the client fill in the real details after.</p>
     <div class="card" id="tgcard" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
       <div id="tgcardtext" style="font-size:13px;color:var(--muted);max-width:52ch">Checking Telegram bot…</div>
       <button class="btn sec" id="tgsetup" type="button" style="flex:none" hidden>Set up Telegram bot</button>
@@ -145,7 +145,7 @@
   function slugify(s){return String(s||"").toLowerCase().trim().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,40);}
   async function api(path,body){try{const r=await fetch(WORKER+path,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});return{status:r.status,data:await r.json().catch(()=>({}))};}catch(e){return{status:0,data:{}};}}
 
-  const tsel=$("trade"); TRADES.forEach(t=>{const o=document.createElement("option");o.value=t[0];o.textContent=t[1];tsel.appendChild(o);});
+  const tsel=$("trade"); TRADES.forEach(t=>{const o=document.createElement("option");o.value=t[0];o.textContent=t[1];tsel.appendChild(o);}); tsel.value="property";
   tsel.onchange=()=>{const r=REG[tsel.value];$("reg").textContent=r||"";$("reg").style.display=r?"block":"none";};
   $("bname").addEventListener("input",()=>{if(!$("slug").dataset.touched)$("slug").value=slugify($("bname").value);});
   $("slug").addEventListener("input",()=>$("slug").dataset.touched="1");
