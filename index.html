@@ -205,8 +205,9 @@
     .whorole{font-size:clamp(21px,2.4vw,27px);font-weight:700;letter-spacing:-.02em;line-height:1.1}
     .whotag{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent-ink);margin-bottom:12px}
     .whocard p{margin-top:12px;font-size:16px;line-height:1.55;color:var(--muted);max-width:42ch}
-    .wholink{display:inline-flex;align-items:center;gap:7px;margin-top:20px;font-weight:600;font-size:15px;color:var(--accent-ink)}
-    .wholink svg{width:15px;height:15px}
+    .wholink{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-weight:600;font-size:15px;color:#fff;background:var(--accent-ink);border-radius:100px;padding:12px 22px;transition:transform .2s,background .2s}
+    .whocard:hover .wholink{background:#9c3f11}
+    .wholink svg{width:16px;height:16px}
   </style>
   <section class="sec" id="whofor" style="background:var(--surface)">
     <div class="wrap">
@@ -217,14 +218,14 @@
           <div class="whotag">Real estate</div>
           <div class="whorole">Property agents</div>
           <p>Answers buyers, sellers and tenants, captures budget, area and timeline, and books the viewing. Never quotes a price or valuation. CEA-safe.</p>
-          <span class="wholink">See how it works for you
+          <span class="wholink">See the property desk, live
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </a>
         <a class="whocard" href="insurance-financial.html">
           <div class="whotag">Insurance &amp; wealth</div>
           <div class="whorole">Insurance agents &amp; financial advisers</div>
           <p>Answers every enquiry, captures what they're after, and books the consultation, without ever giving advice or a quote. MAS-safe.</p>
-          <span class="wholink">See how it works for you
+          <span class="wholink">See the adviser desk, live
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </a>
       </div>
