@@ -362,7 +362,7 @@
     add("out", text); history.push({role:"user",content:text});
     let msgs=history.slice(-12); if(msgs.length&&msgs[0].role!=="user")msgs=msgs.slice(1);
     const t=typing();
-    const ctrl=new AbortController(); const to=setTimeout(()=>ctrl.abort(),9000);
+    const ctrl=new AbortController(); const to=setTimeout(()=>ctrl.abort(),20000);
     try{
       const r=await fetch(WORKER,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({c:slug,messages:msgs}),signal:ctrl.signal});
       const data=await r.json(); t.remove();
