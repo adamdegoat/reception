@@ -250,13 +250,13 @@
 <body>
 <div class="stage" id="stage" style="display:none">
 <aside class="brandpanel" aria-hidden="true">
-  <div class="bp-eyebrow">24/7 Front desk · Singapore</div>
+  <div class="bp-eyebrow" id="bpEyebrow">24/7 front desk · Singapore</div>
   <div class="bp-name" id="bpName">Front desk</div>
   <div class="bp-role" id="bpRole"></div>
   <p class="bp-lead" id="bpLead"></p>
   <ul class="bp-cues">
-    <li class="bp-cue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Answers any hour, day or night</span></li>
-    <li class="bp-cue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><span>Replies in seconds, no one left waiting</span></li>
+    <li class="bp-cue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="bpCue1">Answers any hour, day or night</span></li>
+    <li class="bp-cue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><span id="bpCue2">Replies in seconds, no one left waiting</span></li>
     <li class="bp-cue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span id="bpPrivacy">Your details go straight to you</span></li>
   </ul>
   <div class="bp-powered">powered by <b>Reception</b></div>
@@ -521,7 +521,24 @@
     $("bpName").textContent=nm;
     $("bpRole").textContent=desc; $("bpRole").style.display=desc?"":"none";
     $("bpLead").textContent="The 24/7 front desk for "+nm+". Ask anything, any hour, and I'll make sure it reaches "+first+".";
-    $("bpPrivacy").textContent="Your details go straight to "+first;
+    // trade-aware cues so the panel is not identical for every desk
+    const _tr=cfg.trade;
+    if(_tr==="property"){
+      $("bpEyebrow").textContent="Property front desk · Singapore";
+      $("bpCue1").textContent="Answers buyers, sellers and tenants, any hour";
+      $("bpCue2").textContent="Books viewings, even mid-viewing";
+      $("bpPrivacy").textContent="Every lead straight to "+first+"'s phone";
+    } else if(_tr==="insurance"){
+      $("bpEyebrow").textContent="Adviser front desk · Singapore";
+      $("bpCue1").textContent="Answers every enquiry, any hour";
+      $("bpCue2").textContent="Books consultations, even mid-meeting";
+      $("bpPrivacy").textContent="Every lead straight to "+first+"'s phone";
+    } else {
+      $("bpEyebrow").textContent="24/7 front desk · Singapore";
+      $("bpCue1").textContent="Answers any hour, day or night";
+      $("bpCue2").textContent="Replies in seconds, never keeps them waiting";
+      $("bpPrivacy").textContent="Every enquiry straight to "+first+"'s phone";
+    }
     if(cfg.whatsapp){ const digits=String(cfg.whatsapp).replace(/\D/g,""); const num=(digits.length===8&&/^[89]/.test(digits))?("65"+digits):digits;
       $("dwa").href="https://wa.me/"+num+"?text="+encodeURIComponent("Hi "+(cfg.business||nm)+", I have a question."); $("dwa").hidden=false; }
     else { $("dwa").hidden=true; }
