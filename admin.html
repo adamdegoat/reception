@@ -625,6 +625,8 @@
     const listings=[...$("listingsBox").querySelectorAll(".svc")].map(r=>{const i=r.querySelectorAll("input,textarea");return{title:i[0].value.trim(),desc:i[1].value.trim(),price:i[2].value.trim()};}).filter(l=>l.title);
     const faq=[...$("faqs").querySelectorAll(".faqc")].map(r=>{const i=r.querySelectorAll("input,textarea");return{q:i[0].value.trim(),a:i[1].value.trim()};}).filter(f=>f.q&&f.a);
     const config={tone:$("tone").value,greeting:$("greeting").value.trim(),tagline:$("tagline").value.trim(),style:selStyle,voice:selVoice,about:$("about").value.trim(),services,hours:$("hours").value.trim(),faq,announcement:$("announce").value.trim(),accent:selAccent,whatsapp:$("whatsapp").value.trim(),review_link:$("reviewlink").value.trim(),areas:$("areas").value.trim(),track_record:$("trackrec").value.trim(),listings,credentials:$("credentials").value.trim(),free_consult:$("freeconsult").value.trim(),reg_no:regVals().reg,firm_reg:regVals().firm};
+    const hit=bannedPhrase(config);
+    if(hit){ setStatus(hit,"bad"); return; }
     const body={c:slug,k:key,config,frontdesk_name:$("fname").value.trim(),business_name:$("bname").value.trim(),lead_chat_id:$("telegram").value.trim()};
     if(OWNER){ body.trade=tsel.value; body.key=OWNER; }
     [$("save"),$("save2")].forEach(b=>b.disabled=true); setStatus("Saving…","");
@@ -634,6 +636,30 @@
     else setStatus(status===0?"Couldn't reach the server, try again.":"Save failed, try again.","bad");
   }
   function updRegAfterSave(){}
+  // Wording that gets Singapore agents in trouble, refused before it can go live.
+  // Property: CEA Practice Guidelines 2/2011 s3.3 names "Specialist", "Expert", "King of xx" and
+  // "Mr xx" outright, and s3.4 bars guarantees including any COV promise. Insurance: FAR reg 21
+  // bars "independent" and anything of like import for most commission-remunerated reps.
+  const BANNED={
+    property:[[/\bspecialists?\b/i,'"specialist"'],[/\bexperts?\b/i,'"expert"'],[/\bguarantee(d|s)?\b/i,'"guarantee"'],
+              [/\bking of\b/i,'"king of"'],[/\bqueen of\b/i,'"queen of"'],[/\bno\.?\s?1\b|\b#1\b/i,'"no. 1"'],
+              [/\bbest agent\b/i,'"best agent"'],[/\bsure[- ]?sell\b/i,'"sure sell"'],[/\bcov\b.{0,24}\bguarantee/i,'a COV guarantee']],
+    insurance:[[/\bindependent(ly)?\b/i,'"independent"'],[/\bunbiased\b/i,'"unbiased"'],[/\bimpartial\b/i,'"impartial"'],
+               [/\bnot tied to\b/i,'"not tied to"'],[/\bguarantee(d|s)?\b/i,'"guarantee"'],[/\bexperts?\b/i,'"expert"']],
+  };
+  function bannedPhrase(cfg){
+    const list=BANNED[tsel.value]; if(!list) return "";
+    const blob=[cfg.greeting,cfg.tagline,cfg.about,cfg.announcement,cfg.hours,cfg.areas,cfg.track_record,cfg.credentials,cfg.free_consult,
+      ...(cfg.services||[]).flatMap(s=>[s.name,s.desc,s.price]),
+      ...(cfg.faq||[]).flatMap(f=>[f.q,f.a]),
+      ...(cfg.listings||[]).flatMap(l=>[l.title,l.desc,l.price])].filter(Boolean).join("  ");
+    for(const [re,label] of list){ if(re.test(blob)){
+      return tsel.value==="property"
+        ? "Please remove "+label+". CEA's advertising guidelines don't allow it, and your agency has to answer for the wording."
+        : "Please remove "+label+". MAS restricts that wording for advisers, so it can't go on your front desk.";
+    } }
+    return "";
+  }
   function showTgConnected(on){ $("tgconnected").hidden=!on; $("tgconnect").textContent=on?"Reconnect a different phone":"Connect Telegram"; $("tgconnect").classList.toggle("sec",on); }
   let tgPoll=null;
   $("tgconnect").addEventListener("click",()=>{ if(tgPoll)clearInterval(tgPoll); let n=0; $("tghint").textContent="Waiting for you to tap Start in Telegram…"; tgPoll=setInterval(async()=>{ if(++n>30){ clearInterval(tgPoll); $("tghint").innerHTML="Tap it, hit <b>Start</b> in Telegram, and you're connected."; return; } const {data}=await api("/admin/get",{c:slug,k:key}); if(data&&data.lead_chat_id){ clearInterval(tgPoll); $("telegram").value=data.lead_chat_id; showTgConnected(true); $("tghint").textContent="All set. You can send yourself a test from below."; } },3000); });

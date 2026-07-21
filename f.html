@@ -306,7 +306,7 @@
       <input id="lhp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
       <input id="lname" type="text" placeholder="Your name" autocomplete="name">
       <input id="lcontact" type="text" placeholder="Phone or email" autocomplete="tel">
-      <p style="font-size:11px;color:var(--muted);margin-top:11px;line-height:1.45">By sending, you're happy for us to use your details to follow up on your enquiry.</p>
+      <p id="lconsent" style="font-size:11px;color:var(--muted);margin-top:11px;line-height:1.45">By sending, you agree that we may contact you by phone, SMS or WhatsApp about this enquiry.</p>
       <div class="leadbtns"><button class="leadsend" type="submit">Send</button><button class="leadcancel" type="button" id="leadcancel">Cancel</button></div>
     </form>
   </div>
@@ -398,7 +398,7 @@
     const recent=history.filter(m=>m.role==="user").slice(-3).map(m=>m.content).join(" | ");
     const btn=$("leadform").querySelector(".leadsend"), bt=btn.textContent; btn.disabled=true; btn.textContent="Sending...";
     let ok=false;
-    try{ const r=await fetch(WORKER+"/lead",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({c:slug,name,contact,intent:recent})}); ok=r.ok; }catch(e){ ok=false; }
+    try{ const r=await fetch(WORKER+"/lead",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({c:slug,name,contact,intent:recent,consent:($("lconsent")||{}).textContent||""})}); ok=r.ok; }catch(e){ ok=false; }
     btn.disabled=false; btn.textContent=bt;
     if(!ok){ let er=$("lerr"); if(!er){ er=document.createElement("p"); er.id="lerr"; er.style.cssText="color:#b3261e;font-size:12px;margin-top:10px;line-height:1.4"; $("leadform").querySelector(".leadbtns").before(er); } er.textContent="Sorry, that didn't send just now. Please try again."; return; }
     const er=$("lerr"); if(er) er.remove();
