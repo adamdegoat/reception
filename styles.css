@@ -143,17 +143,17 @@ footer{background:var(--dark);color:var(--light);padding:clamp(64px,10vh,104px) 
    The hero used to show Reception's own desk, which asked a property agent to imagine the
    translation. It now shows the two desks we actually sell, so a visitor sees their own job
    being done. Mobile swipes between them with snap; desktop shows both at once. */
-/* full-bleed out of the page padding so the next desk genuinely peeks in from the edge */
-.deskduo{display:flex;align-items:flex-start;justify-content:flex-start;gap:3vw;
-  width:100vw;margin-left:calc(50% - 50vw);padding:4px 9vw 2px;
-  overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;
-  scrollbar-width:none;-ms-overflow-style:none}
-.deskduo::-webkit-scrollbar{display:none}
-.deviframe{flex:1;min-height:0;width:100%;border:0;display:block;background:#f2f4f5}
-.deskduo>.demo{flex:0 0 82vw;max-width:none;scroll-snap-align:center;margin:0;
-  transform:scale(.93);opacity:.5;transition:transform .45s cubic-bezier(.16,1,.3,1),opacity .45s ease}
-.deskduo>.demo.is-active{transform:none;opacity:1}
-
+/* The hero rail. It used to be a horizontal scroller, but on a phone that swallowed vertical
+   swipes and made it hard to scroll past the demo. It is now a track we translate on tap, so
+   nothing intercepts a normal downward swipe. The next desk still peeks in so it is obvious
+   there are two. */
+.deskduo{position:relative;width:100vw;margin-left:calc(50% - 50vw);overflow:hidden;padding:4px 0 2px}
+.deskrail{display:flex;gap:3vw;padding-left:9vw;
+  transform:translateX(calc(var(--i,0) * -85vw));
+  transition:transform .55s cubic-bezier(.16,1,.3,1)}
+.deskrail>.demo{flex:0 0 82vw;max-width:none;margin:0;
+  transform:scale(.93);opacity:.5;transition:transform .5s cubic-bezier(.16,1,.3,1),opacity .5s ease}
+.deskrail>.demo.is-active{transform:none;opacity:1}
 /* caption under each desk + the way into that trade's page */
 .deskcap{text-align:center;display:flex;flex-direction:column;gap:5px;padding:0 6px}
 .deskcap b{font-size:14.5px;font-weight:700;letter-spacing:-.01em;color:var(--ink)}
@@ -161,6 +161,20 @@ footer{background:var(--dark);color:var(--light);padding:clamp(64px,10vh,104px) 
   font-size:13.5px;font-weight:600;color:var(--accent-ink);text-decoration:none}
 .deskcap a svg{width:14px;height:14px;transition:transform .2s}
 .deskcap a:hover svg{transform:translateX(3px)}
+.deskctl{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:16px}
+/* Arrows sit on the desk itself, halfway down, so they are visible the moment the demo is,
+   rather than only after scrolling past it. */
+.deskarrow{position:absolute;top:42%;transform:translateY(-50%);z-index:6;
+  width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(23,21,18,.14);background:rgba(255,255,255,.94);color:var(--ink);cursor:pointer;
+  box-shadow:0 6px 20px -6px rgba(23,21,18,.4);
+  transition:opacity .25s,box-shadow .2s,border-color .2s}
+.deskarrow svg{width:20px;height:20px}
+.deskarrow:hover{border-color:var(--accent-ink);color:var(--accent-ink)}
+.deskarrow:active{transform:translateY(-50%) scale(.94)}
+.deskarrow[disabled]{opacity:0;pointer-events:none}
+.deskprev{left:8px}
+.desknext{right:8px}
 .deskdots{display:flex;justify-content:center;gap:8px;margin-top:16px}
 .deskdots button{width:8px;height:8px;padding:0;border-radius:50%;border:none;cursor:pointer;
   background:rgba(23,21,18,.22);transition:background .2s,transform .2s}
@@ -171,12 +185,11 @@ footer{background:var(--dark);color:var(--light);padding:clamp(64px,10vh,104px) 
 }
 /* Desktop: both desks side by side, nothing dimmed, no swiping needed. */
 @media(min-width:1000px){
-  .deskduo{overflow:visible;justify-content:center;gap:clamp(20px,2.6vw,40px);scroll-snap-type:none;
-    width:100%;margin-left:0;padding:0}
-  .deskduo>.demo{flex:0 0 clamp(330px,27vw,400px);max-width:none;transform:none;opacity:1}
-  .deskduo>.demo:first-child,.deskduo>.demo:last-child{margin:0}
+  .deskduo{overflow:visible;width:100%;margin-left:0;padding:0}
+  .deskrail{justify-content:center;gap:clamp(20px,2.6vw,40px);padding-left:0;transform:none}
+  .deskrail>.demo{flex:0 0 clamp(330px,27vw,400px);transform:none;opacity:1}
   .deskduo .devscreen{height:min(580px,66vh)}
-  .deskdots{display:none}
+  .deskctl,.deskarrow{display:none}
   /* the floating cards were propping up a single desk; two real ones say it better, and at this
      width they would sit on top of the desks */
   .heroStage .breakout,.heroStage .leadchip{display:none}

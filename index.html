@@ -82,6 +82,7 @@
           <div class="botext"><b>Replied in 2 seconds</b>Yes, we build it for you and you can try it free before you pay. Want to see it for your business?</div>
         </div>
         <div class="deskduo" id="deskduo">
+          <div class="deskrail" id="deskrail" style="--i:0">
           <article class="demo is-active" data-slide="0">
             <div class="devbody">
               <div class="devscreen">
@@ -114,10 +115,17 @@
               <a href="insurance-financial.html">See it for insurance and finance<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
             </div>
           </article>
+          </div>
+          <button class="deskarrow deskprev" id="deskprev" type="button" aria-label="Show the property agent's front desk">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button class="deskarrow desknext" id="desknext" type="button" aria-label="Show the financial adviser's front desk">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
         </div>
-        <div class="deskdots" id="deskdots" role="tablist" aria-label="Choose a front desk">
-          <button type="button" role="tab" aria-selected="true" aria-label="A property agent's front desk"></button>
-          <button type="button" role="tab" aria-selected="false" aria-label="A financial adviser's front desk"></button>
+        <div class="deskctl">
+          <div class="deskdots" id="deskdots" role="tablist" aria-label="Choose a front desk">
+            <button type="button" role="tab" aria-selected="true" aria-label="A property agent's front desk"></button>
+            <button type="button" role="tab" aria-selected="false" aria-label="A financial adviser's front desk"></button>
+          </div>
         </div>
         <div class="leadchip" aria-hidden="true">
           <span class="lcdot"></span>
@@ -125,8 +133,8 @@
         </div>
       </div>
       <div class="democap">
-        <span><span class="dcdot" aria-hidden="true"></span>This is our own Reception front desk, live. Tap a question, or ask it anything.</span>
-        <span><span class="dcdot" aria-hidden="true"></span>Whatever you ask lands with us. This is exactly what your leads would get.</span>
+        <span><span class="dcdot" aria-hidden="true"></span>Two real desks, live. Tap a question, or ask either of them anything.</span>
+        <span><span class="dcdot" aria-hidden="true"></span>This is exactly what your own buyers, sellers or clients would get.</span>
       </div>
     </div>
   </section>
@@ -375,43 +383,42 @@
   document.querySelectorAll('#navlinks a').forEach(a => a.addEventListener('click', () => hdr.classList.remove('nav-open')));
   addEventListener('keydown', e => { if(e.key === 'Escape' && hdr.classList.contains('nav-open')){ hdr.classList.remove('nav-open'); if(navtoggle){ navtoggle.setAttribute('aria-expanded','false'); navtoggle.focus(); } } });
 
-  // hero: two live trade desks. Tracks which one is centred on mobile so the off-centre desk
-  // sits back, drives the dots, and holds the second iframe until it is wanted so the page
-  // still loads on one desk rather than two.
+  // hero: two live trade desks. Arrow-driven rather than a swipe scroller, because a horizontal
+  // scroller on a phone swallows the vertical swipe and makes it hard to scroll past the demo.
   (function(){
-    const duo = document.getElementById('deskduo'); if(!duo) return;
-    const cards = [...duo.querySelectorAll('.demo')];
+    const duo = document.getElementById('deskduo'), rail = document.getElementById('deskrail');
+    if(!duo || !rail) return;
+    const cards = [...rail.querySelectorAll('.demo')];
     const dots = [...document.querySelectorAll('#deskdots button')];
-    let mounted = false;
+    const prev = document.getElementById('deskprev'), next = document.getElementById('desknext');
+    const wide = matchMedia('(min-width:1000px)');
+    let i = 0, mounted = false;
+
     function mountRest(){
       if(mounted) return; mounted = true;
-      duo.querySelectorAll('iframe[data-src]').forEach(f => { f.src = f.dataset.src; f.removeAttribute('data-src'); });
+      rail.querySelectorAll('iframe[data-src]').forEach(f => { f.src = f.dataset.src; f.removeAttribute('data-src'); });
     }
-    // desktop shows both at once, so mount straight away; on mobile wait for a swipe, a tap,
-    // or a short idle, whichever comes first
-    const wide = matchMedia('(min-width:1000px)');
+    function go(n){
+      i = Math.max(0, Math.min(cards.length - 1, n));
+      if(i > 0) mountRest();
+      rail.style.setProperty('--i', i);
+      cards.forEach((c,k) => c.classList.toggle('is-active', k===i));
+      dots.forEach((d,k) => d.setAttribute('aria-selected', String(k===i)));
+      if(prev) prev.disabled = i === 0;
+      if(next) next.disabled = i === cards.length - 1;
+    }
+    if(prev) prev.addEventListener('click', () => go(i-1));
+    if(next) next.addEventListener('click', () => go(i+1));
+    dots.forEach((d,k) => d.addEventListener('click', () => go(k)));
+    duo.addEventListener('keydown', e => {
+      if(e.key === 'ArrowLeft') go(i-1);
+      if(e.key === 'ArrowRight') go(i+1);
+    });
+    // desktop shows both at once, so load the second straight away; on a phone hold it back
     if(wide.matches) mountRest();
-    else {
-      ['touchstart','pointerdown','scroll'].forEach(ev => duo.addEventListener(ev, mountRest, {once:true,passive:true}));
-      addEventListener('load', () => setTimeout(mountRest, 2200), {once:true});
-    }
-    wide.addEventListener && wide.addEventListener('change', e => { if(e.matches) mountRest(); });
-
-    function setActive(i){
-      cards.forEach((c,n) => c.classList.toggle('is-active', n===i));
-      dots.forEach((d,n) => d.setAttribute('aria-selected', String(n===i)));
-    }
-    if('IntersectionObserver' in window && !wide.matches){
-      const io = new IntersectionObserver(es => {
-        es.forEach(e => { if(e.isIntersecting && e.intersectionRatio > .6) setActive(cards.indexOf(e.target)); });
-      }, {root:duo, threshold:[.6,.9]});
-      cards.forEach(c => io.observe(c));
-    }
-    dots.forEach((d,i) => d.addEventListener('click', () => {
-      mountRest();
-      cards[i].scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',inline:'center',block:'nearest'});
-      setActive(i);
-    }));
+    else addEventListener('load', () => setTimeout(mountRest, 2500), {once:true});
+    wide.addEventListener && wide.addEventListener('change', e => { if(e.matches){ mountRest(); go(0); } });
+    go(0);
   })();
 
   // live clock in the phone mockup status bar
