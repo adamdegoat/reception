@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Spline+Sans+Mono:wght@400;500&family=Hedvig+Letters+Serif&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://reception.sg/">
-<link rel="stylesheet" href="styles.css?v=66">
+<link rel="stylesheet" href="styles.css?v=67">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -81,21 +81,47 @@
           <span class="boav"><svg class="brandmk" viewBox="0 0 64 64"><rect x="9" y="45.5" width="46" height="5.8" rx="2.9" fill="currentColor"/><path d="M15.5 45.5 a16.5 15.5 0 0 1 33 0 Z" fill="currentColor"/><circle cx="32" cy="26.5" r="3.9" fill="#e8663a"/></svg></span>
           <div class="botext"><b>Replied in 2 seconds</b>Yes, we build it for you and you can try it free before you pay. Want to see it for your business?</div>
         </div>
-        <div class="demo" id="demo">
-          <div class="devbody">
-            <div class="devscreen">
-              <span class="island" aria-hidden="true"></span>
-              <div class="devstatus">
-                <span id="devclock">9:41</span>
-                <span class="devr" aria-hidden="true">5G<span class="bat"></span></span>
+        <div class="deskduo" id="deskduo">
+          <article class="demo is-active" data-slide="0">
+            <div class="devbody">
+              <div class="devscreen">
+                <span class="island" aria-hidden="true"></span>
+                <div class="devstatus">
+                  <span id="devclock">9:41</span>
+                  <span class="devr" aria-hidden="true">5G<span class="bat"></span></span>
+                </div>
+                <iframe class="deviframe" src="f.html?c=propertydemo&amp;compact=1" title="A property agent's front desk, live"></iframe>
               </div>
-              <iframe class="deviframe" src="f.html?c=reception" title="Reception, our own front desk, live" loading="lazy" style="flex:1;min-height:0;width:100%;border:0;display:block;background:#f2f4f5"></iframe>
             </div>
-          </div>
-          <div class="leadchip" aria-hidden="true">
-            <span class="lcdot"></span>
-            <div class="lctext"><b>New enquiry saved</b>Sent to your phone</div>
-          </div>
+            <div class="deskcap">
+              <b>A property agent's front desk</b>
+              <a href="property-agents.html">See it for property agents<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+          <article class="demo" data-slide="1">
+            <div class="devbody">
+              <div class="devscreen">
+                <span class="island" aria-hidden="true"></span>
+                <div class="devstatus">
+                  <span aria-hidden="true">9:41</span>
+                  <span class="devr" aria-hidden="true">5G<span class="bat"></span></span>
+                </div>
+                <iframe class="deviframe" data-src="f.html?c=fademo&amp;compact=1" title="A financial adviser's front desk, live"></iframe>
+              </div>
+            </div>
+            <div class="deskcap">
+              <b>A financial adviser's front desk</b>
+              <a href="insurance-financial.html">See it for insurance and finance<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+        </div>
+        <div class="deskdots" id="deskdots" role="tablist" aria-label="Choose a front desk">
+          <button type="button" role="tab" aria-selected="true" aria-label="A property agent's front desk"></button>
+          <button type="button" role="tab" aria-selected="false" aria-label="A financial adviser's front desk"></button>
+        </div>
+        <div class="leadchip" aria-hidden="true">
+          <span class="lcdot"></span>
+          <div class="lctext"><b>New enquiry saved</b>Sent to your phone</div>
         </div>
       </div>
       <div class="democap">
@@ -348,6 +374,45 @@
   });
   document.querySelectorAll('#navlinks a').forEach(a => a.addEventListener('click', () => hdr.classList.remove('nav-open')));
   addEventListener('keydown', e => { if(e.key === 'Escape' && hdr.classList.contains('nav-open')){ hdr.classList.remove('nav-open'); if(navtoggle){ navtoggle.setAttribute('aria-expanded','false'); navtoggle.focus(); } } });
+
+  // hero: two live trade desks. Tracks which one is centred on mobile so the off-centre desk
+  // sits back, drives the dots, and holds the second iframe until it is wanted so the page
+  // still loads on one desk rather than two.
+  (function(){
+    const duo = document.getElementById('deskduo'); if(!duo) return;
+    const cards = [...duo.querySelectorAll('.demo')];
+    const dots = [...document.querySelectorAll('#deskdots button')];
+    let mounted = false;
+    function mountRest(){
+      if(mounted) return; mounted = true;
+      duo.querySelectorAll('iframe[data-src]').forEach(f => { f.src = f.dataset.src; f.removeAttribute('data-src'); });
+    }
+    // desktop shows both at once, so mount straight away; on mobile wait for a swipe, a tap,
+    // or a short idle, whichever comes first
+    const wide = matchMedia('(min-width:1000px)');
+    if(wide.matches) mountRest();
+    else {
+      ['touchstart','pointerdown','scroll'].forEach(ev => duo.addEventListener(ev, mountRest, {once:true,passive:true}));
+      addEventListener('load', () => setTimeout(mountRest, 2200), {once:true});
+    }
+    wide.addEventListener && wide.addEventListener('change', e => { if(e.matches) mountRest(); });
+
+    function setActive(i){
+      cards.forEach((c,n) => c.classList.toggle('is-active', n===i));
+      dots.forEach((d,n) => d.setAttribute('aria-selected', String(n===i)));
+    }
+    if('IntersectionObserver' in window && !wide.matches){
+      const io = new IntersectionObserver(es => {
+        es.forEach(e => { if(e.isIntersecting && e.intersectionRatio > .6) setActive(cards.indexOf(e.target)); });
+      }, {root:duo, threshold:[.6,.9]});
+      cards.forEach(c => io.observe(c));
+    }
+    dots.forEach((d,i) => d.addEventListener('click', () => {
+      mountRest();
+      cards[i].scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',inline:'center',block:'nearest'});
+      setActive(i);
+    }));
+  })();
 
   // live clock in the phone mockup status bar
   (function(){
