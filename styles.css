@@ -762,3 +762,5 @@ html{overflow-x:clip}                 /* belt-and-braces: no sideways scroll on 
   .rf-overlay.rf-show .rf-modal{transform:none}}
 @media (prefers-reduced-motion:reduce){.rf-overlay,.rf-modal,.rf-submit{transition:opacity .01s}
   .rf-overlay .rf-modal{transform:none}}
+
+@media(max-width:768px){input,textarea,select{font-size:16px!important}}
