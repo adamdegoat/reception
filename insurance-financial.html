@@ -166,6 +166,15 @@
   .pstageframe{margin:clamp(28px,3.5vw,44px) auto 0;border-radius:22px;overflow:hidden;border:1px solid var(--line);box-shadow:0 40px 100px -54px rgba(23,21,18,.45);background:var(--surface)}
   .pstageframe iframe{display:block;width:100%;height:624px;border:0}
   @media(max-width:1099px){.pstageframe{max-width:480px;border-radius:30px}.pstageframe iframe{height:610px}}
+  /* On a phone, show the desk at close to real size instead of a small embedded card:
+     break out of the page padding to full width and take most of the viewport height, so it
+     reads as the actual thing a customer would see. Stops short of 100dvh on purpose, so a
+     strip of page stays visible above and below and the section still scrolls past normally. */
+  @media(max-width:700px){
+    .pstageframe{max-width:none;width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
+      border-radius:0;border-left:0;border-right:0;box-shadow:none}
+    .pstageframe iframe{height:min(86dvh,760px);min-height:560px}
+  }
   /* feature launch / offer */
   .pfeat{padding:clamp(38px,5vh,60px) 0}
   .pfeatgrid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,4.5vw,64px);align-items:center}
