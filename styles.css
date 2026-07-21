@@ -519,16 +519,16 @@ footer{background:var(--dark);color:var(--light);padding:clamp(64px,10vh,104px) 
 .svlead .av{width:23px;height:23px;border-radius:50%;background:var(--accent-ink);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
 
 /* get-started band (burnt-orange committed CTA) */
-.start{background:var(--accent);color:var(--ink);padding:clamp(56px,8vh,96px) 0}
-.startGrid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(36px,5vw,72px);align-items:center}
+.start{background:var(--accent);color:var(--ink);padding:clamp(34px,4.2vh,50px) 0}
+.startGrid{display:grid;grid-template-columns:1fr;gap:14px;align-items:center;justify-items:center;text-align:center}
 @media(max-width:820px){.startGrid{grid-template-columns:1fr;gap:38px}}
-.startbig{font-size:clamp(32px,5vw,58px);font-weight:800;letter-spacing:-.025em;line-height:1.02;max-width:15ch;text-wrap:balance}
-.startsub{margin-top:18px;font-size:19px;color:var(--ink);opacity:.86;max-width:48ch;line-height:1.5}
-.startcta{margin-top:34px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.startbig{font-size:clamp(23px,2.7vw,33px);font-weight:800;letter-spacing:-.02em;line-height:1.05;max-width:26ch;margin:0 auto;text-wrap:balance}
+.startsub{display:none}
+.startcta{margin-top:22px;display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap}
 .start .btn{background:var(--ink);color:var(--light);box-shadow:none}
 .start .hlink{color:var(--ink);border-bottom-color:rgba(23,21,18,.4)}
 .start .hlink:hover{border-bottom-color:var(--ink)}
-.assure{list-style:none;display:flex;flex-direction:column;gap:14px;padding-left:clamp(0px,2vw,20px);
+.assure{list-style:none;display:none;flex-direction:column;gap:14px;padding-left:clamp(0px,2vw,20px);
   border-left:none}
 @media(min-width:821px){.assure{border-left:1px solid rgba(23,21,18,.2);padding-left:clamp(28px,3vw,44px)}}
 .assure li{position:relative;padding-left:30px;font-size:16.5px;color:var(--ink);font-weight:500;line-height:1.4}
