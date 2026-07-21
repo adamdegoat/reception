@@ -145,6 +145,10 @@
   .pdemodesk .pdesk{width:100%;background:var(--card);border:1px solid rgba(23,21,18,.16);border-radius:30px;overflow:hidden;box-shadow:0 2px 8px -2px rgba(23,21,18,.1),0 44px 90px -46px rgba(23,21,18,.5)}
   .pdemodesk .pdesk iframe{display:block;width:100%;height:660px;border:0;background:#f2f4f5}
   .pdemocta{margin-top:clamp(26px,3.4vw,40px);display:inline-flex;flex-direction:column;align-items:center;gap:14px}
+  /* for anyone landing here straight from an ad: the live desks live on the home page */
+  .pseelive{display:inline-flex;align-items:center;gap:6px;font-size:14.5px;font-weight:600;color:var(--accent-ink);text-decoration:none}
+  .pseelive svg{width:15px;height:15px;transition:transform .2s}
+  .pseelive:hover svg{transform:translateX(3px)}
   .pdemocta .pmicro{justify-content:center;flex-wrap:wrap}
   /* informative field scenes */
   .pinfo{padding:clamp(38px,5vh,60px) 0}
@@ -225,15 +229,16 @@
 </header>
 
 <main>
-  <!-- FRONT-DESK STAGE (the live desktop front desk) -->
+  <!-- TOP: the offer for this trade. The live desks lead the home page, so this page
+       carries the argument rather than repeating the demo. -->
   <section class="pstage">
     <div class="wrap">
       <div class="peyebrow2">For property agents · Singapore</div>
-      <h1>See a property agent's front desk, working the way you do.</h1>
-      <p class="pdsub">This is exactly what a buyer, seller or tenant sees on your link. Ask it about the listing, it answers what it can, qualifies the lead, and lines up the viewing, in your name.</p>
-      <div class="pstageframe"><iframe src="f.html?c=propertydemo" title="A property agent's front desk, live" loading="lazy"></iframe></div>
+      <h1>A front desk for property agents that never misses an enquiry.</h1>
+      <p class="pdsub">Buyers, sellers and tenants message at all hours. Reception answers in your name the moment they do, works out what they're after, and hands you the lead ready to work. It never quotes a figure or gives advice.</p>
       <div class="pdemocta">
         <a class="pbtn" href="get-started.html" data-signup data-trade="Property agent">Set up your desk <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="pseelive" href="index.html#top">See a live front desk<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <div class="pmicro"><span><b>S$99</b>/month founding rate</span><span><b>Live</b> within minutes</span><span><b>No</b> lock-in</span></div>
       </div>
     </div>
