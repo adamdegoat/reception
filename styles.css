@@ -202,6 +202,9 @@ footer{background:var(--dark);color:var(--light);padding:clamp(64px,10vh,104px) 
 .devbody{width:100%;background:#141210;border-radius:46px;padding:12px;
   box-shadow:0 46px 92px -34px rgba(23,21,18,.6),inset 0 0 0 1.5px rgba(255,255,255,.06)}
 .devscreen{background:var(--card);border-radius:35px;overflow:hidden;display:flex;flex-direction:column;height:min(636px,66vh)}
+/* the embedded desk must fill the screen area; without this it falls back to an iframe's
+   default ~150px and the demo renders as a blank box */
+.deviframe{flex:1 1 auto;min-height:0;width:100%;border:0;display:block;background:#f2f4f5}
 /* hero front-desk carousel */
 .carwin{flex:1;min-height:0;overflow:hidden;position:relative}
 .cartrack{display:flex;height:100%;transition:transform .5s cubic-bezier(.16,1,.3,1)}

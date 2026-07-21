@@ -37,6 +37,8 @@
   .desk{width:100%;max-width:800px;height:100dvh;max-height:900px;display:flex;flex-direction:column;background:var(--deskbg);position:relative;overflow:hidden}
   @media(min-width:560px){.desk{max-width:480px;border:1px solid rgba(23,21,18,.16);border-radius:30px;height:min(100dvh - 48px,820px);box-shadow:0 2px 8px -2px rgba(23,21,18,.1),0 40px 90px -44px rgba(23,21,18,.5);margin:24px}}
   .dthread::before{content:"";margin-top:auto}
+  html[data-compact] .dthread::before{margin-top:0}
+  html[data-compact] .dthread{padding-top:14px}
   /* desktop brand stage (token-driven: adapts to the desk's style + colour) */
   .stage{display:flex;align-items:center;justify-content:center;width:100%;min-height:100dvh}
   .brandpanel{display:none}
@@ -335,6 +337,7 @@
   const slug = new URLSearchParams(location.search).get("c") || "";
   const PREVIEW = new URLSearchParams(location.search).get("preview") === "1";
   const COMPACT = new URLSearchParams(location.search).get("compact") === "1";
+  if(COMPACT) document.documentElement.setAttribute("data-compact","1");
   const DEMO = new URLSearchParams(location.search).get("demo") === "1";
   const $ = id => document.getElementById(id);
   const thread = $("thread"), chipsEl = $("chips");
