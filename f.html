@@ -104,6 +104,10 @@
   .dlead:hover{background:color-mix(in srgb,var(--accent) 22%,transparent)}
   .dlead:active{transform:scale(.97)}
   .dlead svg{width:14px;height:14px}
+  /* regulator identification line: CEA requires a salesperson's registration number and the
+     agency licence number on any marketing website, MAS requires a representative number and the
+     firm name. Permanent chrome, never editable away, hidden only when the fields are empty. */
+  .dident{font-family:var(--mono);font-size:10.5px;line-height:1.45;color:var(--muted);letter-spacing:.01em;padding:0 16px 7px;flex:none;text-align:center;word-break:break-word}
   .powered{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.02em;text-decoration:none}
   .powered b{color:var(--ink);font-weight:500}
   /* lead form */
@@ -290,6 +294,7 @@
     <input class="dinput" id="input" type="text" placeholder="Type your message" autocomplete="off" aria-label="Message">
     <button class="dsend" id="send" type="submit" aria-label="Send"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
   </form>
+  <div class="dident" id="dident" hidden></div>
   <div class="dfoot">
     <button class="dlead" id="leadopen" type="button">I'm interested<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
     <a class="powered" href="https://reception.sg/" target="_blank" rel="noopener">powered by <b>Reception</b></a>
@@ -545,6 +550,10 @@
       $("dwa").href="https://wa.me/"+num+"?text="+encodeURIComponent("Hi "+(cfg.business||nm)+", I have a question."); $("dwa").hidden=false; }
     else { $("dwa").hidden=true; }
     $("bookrow").hidden = !cfg.booking;
+    // regulator identification line (CEA reg no + agency licence, or MAS rep no + firm)
+    const idbits=[cfg.business||nm, String(cfg.reg_no||"").trim(), String(cfg.firm_reg||"").trim()].filter(Boolean);
+    if(idbits.length>1){ $("dident").textContent=idbits.join(" · "); $("dident").hidden=false; }
+    else { $("dident").textContent=""; $("dident").hidden=true; }
     thread.innerHTML=""; chipsEl.innerHTML=""; history.length=0; resetAnnounce();
     if(String(cfg.announcement||"").trim()) setupAnnounce(String(cfg.announcement).trim());
     add("in", cfg.greeting||("Hi, welcome to "+nm+". Ask me anything."));

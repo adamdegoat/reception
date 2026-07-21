@@ -398,8 +398,10 @@
         <div class="sec-t">Tuned for your trade</div>
         <div class="sec-h">Details that help the desk represent you and answer "do you cover my area?". Only what fits your trade shows.</div>
         <div id="propFields" hidden>
-          <label>Areas and property types you cover <span class="hint">the desk answers "do you cover X?" from this</span><input id="areas" placeholder="e.g. Tampines, Bedok, Pasir Ris. HDB resale and condos in the East."></label>
-          <label style="display:block;margin-top:14px">Your track record <span class="hint">stated as you write it, never inflated</span><input id="trackrec" placeholder="e.g. 8 years, PropNex Gold, 120+ deals. CEA reg R012345A."></label>
+          <label>Your CEA registration number <span class="hint">shown at the bottom of your front desk; CEA requires it on any marketing website</span><input id="regno" placeholder="e.g. R012345A"></label>
+          <label style="display:block;margin-top:14px">Your agency and licence number <span class="hint">shown alongside it, e.g. the agency you are registered with</span><input id="firmreg" placeholder="e.g. PropNex Realty Pte Ltd (L3008022J)"></label>
+          <label style="display:block;margin-top:14px">Areas and property types you cover <span class="hint">the desk answers "do you cover X?" from this</span><input id="areas" placeholder="e.g. Tampines, Bedok, Pasir Ris. HDB resale and condos in the East."></label>
+          <label style="display:block;margin-top:14px">Your track record <span class="hint">shows as its own button once filled; stated exactly as you write it, never inflated. Keep it to totals, not specific addresses or prices</span><input id="trackrec" placeholder="e.g. 8 years, PropNex Gold, 120+ HDB and condo deals across the East."></label>
           <div style="margin-top:16px">
             <div style="font-weight:600;font-size:14px;margin-bottom:2px">Current listings <span class="hint">shows as its own button; the desk lists them and offers a viewing</span></div>
             <div id="listingsBox"></div>
@@ -407,7 +409,9 @@
           </div>
         </div>
         <div id="insFields" hidden>
-          <label>Your credentials and standing <span class="hint">the desk answers "are you qualified?" from this</span><input id="credentials" placeholder="e.g. MDRT 5x, CFP, 12 years, with Financial Alliance."></label>
+          <label>Your MAS representative number <span class="hint">shown at the bottom of your front desk; anyone can check it on the MAS Register of Representatives</span><input id="regno2" placeholder="e.g. ABC123456789"></label>
+          <label style="display:block;margin-top:14px">Your firm, as licensed <span class="hint">the firm name shown alongside it</span><input id="firmreg2" placeholder="e.g. Financial Alliance Pte Ltd"></label>
+          <label style="display:block;margin-top:14px">Your experience and qualifications <span class="hint">shows as its own button once filled. Years advising and your designations land better here than sales awards</span><input id="credentials" placeholder="e.g. 12 years advising families, CFP and ChFC/S."></label>
           <label style="display:block;margin-top:14px">Your free consultation offer <span class="hint">it answers "is it free?" from this</span><input id="freeconsult" placeholder="e.g. Free, no-obligation 45-min review, online or in person."></label>
         </div>
       </div>
@@ -496,7 +500,7 @@
   $("addlisting").onclick=()=>{const r=listingRow();$("listingsBox").appendChild(r);r.querySelectorAll("textarea").forEach(grow);markDirty();};
   $("addfaq").onclick=()=>{const r=faqRow();$("faqs").appendChild(r);r.querySelectorAll("textarea").forEach(grow);markFaqButtons();markDirty();};
   $("announce").addEventListener("input",()=>{$("anncount").textContent=$("announce").value.length+" / 90";});
-  ["bname","fname","tone","greeting","tagline","telegram","about","hours","announce","whatsapp","reviewlink","trade","areas","trackrec","credentials","freeconsult"].forEach(id=>$(id).addEventListener("input",markDirty));
+  ["bname","fname","tone","greeting","tagline","telegram","about","hours","announce","whatsapp","reviewlink","trade","areas","trackrec","credentials","freeconsult","regno","firmreg","regno2","firmreg2"].forEach(id=>$(id).addEventListener("input",markDirty));
 
   // style picker
   let selStyle="clean";
@@ -548,8 +552,19 @@
     name:($("fname").value.trim()||$("bname").value.trim()||"Front desk"),
     business:$("bname").value.trim(), tagline:$("tagline").value.trim(), trade:tsel.value,
     greeting:$("greeting").value.trim(), announcement:$("announce").value.trim(), whatsapp:$("whatsapp").value.trim(),
-    pills:[...svcPill,...faqPills]
+    reg_no:regVals().reg, firm_reg:regVals().firm,
+    pills:[...svcPill,...credPill(),...faqPills]
   }; }
+  // property = CEA reg no + agency licence, insurance = MAS rep no + firm. Only one block is ever
+  // visible, so read whichever trade is active.
+  function regVals(){ const t=tsel.value;
+    if(t==="property") return {reg:$("regno").value.trim(), firm:$("firmreg").value.trim()};
+    if(t==="insurance") return {reg:$("regno2").value.trim(), firm:$("firmreg2").value.trim()};
+    return {reg:"",firm:""}; }
+  // mirrors the worker's credPill so the preview shows the same button the live desk will
+  function credPill(){ const t=tsel.value, nm=($("fname").value.trim()||$("bname").value.trim()||"Front desk");
+    const txt=(t==="property"?$("trackrec").value:t==="insurance"?$("credentials").value:"").trim();
+    return txt?[{q:t==="insurance"?("How long has "+nm+" been advising?"):(nm+"'s track record"),a:txt}]:[]; }
   function pushPreview(){ const f=$("pvframe"); if(f&&f.contentWindow&&pvReady) f.contentWindow.postMessage({type:"reception-preview",config:currentConfig()},"*"); }
   function updatePreview(){ clearTimeout(pvTimer); pvTimer=setTimeout(pushPreview,200); }
   addEventListener("message",e=>{ if(e.data&&e.data.type==="reception-preview-ready"){ pvReady=true; pushPreview(); } });
@@ -578,6 +593,7 @@
     $("about").value=cfg.about||"";
     $("areas").value=cfg.areas||""; $("trackrec").value=cfg.track_record||""; $("listingsBox").innerHTML=""; (Array.isArray(cfg.listings)?cfg.listings:[]).forEach(l=>$("listingsBox").appendChild(listingRow(l)));
     $("credentials").value=cfg.credentials||""; $("freeconsult").value=cfg.free_consult||"";
+    $("regno").value=cfg.reg_no||""; $("firmreg").value=cfg.firm_reg||""; $("regno2").value=cfg.reg_no||""; $("firmreg2").value=cfg.firm_reg||"";
     updateTradeFields();
     $("hours").value=typeof cfg.hours==="string"?cfg.hours:"";
     (cfg.services||[]).forEach(s=>$("services").appendChild(svcRow(s))); if(!(cfg.services||[]).length)$("services").appendChild(svcRow());
@@ -608,7 +624,7 @@
     const services=[...$("services").querySelectorAll(".svc")].map(r=>{const i=r.querySelectorAll("input,textarea");return{name:i[0].value.trim(),desc:i[1].value.trim(),price:i[2].value.trim()};}).filter(s=>s.name);
     const listings=[...$("listingsBox").querySelectorAll(".svc")].map(r=>{const i=r.querySelectorAll("input,textarea");return{title:i[0].value.trim(),desc:i[1].value.trim(),price:i[2].value.trim()};}).filter(l=>l.title);
     const faq=[...$("faqs").querySelectorAll(".faqc")].map(r=>{const i=r.querySelectorAll("input,textarea");return{q:i[0].value.trim(),a:i[1].value.trim()};}).filter(f=>f.q&&f.a);
-    const config={tone:$("tone").value,greeting:$("greeting").value.trim(),tagline:$("tagline").value.trim(),style:selStyle,voice:selVoice,about:$("about").value.trim(),services,hours:$("hours").value.trim(),faq,announcement:$("announce").value.trim(),accent:selAccent,whatsapp:$("whatsapp").value.trim(),review_link:$("reviewlink").value.trim(),areas:$("areas").value.trim(),track_record:$("trackrec").value.trim(),listings,credentials:$("credentials").value.trim(),free_consult:$("freeconsult").value.trim()};
+    const config={tone:$("tone").value,greeting:$("greeting").value.trim(),tagline:$("tagline").value.trim(),style:selStyle,voice:selVoice,about:$("about").value.trim(),services,hours:$("hours").value.trim(),faq,announcement:$("announce").value.trim(),accent:selAccent,whatsapp:$("whatsapp").value.trim(),review_link:$("reviewlink").value.trim(),areas:$("areas").value.trim(),track_record:$("trackrec").value.trim(),listings,credentials:$("credentials").value.trim(),free_consult:$("freeconsult").value.trim(),reg_no:regVals().reg,firm_reg:regVals().firm};
     const body={c:slug,k:key,config,frontdesk_name:$("fname").value.trim(),business_name:$("bname").value.trim(),lead_chat_id:$("telegram").value.trim()};
     if(OWNER){ body.trade=tsel.value; body.key=OWNER; }
     [$("save"),$("save2")].forEach(b=>b.disabled=true); setStatus("Saving…","");
