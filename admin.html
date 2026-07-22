@@ -466,7 +466,11 @@
 </div>
 
 <script>
-  const WORKER="https://nimbus-desk.propsightsg.workers.dev", BASE=location.origin+location.pathname.replace(/\/[^/]*$/,"");
+  const WORKER="https://nimbus-desk.propsightsg.workers.dev";
+  // The agent link and its QR are built from BASE, and a QR gets printed on nameboards and
+  // flyers where it cannot be corrected. Force https so an http page load can never bake an
+  // insecure link into something physical. Localhost is left alone so local testing works.
+  const BASE=(location.origin+location.pathname.replace(/\/[^/]*$/,"")).replace(/^http:\/\/(?!localhost|127\.0\.0\.1)/,"https://");
   const TRADES=[["beauty","Beauty & grooming"],["home","Home & trades"],["interior","Interior design"],["renovation","Renovation contractor"],["cleaning","Cleaning & laundry"],["tuition","Tuition & enrichment"],["fitness","Fitness & wellness"],["fnb","Food & beverage"],["pet","Pet services"],["events","Events & creative"],["automotive","Automotive & workshop"],["professional","Professional & business services"],["repairs","Repairs & personal retail"],["property","Property / real estate"],["insurance","Insurance & financial"],["general","General / other"]];
   const REG={property:"Regulated trade (CEA): the front desk shares info and books only, never gives valuations or advice.",insurance:"Regulated trade (MAS): the front desk shares info and books chats only, never recommends products or advises."};
   const $=id=>document.getElementById(id);
