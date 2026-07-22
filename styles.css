@@ -690,6 +690,10 @@ footer{background:var(--dark);color:var(--light);padding:clamp(64px,10vh,104px) 
 
 /* ===== hero phone: real-phone shape, dynamic island, themed slides, disabled input ===== */
 html{overflow-x:clip}                 /* belt-and-braces: no sideways scroll on any page */
+/* The header is fixed, so an anchor jump used to land with the section's heading tucked under it.
+   Applies to the in-page CTA anchors too, not just the one this was noticed on. */
+section[id],main[id]{scroll-margin-top:104px}
+@media(max-width:600px){section[id],main[id]{scroll-margin-top:92px}}
 .devbody{border-radius:46px;padding:10px}
 /* lock a real phone aspect (tall + narrow) instead of clamping height, so it never reads squat */
 .devscreen{position:relative;border-radius:38px;height:auto;aspect-ratio:9/17.3}

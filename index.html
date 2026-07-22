@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Spline+Sans+Mono:wght@400;500&family=Hedvig+Letters+Serif&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://reception.sg/">
-<link rel="stylesheet" href="styles.css?v=70">
+<link rel="stylesheet" href="styles.css?v=72">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -96,7 +96,7 @@
             </div>
             <div class="deskcap">
               <b>A property agent's front desk</b>
-              <a href="property-agents.html">See it for property agents<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <a href="why.html#rules">How it stays CEA-safe<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
             </div>
           </article>
           <article class="demo" data-slide="1">
@@ -112,7 +112,7 @@
             </div>
             <div class="deskcap">
               <b>A financial adviser's front desk</b>
-              <a href="insurance-financial.html">See it for insurance and finance<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <a href="why.html#rules">How it stays MAS-safe<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
             </div>
           </article>
           </div>
@@ -235,34 +235,34 @@
     .whogrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:clamp(28px,4vh,44px)}
     @media(max-width:760px){.whogrid{grid-template-columns:1fr}}
     .whocard{display:block;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:clamp(26px,3vw,38px);text-decoration:none;color:var(--ink);transition:transform .2s,box-shadow .2s}
-    .whocard:hover{transform:translateY(-3px);box-shadow:0 32px 64px -42px rgba(23,21,18,.5)}
-    .whorole{font-size:clamp(21px,2.4vw,27px);font-weight:700;letter-spacing:-.02em;line-height:1.1}
+        .whorole{font-size:clamp(21px,2.4vw,27px);font-weight:700;letter-spacing:-.02em;line-height:1.1}
     .whotag{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent-ink);margin-bottom:12px}
     .whocard p{margin-top:12px;font-size:16px;line-height:1.55;color:var(--muted);max-width:42ch}
     .wholink{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-weight:600;font-size:15px;color:#fff;background:var(--accent-ink);border-radius:100px;padding:12px 22px;transition:transform .2s,background .2s}
-    .whocard:hover .wholink{background:#9c3f11}
+    .wholink:hover{background:#9c3f11}
+    .wholink-solo{margin-top:clamp(22px,3vw,30px)}
     .wholink svg{width:16px;height:16px}
   </style>
   <section class="sec" id="whofor" style="background:var(--surface)">
     <div class="wrap">
       <h2 class="shead" style="max-width:22ch">Built deep for a few professions, <em>not shallow for all.</em></h2>
-      <p class="ssub" style="max-width:56ch">Reception is tuned for the Singapore professionals who live and die by how fast they answer. It knows your trade, your language and your rules. Find yours.</p>
+      <p class="ssub" style="max-width:56ch">Reception is tuned for the Singapore professionals who live and die by how fast they answer. It knows your trade, your language and the rules you work under.</p>
       <div class="whogrid">
-        <a class="whocard" href="property-agents.html">
+        <div class="whocard">
           <div class="whotag">Real estate</div>
           <div class="whorole">Property agents</div>
           <p>Answers buyers, sellers and tenants, captures budget, area and timeline, and books the viewing. Never quotes a price or valuation. CEA-safe.</p>
-          <span class="wholink">How it works
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </a>
-        <a class="whocard" href="insurance-financial.html">
+        </div>
+        <div class="whocard">
           <div class="whotag">Insurance &amp; wealth</div>
           <div class="whorole">Insurance agents &amp; financial advisers</div>
           <p>Answers every enquiry, captures what they're after, and books the consultation, without ever giving advice or a quote. MAS-safe.</p>
-          <span class="wholink">How it works
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </a>
+        </div>
       </div>
+      <!-- One link, not one per card: both trades are answered side by side in the same section,
+           so two cards pointing at the same anchor would have read as a mistake. -->
+      <a class="wholink wholink-solo" href="why.html#rules">See exactly where the line sits in each
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </section>
 

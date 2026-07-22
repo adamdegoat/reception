@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://reception.sg/why.html">
-<link rel="stylesheet" href="styles.css?v=70">
+<link rel="stylesheet" href="styles.css?v=72">
 <style>
   .sec{padding:clamp(54px,7.5vh,84px) 0}
   .band{padding:clamp(60px,9vh,100px) 0}
@@ -27,6 +27,24 @@
   .evtxt p{font-size:clamp(15.5px,1.35vw,17px);line-height:1.5;color:var(--ink)}
   .evsrc{display:block;margin-top:10px;font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
   .lede-note{margin-top:22px;font-weight:600;font-size:clamp(16px,2vw,19px);color:var(--accent-ink);max-width:40ch;line-height:1.45}
+  /* Three points, not four, since compliance was promoted out of this grid into its own section.
+     Three in a two-up grid would leave an empty cell, so this block runs three across. */
+  .feats3{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:900px){.feats3{grid-template-columns:1fr 1fr}}
+  @media(max-width:760px){.feats3{grid-template-columns:1fr}}
+
+  /* "It stays inside your rules": the two trades side by side */
+  .rulesduo{margin-top:clamp(24px,3.2vw,36px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,64px)}
+  @media(max-width:820px){.rulesduo{grid-template-columns:1fr;gap:32px}}
+  .rulestrade{display:flex;align-items:center;gap:10px;font-size:clamp(18px,2vw,22px);font-weight:700;letter-spacing:-.015em;line-height:1.15}
+  .rulestag{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.06em;color:var(--accent-ink);
+    border:1px solid color-mix(in srgb,var(--accent-ink) 30%,transparent);border-radius:5px;padding:2px 7px}
+  .rulesnote{margin-top:11px;font-size:15.5px;line-height:1.55;color:var(--muted);max-width:44ch}
+  .rulesbox{margin-top:20px;display:grid;gap:12px;padding-top:20px;border-top:1px solid var(--line)}
+  .rulesrow{display:flex;align-items:flex-start;gap:11px;font-size:15.5px;line-height:1.45}
+  .rulesrow svg{width:20px;height:20px;flex:none;margin-top:1px}
+  .rulesrow .no{color:#b0442a}
+  .rulesrow .yes{color:#2f7d54}
   .srcbar{padding:clamp(28px,5vh,44px) 0}
   .srch{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
   .sources{margin-top:12px;font-size:14.5px;color:var(--muted);line-height:1.7;max-width:70ch}
@@ -148,11 +166,46 @@
   <section class="sec tint">
     <div class="wrap">
       <h2 class="shead">Built for how <em>Singapore</em> runs.</h2>
-      <div class="feats2">
+      <div class="feats2 feats3">
         <div class="feat"><h3>The shift is already happening</h3><p>Singapore agents and firms are moving fast. Government figures show SME use of these tools tripled in a single year, from 4.2 percent to 14.5 percent.</p></div>
         <div class="feat"><h3>Your enquiries never sleep</h3><p>People message at all hours, on WhatsApp, Instagram, wherever they find you. Your front desk answers around the clock, so nothing waits until morning.</p></div>
-        <div class="feat"><h3>It stays inside your rules</h3><p>It answers from your own information and captures the lead, but never quotes a price or valuation and never gives advice, so you stay CEA and MAS-safe.</p></div>
         <div class="feat"><h3>Your enquiries stay yours</h3><p>Every name and number goes straight to your phone. Nothing is sold or shared, and it only ever answers from what you have given it.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The last objection before signing up is not "does speed win", it is "will this cost me my
+       licence". Both trades sit side by side on purpose: seeing the other column is the proof that
+       this is built per profession rather than one generic bot with a different name on it. -->
+  <section class="sec" id="rules">
+    <div class="wrap ledegrid">
+      <h2 class="shead" style="max-width:14ch">It stays <em>inside your rules.</em></h2>
+      <div class="ledeaside">
+        <p class="ssub" style="max-width:50ch">It answers from your own information and captures the lead, but the regulated call is always yours. Here is exactly where the line sits in each profession.</p>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="rulesduo">
+        <div class="rulescol">
+          <div class="rulestrade">Property agents<span class="rulestag">CEA</span></div>
+          <p class="rulesnote">It shares general information and takes details, but never quotes a price, valuation, stamp duty or eligibility. That stays your call as the licensed agent.</p>
+          <div class="rulesbox">
+            <div class="rulesrow"><svg class="no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg><span>Never quotes a valuation, PSF, ABSD or loan figure</span></div>
+            <div class="rulesrow"><svg class="no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg><span>Never judges eligibility or tells anyone what to buy</span></div>
+            <div class="rulesrow"><svg class="yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span>Answers general questions and lines up the viewing</span></div>
+            <div class="rulesrow"><svg class="yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span>Routes every figure and decision back to you</span></div>
+          </div>
+        </div>
+        <div class="rulescol">
+          <div class="rulestrade">Insurance &amp; financial<span class="rulestag">MAS</span></div>
+          <p class="rulesnote">It shares general information and takes details, but never recommends a product, quotes a premium, compares insurers or does a fact-find. That stays your call as the licensed adviser.</p>
+          <div class="rulesbox">
+            <div class="rulesrow"><svg class="no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg><span>Never recommends a product or quotes a premium</span></div>
+            <div class="rulesrow"><svg class="no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg><span>Never compares insurers or does a fact-find</span></div>
+            <div class="rulesrow"><svg class="yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span>Explains terms in general and books the consultation</span></div>
+            <div class="rulesrow"><svg class="yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span>Routes anything that needs advice back to you</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
