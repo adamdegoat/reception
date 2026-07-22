@@ -37,6 +37,9 @@
   .desk{width:100%;max-width:800px;height:100dvh;max-height:900px;display:flex;flex-direction:column;background:var(--deskbg);position:relative;overflow:hidden}
   @media(min-width:560px){.desk{max-width:480px;border:1px solid rgba(23,21,18,.16);border-radius:30px;height:min(100dvh - 48px,820px);box-shadow:0 2px 8px -2px rgba(23,21,18,.1),0 40px 90px -44px rgba(23,21,18,.5);margin:24px}}
   .dthread::before{content:"";margin-top:auto}
+  /* Compact mode is for the desk embedded in a small frame (the home-page demo on a phone), where
+     bottom-anchoring can push the opening message out of view. The embedding page decides, by
+     passing compact=1 or not; the desk itself cannot tell how much room it has been given. */
   html[data-compact] .dthread::before{margin-top:0}
   html[data-compact] .dthread{padding-top:14px}
   /* desktop brand stage (token-driven: adapts to the desk's style + colour) */

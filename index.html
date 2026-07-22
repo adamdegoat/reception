@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Spline+Sans+Mono:wght@400;500&family=Hedvig+Letters+Serif&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://reception.sg/">
-<link rel="stylesheet" href="styles.css?v=69">
+<link rel="stylesheet" href="styles.css?v=70">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -91,7 +91,7 @@
                   <span id="devclock">9:41</span>
                   <span class="devr" aria-hidden="true">5G<span class="bat"></span></span>
                 </div>
-                <iframe class="deviframe" src="f.html?c=propertydemo&amp;compact=1&amp;v=2" title="A property agent's front desk, live"></iframe>
+                <iframe class="deviframe" data-src="f.html?c=propertydemo&amp;v=3" title="A property agent's front desk, live"></iframe>
               </div>
             </div>
             <div class="deskcap">
@@ -107,7 +107,7 @@
                   <span aria-hidden="true">9:41</span>
                   <span class="devr" aria-hidden="true">5G<span class="bat"></span></span>
                 </div>
-                <iframe class="deviframe" data-src="f.html?c=fademo&amp;compact=1&amp;v=2" title="A financial adviser's front desk, live"></iframe>
+                <iframe class="deviframe" data-src="f.html?c=fademo&amp;v=3" title="A financial adviser's front desk, live"></iframe>
               </div>
             </div>
             <div class="deskcap">
@@ -252,14 +252,14 @@
           <div class="whotag">Real estate</div>
           <div class="whorole">Property agents</div>
           <p>Answers buyers, sellers and tenants, captures budget, area and timeline, and books the viewing. Never quotes a price or valuation. CEA-safe.</p>
-          <span class="wholink">See the property desk, live
+          <span class="wholink">How it works
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </a>
         <a class="whocard" href="insurance-financial.html">
           <div class="whotag">Insurance &amp; wealth</div>
           <div class="whorole">Insurance agents &amp; financial advisers</div>
           <p>Answers every enquiry, captures what they're after, and books the consultation, without ever giving advice or a quote. MAS-safe.</p>
-          <span class="wholink">See the adviser desk, live
+          <span class="wholink">How it works
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </a>
       </div>
@@ -394,9 +394,18 @@
     const wide = matchMedia('(min-width:1000px)');
     let i = 0, mounted = false;
 
+    // Each desk is the real front desk in an iframe, and it cannot tell how much room it has been
+    // given, so the page decides. Given a frame the size of a real desk it runs exactly as the real
+    // one does: conversation resting on the input, quick questions open. In anything shorter it
+    // runs compact (conversation from the top, questions folded), because a full desk in a short
+    // frame pushes the opening message out of view. Measured, not assumed from the breakpoint: a
+    // 768px-tall laptop is past the desktop breakpoint but still too short for the full desk.
+    const frames = [...rail.querySelectorAll('iframe')];
+    const mode = () => frames[0].clientHeight >= 650 ? '' : '&compact=1';
+    function mount(f){ const want = f.dataset.src + mode(); if(f.getAttribute('src') !== want) f.src = want; }
     function mountRest(){
       if(mounted) return; mounted = true;
-      rail.querySelectorAll('iframe[data-src]').forEach(f => { f.src = f.dataset.src; f.removeAttribute('data-src'); });
+      frames.forEach(mount);
     }
     function go(n){
       i = Math.max(0, Math.min(cards.length - 1, n));
@@ -414,10 +423,16 @@
       if(e.key === 'ArrowLeft') go(i-1);
       if(e.key === 'ArrowRight') go(i+1);
     });
-    // desktop shows both at once, so load the second straight away; on a phone hold it back
+    // the visible desk loads now; desktop shows both at once so the second follows straight away,
+    // on a phone it waits until the page has settled
+    mount(frames[0]);
     if(wide.matches) mountRest();
     else addEventListener('load', () => setTimeout(mountRest, 2500), {once:true});
-    wide.addEventListener && wide.addEventListener('change', e => { if(e.matches){ mountRest(); go(0); } });
+    // crossing the breakpoint changes how much room each desk gets, so reload it in the right mode
+    wide.addEventListener && wide.addEventListener('change', e => {
+      frames.forEach(f => { if(f.getAttribute('src')) mount(f); });
+      if(e.matches){ mountRest(); go(0); }
+    });
     go(0);
   })();
 
