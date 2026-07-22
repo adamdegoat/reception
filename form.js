@@ -33,6 +33,9 @@
             '<input class="rf-input" id="rfNote" type="text" maxlength="200" placeholder="A line about your business"></label>' +
           '<button class="rf-submit" id="rfSubmit" type="submit">Request my desk</button>' +
           '<p class="rf-err" id="rfErr" hidden></p>' +
+          // PDPA notification: this form collects a name and mobile, so say what they are for and
+          // link the policy at the point of collection, the same way the front desk's lead form does.
+          '<p class="rf-consent">By sending, you agree we may contact you about setting up your front desk. See our <a href="privacy.html">Privacy</a>.</p>' +
           '<p class="rf-alt">Prefer WhatsApp? <a href="https://wa.me/6583219747" target="_blank" rel="noopener">Message us</a></p>' +
         '</form>' +
       '</div>' +

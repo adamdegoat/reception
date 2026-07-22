@@ -814,6 +814,8 @@ section[id],main[id]{scroll-margin-top:104px}
 .rf-submit:disabled{opacity:.6;cursor:default;transform:none}
 .rf-err{color:#b3261e;font-size:14px;margin:12px 0 0;text-align:center}
 .rf-alt{text-align:center;font-size:14px;color:var(--muted);margin:16px 0 0}
+.rf-consent{text-align:center;font-size:11.5px;line-height:1.45;color:var(--muted);margin:12px 0 0}
+.rf-consent a{color:var(--accent-ink);font-weight:600}
 .rf-alt a{color:var(--accent-ink);font-weight:600;border-bottom:1px solid rgba(178,71,20,.35)}
 .rf-done{text-align:center;padding:8px 0 6px}
 .rf-check{width:56px;height:56px;margin:0 auto 18px;border-radius:50%;background:var(--accent);
